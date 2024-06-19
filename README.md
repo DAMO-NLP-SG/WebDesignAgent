@@ -1,15 +1,10 @@
 # WebDesignAgent
 ## Demo Video
 ### Auto Generation
-<video>
-  <source src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/autogen.mp4" type="video/mp4">
-</video>
-
-
+<div align="center"><video src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/autogen.mp4"width="800"></div>
+  
 ### Human Feedback
-<video>
-  <source src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/feedback.mp4" type="video/mp4">
-</video>
+<div align="center"><video src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/feedback.mp4" width="800"></div>
 
 
 
