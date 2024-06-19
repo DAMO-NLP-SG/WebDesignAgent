@@ -2,13 +2,13 @@
 ## Demo Video
 ### Auto Generation
 <video>
-  <source src="assets/autogen.mp4" type="video/mp4">
+  <source src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/autogen.mp4" type="video/mp4">
 </video>
 
 
 ### Human Feedback
 <video>
-  <source src="assets/feedback.mp4" type="video/mp4">
+  <source src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/feedback.mp4" type="video/mp4">
 </video>
 
 
