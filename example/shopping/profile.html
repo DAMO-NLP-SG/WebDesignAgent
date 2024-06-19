@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="profile-info">
+            <div class="profile-picture">
+                <img src="default-profile.jpg" alt="Profile Picture" description="User's Profile Picture" class="profile-img">
+                <button id="update-picture">Update Picture</button>
+            </div>
+            <div class="personal-details">
+                <h1>User Name</h1>
+                <p>Email: user@example.com</p>
+                <p>Phone: 123-456-7890</p>
+                <button id="edit-profile">Edit Profile</button>
+            </div>
+        </section>
+        <section class="order-history">
+            <h2>Order History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product</th>
+                        <th>Status</th>
+                        <th>Product Image</th>
+                    </tr>
+                </thead>
+                <tbody id="order-list">
+                    <tr>
+                        <td>12345</td>
+                        <td>Product 1</td>
+                        <td>Delivered</td>
+                        <td><img src="product1.jpg" alt="Product 1" description="Image of Product 1"></td>
+                    </tr>
+                    <tr>
+                        <td>67890</td>
+                        <td>Product 2</td>
+                        <td>Shipped</td>
+                        <td><img src="product2.jpg" alt="Product 2" description="Image of Product 2"></td>
+                    </tr>
+                    <tr>
+                        <td>11223</td>
+                        <td>Product 3</td>
+                        <td>Processing</td>
+                        <td><img src="product3.jpg" alt="Product 3" description="Image of Product 3"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="recommendations">
+            <h2>Recommended Products</h2>
+            <div id="recommended-products" class="product-grid">
+                <div class="product-card">
+                    <img src="product4.jpg" alt="Product 4" description="Description for product 4, such as a smart watch">
+                    <p>Description for product 4, such as a smart watch</p>
+                </div>
+                <div class="product-card">
+                    <img src="product5.jpg" alt="Product 5" description="Description for product 5, such as a gaming console">
+                    <p>Description for product 5, such as a gaming console</p>
+                </div>
+                <div class="product-card">
+                    <img src="product6.jpg" alt="Product 6" description="Description for product 6, such as a digital camera">
+                    <p>Description for product 6, such as a digital camera</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Contact Us: info@shoppingwebsite.com</p>
+        <p>Follow Us: 
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </p>
+    </footer>
+    <script src="profile.js"></script>
+</body>
+</html>

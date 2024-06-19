@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="confirmation.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="order-summary">
+            <h1>Order Confirmation</h1>
+            <div id="order-details">
+                <img src="sample-product.jpg" alt="Sample Product 1" class="product-img" description="This is a sample product image.">
+                <p>Product Name: Sample Product 1</p>
+                <p>Quantity: 1</p>
+                <p>Price: $10.00</p>
+                <p>Total Cost: $10.00</p>
+                <p>Payment Method: Credit Card</p>
+                <p>Estimated Delivery Date: 2023-10-15</p>
+                <p>Tracking Information: 123456789</p>
+            </div>
+            <div class="buttons">
+                <button id="continue-shopping" onclick="redirectToProducts()">Continue Shopping</button>
+                <button id="track-order" onclick="trackOrder()">Track Order</button>
+                <button id="contact-support" onclick="contactSupport()">Contact Support</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="confirmation.js"></script>
+</body>
+</html>

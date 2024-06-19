@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+    </nav>
+
+    <main>
+        <h1>Your Shopping Cart</h1>
+        <div id="cart-items">
+            <div class="cart-item">
+                <img src="product1.jpg" alt="Black Phone" description="This is a black phone.">
+                <div class="cart-item-details">
+                    <p>Description for product 1, such as a black phone</p>
+                    <p class="description">$20.00</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+                <button class="remove-button">Remove</button>
+            </div>
+            <div class="cart-item">
+                <img src="product2.jpg" alt="Small Cube" description="This is a small cube.">
+                <div class="cart-item-details">
+                    <p>Description for product 2, such as a small cube</p>
+                    <p class="description">$15.00</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <button>-</button>
+                    <span>2</span>
+                    <button>+</button>
+                </div>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+        <div id="cart-summary">
+            <p>Total: $<span id="cart-total">50.00</span></p>
+            <input type="text" id="discount-code" placeholder="Enter discount code">
+            <button id="apply-discount">Apply Discount</button>
+            <button id="checkout-button">Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

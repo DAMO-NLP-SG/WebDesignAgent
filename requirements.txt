@@ -1,0 +1,7 @@
+openai==1.34.0
+Pillow==10.3.0
+Requests==2.32.3
+selenium==4.21.0
+tenacity==8.3.0
+webdriver_manager==4.0.1
+yaspin==3.0.2

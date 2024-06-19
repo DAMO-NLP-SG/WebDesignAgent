@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Shopping Website</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </header>
+    <main>
+        <section id="filters">
+            <input type="text" id="search" placeholder="Search products...">
+            <select id="sort">
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="popularity">Popularity</option>
+            </select>
+        </section>
+        <section id="products">
+            <div class="product-card">
+                <img src="black_phone.jpg" alt="Black Phone" description="This is a sleek black phone with modern features.">
+                <p>Description for product 1, such as a black phone</p>
+                <p>$29.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="white_keyboard.jpg" alt="White Keyboard" description="This is a compact white keyboard with responsive keys.">
+                <p>Description for product 2, such as a white keyboard</p>
+                <p>$19.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="abstract_poster.jpg" alt="Colorful Abstract Poster" description="This is a vibrant and colorful abstract poster.">
+                <p>Description for product 3, such as a colorful abstract poster</p>
+                <p>$39.99</p>
+                <button>Add to Cart</button>
+            </div>
+        </section>
+        <div id="pagination">
+            <button class="pagination-button">1</button>
+        </div>
+    </main>
+    <footer>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </footer>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="confirmationMessage"></p>
+            <button id="confirmAddToCart">Yes</button>
+            <button id="cancelAddToCart">No</button>
+        </div>
+    </div>
+    <script src="products.js"></script>
+</body>
+</html>

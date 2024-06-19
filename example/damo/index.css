@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.logo-container img {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+#welcome-section {
+    text-align: center;
+    background-color: #4f4f4f;
+    color: white;
+    padding: 50px 20px;
+}
+
+button {
+    background-color: #ff7f50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff6347;
+}
+
+#news-section, #research-areas, #collaboration, #social-responsibility {
+    margin: 20px 0;
+}
+
+.news-container, .research-container, .collaboration-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.news-item, .research-area, .collaborate-item {
+    margin: 10px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.news-item img, .research-area img, .collaborate-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#join-us {
+    background: linear-gradient(to right, #ff7f50, #ff6347);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+#contact-info {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#contact-info ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#contact-info ul li {
+    display: inline;
+}
+
+#contact-info ul li a img {
+    width: 30px;
+    height: 30px;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff7f50;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#back-to-top:hover {
+    background-color: #ff6347;
+}
+
+#social-responsibility {
+    background: url('background.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 50px 20px;
+}

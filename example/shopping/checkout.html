@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="cart-review">
+            <h2>Review Your Cart</h2>
+            <div id="cartItems">
+                <div class="cart-item">
+                    <img src="product1.jpg" alt="Product 1" description="Black phone">
+                    <p>Description for product 1, such as a black phone</p>
+                    <span>$29.99</span>
+                </div>
+                <div class="cart-item">
+                    <img src="product2.jpg" alt="Product 2" description="White phone">
+                    <p>Description for product 2, such as a white phone</p>
+                    <span>$49.99</span>
+                </div>
+            </div>
+        </section>
+        <section class="billing-info">
+            <h2>Billing Information</h2>
+            <form id="billingForm">
+                <label for="billingName">Name:</label>
+                <input type="text" id="billingName" name="billingName" required>
+                <label for="billingAddress">Address:</label>
+                <input type="text" id="billingAddress" name="billingAddress" required>
+                <label for="billingEmail">Email:</label>
+                <input type="email" id="billingEmail" name="billingEmail" required>
+            </form>
+        </section>
+        <section class="shipping-info">
+            <h2>Shipping Information</h2>
+            <form id="shippingForm">
+                <label for="shippingName">Name:</label>
+                <input type="text" id="shippingName" name="shippingName" required>
+                <label for="shippingAddress">Address:</label>
+                <input type="text" id="shippingAddress" name="shippingAddress" required>
+                <label for="shippingMethod">Shipping Method:</label>
+                <select id="shippingMethod" name="shippingMethod">
+                    <option value="standard">Standard</option>
+                    <option value="express">Express</option>
+                </select>
+            </form>
+        </section>
+        <section class="discount-code">
+            <h2>Apply Discount Code</h2>
+            <input type="text" id="discountCode" name="discountCode" placeholder="Enter discount code">
+            <button type="button" onclick="applyDiscount()">Apply</button>
+            <p id="discountFeedback" class="hidden">Discount code applied successfully!</p>
+        </section>
+        <section class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="orderSummary">
+                <div class="cart-item">
+                    <img src="product1.jpg" alt="Product 1" description="Black phone">
+                    <p>Description for product 1, such as a black phone</p>
+                    <span>$29.99</span>
+                </div>
+                <div class="cart-item">
+                    <img src="product2.jpg" alt="Product 2" description="White phone">
+                    <p>Description for product 2, such as a white phone</p>
+                    <span>$49.99</span>
+                </div>
+                <div class="cart-total">
+                    <p>Total: $79.98</p>
+                </div>
+            </div>
+        </section>
+        <button id="placeOrder" onclick="placeOrder()">Place Order</button>
+    </main>
+    <script src="checkout.js"></script>
+</body>
+</html>

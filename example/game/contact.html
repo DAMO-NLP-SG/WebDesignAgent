@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AAA Game Company</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='about.html'">About</button>
+            <button onclick="location.href='services.html'">Services</button>
+            <button onclick="location.href='contact.html'">Contact</button>
+        </nav>
+    </header>
+    <main>
+        <section id="contact-info">
+            <h1>Contact Us</h1>
+            <p>Feel free to reach out to us with any inquiries, feedback, or support requests.</p>
+            <div id="map">
+                <p class="map-error">Unable to load map. Please check your JavaScript settings.</p>
+            </div>
+        </section>
+        <section id="promotional-images">
+            <img src="demo_banner_1.jpg" alt="Promotional Banner 1" description="This is the logo of a shopping website, resembling a little dog">
+            <img src="demo_banner_2.jpg" alt="Promotional Banner 2" description="This is an action game promotional banner.">
+        </section>
+        <section id="contact-form">
+            <form id="interactive-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 AAA Game Company. All rights reserved.</p>
+        <nav>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="support.html">Support</a>
+        </nav>
+    </footer>
+    <script src="contact.js"></script>
+</body>
+</html>

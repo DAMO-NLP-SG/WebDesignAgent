@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #333;
+}
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #1f4037;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    color: #1f4037;
+    background-color: #fff;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.news-item {
+    background: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 800px;
+    width: 100%;
+}
+
+.news-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.news-item img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.news-item h2 {
+    margin-top: 10px;
+    color: #1f4037;
+}
+
+.news-item p {
+    margin-top: 5px;
+    color: #666;
+}
+
+.news-item .description {
+    font-style: italic;
+    color: #999;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+    border-top: 2px solid #1f4037;
+}
+
+footer form {
+    margin-top: 20px;
+}
+
+footer input[type="email"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    width: 300px;
+    max-width: 100%;
+}
+
+footer button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    background-color: #1f4037;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+footer button:hover {
+    background-color: #99f2c8;
+    transform: scale(1.05);
+}
+
+#subscribe-feedback {
+    margin-top: 10px;
+    color: #99f2c8;
+    font-weight: bold;
+}

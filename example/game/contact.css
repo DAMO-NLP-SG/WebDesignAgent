@@ -1,0 +1,150 @@
+/* contact.css */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1d1d1d, #4a4a4a);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+nav button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+main {
+    padding: 20px;
+}
+
+#contact-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    margin: 20px 0;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 16px;
+}
+
+#promotional-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+#promotional-images img {
+    width: 300px;
+    height: 200px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+#promotional-images img:hover {
+    transform: scale(1.05);
+}
+
+#promotional-images img::after {
+    content: attr(description);
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-form label {
+    margin: 10px 0 5px;
+}
+
+#contact-form input, 
+#contact-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #444, #666);
+    color: #fff;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+#contact-form input:focus, 
+#contact-form textarea:focus {
+    background: linear-gradient(135deg, #666, #888);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#contact-form button {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+#contact-form button:hover {
+    background-color: #e65c00;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
+
+footer {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #444;
+}
+
+footer nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer nav a:hover {
+    color: #ff6600;
+}

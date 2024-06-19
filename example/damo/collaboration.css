@@ -1,0 +1,127 @@
+/* collaboration.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f0f0f0, #ffffff);
+}
+
+header {
+    background-color: #0044cc;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+nav button, nav a {
+    background-color: white;
+    color: #0044cc;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+}
+
+nav button:hover, nav a:hover {
+    background-color: #002288;
+    color: white;
+    transform: scale(1.05);
+}
+
+main {
+    padding: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+section {
+    background-color: #f9f9f9;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+section h2 {
+    text-align: center;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#projects {
+    background: linear-gradient(to right, #fff1eb, #ace0f9);
+}
+
+#partners {
+    background: linear-gradient(to right, #d4fc79, #96e6a1);
+}
+
+#success-stories {
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+}
+
+.project, .partner {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    transition: transform 0.3s ease;
+}
+
+.project:hover, .partner:hover {
+    transform: scale(1.05);
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+button[type="submit"] {
+    background-color: #0044cc;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+    background-color: #002288;
+    transform: scale(1.05);
+}
+
+#success-stories article {
+    background-color: #e0e0e0;
+    padding: 1em;
+    border-radius: 8px;
+}
+
+#success-stories h3 {
+    text-shadow: 1px 1px 2px #aaa;
+}
+
+#form-feedback {
+    margin-top: 1em;
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+footer {
+    background-color: #0044cc;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}

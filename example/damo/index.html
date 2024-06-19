@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" description="Company Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="about_us.html">关于我们</a></li>
+                <li><a href="research_areas.html">研究领域</a></li>
+                <li><a href="collaboration.html">合作生态</a></li>
+                <li><a href="social_responsibility.html">社会责任</a></li>
+                <li><a href="join_us.html">请速您的加入</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="welcome-section">
+            <h1>以科技 达未来</h1>
+            <p>达摩院是一家致力于开拓前沿科技领域，以人为本提高市场能力，迎接未来科技的挑战，创建科技有效应用的全球研究。</p>
+            <button onclick="navigateTo('news.html')">了解更多</button>
+        </section>
+        <section id="news-section">
+            <div class="news-container">
+                <div class="news-item">
+                    <img src="banner1.jpg" alt="Promotional Banner 1" description="This is a promotional banner for the global mathematics competition.">
+                    <p>阿里巴巴全球数学竞赛</p>
+                </div>
+                <div class="news-item">
+                    <img src="event1.jpg" alt="Event Image 1" description="Image of a technology event">
+                    <p>达摩院登陆联合国舞台，AI多项黑科技未来将在中国家园推广</p>
+                </div>
+                <div class="news-item">
+                    <img src="award1.jpg" alt="Award Image 1" description="Image of an award ceremony">
+                    <p>2024达摩院青橙奖全面开启，百万大奖寻找中国科研创新</p>
+                </div>
+                <div class="news-item">
+                    <img src="competition.jpg" alt="Competition Image" description="Image of a global competition">
+                    <p>2024阿里巴巴全球数学竞赛开幕，583支AI队伍与人类选拔一席之地</p>
+                </div>
+                <div class="news-item">
+                    <img src="plant.jpg" alt="Plant Image" description="Image of a plant breeding platform">
+                    <p>达摩院发布加速农业新品种培育，全球23家科研机构合作</p>
+                </div>
+            </div>
+        </section>
+        <section id="research-areas">
+            <h2>研究布局</h2>
+            <div class="research-container">
+                <div class="research-area">
+                    <img src="vision.jpg" alt="Vision Technology" description="Image representing vision technology">
+                    <p>视觉技术</p>
+                </div>
+                <div class="research-area">
+                    <img src="language.jpg" alt="Language Technology" description="Image representing language technology">
+                    <p>语言技术</p>
+                </div>
+                <div class="research-area">
+                    <img src="decision.jpg" alt="Decision Intelligence" description="Image representing decision intelligence">
+                    <p>决策智能</p>
+                </div>
+            </div>
+        </section>
+        <section id="collaboration">
+            <h2>合作生态</h2>
+            <div class="collaboration-container">
+                <div class="collaborate-item">
+                    <img src="collaboration1.jpg" alt="Collaboration Image 1" description="Image of collaboration project">
+                    <p>合作项目</p>
+                </div>
+                <div class="collaborate-item">
+                    <img src="lab.jpg" alt="Lab Image" description="Image of a laboratory">
+                    <p>联合实验室</p>
+                </div>
+                <div class="collaborate-item">
+                    <img src="phd.jpg" alt="PhD Program" description="Image of PhD program">
+                    <p>博士后工作站</p>
+                </div>
+            </div>
+        </section>
+        <section id="social-responsibility">
+            <h2>社会责任</h2>
+            <p>“普惠科技，创造价值”，达摩院高度关注社会责任使命，在助力青年学者创新科研梦想之路。</p>
+            <p>发起“青橙奖”，用科技赋能世界，阿里巴巴全球数学竞赛是青年学者实现科研梦想的舞台。</p>
+        </section>
+    </main>
+    <footer>
+        <section id="join-us">
+            <h2>请速您的加入</h2>
+            <button onclick="navigateTo('join_us.html')">查看详情</button>
+        </section>
+        <div id="contact-info">
+            <p>关注我们：</p>
+            <ul>
+                <li><a href="#"><img src="wechat.png" alt="WeChat" description="WeChat icon"></a></li>
+                <li><a href="#"><img src="weibo.png" alt="Weibo" description="Weibo icon"></a></li>
+                <li><a href="#"><img src="twitter.png" alt="Twitter" description="Twitter icon"></a></li>
+            </ul>
+        </div>
+        <button id="back-to-top" onclick="scrollToTop()">Top</button>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration</title>
+    <link rel="stylesheet" href="collaboration.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <button onclick="location.href='index.html'">Home</button>
+            <a href="social_responsibility.html">Social Responsibility</a>
+        </nav>
+    </header>
+    <main>
+        <section id="projects">
+            <h2>Collaboration Projects</h2>
+            <div class="project">
+                <img src="project1.jpg" alt="Project 1 Image" description="Description for Project 1">
+                <p>Description for Project 1</p>
+            </div>
+            <div class="project">
+                <img src="project2.jpg" alt="Project 2 Image" description="Description for Project 2">
+                <p>Description for Project 2</p>
+            </div>
+        </section>
+        <section id="partners">
+            <h2>Our Partners</h2>
+            <div class="partner">
+                <img src="partner1.jpg" alt="Partner 1 Image" description="Description for Partner 1">
+                <p>Description for Partner 1</p>
+            </div>
+            <div class="partner">
+                <img src="partner2.jpg" alt="Partner 2 Image" description="Description for Partner 2">
+                <p>Description for Partner 2</p>
+            </div>
+        </section>
+        <section id="success-stories">
+            <h2>Success Stories</h2>
+            <article id="story1">
+                <h3>Story 1</h3>
+                <p>Details about success story 1...</p>
+            </article>
+            <article id="story2">
+                <h3>Story 2</h3>
+                <p>Details about success story 2...</p>
+            </article>
+        </section>
+        <section id="apply">
+            <h2>Apply for Collaboration</h2>
+            <form id="collaboration-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="project-details">Project Details:</label>
+                <textarea id="project-details" name="project-details" required></textarea>
+                <button type="submit">Submit</button>
+                <div id="form-feedback" style="display:none;">Form submitted successfully!</div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Collaboration Inc. All rights reserved.</p>
+    </footer>
+    <script src="collaboration.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec, #bcccdc);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background: #2a9d8f;
+    padding: 10px;
+}
+
+.navbar button {
+    background: #e76f51;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 5px;
+}
+
+.navbar button:hover {
+    background: #f4a261;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #264653, #2a9d8f);
+    color: white;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    border-left: 8px solid #2a9d8f;
+}
+
+section:nth-child(even) {
+    background: #f0f4f8;
+}
+
+section:hover {
+    transform: scale(1.02);
+}
+
+.img-container {
+    position: relative;
+    text-align: center;
+}
+
+section img {
+    display: block;
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+section img:hover {
+    transform: scale(1.05);
+}
+
+.img-description {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    display: none;
+}
+
+.img-container:hover .img-description {
+    display: block;
+}
+
+section h2 {
+    text-align: center;
+    color: #2a9d8f;
+    border-bottom: 3px solid #2a9d8f;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+#reviewForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#reviewForm input, #reviewForm textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#reviewForm button {
+    background: #2a9d8f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 5px;
+}
+
+#reviewForm button:hover {
+    background: #264653;
+}
+
+.review {
+    background: #f0f4f8;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

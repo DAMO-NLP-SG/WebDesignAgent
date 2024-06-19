@@ -1,0 +1,183 @@
+/* about_us.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+    color: #333;
+}
+
+header {
+    background-color: #00796b;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav button, nav a {
+    background-color: #004d40;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover, nav button:hover {
+    background-color: #00251a;
+    transform: scale(1.05);
+}
+
+#intro, #timeline, #team {
+    padding: 20px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#team-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-member-details {
+    display: none;
+    background-color: #e0f2f1;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+#timeline-container {
+    position: relative;
+    padding: 20px;
+    border-left: 4px solid #004d40;
+}
+
+.timeline-event {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-event img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.timeline-image::after {
+    content: attr(description);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    display: none;
+    padding: 5px;
+}
+
+.timeline-image:hover::after {
+    display: block;
+}
+
+.timeline-event-content {
+    background-color: #e0f2f1;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #00796b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}
+
+/* Additional styles for visual effects */
+body {
+    background: linear-gradient(120deg, #a6c0fe, #f68084);
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    background: linear-gradient(45deg, #42a5f5, #478ed1);
+}
+
+#intro, #timeline, #team {
+    background: linear-gradient(135deg, #ffffff, #dfdfe5);
+}
+
+.team-member img {
+    border: 3px solid #004d40;
+}
+
+.team-member:hover {
+    background: linear-gradient(135deg, #e0f7fa, #004d40);
+}
+
+footer {
+    background: linear-gradient(45deg, #42a5f5, #478ed1);
+}
+
+footer nav a:hover {
+    color: #ffeb3b;
+}
