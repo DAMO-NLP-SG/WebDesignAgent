@@ -1,10 +1,10 @@
 # WebDesignAgent
 ## Demo Video
 ### Auto Generation
-<div align="center"><video src="assets/autogen.mp4" width="800"></div>
+<div align="center"><video src="assets/autogen.mp4"></div>
 
 ### Human Feedback
-<div align="center"><video src="assets/modify.mp4" width="800"></div>
+<div align="center"><video src="assets/feedback.mp4"></div>
 
 
 ## Quick Start
@@ -24,7 +24,7 @@ Add your API_KEY
 If you use Azure API
 LLM.py line 22
 <div style="text-align: center;">
-  <img src="assets/azure_api.png" width="500" height="350"/>
+  <img src="assets/azure_api.png"/>
 </div>
 
 elif you use Openai API
@@ -33,7 +33,7 @@ Set is_azure = False(LLM.py line 18)
 
 LLM.py line 39
 <div style="text-align: center;">
-  <img src="assets/openai_api.png" width="500" height="350"/>
+  <img src="assets/openai_api.png"/>
 </div>
 
 
