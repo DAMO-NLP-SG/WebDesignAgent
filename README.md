@@ -1,10 +1,16 @@
 # WebDesignAgent
 ## Demo Video
 ### Auto Generation
-<div align="center"><video src="assets/autogen.mp4"></div>
+<video>
+  <source src="assets/autogen.mp4" type="video/mp4">
+</video>
+
 
 ### Human Feedback
-<div align="center"><video src="assets/feedback.mp4"></div>
+<video>
+  <source src="assets/feedback.mp4" type="video/mp4">
+</video>
+
 
 
 ## Quick Start
