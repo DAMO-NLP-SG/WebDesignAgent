@@ -1,8 +1,4 @@
 import os
-os.environ["AZURE_OPENAI_ENDPOINT"] = "https://agent-eastus.openai.azure.com/"
-os.environ["AZURE_OPENAI_KEY"] = "8d97baf24d6341deb01e30ba04d389e8"
-os.environ["AZURE_OPENAI_API_VERSION"] = "2024-02-01"
-
 import json
 from base_agent import BaseAgent
 from webserver import Webserver
