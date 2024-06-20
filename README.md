@@ -38,10 +38,11 @@ Our method support three ways to generate a website:
 2. Depend on a img of a website.
 3. Both on them.
 
-Set img(img path) or text in webdesign.py line 371
+Set save path and img(img path) or text in webdesign.py line 371
 
 ```python
-agent.act(img = "damo.png",text = "a shopping website")
+agent = WebDesignAgent(save_file="saves/shopping/")
+agent.act(text = "a shopping website")
 ```
 
 And then

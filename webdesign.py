@@ -367,7 +367,7 @@ class WebDesignAgent(BaseAgent):
 
 
 if __name__ == "__main__":
-    agent = WebDesignAgent(save_file="saves/damo/")
+    agent = WebDesignAgent(save_file="saves/shopping/")
     agent.act(text = "a shopping website")
     print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
     cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
