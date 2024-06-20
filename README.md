@@ -1,17 +1,10 @@
 # WebDesignAgent
 ## Demo Video
 ### Auto Generation
-<video>
-  <source src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/autogen.mp4" type="video/mp4">
-</video>
-
+<video controls src="assets/autogen.mp4" title="Auto generate a website"></video>
 
 ### Human Feedback
-<video>
-  <source src="https://github.com/DAMO-NLP-SG/WebDesignAgent/blob/4c23061232f733b9753f5278b2205add3ddcd226/assets/feedback.mp4" type="video/mp4">
-</video>
-
-
+<video controls src="assets/feedback.mp4" title="Create a website by human feedback"></video>
 
 ## Quick Start
 
@@ -29,18 +22,21 @@ Add your API_KEY
 
 If you use Azure API
 LLM.py line 22
-<div style="text-align: center;">
-  <img src="assets/azure_api.png"/>
-</div>
+```python
+os.environ["AZURE_OPENAI_ENDPOINT"] = ""
+os.environ["AZURE_OPENAI_KEY"] = ""
+os.environ["AZURE_OPENAI_API_VERSION"] = ""
+```
 
 elif you use Openai API
 
 Set is_azure = False(LLM.py line 18)
 
 LLM.py line 39
-<div style="text-align: center;">
-  <img src="assets/openai_api.png"/>
-</div>
+```python
+os.environ["OPENAI_API_KEY"] = ""
+os.environ["OPENAI_PROXY_URL"] = ""
+```
 
 
 If you want to run in terminal
