@@ -16,9 +16,8 @@ import time
 import os
 import io
 
-with open("config.yml", "r") as ymlfile:
+with open("config.yaml", "r") as ymlfile:
     cfg = yaml.safe_load(ymlfile)
-    print(cfg)
 
 class Webserver:
     def __init__(self, save_file="saves/"):
@@ -27,7 +26,7 @@ class Webserver:
         else:
             download_dir = os.path.join(os.getcwd(), save_file)
         
-        web_type = cfg["web_type"]
+        web_type = cfg.get("web_browser", "chrome")
 
         if web_type == "chrome":
             options = ChromeOptions()
@@ -78,7 +77,7 @@ class Webserver:
             print(f"Opening local HTML file {html_path}")
             self.driver.get("file:///" + html_path.replace("\\", "/"))
             # 等待页面加载完成，根据实际情况调整等待时间
-            time.sleep(15)
+            time.sleep(8)
             # 截图并保存
             scroll_height = self.driver.execute_script("return document.documentElement.scrollHeight")
             window_height = self.driver.execute_script("return window.innerHeight")
@@ -111,3 +110,8 @@ class Webserver:
     def stop(self):
         self.driver.quit()
         print("WebDriver stopped")
+
+if __name__ == "__main__":
+    webserver = Webserver()
+    webserver.get_screenshot("")
+    webserver.stop()
