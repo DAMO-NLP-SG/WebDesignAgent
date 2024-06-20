@@ -92,13 +92,6 @@ Designed pages:
         ...
     ]
 },
-"useful_buttons": [
-{
-"button_name":{The name of the button},
-"button_description":{The description of the button}
-},
-...
-],
 "additional_features": {additional features you want to add to the page},
 "is_main_page" : {true or false,true, if the page is the image we provided}
 },
@@ -125,13 +118,6 @@ Designed pages:
         ...
     ]
 },
-"useful_buttons": [
-{
-"button_name" : {The name of the button},
-"button_function" : {The function of the button}
-},
-...
-],
 "additional_features": {additional features you want to add to the page},
 "is_main_page" : {true or false,true, if the page is the image we provided}
 },
