@@ -1,5 +1,8 @@
 from openai import AzureOpenAI, OpenAI
 from utils import get_openai_url
+import yaml
+with open('config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
 import time
 import httpx
 import logging
@@ -15,13 +18,13 @@ from PIL import Image
 from io import BytesIO
 from utils import wrap_func
 
-is_azure = True
+is_azure = config.get("is_azure", True)
 token_log_file = os.environ.get("TOKEN_LOG_FILE", "logs/token.json")
 
 if is_azure:
-    os.environ["AZURE_OPENAI_ENDPOINT"] = ""
-    os.environ["AZURE_OPENAI_KEY"] = ""
-    os.environ["AZURE_OPENAI_API_VERSION"] = ""
+    os.environ["AZURE_OPENAI_ENDPOINT"] = config.get('AZURE_OPENAI_ENDPOINT', '')
+    os.environ["AZURE_OPENAI_KEY"] = config.get('AZURE_OPENAI_KEY', '')
+    os.environ["AZURE_OPENAI_API_VERSION"] = config.get('AZURE_OPENAI_API_VERSION', '')
 
     if "AZURE_OPENAI_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_ENDPOINT"] == "":
         raise ValueError("AZURE_OPENAI_ENDPOINT is not set")
@@ -36,8 +39,8 @@ if is_azure:
         )
 
 else:
-    os.environ["OPENAI_API_KEY"] = ""
-    os.environ["OPENAI_PROXY_URL"] = ""
+    os.environ["OPENAI_API_KEY"] = config.get('OPENAI_API_KEY', '')
+    os.environ["OPENAI_PROXY_URL"] = config.get('OPENAI_PROXY_URL', '')
 
     if "OPENAI_API_KEY" not in os.environ or os.environ["OPENAI_API_KEY"] == "":
         raise ValueError("OPENAI_API_KEY is not set")

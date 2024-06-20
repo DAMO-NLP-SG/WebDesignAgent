@@ -11,36 +11,25 @@ gui# WebDesignAgent
 [auto.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/d5f099e0-5a01-44fa-bb26-bf7733fd9608)
 
 ## Quick Start
-
-```bash
-Make sure you install the google chrome
-```
-
 ```bash
 git clone https://github.com/DAMO-NLP-SG/WebDesignAgent.git
 cd WebDesignAgent
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
-### Add your API_KEY
+### Set config
 
-#### Use Azure API
+set config.yaml
+```yaml
+web_type : "chrome" # "chrome" or "firefox" or "edge"
 
-set your api config in LLM.py line 22
-```python
-os.environ["AZURE_OPENAI_ENDPOINT"] = ""
-os.environ["AZURE_OPENAI_KEY"] = ""
-os.environ["AZURE_OPENAI_API_VERSION"] = ""
-```
+is_auzer : True # set True if you use azure openai api
+AZURE_OPENAI_ENDPOINT : ""
+AZURE_OPENAI_KEY : ""
+AZURE_OPENAI_API_VERSION : ""
 
-#### Use Openai API
-
-Set is_azure = False(LLM.py line 18)
-
-and set your api config in LLM.py line 39
-```python
-os.environ["OPENAI_API_KEY"] = ""
-os.environ["OPENAI_PROXY_URL"] = ""
+OPENAI_API_KEY : ""
+OPENAI_PROXY_URL : ""
 ```
 
 
@@ -54,7 +43,7 @@ Our method support three ways to generate a website:
 Set img(img path) or text in webdesign.py line 371
 
 ```python
-agent.act(img = "1.png",text = "a shopping website")
+agent.act(img = "damo.png",text = "a shopping website")
 ```
 
 And then
@@ -91,3 +80,8 @@ If you want to generate a website more human control. You can follow the followi
 4. click page you want to modify, and modify anything you want to change.
 5. click create website.
 6. enter feedback if needed and click refine website.
+
+
+## Plan (To do)
+
+Generate supporting backend code.

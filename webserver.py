@@ -1,39 +1,70 @@
+import yaml
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service as ChromeService
+
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service as FirefoxService
+
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from PIL import Image
 import time
 import os
 import io
 
+with open("config.yml", "r") as ymlfile:
+    cfg = yaml.safe_load(ymlfile)
+    print(cfg)
+
 class Webserver:
-    def __init__(self, save_file = "saves/"):
-        # 判断save_file是否为绝对路径
+    def __init__(self, save_file="saves/"):
         if os.path.isabs(save_file):
             download_dir = save_file
         else:
-            # 构建完整的保存路径，确保跨平台兼容性
             download_dir = os.path.join(os.getcwd(), save_file)
-        options = Options()
-        options.add_argument("start-maximized")  # 可选：最大化浏览器窗口
-        options.add_experimental_option("prefs", {
-            "download.default_directory": f"{download_dir}",  # 示例：设置默认下载目录，根据需要修改
-            "directory_upgrade": True,
-            "safebrowsing.enabled": True,
-        })
         
-        # 使用webdriver_manager来管理ChromeDriver的路径
-        print("Initializing WebDriver")
-        driver_path = ChromeDriverManager().install()
-        service = Service(driver_path)
-        print("Successfully installed ChromeDriver")
+        web_type = cfg["web_type"]
 
-        # 初始化WebDriver，配置为可以打开本地文件
-        self.driver = webdriver.Chrome(service=service, options=options)    
+        if web_type == "chrome":
+            options = ChromeOptions()
+            options.add_argument("start-maximized")  
+            options.add_experimental_option("prefs", {
+                "download.default_directory": download_dir,  
+                "directory_upgrade": True,
+                "safebrowsing.enabled": True,
+            })
+            driver_path = ChromeDriverManager().install()
+            service = ChromeService(driver_path)
+            self.driver = webdriver.Chrome(service=service, options=options)
+        elif web_type == "firefox":
+            options = FirefoxOptions()
+            options.set_preference("browser.download.folderList", 2)
+            options.set_preference("browser.download.manager.showWhenStarting", False)
+            options.set_preference("browser.download.dir", download_dir)  
+            options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+            driver_path = GeckoDriverManager().install()
+            service = FirefoxService(driver_path)
+            self.driver = webdriver.Firefox(service=service, options=options)
+        elif web_type == "edge":
+            options = EdgeOptions()
+            options.add_argument("start-maximized") 
+            options.add_experimental_option("prefs", {
+                "download.default_directory": download_dir,  
+                "directory_upgrade": True,
+                "safebrowsing.enabled": True,
+            })
+            driver_path = EdgeChromiumDriverManager().install()
+            service = EdgeService(driver_path)
+            self.driver = webdriver.Edge(service=service, options=options)
+        else:
+            raise ValueError(f"Unsupported web browser type: {web_type}")
+
         self.save_file = save_file
-        print("suceessfully initialized WebDriver")   
-
+        print("Successfully initialized WebDriver")
 
     def get_screenshot(self, local_html_path , save_path = None):
         if save_path is None:
