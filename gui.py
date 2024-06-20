@@ -13,19 +13,28 @@ class Application(tk.Tk):
     def __init__(self, agent=None):
         super().__init__()
 
-        self.title("Agents' Home")
+        self.title("Web Design Agent")
         self.agent = agent
         self.geometry("1600x1200")
         self.current_page = 0
         self.pages = []
 
+        self.title_frame = tk.Frame(self)
+        self.title_frame.grid(row=0, column=0, padx=10, pady=10)
         # Dropdown menu to select mode
         self.mode_var = tk.StringVar(value="Chat Mode")
-        mode_options = ["Chat Mode", "Web Design Mode"]
-        self.mode_menu = ttk.OptionMenu(self, self.mode_var, mode_options[0], *mode_options, command=self.switch_mode)
-        self.mode_menu.grid(row=0, column=0, padx=10, pady=10)
-        label = tk.Label(self, text="Select Mode:")
-        label.grid(row=0, column=1, padx=10, pady=10)
+        self.mode_options = ["Chat Mode", "Web Design Mode"]
+        self.mode_menu = ttk.OptionMenu(self.title_frame, self.mode_var, self.mode_options[0], *self.mode_options, command=self.switch_mode)
+        self.mode_menu.grid(row=0, column=1, padx=10, pady=10)
+        self.mode_menu_label = tk.Label(self.title_frame, text="Select Mode:")
+        self.mode_menu_label.grid(row=0, column=0, padx=10, pady=10)
+
+        self.model_options = ["gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
+        self.model_var = tk.StringVar(value="gpt-4o")
+        self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.model_options[0], *self.model_options,command=self.switch_model)
+        self.model_menu.grid(row=0, column=3, padx=10, pady=10)
+        self.model_menu_label = tk.Label(self.title_frame, text="Select Model:")
+        self.model_menu_label.grid(row=0, column=2, padx=10, pady=10)
 
         # Chat mode widgets
         self.chat_widgets = self.create_chat_widgets()
@@ -115,16 +124,23 @@ class Application(tk.Tk):
 
         return web_design_widgets
     
+    def switch_model(self,model):
+        self.agent.model = model
+
     def switch_mode(self, mode):
         self.clear_widgets()
         if mode == "Chat Mode":
+            self.model_options = ["gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
+            self.model_menu.set_menu(self.model_options[0],*self.model_options)
             self.display_chat_mode()
         elif mode == "Web Design Mode":
+            self.model_options = ["gpt-4o"]
+            self.model_menu.set_menu(self.model_options[0],*self.model_options)
             self.display_web_design_mode()
     
     def clear_widgets(self):
         for widget in self.winfo_children():
-            if widget != self.mode_menu:
+            if widget!=self.title_frame:
                 widget.grid_forget()
     
     def display_chat_mode(self):
