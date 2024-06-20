@@ -1,4 +1,4 @@
-# WebDesignAgent
+gui# WebDesignAgent
 
 ## Description
 
@@ -68,6 +68,7 @@ python webdesign.py
 python gui.py
 ```
 Then you will enter the gui as follows:
+<img width="1597" alt="gui" src="https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/b46d236b-ad18-4b99-9ccf-c4e787fc5048">
 
 You can select the mode between chat and web design, and choose the model.
 
