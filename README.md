@@ -1,8 +1,7 @@
 # WebDesignAgent
 ## Demo Video
 ### Auto Generation
-<video controls src="[assets/autogen.mp4](https://github.com/DAMO-NLP-SG/WebDesignAgent/releases/download/untagged-aecb4f41cb30804d375f/autogen.mp4)" title="Auto generate a website"></video>
-https://github.com/DAMO-NLP-SG/WebDesignAgent/releases/download/untagged-aecb4f41cb30804d375f/autogen.mp4
+<video controls src="assets/autogen.mp4" title="Auto generate a website"></video>
 
 ### Human Feedback
 <video controls src="assets/feedback.mp4" title="Create a website by human feedback"></video>
