@@ -9,6 +9,7 @@ from webserver import Webserver
 from utils import get_openai_url,write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost
 from LLM import get_openai_imgs
 import re
+import argparse
 from prompt import *
 
 
@@ -367,8 +368,16 @@ class WebDesignAgent(BaseAgent):
 
 
 if __name__ == "__main__":
-    agent = WebDesignAgent(save_file="saves/shopping/")
-    agent.act(text = "a shopping website")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--save_file", type=str, default="saves/shopping/")
+    parser.add_argument("--text", type=str, default=None)
+    parser.add_argument("--img", type=str, default=None)
+    args = parser.parse_args()
+    save_file = args.save_file
+    text = args.text
+    img = args.img
+    agent = WebDesignAgent(save_file=save_file)
+    agent.act(text = text,img = img)
     print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
     cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
     print(f"Total cost: {cost}")
