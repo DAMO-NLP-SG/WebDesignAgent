@@ -41,9 +41,11 @@ pip install -r requirements.txt
 
 ### Set config
 
+make sure your computer install "chrome" or "firefox" or "edge"(recommand chrome)
+
 set config.yaml
 ```yaml
-web_type : "chrome" # "chrome" or "firefox" or "edge"
+web_type : "chrome" # "chrome"(recommand) or "firefox" or "edge"
 
 is_auzer : True # set True if you use azure openai api
 AZURE_OPENAI_ENDPOINT : ""
@@ -53,29 +55,32 @@ AZURE_OPENAI_API_VERSION : ""
 OPENAI_API_KEY : ""
 OPENAI_PROXY_URL : ""
 ```
-
-
-### Run in terminal
-Our method support three ways to generate a website: 
-
-1. Depend on a description of a website.
-2. Depend on a img of a website.
-3. Both on them.
-
-
-Set save path and img(img path) or text
-```bash
-python webdesign.py --save_file "saves/shopping/" --text "a shopping website" --img "damo.png"
-```
-
-
-
 ### Run in GUI
 ```python
 python gui.py
 ```
 Then you will enter the gui as follows:
 <img width="1597" alt="gui" src="https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/b46d236b-ad18-4b99-9ccf-c4e787fc5048">
+
+**Each Button usage**
+
+save_file : Web page storage address (Required)
+website_description : Description of the target page （Not required）
+website_img : The img path of the target website (Not required)
+feedback : Your feedback, for single page polishing (Not required)
+each refine times : When automatically generating, the number of times each web page is polished, the greater the number, the better the quality, the more time and tokens are consumed.
+Refine augment：Whether to enable refine augment. If enabled, the generated quality will be higher, but it will increase the time and token consumption.
+
+Plan : Make a web page plan based on the description and img you provided.
+Auto Generate : Generate all ungenerated web pages in the plan
+
+Delete page : Delete current page.
+Add page : Create an empty page.
+Complete page : Complete current page.
+
+Create website : Create current page.
+Refine website : Refine current page.
+
 
 You can select the mode between chat and web design, and choose the model.
 
@@ -98,6 +103,19 @@ If you want to generate a website more human control. You can follow the followi
 4. click page you want to modify, and modify anything you want to change.
 5. click create website.
 6. enter feedback if needed and click refine website.
+
+
+### Run in terminal
+Our method support three ways to generate a website: 
+1. Depend on a description of a website.
+2. Depend on a img of a website.
+3. Both on them.
+
+Set save path and img(img path) or text
+```bash
+python webdesign.py --save_file "saves/shopping/" --text "a shopping website" --img "damo.png"
+```
+
 
 ## Cost
 When you set the refine each time to 2, generating 8 web pages would cost approximately $2 and 40 minutes.

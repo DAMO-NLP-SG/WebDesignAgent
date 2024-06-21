@@ -79,29 +79,44 @@ class Application(tk.Tk):
             web_design_widgets["input_labels"].append(label)
             web_design_widgets["input_entries"].append(entry)
 
+        refine_options = [ "Close","Open",]
+        refine_var = tk.StringVar(value="Close")
+        refine_menu = ttk.OptionMenu(web_design_widgets["input_frame"], refine_var, refine_options[0], *refine_options)
+        refine_menu.grid(row=6, column=1, padx=10, pady=10)
+        refine_menu_label = tk.Label(web_design_widgets["input_frame"], text="Refine Augment:")
+        refine_menu_label.grid(row=6, column=0, padx=10, pady=10)
+        web_design_widgets["refine_var"] = refine_var
+
         # Animation Label
         label = tk.Label(web_design_widgets["input_frame"], text="🤖 Status: ")
-        label.grid(row=6, column=0, padx=10, pady=10)
+        label.grid(row=7, column=0, padx=10, pady=10)
         self.animation_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💡 idle")
-        self.animation_label.grid(row=6, column=1, columnspan=2, padx=10, pady=10)
+        self.animation_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
         self.animation_idx = 0
 
         # cost label
-        label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Cost: ")
-        label.grid(row=7, column=0, padx=10, pady=10)
-        self.cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.cost_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
-        label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
+        label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Token Cost: ")
         label.grid(row=8, column=0, padx=10, pady=10)
+        self.token_cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
+        self.token_cost_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
+
+        label = tk.Label(web_design_widgets["input_frame"], text="💰 Total IMG Cost: ")
+        label.grid(row=9, column=0, padx=10, pady=10)
+        self.token_img_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
+        self.token_img_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)        
+
+
+        label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
+        label.grid(row=10, column=0, padx=10, pady=10)
         self.time_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="⏱️ 0 s")
-        self.time_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
+        self.time_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)
 
 
         plan_button = tk.Button(self, text="Plan", command=self.plan)
         auto_gen_button = tk.Button(self, text="Auto Generate", command=self.auto_gen_website)
         create_button = tk.Button(self, text="Create Website", command=self.create_website)
         refine_button = tk.Button(self, text="Refine Website", command=self.refine_website)
-        open_button = tk.Button(self, text="Open Website", command=self.open_website)
+        # open_button = tk.Button(self, text="Open Website", command=self.open_website)
 
         prev_page_button = tk.Button(self, text="Previous Page", command=self.prev_page)
         next_page_button = tk.Button(self, text="Next Page", command=self.next_page)
@@ -114,7 +129,7 @@ class Application(tk.Tk):
 
         web_design_widgets["create_button"] = create_button
         web_design_widgets["refine_button"] = refine_button
-        web_design_widgets["open_button"] = open_button
+        # web_design_widgets["open_button"] = open_button
 
         web_design_widgets["prev_page_button"] = prev_page_button
         web_design_widgets["next_page_button"] = next_page_button
@@ -154,8 +169,6 @@ class Application(tk.Tk):
         self.web_design_widgets['auto_gen_button'].grid(row=3, column=0, padx=10, pady=10)
 
         self.web_design_widgets['output_text'].grid(row=1, column=1, padx=10, pady=10)
-        # self.web_design_widgets['prev_page_button'].grid(row=2, column=1, padx=10, pady=10)
-        # self.web_design_widgets['next_page_button'].grid(row=3, column=1, padx=10, pady=10)
         self.web_design_widgets['delete_page_button'].grid(row=2, column=1, padx=10, pady=10)
         self.web_design_widgets['add_page_button'].grid(row=3, column=1, padx=10, pady=10)
         self.web_design_widgets['complete_page_button'].grid(row=4, column=1, padx=10, pady=10)
@@ -163,7 +176,7 @@ class Application(tk.Tk):
         self.web_design_widgets['output_image_frame'].grid(row=1, column=2, padx=10, pady=10)
         self.web_design_widgets['create_button'].grid(row=2, column=2, padx=10, pady=10)
         self.web_design_widgets['refine_button'].grid(row=3, column=2, padx=10, pady=10)
-        self.web_design_widgets["open_button"].grid(row=4, column=2, padx=10, pady=10)
+        # self.web_design_widgets["open_button"].grid(row=4, column=2, padx=10, pady=10)
     
     def send_message(self):
         message = self.chat_widgets['input_area'].get("1.0", tk.END).strip()
@@ -346,9 +359,10 @@ class Application(tk.Tk):
         current_del_cost = tokens["dalle3"]
         total_prompt_cost = current_prompt_cost - self.begin_prompt_cost
         total_completion_cost = current_completion_cost - self.begin_completion_cost
-        self.total_cost = cal_cost(total_prompt_cost, total_completion_cost) + (current_del_cost - self.begin_dell_cost) * 4 / 100
+        self.total_cost = cal_cost(total_prompt_cost, total_completion_cost)
         self.time_cost += time.time() - self.begin_time
-        self.cost_label.config(text=f"💰 {self.total_cost} $")
+        self.token_cost_label.config(text=f"💰 {self.total_cost} $")
+        self.token_img_label.config(text=f"💰 {current_del_cost * 4 / 100} $")
         self.time_label.config(text=f"⏱️ {self.time_cost} s")
     
     def create_website(self):
@@ -381,7 +395,9 @@ class Application(tk.Tk):
             if not os.path.exists(html_path):
                 messagebox.showerror("Error", "Please create the website first")
                 return
-            self.agent.refine(page)
+            refine_option = self.web_design_widgets["refine_var"].get()
+            refine_option = True if refine_option == "Open" else False
+            self.agent.refine(page,refine_option)
             
             # Update UI on the main thread
             self.after(0, self.update_ui_after_refine_website)

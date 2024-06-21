@@ -99,13 +99,14 @@ class WebDesignAgent(BaseAgent):
             ]
         try_cnt = 0
         while try_cnt < 3:
+            response = wrap_func(self.get_answer, messages=messages,wrap_text="Planning now...")
             try:
-                response = wrap_func(self.get_answer, messages=messages,wrap_text="Planning now...")
                 pages = response.split("Designed pages:")[-1]
                 pages = pages.strip()
                 pages = json.loads(pages)
                 break
             except:
+                print(response)
                 try_cnt += 1
                 print("Failed to get the designed pages. try again")
         if try_cnt == 3:
@@ -133,24 +134,31 @@ class WebDesignAgent(BaseAgent):
         ]
         response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining page now...")
         modified_page = response.split("modified_page:")[-1].strip()
-        modified_page = modify_input_dict(modified_page)
         if "```python" in modified_page:
             modified_page = get_content_between_a_b("```python","```",modified_page)
         if "```json" in modified_page:
             modified_page = get_content_between_a_b("```json","```",modified_page)
+        modified_page = modified_page.replace("True","true").replace("False","false")
         try:
             modified_page = json.loads(modified_page)
         except:
-            print("Failed to get the modified page. Please check the format.")
+            print("before modify:")
             print(modified_page)
-            print("##############################################")
-            modified_page = page_info
+            modified_page = modify_input_dict(modified_page)
+            try:
+                modified_page = json.loads(modified_page)
+            except:
+                print("Failed to get the modified page. Please check the format.")
+                print(modified_page)
+                print("##############################################")
+                modified_page = page_info
         return modified_page
 
 
-    def refine(self,page_info):
+    def refine(self,page_info,refine_augument = False):
         self.refine_details(page_info)
-        self.refine_layout(page_info)
+        if refine_augument:
+            self.refine_augument(page_info)
         
 
     def refine_details(self,page_info):
@@ -198,15 +206,17 @@ class WebDesignAgent(BaseAgent):
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
 
 
-    def refine_layout(self,page_info):
+    def refine_augument(self,page_info):
         html_name = page_info["html_name"]
         html_code = open(os.path.join(self.save_file,html_name)).read()
         css_name = page_info["css_name"]
         css_code = open(os.path.join(self.save_file,css_name)).read()
+        js_name = page_info["js_name"]
+        js_code = open(os.path.join(self.save_file,js_name)).read()
         img = self.task["img"] if page_info["is_main_page"] else None
         text = self.task["text"]
-        feedback = f"The feedback provided by users regarding the current implementation effect of your code is very important. Please take it seriously and make modifications based on user feedback!\n The user's feedback is:{self.user_feedback}" if self.user_feedback else ""
-        prompt = get_refine_layout_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback)
+        user_feedback = f"The feedback provided by users regarding the current implementation effect of your code is very important. Please take it seriously and make modifications based on user feedback!\n The user's feedback is:{self.user_feedback}" if self.user_feedback else ""
+        prompt = get_feedback_prompt(text=text,img=img,page_info=page_info)
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
         if img:
@@ -225,16 +235,40 @@ class WebDesignAgent(BaseAgent):
             ]},
             ]
 
-        response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining CSS now...")
+        response = wrap_func(self.get_answer, messages=messages,wrap_text="Get feedback now...")
+        feedback = response.split("feedback:")[-1].strip()
+        if img and not text:
+            prompt = refine_augument_img_prompt.format(feedback=feedback,user_feedback=user_feedback,page_info=page_info,html_code=html_code,css_code=css_code,js_code = js_code)
+            messages = [
+                {"role":"user","content":[
+                    {"type":"image_url","image_url":{"url":get_openai_url(img),"detail":"high"}},
+                    {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
+                    {"type":"text","text":prompt},
+            ]}
+            ]
+        else:
+            prompt = refine_augument_prompt.format(feedback=feedback,user_feedback=user_feedback,page_info=page_info,html_code=html_code,css_code=css_code,js_code = js_code)
+            messages = [
+                {"role":"user","content":[
+                    {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
+                    {"type":"text","text":prompt},
+            ]}
+            ]
+        response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining augument now...")
         css = get_content_between_a_b("```css", "```", response) if "```css" in response else css_code
         html = get_content_between_a_b("```html", "```", response) if "```html" in response else html_code
+        js = get_content_between_a_b("```javascript", "```", response) if "```javascript" in response else js_code
+        js = get_content_between_a_b("```js", "```", response) if "```js" in response else js
         if css:
             write_file(os.path.join(self.save_file,css_name), css)
             print(f"Refined CSS has been written to {css_name}")
         if html:
             write_file(os.path.join(self.save_file,html_name), html)
             print(f"Refined HTML has been written to {html_name}")
-        self.add_imgs(html,"")
+        if js:
+            write_file(os.path.join(self.save_file,js_name), js)
+            print(f"Refined JS has been written to {js_name}")
+        self.add_imgs(html,js)
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
 
 
