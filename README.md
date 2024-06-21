@@ -1,5 +1,5 @@
 <p align="center">
-<a href=""><img src="assets/logo.jpg" alt="WebDesignAgent : A web design agent that can help you easily build a website." width="150px"></a>
+<a href=""><img src="assets/logo.jpg" title="WebDesignAgent : A web design agent that can help you easily build a website." width="150px"></a>
 </p>
 
 
