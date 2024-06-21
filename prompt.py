@@ -118,6 +118,7 @@ Designed pages:
         ...
     ]
 },
+"practice_features": {practical features that some web pages need to have},
 "additional_features": {additional features you want to add to the page},
 "is_main_page" : {true or false,true, if the page is the image we provided}
 },
@@ -126,8 +127,9 @@ Designed pages:
 """
 
 refine_page_prompt = """
-You are a web design master, and your current task is to modify the details of a website.{task_info}
-The following page is one of the pages of the  website. Please help me enrich its details and be careful not to change the format(the modified page should be dict format and no extra output)(Do not add new links. You can enrich the page details by enriching the description and other methods(such as layout)).
+You are a web design master, and your current task is to modify the details of a website.
+{task_info}
+The following page is one of the pages of the  website. Please help me enrich its details and be careful not to change the format(the modified page should be dict format and no extra output)(Do not add new links. You can enrich the page details by enriching the description and other methods(For example, adding descriptions of layout, adding web page effects, adding practical features, and so on)).
 The page is:
 {page_info}
 please output your thinking steps firstly and then output the modified page.
