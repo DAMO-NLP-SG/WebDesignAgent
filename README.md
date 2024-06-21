@@ -1,5 +1,5 @@
 <p align="center">
-<a href=""><img src="https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/a41cd9eb-bc87-459a-b8c8-936047c3241e" alt="WebDesignAgent : A web design agent that can help you easily build a website." width="150px"></a>
+<a href=""><img src="assets/logo.jpg" alt="WebDesignAgent : A web design agent that can help you easily build a website." width="150px"></a>
 </p>
 
 
