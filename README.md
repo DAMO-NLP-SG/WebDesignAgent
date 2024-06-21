@@ -1,7 +1,12 @@
 <p align="center">
-<a href=""><img src="assets/logo.jpg" title="WebDesignAgent : A web design agent that can help you easily build a website." width="150px"></a>
+<b>WebDesignAgent : A web design agent that can help you easily build a website.</b>
 </p>
-
+<p align="center">
+<a href=""><img src="assets/logo.jpg"" width="150px"></a> 
+</p>
+<p align="center">
+<a href="https://opensource.org/license/apache-2-0"><img src="https://img.shields.io/badge/License-Alpaca-blue.svg"></a>
+</p>
 
 ## Description
 A powerful agent can help you with web design and related code generation.
