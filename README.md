@@ -1,12 +1,17 @@
 <p align="center">
+<a href=""><img src="assets/logo.jpg"" width="150px"></a> 
+</p>
+<p align="center"">
 <b>WebDesignAgent : A web design agent that can help you easily build a website.</b>
 </p>
 <p align="center">
-<a href=""><img src="assets/logo.jpg"" width="150px"></a> 
-</p>
-<p align="center">
 <a href="https://opensource.org/license/apache-2-0"><img src="https://img.shields.io/badge/License-Alpaca-blue.svg"></a>
+<a href="https://github.com/DAMO-NLP-SG"><img src="https://img.shields.io/badge/Institution-DAMO-red"></a>
+<a href="[https://github.com/DAMO-NLP-SG](https://github.com/DAMO-NLP-SG/WebDesignAgent/issues)"><img src="https://img.shields.io/bitbucket/issues/DAMO-NLP-SG/WebDesignAgent"></a>
+<a><img src="https://hits.dwyl.com/DAMO-NLP-SG/WebDesignAgent.svg?style=flat-square&show=unique"></a>
+  
 </p>
+
 
 ## Description
 A powerful agent can help you with web design and related code generation.
