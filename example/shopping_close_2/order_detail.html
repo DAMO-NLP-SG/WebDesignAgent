@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="order_detail.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.jpg" alt="Shopping Website Logo" class="logo" description="This is the logo of a shopping website, resembling a little dog">
+            <h1>Order Details</h1>
+        </div>
+    </header>
+    <main>
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="order_history.html">Order History</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section id="order-summary">
+            <h2>Order Summary</h2>
+            <div id="order-info">
+                <!-- Order information will be dynamically loaded here -->
+                <p>Order ID: 123456</p>
+                <p>Order Date: 2023-10-01</p>
+                <p>Total Amount: $150.00</p>
+                <p>Status: Shipped</p>
+            </div>
+        </section>
+        <section id="item-details">
+            <h2>Item Details</h2>
+            <div id="items">
+                <div class="item">
+                    <img src="black_phone.jpg" alt="Black Phone" description="This is a black phone">
+                    <p>Description for product 1, such as a black phone<br>Price: $50.00<br>Quantity: 2</p>
+                </div>
+                <div class="item">
+                    <img src="smart_watch.jpg" alt="Smart Watch" description="This is a smart watch">
+                    <p>Description for product 2, such as a smart watch<br>Price: $25.00<br>Quantity: 2</p>
+                </div>
+            </div>
+        </section>
+        <section id="actions">
+            <button onclick="location.href='cart.html'">Reorder</button>
+            <button onclick="location.href='index.html'">Main Page</button>
+            <button onclick="location.href='support.html'">Contact Support</button>
+            <button onclick="location.href='order_tracking.html'">Track Order</button>
+            <button onclick="printInvoice()">Print Invoice</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="about.html">About Us</a> | 
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+        </div>
+    </footer>
+    <script src="order_detail.js"></script>
+</body>
+</html>

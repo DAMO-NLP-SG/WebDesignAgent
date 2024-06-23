@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="order_detail.css">
+    <title>Order Detail</title>
+</head>
+<body>
+    <header>
+        <div class="logo">ShopLogo</div>
+        <nav>
+            <ul>
+                <li><a href="product_detail.html">Product Detail</a></li>
+                <li><a href="order_history.html">Order History</a></li>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="support.html">Contact Support</a></li>
+            </ul>
+        </nav>
+        <h1>Order Detail</h1>
+    </header>
+    
+    <main>
+        <section id="order-info" class="card">
+            <h2>Order Information</h2>
+            <button class="toggle-button" onclick="toggleSection('order-details')">Toggle Details</button>
+            <div id="order-details" class="collapsible-content"></div>
+        </section>
+
+        <section id="order-items" class="card">
+            <h2>Items in Your Order</h2>
+            <button class="toggle-button" onclick="toggleSection('items-list')">Toggle Details</button>
+            <div id="items-list" class="collapsible-content">
+                <img src="demo_banner1.jpg" alt="Promotional Banner 1" description="This is the logo of a shopping website, resembling a little dog">
+            </div>
+        </section>
+
+        <section id="order-tracking" class="card">
+            <h2>Tracking and Delivery</h2>
+            <button class="toggle-button" onclick="toggleSection('tracking-details')">Toggle Details</button>
+            <div id="tracking-details" class="collapsible-content"></div>
+        </section>
+
+        <section id="order-actions">
+            <button onclick="confirmReorder()"><i class="fa fa-repeat"></i> Reorder</button>
+            <button onclick="confirmPrintInvoice()"><i class="fa fa-print"></i> Print Invoice</button>
+            <button onclick="window.location.href='order_tracking.html'"><i class="fa fa-truck"></i> Track Order</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="product_detail.html">Product Detail</a>
+                <a href="order_history.html">Order History</a>
+            </div>
+            <p>&copy; 2023 ShopLogo. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="order_detail.js"></script>
+</body>
+</html>

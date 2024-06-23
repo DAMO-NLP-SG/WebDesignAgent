@@ -1,0 +1,173 @@
+/* order_confirmation.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #ffecd2, #fcb69f);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ff7f50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav {
+    margin-top: 5px;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: color 0.3s, background 0.3s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    color: white;
+    background-color: #ff4500;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    position: relative;
+}
+
+h1, h2 {
+    color: #ff7f50;
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #ff7f50, #ff4500);
+}
+
+.btn-secondary {
+    background: linear-gradient(to right, #48c6ef, #6f86d6);
+}
+
+.btn-tertiary {
+    background: linear-gradient(to right, #ff8c00, #ff4500);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    color: #ff7f50;
+    text-decoration: none;
+    margin: 5px;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff4500;
+    text-decoration: underline;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.order-summary, .delivery-info, .payment-details, .post-purchase-actions, .additional-links, .recommendations {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+footer {
+    background-color: #ff7f50;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#orderDetails, #recommendations {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#orderDetails .order-item, #recommendations .recommendation-item {
+    text-align: center;
+    flex: 0 1 calc(45% - 20px);
+    margin: 10px;
+}
+
+section {
+    border-top: 2px solid #ff7f50;
+    padding-top: 20px;
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.container:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to bottom right, #ff7f50, #ff4500);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}

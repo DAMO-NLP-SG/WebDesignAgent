@@ -8,7 +8,7 @@ def cal_cost(prompt_tokens,completion_tokens):
     return prompt_tokens/1000 *0.005 + completion_tokens/1000 *0.015
 
 def write_file(file_path, content):
-    with open(file_path, "w") as f:
+    with open(file_path, "w",encoding='utf-8') as f:
         f.write(content)
 
 def get_content_between_a_b(start_tag, end_tag, text):

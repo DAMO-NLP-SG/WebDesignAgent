@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Shopping Website</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Shopping Website Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="signin-container">
+            <h1>Sign In</h1>
+            <form id="signin-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me" name="remember-me">
+                    <label for="remember-me">Remember Me</label>
+                </div>
+                <button type="button" onclick="authenticateUser()">Sign In</button>
+            </form>
+            <div class="social-login">
+                <button type="button" class="google-login" onclick="socialLogin('google')">Sign In with Google</button>
+                <button type="button" class="facebook-login" onclick="socialLogin('facebook')">Sign In with Facebook</button>
+            </div>
+            <div class="links">
+                <a href="reset_password.html">Forgot Password</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="terms_of_service.html">Terms of Service</a>
+            </div>
+            <div class="additional-buttons">
+                <button type="button" onclick="window.location.href='signup.html'">Sign Up</button>
+                <button type="button" onclick="window.location.href='index.html'">Main Page</button>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="demo_banner1.jpg" alt="Promotional Banner 1" description="This is a promotional banner showcasing new arrivals">
+            <img src="demo_banner2.jpg" alt="Promotional Banner 2" description="This banner highlights a special offer">
+        </div>
+        <div class="dynamic-image-container">
+            <img src="demo_banner3.jpg" alt="Promotional Banner 3" description="This banner features a seasonal sale">
+            <img src="demo_banner4.jpg" alt="Promotional Banner 4" description="This banner advertises a best-seller">
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </footer>
+    <script src="signin.js"></script>
+</body>
+</html>

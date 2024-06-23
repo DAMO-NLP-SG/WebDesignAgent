@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="signin.html">Sign In</a></li>
+                    <li><a href="index.html">Main Page</a></li>
+                    <li><a href="help.html">Help</a></li>
+                </ul>
+            </nav>
+            <div class="banner-container">
+                <img src="promo_banner1.jpg" alt="Promotional Banner 1" class="banner" description="This is the logo of a shopping website, resembling a little dog">
+                <p class="banner-description">This is the logo of a shopping website, resembling a little dog.</p>
+            </div>
+        </header>
+        <main>
+            <h1>Create an Account</h1>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                    <span class="tooltip" id="usernameTip">Enter a unique username</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="tooltip" id="emailTip">Enter a valid email address</span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="tooltip" id="passwordTip">Password must be at least 8 characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <span class="tooltip" id="confirmPasswordTip">Re-enter your password</span>
+                </div>
+                <div class="form-group">
+                    <button type="button" onclick="submitForm()">Sign Up</button>
+                </div>
+            </form>
+        </main>
+        <section class="product-section">
+            <div class="product-gallery">
+                <img src="product1.jpg" alt="Product 1" class="product-image">
+                <p>Description for product 1, such as a black phone.</p>
+            </div>
+            <div class="product-gallery">
+                <img src="product2.jpg" alt="Product 2" class="product-image">
+                <p>Description for product 2, such as a red dress.</p>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-links">
+                <a href="terms.html">Terms and Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="social-media">
+                <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            </div>
+            <p>&copy; 2023 Shopping Website</p>
+        </footer>
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>

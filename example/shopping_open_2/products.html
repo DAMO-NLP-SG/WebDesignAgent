@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website - Products</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Main Page</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="support.html">Customer Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-filters">
+            <button onclick="applyFilters()">Filter</button>
+            <button onclick="sortProducts()">Sort</button>
+        </section>
+
+        <section class="product-list" id="product-list">
+            <div class="product-item">
+                <img src="path/to/image1.jpg" alt="Product 1" description="Description for product 1">
+                <p>Description for product 1, such as a black phone</p>
+                <p>Rating: 4.5 ★</p>
+                <button onclick="viewProduct(1)">View Product</button>
+                <button onclick="addToCart(1)">Add to Cart</button>
+                <button onclick="quickView(1)">Quick View</button>
+            </div>
+            <div class="product-item">
+                <img src="path/to/image2.jpg" alt="Product 2" description="Description for product 2">
+                <p>Description for product 2, such as a blue shirt</p>
+                <p>Rating: 4 ★</p>
+                <button onclick="viewProduct(2)">View Product</button>
+                <button onclick="addToCart(2)">Add to Cart</button>
+                <button onclick="quickView(2)">Quick View</button>
+            </div>
+            <div class="product-item">
+                <img src="path/to/image3.jpg" alt="Product 3" description="Description for product 3">
+                <p>Description for product 3, such as a white bottle</p>
+                <p>Rating: 3.5 ★</p>
+                <button onclick="viewProduct(3)">View Product</button>
+                <button onclick="addToCart(3)">Add to Cart</button>
+                <button onclick="quickView(3)">Quick View</button>
+            </div>
+            <div class="product-item">
+                <img src="path/to/image4.jpg" alt="Product 4" description="Description for product 4">
+                <p>Description for product 4, such as a flower vase</p>
+                <p>Rating: 4.2 ★</p>
+                <button onclick="viewProduct(4)">View Product</button>
+                <button onclick="addToCart(4)">Add to Cart</button>
+                <button onclick="quickView(4)">Quick View</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <ul>
+            <li><a href="product_detail.html">Product Detail</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="support.html">Customer Support</a></li>
+        </ul>
+        <p>© 2023 Shopping Website. All Rights Reserved.</p>
+    </footer>
+
+    <div id="quick-view-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeQuickView()">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Quick view content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+</body>
+</html>

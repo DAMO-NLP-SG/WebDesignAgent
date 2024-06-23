@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Welcome to Our Signup Page</h1>
+        <p>Create an account to enjoy our services</p>
+    </header>
+    
+    <div class="container">
+        <h2>Create an Account</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <small class="tooltip">Enter your desired username</small>
+                <span class="error-msg" id="usernameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <small class="tooltip">Enter a valid email address</small>
+                <span class="error-msg" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <small class="tooltip">Password must be at least 8 characters long</small>
+                <meter id="passwordStrength" min="0" max="4"></meter>
+                <span class="error-msg" id="passwordError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <small class="tooltip">Re-enter your password</small>
+                <span class="error-msg" id="confirmPasswordError"></span>
+            </div>
+
+            <div class="form-group" id="captchaContainer">
+                <img src="captcha.jpg" alt="CAPTCHA" class="captcha-img">
+                <input type="text" placeholder="Enter CAPTCHA">
+            </div>
+
+            <button type="submit" class="btn-primary">Sign Up</button>
+            <button type="button" onclick="window.location.href='index.html'" class="btn-secondary">Back to Home</button>
+            <button type="button" onclick="window.location.href='help.html'" class="btn-secondary">Help</button>
+            
+            <p>Or sign up with:</p>
+            <button type="button" class="social-btn google"><i class="fab fa-google"></i> Google</button>
+            <button type="button" class="social-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+            <button type="button" class="social-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+        </form>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <div class="footer-images">
+            <img src="demo-banner.jpg" alt="Promotional Banner 1" title="This is the logo of a shopping website, resembling a little dog">
+            <img src="dress-banner.jpg" alt="Promotional Banner 2" title="This is a promotional banner for a red dress collection">
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="signup.js"></script>
+</body>
+</html>

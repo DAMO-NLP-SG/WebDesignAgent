@@ -1,0 +1,240 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #ff6f61, #ff9472);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #fff;
+    color: #ff6f61;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #f1f1f1;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    gap: 0.5rem;
+}
+
+.controls button {
+    background-color: #ff6f61;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.controls button:hover {
+    background-color: #ff9472;
+    transform: translateY(-2px);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    background-color: #ff6f61;
+    color: white;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar button {
+    display: block;
+    width: 100%;
+    background-color: #ff9472;
+    border: none;
+    padding: 0.5rem 0;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: #ff6f61;
+    transform: translateY(-2px);
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-left: 200px; /* Adjust for sidebar */
+}
+
+.product-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* For discount badge */
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+.product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.product-item:hover img {
+    transform: scale(1.1);
+}
+
+.product-item .description {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.product-item .price {
+    color: #ff6f61;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.product-item .rating {
+    color: #ffd700;
+    margin-top: 0.5rem;
+}
+
+.product-item .availability {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.product-item .discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6f61;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.product-item .quick-view,
+.product-item .wishlist {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: 0 0 5px 5px;
+    transition: background-color 0.3s;
+}
+
+.product-item .quick-view:hover,
+.product-item .wishlist:hover {
+    background-color: #ff9472;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.pagination button {
+    background-color: #ff6f61;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.pagination button:hover {
+    background-color: #ff9472;
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: #ff6f61;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer nav {
+    margin-bottom: 0.5rem;
+}
+
+footer nav a {
+    color: white;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer nav a:hover {
+    color: #ff9472;
+}

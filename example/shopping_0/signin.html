@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Shopping Website</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Shopping Website Logo" description="This is the logo of a shopping website, resembling a little dog">
+    </header>
+    <main>
+        <div class="sign-in-container">
+            <h1>Sign In</h1>
+            <form id="sign-in-form">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember-me" name="remember-me">
+                    <label for="remember-me">Remember Me</label>
+                </div>
+                <button type="button" onclick="authenticateUser()">Sign In</button>
+                <button type="button" onclick="window.location.href='signup.html'">Sign Up</button>
+                <button type="button" onclick="window.location.href='index.html'">Main Page</button>
+            </form>
+            <div class="links">
+                <a href="reset_password.html">Forgot Password</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="terms_of_service.html">Terms of Service</a>
+            </div>
+        </div>
+    </main>
+    <script src="signin.js"></script>
+</body>
+</html>

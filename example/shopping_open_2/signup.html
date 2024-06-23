@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Website Logo" description="This is the logo of the shopping website, resembling a little dog">
+        <h1>Welcome to Our Shopping Website</h1>
+        <p>Discover amazing products and deals!</p>
+    </header>
+    <main>
+        <section class="promo-banner">
+            <img src="promo1.jpg" alt="Promotional Banner 1" description="This is a promotional banner showcasing a discount offer">
+            <img src="promo2.jpg" alt="Promotional Banner 2" description="This is a promotional banner showcasing a new product launch">
+        </section>
+        <section class="signup-form">
+            <h2>Create an Account</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <span class="tooltip" id="usernameTooltip">Enter a unique username</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="tooltip" id="emailTooltip">Enter a valid email address</span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="tooltip" id="passwordTooltip">Enter a strong password</span>
+                    <div id="passwordStrength" class="password-strength">Password Strength: Weak</div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <span class="tooltip" id="confirmPasswordTooltip">Re-enter your password</span>
+                </div>
+                <div class="form-group">
+                    <label for="captcha">Captcha:</label>
+                    <input type="text" id="captcha" name="captcha" required>
+                    <img src="captchaImage.jpg" alt="Captcha Image" description="Captcha verification" id="captchaImage">
+                    <span class="tooltip" id="captchaTooltip">Enter the text from the image</span>
+                </div>
+                <button type="button" onclick="submitForm()">Sign Up</button>
+                <div id="confirmationMessage" class="confirmation-message"></div>
+            </form>
+            <div class="other-buttons">
+                <button onclick="location.href='signin.html'">Sign In</button>
+                <button onclick="location.href='index.html'">Main Page</button>
+                <button onclick="location.href='help.html'">Help</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <a href="terms.html">Terms and Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Contact Us</a>
+        <p>&copy; 2023 Our Shopping Website - All rights reserved</p>
+    </footer>
+    <script src="signup.js"></script>
+</body>
+</html>

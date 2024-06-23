@@ -37,6 +37,7 @@ class WebDesignAgent(BaseAgent):
     
     def deal_task(self,refine_times = 2):
         self.plan()
+        refine_times = self.refine_times if self.refine_times else refine_times
         for page_info in self.task_queue:
             cnt = 0
             self.write_original_website(page_info)
@@ -58,10 +59,12 @@ class WebDesignAgent(BaseAgent):
         self.memory.append({"role":"assistant","content":response})
         return response
 
-    def publish_task(self,img = None, text = None,max_cost_prompt_tokens = 100000,max_cost_completion_tokens = 100000):
+    def publish_task(self,img = None, text = None,refine_augument = None,refine_times= None,max_cost_prompt_tokens = 100000,max_cost_completion_tokens = 100000):
         self.task = {"img":img,"text":text}
         self.max_cost_prompt_tokens = max_cost_prompt_tokens
         self.max_cost_completion_tokens = max_cost_completion_tokens
+        self.refine_times = refine_times
+        self.open_refine_augument = refine_augument
 
     
     def check_cost(self):
@@ -78,7 +81,7 @@ class WebDesignAgent(BaseAgent):
 
     def plan(self):
         if os.path.exists(os.path.join(self.save_file,"pages.json")):
-            with open(os.path.join(self.save_file,"pages.json"), "r") as f:
+            with open(os.path.join(self.save_file,"pages.json"), "r",encoding='utf-8') as f:
                 self.task_queue = json.load(f)
             return self.task_queue
         text = self.task["text"]
@@ -99,13 +102,14 @@ class WebDesignAgent(BaseAgent):
             ]
         try_cnt = 0
         while try_cnt < 3:
+            response = wrap_func(self.get_answer, messages=messages,wrap_text="Planning now...")
             try:
-                response = wrap_func(self.get_answer, messages=messages,wrap_text="Planning now...")
                 pages = response.split("Designed pages:")[-1]
                 pages = pages.strip()
                 pages = json.loads(pages)
                 break
             except:
+                print(response)
                 try_cnt += 1
                 print("Failed to get the designed pages. try again")
         if try_cnt == 3:
@@ -118,7 +122,7 @@ class WebDesignAgent(BaseAgent):
         self.task_queue = new_pages
         print("The pages have been designed.")
         save_path = os.path.join(self.save_file,"pages.json")
-        with open(save_path, "w") as f:
+        with open(save_path, "w",encoding='utf-8') as f:
             json.dump(self.task_queue,f)
         return self.task_queue
         
@@ -133,23 +137,30 @@ class WebDesignAgent(BaseAgent):
         ]
         response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining page now...")
         modified_page = response.split("modified_page:")[-1].strip()
-        modified_page = modify_input_dict(modified_page)
         if "```python" in modified_page:
             modified_page = get_content_between_a_b("```python","```",modified_page)
         if "```json" in modified_page:
             modified_page = get_content_between_a_b("```json","```",modified_page)
+        modified_page = modified_page.replace("True","true").replace("False","false")
         try:
             modified_page = json.loads(modified_page)
         except:
-            print("Failed to get the modified page. Please check the format.")
-            print(modified_page)
-            print("##############################################")
-            modified_page = page_info
+            modified_page = modify_input_dict(modified_page)
+            try:
+                modified_page = json.loads(modified_page)
+            except:
+                print("Failed to get the modified page. Please check the format.")
+                print(modified_page)
+                print("##############################################")
+                modified_page = page_info
         return modified_page
 
 
-    def refine(self,page_info):
+    def refine(self,page_info,refine_augument = False):
         self.refine_details(page_info)
+        refine_augument = self.open_refine_augument if self.open_refine_augument else refine_augument
+        if refine_augument:
+            self.refine_augument(page_info)
         self.refine_layout(page_info)
         
 
@@ -159,9 +170,9 @@ class WebDesignAgent(BaseAgent):
         js_name = page_info["js_name"]
         img = self.task["img"] if page_info["is_main_page"] else None
         text = self.task["text"]
-        html_code = open(os.path.join(self.save_file,html_name)).read()
-        css_code = open(os.path.join(self.save_file,css_name)).read()
-        js_code = open(os.path.join(self.save_file,js_name)).read()
+        html_code = open(os.path.join(self.save_file,html_name),encoding='utf-8').read()
+        css_code = open(os.path.join(self.save_file,css_name),encoding='utf-8').read()
+        js_code = open(os.path.join(self.save_file,js_name),encoding='utf-8').read()
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
 
@@ -198,36 +209,70 @@ class WebDesignAgent(BaseAgent):
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
 
 
-    def refine_layout(self,page_info):
+    def refine_augument(self,page_info):
         html_name = page_info["html_name"]
-        html_code = open(os.path.join(self.save_file,html_name)).read()
+        html_code = open(os.path.join(self.save_file,html_name),encoding='utf-8').read()
         css_name = page_info["css_name"]
-        css_code = open(os.path.join(self.save_file,css_name)).read()
+        css_code = open(os.path.join(self.save_file,css_name),encoding='utf-8').read()
+        js_name = page_info["js_name"]
+        js_code = open(os.path.join(self.save_file,js_name),encoding='utf-8').read()
         img = self.task["img"] if page_info["is_main_page"] else None
         text = self.task["text"]
-        feedback = f"The feedback provided by users regarding the current implementation effect of your code is very important. Please take it seriously and make modifications based on user feedback!\n The user's feedback is:{self.user_feedback}" if self.user_feedback else ""
-        prompt = get_refine_layout_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback)
+        user_feedback = f"The feedback provided by users regarding the current implementation effect of your code is very important. Please take it seriously and make modifications based on user feedback!\n The user's feedback is:{self.user_feedback}" if self.user_feedback else ""
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
-        if img:
+        if img and not text:
+            prompt = refine_augument_img_prompt.format(user_feedback=user_feedback,page_info=page_info,html_code=html_code,css_code=css_code,js_code = js_code)
             messages = [
                 {"role":"user","content":[
                     {"type":"image_url","image_url":{"url":get_openai_url(img),"detail":"high"}},
                     {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
                     {"type":"text","text":prompt},
-            ]},
+            ]}
             ]
         else:
+            prompt = refine_augument_prompt.format(user_feedback=user_feedback,page_info=page_info,html_code=html_code,css_code=css_code,js_code = js_code)
             messages = [
                 {"role":"user","content":[
                     {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
                     {"type":"text","text":prompt},
-            ]},
+            ]}
             ]
-
-        response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining CSS now...")
+        response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining augument now...")
         css = get_content_between_a_b("```css", "```", response) if "```css" in response else css_code
         html = get_content_between_a_b("```html", "```", response) if "```html" in response else html_code
+        js = get_content_between_a_b("```javascript", "```", response) if "```javascript" in response else js_code
+        js = get_content_between_a_b("```js", "```", response) if "```js" in response else js
+        if css:
+            write_file(os.path.join(self.save_file,css_name), css)
+            print(f"Refined CSS has been written to {css_name}")
+        if html:
+            write_file(os.path.join(self.save_file,html_name), html)
+            print(f"Refined HTML has been written to {html_name}")
+        if js:
+            write_file(os.path.join(self.save_file,js_name), js)
+            print(f"Refined JS has been written to {js_name}")
+        self.add_imgs(html,js)
+        self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
+    
+    def refine_layout(self,page_info):
+        html_name = page_info["html_name"]
+        css_name = page_info["css_name"]
+        html_code = open(os.path.join(self.save_file,html_name),encoding='utf-8').read()
+        css_code = open(os.path.join(self.save_file,css_name),encoding='utf-8').read()
+
+        prompt = refine_css_prompt.format(page_info=page_info,html_code=html_code,css_code=css_code)
+        page_img_path = os.path.join(self.save_file,f"{html_name.split('.')[0]}.png")
+        messages = [
+            {"role":"user","content":[
+                {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
+                {"type":"text","text":prompt},
+        ]},
+        ]
+
+        response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining layout now...")
+        html = get_content_between_a_b("```html", "```", response) if "```html" in response else None
+        css = get_content_between_a_b("```css", "```", response) if "```css" in response else None
         if css:
             write_file(os.path.join(self.save_file,css_name), css)
             print(f"Refined CSS has been written to {css_name}")
@@ -335,9 +380,12 @@ class WebDesignAgent(BaseAgent):
         img_contents = extract_img_from_html(html_code)
         for img_content in img_contents:
             img_path = os.path.join(self.save_file,img_content["src"])
-            if os.path.exists(img_path) or "description" not in img_content or not img_path.split(".")[1] in ["jpg","png","jpeg"]:
+            if os.path.exists(img_path) or ("description" not in img_content and "alt" not in img_content) or not img_path.split(".")[1] in ["jpg","png","jpeg"]:
                 continue
-            img_description = img_content["description"]
+            if "description" in img_content:
+                img_description = img_content["description"]
+            elif "alt" in img_content:
+                img_description = img_content["alt"]
             img = self.get_img(img_description)
             create_file(img_path)
             img.save(img_path)
@@ -368,12 +416,16 @@ if __name__ == "__main__":
     parser.add_argument("--save_file", type=str, default="saves/shopping/")
     parser.add_argument("--text", type=str, default=None)
     parser.add_argument("--img", type=str, default=None)
+    parser.add_argument("--refine_times", type=int, default=2)
+    parser.add_argument("--refine_augument", type=bool, default=False)
     args = parser.parse_args()
     save_file = args.save_file
     text = args.text
     img = args.img
+    refine_times = args.refine_times
+    refine_augument = args.refine_augument
     agent = WebDesignAgent(save_file=save_file)
-    agent.act(text = text,img = img)
+    agent.act(text = text,img = img,refine_augument = refine_augument,refine_times = refine_times)
     print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
     cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
     print(f"Total cost: {cost}")

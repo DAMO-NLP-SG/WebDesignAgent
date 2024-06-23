@@ -1,0 +1,237 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f0f0f0, #ffffff);
+    color: #333;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+header {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 0 0 10px 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+nav button {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+nav button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background: linear-gradient(to bottom right, #f9f9f9, #e0e0e0);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+section:hover {
+    background: #e9e9e9;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+footer {
+    background: linear-gradient(to bottom right, #333, #222);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #4CAF50;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: #4CAF50;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team-grid .team-member {
+    text-align: center;
+    margin: 10px;
+    max-width: 200px;
+}
+
+.team-grid img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #4CAF50;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-grid img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.description {
+    text-align: center;
+    margin: 10px 0;
+    font-style: italic;
+    color: #666;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+.timeline div {
+    margin: 10px 0;
+    padding: 10px;
+    background: linear-gradient(to bottom right, #fff, #eee);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.timeline div:hover {
+    background: #e9e9e9;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.carousel {
+    display: flex;
+    overflow: auto;
+    gap: 20px;
+}
+
+.carousel div {
+    min-width: 300px;
+    margin-right: 20px;
+    background: linear-gradient(to bottom right, #fff, #eee);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.carousel-controls button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel-controls button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#faq-container div {
+    padding: 10px;
+    background: #e9e9e9;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+#faq-container div:hover {
+    background: #d9d9d9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Additional CSS for Tooltips */
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 1000;
+}

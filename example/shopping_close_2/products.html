@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Main Page</a>
+            <a href="cart.html">Cart</a>
+            <a href="support.html">Customer Support</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="filter-sort-bar">
+            <button onclick="applyFilters()">Filter</button>
+            <button onclick="sortProducts()">Sort</button>
+        </div>
+        <div id="product-list" class="product-list">
+            <!-- Example of dynamically inserted products -->
+            <div class="product-item">
+                <img src="path/to/image1.jpg" alt="Smartwatch" description="This is a high-quality smartwatch with multiple features.">
+                <p class="product-description">This is a high-quality smartwatch with multiple features.</p>
+                <button onclick="viewProduct()">View Product</button>
+                <button onclick="addToCart()">Add to Cart</button>
+                <button onclick="quickView()">Quick View</button>
+            </div>
+            <div class="product-item">
+                <img src="path/to/image2.jpg" alt="Camera" description="This is an advanced camera with high resolution.">
+                <p class="product-description">This is an advanced camera with high resolution.</p>
+                <button onclick="viewProduct()">View Product</button>
+                <button onclick="addToCart()">Add to Cart</button>
+                <button onclick="quickView()">Quick View</button>
+            </div>
+            <div class="product-item">
+                <img src="path/to/image3.jpg" alt="Home Appliance Set" description="This is a stylish home appliance set.">
+                <p class="product-description">This is a stylish home appliance set.</p>
+                <button onclick="viewProduct()">View Product</button>
+                <button onclick="addToCart()">Add to Cart</button>
+                <button onclick="quickView()">Quick View</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <nav>
+            <a href="product_detail.html">Product Detail</a>
+            <a href="cart.html">Cart</a>
+            <a href="support.html">Customer Support</a>
+        </nav>
+    </footer>
+
+    <script src="products.js"></script>
+</body>
+</html>

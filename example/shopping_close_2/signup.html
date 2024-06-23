@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<link rel="stylesheet" href="signup.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="logo.jpg" alt="Shopping Website Logo" description="This is the logo of a shopping website, resembling a little dog">
+        <h1>Create Your Account</h1>
+    </header>
+    <div class="banner">
+        <img src="promo.jpg" alt="Promotional Banner" description="Special discount on new arrivals!">
+    </div>
+    <form id="signupForm">
+        <div class="form-group">
+            <label for="username"><i class="fas fa-user"></i> Username:</label>
+            <input type="text" id="username" name="username">
+            <span class="tooltip">Enter your desired username.</span>
+        </div>
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" id="email" name="email">
+            <span class="tooltip">Enter a valid email address.</span>
+        </div>
+        <div class="form-group">
+            <label for="password"><i class="fas fa-lock"></i> Password:</label>
+            <input type="password" id="password" name="password">
+            <span class="tooltip">Choose a strong password.</span>
+            <div class="password-strength"></div>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <span class="tooltip">Re-enter your password.</span>
+        </div>
+        <button type="button" onclick="submitForm()">Sign Up</button>
+    </form>
+    <div class="buttons">
+        <button class="sign-in" onclick="location.href='signin.html'">Sign In</button>
+        <button class="main-page" onclick="location.href='index.html'">Main Page</button>
+        <button class="help" onclick="location.href='help.html'">Help</button>
+    </div>
+    <footer>
+        <a href="terms.html"><i class="fas fa-file-alt"></i> Terms and Conditions</a>
+        <a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+    </footer>
+</div>
+<script src="signup.js"></script>
+</body>
+</html>

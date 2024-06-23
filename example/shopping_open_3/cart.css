@@ -1,0 +1,132 @@
+/* cart.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ff6347;
+    padding: 1em;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+    flex-wrap: wrap;
+}
+
+#cart-items, #cost-summary, #related-products {
+    background: white;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    margin-bottom: 2em;
+}
+
+#cart-items img, .related-item img {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto 1em;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+#cart-items img:hover, .related-item img:hover {
+    transform: scale(1.1);
+}
+
+#cart-items p, #cart-items input, .related-item p {
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+#cart-items .description {
+    font-style: italic;
+    color: #777;
+}
+
+#cart-items p:hover {
+    color: #ff6347;
+}
+
+#actions button, #actions input[type="text"], .related-item p, .add-to-cart-btn {
+    background: #ff6347;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0.5em 0;
+    transition: background 0.3s, transform 0.3s;
+}
+
+#actions button:hover, #actions input[type="text"]:hover, .related-item p:hover, .add-to-cart-btn:hover {
+    background: #ff4500;
+    transform: scale(1.05);
+}
+
+.apply-discount-btn, .save-later-btn {
+    background-color: #ff4500;
+    margin: 0.5em 0;
+}
+
+footer {
+    background-color: #ff6347;
+    padding: 1em;
+    text-align: center;
+    color: white;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+}
+
+footer nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer nav a:hover {
+    color: #ffd700;
+}
+
+.related-item {
+    text-align: center;
+    margin: 1em 0;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #cart-items, #cost-summary, #related-products {
+        width: 90%;
+    }
+}

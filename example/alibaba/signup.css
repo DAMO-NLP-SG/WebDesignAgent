@@ -1,0 +1,202 @@
+/* signup.css */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.header p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    color: #333;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.container:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+}
+
+.container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #6a11cb;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #6a11cb;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 22px);
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #6a11cb;
+}
+
+input:invalid {
+    border-color: #e74c3c;
+}
+
+.error-msg {
+    color: #e74c3c;
+    font-size: 0.8em;
+    display: none;
+}
+
+button {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #4CAF50, #45a049);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #45a049, #4CAF50);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #ccc;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #bbb;
+}
+
+button.social-btn {
+    background-color: #4267B2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+}
+
+button.social-btn i {
+    margin-right: 8px;
+}
+
+button.social-btn.google {
+    background-color: #DB4437;
+}
+
+button.social-btn.facebook {
+    background-color: #4267B2;
+}
+
+button.social-btn.twitter {
+    background-color: #1DA1F2;
+}
+
+button.social-btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.tooltip {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+meter {
+    width: 100%;
+    height: 10px;
+    margin-bottom: 5px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.captcha-img {
+    width: 100px;
+    height: 50px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.footer-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.footer-images img {
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.footer-images img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}

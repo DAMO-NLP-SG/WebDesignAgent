@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="text" id="search-bar" placeholder="Search...">
+            <button onclick="navigateTo('products.html')">Shop Now</button>
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="signin.html">Sign In</a>
+                    <a href="signup.html">Sign Up</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="bestsellers.html">Best Sellers</a>
+                    <a href="new_arrivals.html">New Arrivals</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="promotional-banners">
+            <div class="carousel">
+                <img src="demo_banner_1.jpg" alt="Promotional Banner 1" description="This is the logo of a shopping website, resembling a little dog">
+                <img src="demo_banner_2.jpg" alt="Promotional Banner 2" description="This is a promotional banner showcasing a new arrival.">
+                <img src="demo_banner_3.jpg" alt="Promotional Banner 3" description="This is a promotional banner showcasing a seasonal sale.">
+                <button class="carousel-control prev" onclick="carouselControl(-1)">&#10094;</button>
+                <button class="carousel-control next" onclick="carouselControl(1)">&#10095;</button>
+                <div class="carousel-indicators">
+                    <span class="indicator" onclick="currentSlide(0)"></span>
+                    <span class="indicator" onclick="currentSlide(1)"></span>
+                    <span class="indicator" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+        </section>
+        <section id="featured-products">
+            <div class="product-container">
+                <img src="product1.jpg" alt="Product 1" description="A black camera.">
+                <p>Description for product 1, such as a black camera</p>
+            </div>
+            <div class="product-container">
+                <img src="product2.jpg" alt="Product 2" description="A white lotion.">
+                <p>Description for product 2, such as a white lotion</p>
+            </div>
+            <div class="product-container">
+                <img src="product3.jpg" alt="Product 3" description="A grey perfume bottle.">
+                <p>Description for product 3, such as a grey perfume bottle</p>
+            </div>
+            <div class="product-container">
+                <img src="product4.jpg" alt="Product 4" description="A silver clock.">
+                <p>Description for product 4, such as a silver clock</p>
+            </div>
+        </section>
+        <section id="additional-features">
+            <div id="live-chat-support">
+                <i class="icon-chat"></i>Live Chat Support
+            </div>
+            <div id="promotional-pop-ups">
+                <i class="icon-popup"></i>Promotional Pop-Ups
+            </div>
+            <div id="user-testimonials">
+                <i class="icon-testimonial"></i>User Testimonials
+            </div>
+            <div id="social-media-feed">
+                <i class="icon-social"></i>Social Media Feed
+            </div>
+            <div id="newsletter-signup">
+                <i class="icon-newsletter"></i>Newsletter Signup Form
+            </div>
+            <div id="personalized-recommendations">
+                <i class="icon-recommendation"></i>Personalized Product Recommendations
+            </div>
+            <div id="seasonal-sales-banners">
+                <i class="icon-sales"></i>Seasonal Sales Banners
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+        <p>Contact us: info@shoppingwebsite.com</p>
+        <div id="social-media-links">
+            <a href="https://facebook.com">Facebook</a>
+            <a href="https://twitter.com">Twitter</a>
+            <a href="https://instagram.com">Instagram</a>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

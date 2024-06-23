@@ -1,0 +1,228 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 60%;
+    max-width: 900px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+header h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #007BFF;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 1rem;
+}
+
+footer a:hover {
+    color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    bottom: -20px;
+}
+
+.tooltip {
+    display: none;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    position: absolute;
+    top: -25px;
+    left: 100%;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.form-group:hover .tooltip {
+    display: block;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+nav button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1rem;
+}
+
+nav button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.password-requirements {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+meter {
+    width: 100%;
+    height: 10px;
+    margin-top: 5px;
+    background: #f3f3f3;
+}
+
+.product-showcase {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.product-showcase h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.product {
+    width: 100px;
+    height: 100px;
+    background: #f3f3f3;
+    border-radius: 10px;
+    margin: 10px;
+    display: inline-block;
+    transition: transform 0.3s;
+    text-align: center;
+    padding: 10px;
+}
+
+.product img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.product p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.product:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+}

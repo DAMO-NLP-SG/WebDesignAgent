@@ -1,0 +1,194 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f0f0f0, #fff);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background: linear-gradient(90deg, rgba(76,175,80,1) 0%, rgba(34,193,195,1) 100%);
+    color: #fff;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+footer nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer nav ul li {
+    display: inline;
+}
+
+footer nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+#promotional-banner {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#promotional-banner img {
+    width: 80%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+#promotional-banner img:hover {
+    transform: scale(1.05);
+}
+
+#sidebar {
+    width: 20%;
+    background: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+#cart-items, #cart-summary, #product-recommendations {
+    flex: 1;
+    background: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+#cart-items h2, #cart-summary h2, #product-recommendations h2 {
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+}
+
+#cost-breakdown p {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    background: linear-gradient(90deg, rgba(76,175,80,1) 0%, rgba(34,193,195,1) 100%);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(76,175,80,1) 100%);
+    transform: scale(1.05);
+}
+
+img {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.recommended-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart-summary {
+    border: 1px solid #4CAF50;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+input[type="text"] {
+    display: block;
+    width: calc(100% - 2rem);
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    #cart-items, #cart-summary, #product-recommendations, #sidebar {
+        width: 100%;
+    }
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}

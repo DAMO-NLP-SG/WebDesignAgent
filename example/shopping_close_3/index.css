@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    animation: fadeInDown 1s;
+}
+
+header .branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+nav {
+    margin: 10px 0;
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    border-radius: 5px;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.btn-shop {
+    background: linear-gradient(45deg, #28a745, #218838);
+}
+
+.btn-signin {
+    background: linear-gradient(45deg, #17a2b8, #138496);
+}
+
+.btn-signup {
+    background: linear-gradient(45deg, #ffc107, #e0a800);
+}
+
+.btn-cart {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+}
+
+.btn-bestsellers, .btn-newarrivals {
+    background: linear-gradient(45deg, #6c757d, #5a6268);
+}
+
+#promotional-banner {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    animation: fadeIn 2s;
+}
+
+#promotional-banner img {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+
+#featured-products {
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(to right, #ffffff, #f1f1f1);
+    border-top: 2px solid #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+#product-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#product-list img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#product-list img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#testimonial-section {
+    padding: 20px;
+    background-color: #e9ecef;
+    text-align: center;
+}
+
+.testimonial {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.testimonial img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#social-media-feed {
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer a {
+    color: #ffc107;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #ffdd57;
+    text-decoration: underline;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

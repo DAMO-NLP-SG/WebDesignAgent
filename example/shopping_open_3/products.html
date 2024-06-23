@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Shopping Website Logo" description="This is the logo of a shopping website resembling a little dog.">
+        <nav>
+            <a href="index.html">Main Page</a>
+            <a href="cart.html">Cart</a>
+            <a href="support.html">Customer Support</a>
+        </nav>
+        <input type="text" placeholder="Search Products" class="search-bar">
+    </header>
+    <section class="filter-sort">
+        <div class="filter-options">
+            <button onclick="applyFilters()">Filter</button>
+            <select id="category-filter">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="beauty">Beauty</option>
+                <option value="home">Home</option>
+                <option value="fashion">Fashion</option>
+            </select>
+            <input type="range" id="price-range" min="0" max="1000" step="10" value="1000" oninput="updatePriceRangeValue(this.value)">
+            <span id="price-range-value">Up to $1000</span>
+        </div>
+        <button onclick="sortProducts()">Sort</button>
+    </section>
+    <section id="product-list">
+        <!-- Product cards will be dynamically injected here -->
+    </section>
+    <footer>
+        <a href="product_detail.html">Product Detail</a>
+        <a href="cart.html">Cart</a>
+        <a href="support.html">Customer Support</a>
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()">Top</button>
+    <div id="quick-view-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeQuickView()">&times;</span>
+            <p id="quick-view-description"></p>
+        </div>
+    </div>
+    <script src="products.js"></script>
+</body>
+</html>

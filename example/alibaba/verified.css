@@ -1,0 +1,154 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ff8577;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 i {
+    margin-right: 10px;
+}
+
+nav button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+nav button i {
+    margin-right: 8px;
+}
+
+nav button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+main {
+    padding: 20px;
+}
+
+#controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-bar {
+    padding: 10px;
+    width: 60%;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    font-size: 1.2em;
+}
+
+#supplier-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.supplier-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
+    padding-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+.supplier-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.supplier-item:hover {
+    transform: scale(1.05);
+}
+
+.supplier-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.supplier-details h3 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.supplier-details p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.supplier-details button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.supplier-details button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.supplier-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: gold;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.supplier-badge.gold {
+    background-color: gold;
+}
+
+.supplier-badge.silver {
+    background-color: silver;
+}
+
+footer {
+    background-color: #ff8577;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}

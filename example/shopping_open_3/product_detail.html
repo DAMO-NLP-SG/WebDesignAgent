@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="product_detail.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div class="product-page">
+        <header>
+            <div class="logo">MyStore</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="all_products.html">Products</a>
+                <a href="contact.html">Contact</a>
+                <input type="text" placeholder="Search...">
+            </nav>
+        </header>
+        
+        <section class="product-gallery">
+            <img src="product1.jpg" alt="Product Image 1" description="Main product image" class="main-img">
+            <div class="thumbnails">
+                <img src="product1_thumb1.jpg" alt="Thumbnail 1" description="Thumbnail image 1">
+                <img src="product1_thumb2.jpg" alt="Thumbnail 2" description="Thumbnail image 2">
+                <img src="product1_thumb3.jpg" alt="Thumbnail 3" description="Thumbnail image 3">
+            </div>
+        </section>
+
+        <section class="product-details">
+            <h2>Product Name</h2>
+            <p class="price">$99.99</p>
+            <p class="description">This is a detailed description of the product, highlighting its key features and benefits.</p>
+            <p class="stock-status">In Stock</p>
+            <div class="buttons">
+                <button onclick="addToCart()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                <button onclick="addToWishlist()"><i class="fas fa-heart"></i> Add to Wishlist</button>
+                <button onclick="shareOnFacebook()"><i class="fas fa-share"></i> Share on Facebook</button>
+                <button onclick="addToCompare()"><i class="fas fa-exchange-alt"></i> Compare</button>
+            </div>
+        </section>
+
+        <section class="related-products">
+            <h3>Related Products</h3>
+            <div class="carousel">
+                <a href="product_detail.html"><img src="related1.jpg" alt="Related Product 1" description="Image of related product 1"></a>
+                <a href="product_detail.html"><img src="related2.jpg" alt="Related Product 2" description="Image of related product 2"></a>
+                <a href="product_detail.html"><img src="related3.jpg" alt="Related Product 3" description="Image of related product 3"></a>
+            </div>
+            <div class="carousel-navigation">
+                <button class="prev">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
+        </section>
+
+        <section class="customer-reviews" id="reviews">
+            <h3>Customer Reviews</h3>
+            <div class="review">
+                <p><strong>User A:</strong> Great product! Highly recommend.</p>
+                <p>Rating: ⭐⭐⭐⭐⭐</p>
+            </div>
+            <div class="review">
+                <p><strong>User B:</strong> Satisfied with the quality and price.</p>
+                <p>Rating: ⭐⭐⭐⭐</p>
+            </div>
+            <form class="review-form">
+                <h4>Submit Your Review</h4>
+                <input type="text" placeholder="Your Name">
+                <div class="star-rating">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <textarea placeholder="Your Review"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <footer>
+            <a href="index.html">Main Page</a>
+            <a href="all_products.html">All Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </footer>
+    </div>
+
+    <script src="product_detail.js"></script>
+</body>
+</html>

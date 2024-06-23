@@ -15,7 +15,9 @@ class Application(tk.Tk):
 
         self.title("Web Design Agent")
         self.agent = agent
-        self.geometry("1600x1200")
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        self.geometry(f"{screen_width}x{screen_height}")
         self.current_page = 0
         self.pages = []
 
@@ -36,6 +38,25 @@ class Application(tk.Tk):
         self.model_menu_label = tk.Label(self.title_frame, text="Select Model:")
         self.model_menu_label.grid(row=0, column=2, padx=10, pady=10)
 
+        self.is_animating = False
+
+        self.canvas = tk.Canvas(self, width=int(screen_width * 0.8), height=int(screen_height*0.7))
+        self.y_scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
+        self.x_scrollbar = tk.Scrollbar(self, orient="horizontal", command=self.canvas.xview)
+        self.scrollable_frame = tk.Frame(self.canvas)
+        self.scrollable_frame.bind(
+            "<Configure>",
+            lambda e: self.canvas.configure(
+                scrollregion=self.canvas.bbox("all")
+            )
+        )
+        self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        self.canvas.configure(xscrollcommand=self.x_scrollbar.set)
+        self.canvas.configure(yscrollcommand=self.y_scrollbar.set)
+        self.canvas.grid(row=1, column=0, padx=10, pady=10)
+        self.y_scrollbar.grid(row=1, column=1, sticky="ns")
+        self.x_scrollbar.grid(row=2, column=0, sticky="ew")
+
         # Chat mode widgets
         self.chat_widgets = self.create_chat_widgets()
 
@@ -51,21 +72,22 @@ class Application(tk.Tk):
         self.begin_dell_cost = tokens["dalle3"]
         self.total_cost = 0
         self.time_cost = 0
-        self.img_ref = None
+        self.img_ref = None     
 
     def create_chat_widgets(self):
         chat_widgets = {}
 
-        chat_widgets['chat_history'] = scrolledtext.ScrolledText(self, wrap=tk.WORD, state='disabled', width=120, height=50)
-        chat_widgets['input_area'] = tk.Text(self, height=3, width=120)
-        chat_widgets['send_button'] = tk.Button(self, text="Send", command=self.send_message)
+        chat_widgets['chat_history'] = scrolledtext.ScrolledText(self.scrollable_frame, wrap=tk.WORD, state='disabled', width=120, height=40)
+        chat_widgets['input_area'] = tk.Text(self.scrollable_frame, height=3, width=120)
+        chat_widgets['send_button'] = tk.Button(self.scrollable_frame, text="Send", command=self.send_message)
         return chat_widgets
 
     def create_web_design_widgets(self):
         web_design_widgets = {}
-        web_design_widgets['input_frame'] = tk.Frame(self)
-        web_design_widgets['output_text'] = scrolledtext.ScrolledText(self, wrap=tk.WORD, state='disabled', width=50, height=50)
-        web_design_widgets['output_image_frame'] = tk.Frame(self, width=600, height=100)
+        web_design_widgets['input_frame'] = tk.Frame(self.scrollable_frame,width=700)
+        web_design_widgets['output_text'] = scrolledtext.ScrolledText(self.scrollable_frame, wrap=tk.WORD, state='disabled', width=50, height=40)
+
+        web_design_widgets['output_image_frame'] = tk.Frame(self.scrollable_frame, width=500,height=100)
         web_design_widgets["input_labels"] = []
         web_design_widgets["input_entries"] = []
 
@@ -79,51 +101,60 @@ class Application(tk.Tk):
             web_design_widgets["input_labels"].append(label)
             web_design_widgets["input_entries"].append(entry)
 
+        refine_options = [ "Close","Open",]
+        refine_var = tk.StringVar(value="Close")
+        refine_menu = ttk.OptionMenu(web_design_widgets["input_frame"], refine_var, refine_options[0], *refine_options)
+        refine_menu.grid(row=6, column=1, padx=10, pady=10)
+        refine_menu_label = tk.Label(web_design_widgets["input_frame"], text="Refine Augment:")
+        refine_menu_label.grid(row=6, column=0, padx=10, pady=10)
+        web_design_widgets["refine_var"] = refine_var
+
         # Animation Label
         label = tk.Label(web_design_widgets["input_frame"], text="🤖 Status: ")
-        label.grid(row=6, column=0, padx=10, pady=10)
-        self.animation_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💡 idle")
-        self.animation_label.grid(row=6, column=1, columnspan=2, padx=10, pady=10)
+        label.grid(row=7, column=0, padx=10, pady=10)
+        self.animation_label = tk.Label(web_design_widgets["input_frame"], text="💡 idle")
+        self.animation_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
         self.animation_idx = 0
 
         # cost label
-        label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Cost: ")
-        label.grid(row=7, column=0, padx=10, pady=10)
-        self.cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.cost_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
-        label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
+        label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Token Cost: ")
         label.grid(row=8, column=0, padx=10, pady=10)
+        self.token_cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
+        self.token_cost_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
+
+        label = tk.Label(web_design_widgets["input_frame"], text="💰 Total IMG Cost: ")
+        label.grid(row=9, column=0, padx=10, pady=10)
+        self.token_img_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
+        self.token_img_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)        
+
+
+        label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
+        label.grid(row=10, column=0, padx=10, pady=10)
         self.time_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="⏱️ 0 s")
-        self.time_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
+        self.time_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)
 
+        plan_button = tk.Button(self.scrollable_frame, text="Plan", command=self.plan)
+        auto_gen_button = tk.Button(self.scrollable_frame, text="Auto Generate", command=self.auto_gen_website)
+        create_button = tk.Button(self.scrollable_frame, text="Create Website", command=self.create_website)
+        refine_button = tk.Button(self.scrollable_frame, text="Refine Website", command=self.refine_website)
 
-        plan_button = tk.Button(self, text="Plan", command=self.plan)
-        auto_gen_button = tk.Button(self, text="Auto Generate", command=self.auto_gen_website)
-        create_button = tk.Button(self, text="Create Website", command=self.create_website)
-        refine_button = tk.Button(self, text="Refine Website", command=self.refine_website)
-        open_button = tk.Button(self, text="Open Website", command=self.open_website)
-
-        prev_page_button = tk.Button(self, text="Previous Page", command=self.prev_page)
-        next_page_button = tk.Button(self, text="Next Page", command=self.next_page)
-        delete_page_button = tk.Button(self, text="Delete Page", command=self.delete_page)
-        add_page_button = tk.Button(self, text="Add Page", command=self.add_page)
-        complete_page_button = tk.Button(self, text="Complete Page", command=self.complete_page)
+        delete_page_button = tk.Button(self.scrollable_frame, text="Delete Page", command=self.delete_page)
+        add_page_button = tk.Button(self.scrollable_frame, text="Add Page", command=self.add_page)
+        complete_page_button = tk.Button(self.scrollable_frame, text="Complete Page", command=self.complete_page)
 
         web_design_widgets["plan_button"] = plan_button
         web_design_widgets["auto_gen_button"] = auto_gen_button
 
         web_design_widgets["create_button"] = create_button
         web_design_widgets["refine_button"] = refine_button
-        web_design_widgets["open_button"] = open_button
 
-        web_design_widgets["prev_page_button"] = prev_page_button
-        web_design_widgets["next_page_button"] = next_page_button
         web_design_widgets["delete_page_button"] = delete_page_button
         web_design_widgets["add_page_button"] = add_page_button
         web_design_widgets["complete_page_button"] = complete_page_button
 
         return web_design_widgets
-    
+
+
     def switch_model(self,model):
         self.agent.model = model
 
@@ -139,9 +170,8 @@ class Application(tk.Tk):
             self.display_web_design_mode()
     
     def clear_widgets(self):
-        for widget in self.winfo_children():
-            if widget!=self.title_frame:
-                widget.grid_forget()
+        for widget in self.scrollable_frame.winfo_children():
+            widget.grid_forget()
     
     def display_chat_mode(self):
         self.chat_widgets['chat_history'].grid(row=1, column=0,  padx=10, pady=10)
@@ -154,16 +184,15 @@ class Application(tk.Tk):
         self.web_design_widgets['auto_gen_button'].grid(row=3, column=0, padx=10, pady=10)
 
         self.web_design_widgets['output_text'].grid(row=1, column=1, padx=10, pady=10)
-        # self.web_design_widgets['prev_page_button'].grid(row=2, column=1, padx=10, pady=10)
-        # self.web_design_widgets['next_page_button'].grid(row=3, column=1, padx=10, pady=10)
         self.web_design_widgets['delete_page_button'].grid(row=2, column=1, padx=10, pady=10)
         self.web_design_widgets['add_page_button'].grid(row=3, column=1, padx=10, pady=10)
         self.web_design_widgets['complete_page_button'].grid(row=4, column=1, padx=10, pady=10)
 
         self.web_design_widgets['output_image_frame'].grid(row=1, column=2, padx=10, pady=10)
-        self.web_design_widgets['create_button'].grid(row=2, column=2, padx=10, pady=10)
-        self.web_design_widgets['refine_button'].grid(row=3, column=2, padx=10, pady=10)
-        self.web_design_widgets["open_button"].grid(row=4, column=2, padx=10, pady=10)
+
+        self.web_design_widgets['create_button'].grid(row=3, column=2, padx=10, pady=10)
+        self.web_design_widgets['refine_button'].grid(row=4, column=2, padx=10, pady=10)
+
     
     def send_message(self):
         message = self.chat_widgets['input_area'].get("1.0", tk.END).strip()
@@ -182,6 +211,9 @@ class Application(tk.Tk):
         self.chat_widgets['chat_history'].see(tk.END)
     
     def plan(self):
+        if self.is_animating:
+            messagebox.showerror("Error", "Please wait for the current operation to finish")
+            return
         def long_operation():
             self.pages = self.agent.plan()
             self.is_animating = False
@@ -202,10 +234,13 @@ class Application(tk.Tk):
         self.agent.change_save_file(save_file)
         website_description = self.web_design_widgets["input_entries"][1].get()
         website_img = self.web_design_widgets["input_entries"][2].get()
+        if not os.path.exists(website_img):
+            messagebox.showerror("Error", "Please upload the website image")
+            return
 
         self.agent.publish_task(img=website_img, text=website_description)
 
-        animation_sequence = ["🤔💭 Planning website now", "🧐💭 Planning website now.", "😅💭 Planning website now..", "🤯💭 Planning website now..."]
+        animation_sequence = ["🤔💭 Planning now", "🧐💭 Planning now.", "😅💭 Planning now..", "🤯💭 Planning now..."]
         self.is_animating = True
         self.begin_time = time.time()
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
@@ -228,7 +263,7 @@ class Application(tk.Tk):
                 if key in ["is_main_page","html_name","css_name","js_name"]:
                     text_widget = tk.Text(text_frame, wrap=tk.WORD, height=1, width=30)
                 elif key == "relationship":
-                    text_widget = tk.Text(text_frame, wrap=tk.WORD, height=20, width=30)
+                    text_widget = tk.Text(text_frame, wrap=tk.WORD, height=15, width=30)
                 else:
                     text_widget = tk.Text(text_frame, wrap=tk.WORD, height=5, width=30)
                 text_widget.insert(tk.END, value)
@@ -250,7 +285,7 @@ class Application(tk.Tk):
             self.inner_frame.update_idletasks()
             canvas.config(scrollregion=canvas.bbox("all"))
             # Bind resizing events
-            self.canvas = canvas
+            self.block_canvas = canvas
             self.inner_frame.bind('<Configure>', self.on_frame_resize)
 
             html_name = item["html_name"]
@@ -266,8 +301,9 @@ class Application(tk.Tk):
         table_frame.grid(row=1, column=1, padx=10, pady=10)
     
     def create_blocks(self, frame):
-        self.buttons = []  # Keep track of rectangle IDs
-        blocks_per_row = 6 # 每行能放下的方块数量
+        self.buttons = []  # Keep track of rectangle ID
+        block_width = 5
+        blocks_per_row =  6
         page_list = self.pages
         for idx, value in enumerate(page_list):
             html_name = value["html_name"]
@@ -276,15 +312,15 @@ class Application(tk.Tk):
             row = idx // blocks_per_row
             col = idx % blocks_per_row
             page_name = html_name.split(".")[0]
-            button = tk.Button(frame, text=page_name, bg=color, width=4, height=2,
+            button = tk.Button(frame, text=page_name, bg=color, width=block_width, height=2,
                                command=lambda idx=idx: self.on_block_click(idx))
             button.grid(row=row, column=col, padx=5, pady=5)
             self.buttons.append(button)
 
     def on_frame_resize(self, event):
         canvas_width = event.width
-        self.nametowidget(self.canvas).itemconfig(self.inner_frame_id, width=canvas_width)
-        self.nametowidget(self.canvas).config(scrollregion=self.nametowidget(self.canvas).bbox("all"))
+        self.nametowidget(self.block_canvas).itemconfig(self.inner_frame_id, width=canvas_width)
+        self.nametowidget(self.block_canvas).config(scrollregion=self.nametowidget(self.block_canvas).bbox("all"))
 
 
     def on_block_click(self, idx):
@@ -335,7 +371,7 @@ class Application(tk.Tk):
         self.pages[idx][key] = value
         save_file = self.web_design_widgets["input_entries"][0].get()
         pages_path = os.path.join(save_file, "pages.json")
-        with open(pages_path, "w") as f:
+        with open(pages_path, "w",encoding='utf-8') as f:
             json.dump(self.pages, f)
     
     def update_cost(self):
@@ -346,13 +382,17 @@ class Application(tk.Tk):
         current_del_cost = tokens["dalle3"]
         total_prompt_cost = current_prompt_cost - self.begin_prompt_cost
         total_completion_cost = current_completion_cost - self.begin_completion_cost
-        self.total_cost = cal_cost(total_prompt_cost, total_completion_cost) + (current_del_cost - self.begin_dell_cost) * 4 / 100
+        self.total_cost = cal_cost(total_prompt_cost, total_completion_cost)
         self.time_cost += time.time() - self.begin_time
-        self.cost_label.config(text=f"💰 {self.total_cost} $")
+        self.token_cost_label.config(text=f"💰 {self.total_cost} $")
+        self.token_img_label.config(text=f"💰 {(current_del_cost - self.begin_dell_cost) * 4 / 100} $")
         self.time_label.config(text=f"⏱️ {self.time_cost} s")
     
     def create_website(self):
-        animation_sequence = ["🤔💭 Creating website now", "🧐💭 Creating website now.", "😅💭 Creating website now..", "🤯💭 Creating website now..."]
+        animation_sequence = ["🤔💭 Creating now", "🧐💭 Creating now.", "😅💭 Creating now..", "🤯💭 Creating now..."]
+        if self.is_animating:
+            messagebox.showerror("Error", "Please wait for the current operation to finish")
+            return
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
@@ -369,7 +409,10 @@ class Application(tk.Tk):
         threading.Thread(target=long_operation).start()
     
     def refine_website(self):
-        animation_sequence = ["🤔💭 Refine website now", "🧐💭 Refine website now.", "😅💭 Refine website now..", "🤯💭 Refine website now..."]
+        if self.is_animating:
+            messagebox.showerror("Error", "Please wait for the current operation to finish")
+            return
+        animation_sequence = ["🤔💭 Refine now", "🧐💭 Refine now.", "😅💭 Refine now..", "🤯💭 Refine now..."]
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
 
@@ -381,7 +424,10 @@ class Application(tk.Tk):
             if not os.path.exists(html_path):
                 messagebox.showerror("Error", "Please create the website first")
                 return
-            self.agent.refine(page)
+            refine_option = self.web_design_widgets["refine_var"].get()
+            refine_option = True if refine_option == "Open" else False
+            print(refine_option)
+            self.agent.refine(page,refine_option)
             
             # Update UI on the main thread
             self.after(0, self.update_ui_after_refine_website)
@@ -405,10 +451,13 @@ class Application(tk.Tk):
                 img = img.resize((600, int(600/width*height)))
             img = ImageTk.PhotoImage(img)
             canvas = tk.Canvas(self.web_design_widgets['output_image_frame'], width=600, height=600)
-            canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
+            canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
             v_scrollbar = tk.Scrollbar(self.web_design_widgets['output_image_frame'], orient=tk.VERTICAL, command=canvas.yview)
+            x_scrollbar = tk.Scrollbar(self.web_design_widgets['output_image_frame'], orient=tk.HORIZONTAL, command=canvas.xview)
             v_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+            x_scrollbar.pack(side=tk.BOTTOM, fill=tk.X)
             canvas.configure(yscrollcommand=v_scrollbar.set)
+            canvas.configure(xscrollcommand=x_scrollbar.set)
             image_frame = tk.Frame(canvas)
             canvas.create_window((0, 0), window=image_frame, anchor="nw")
             img_label = tk.Label(image_frame, image=img)
@@ -416,12 +465,21 @@ class Application(tk.Tk):
             img_label.pack()
             image_frame.update_idletasks()
             canvas.config(scrollregion=canvas.bbox("all"))
+
+            # Bind resize event to update scrollregion
+            def on_frame_resize(event):
+                canvas.config(scrollregion=canvas.bbox("all"))
+
+            image_frame.bind("<Configure>", on_frame_resize)            
             self.img_ref = img
 
 
     def auto_gen_website(self):
+        if self.is_animating:
+            messagebox.showerror("Error", "Please wait for the current operation to finish")
+            return
         self.is_animating = True
-        animation_sequence = ["🤔💭 Auto generating website now", "🧐💭 Auto generating website now.", "😅💭 Auto generating website now..", "🤯💭 Auto generating website now..."]
+        animation_sequence = ["🤔💭 Generating now", "🧐💭 Generating now.", "😅💭 Generating now..", "🤯💭 Generating now..."]
         self.refine_times = int(self.web_design_widgets["input_entries"][4].get()) if self.web_design_widgets["input_entries"][4].get() else 3
         
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
@@ -456,7 +514,10 @@ class Application(tk.Tk):
                 label.image = img
                 while cnt < self.refine_times:
                     self.begin_time = time.time()
-                    self.agent.refine(page)
+                    refine_option = self.web_design_widgets["refine_var"].get()
+                    refine_option = True if refine_option == "Open" else False
+                    print(refine_option)
+                    self.agent.refine(page,refine_option)
                     self.update_cost()
                     img = Image.open(page_img_path)
                     img = ImageTk.PhotoImage(img)
@@ -482,12 +543,15 @@ class Application(tk.Tk):
         self.agent.webserver.open_website(html_path)
 
     def complete_page(self):
+        if self.is_animating:
+            messagebox.showerror("Error", "Please wait for the current operation to finish")
+            return
         self.is_animating = True
-        animation_sequence = ["🤔💭 Completing page now", "🧐💭 Completing page now.", "😅💭 Completing page now..", "🤯💭 Completing page now..."]
+        animation_sequence = ["🤔💭 Completing now", "🧐💭 Completing now.", "😅💭 Completing now..", "🤯💭 Completing now..."]
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
             self.pages = self.agent.complete_page(self.pages, self.current_page)
-            with open(os.path.join(self.agent.save_file, "pages.json"), "w") as f:
+            with open(os.path.join(self.agent.save_file, "pages.json"), "w",encoding='utf-8') as f:
                 json.dump(self.pages, f)
             self.is_animating = False
             self.display_table_page()

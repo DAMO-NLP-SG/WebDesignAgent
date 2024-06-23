@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals</title>
+    <link rel="stylesheet" href="newarrivals.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Store Logo" description="This is the logo of the shopping website, resembling a little dog">
+        </div>
+        <h1>New Arrivals</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <h2>Filters</h2>
+        <button onclick="filterProducts('category')">Filter by Category</button>
+        <button onclick="filterProducts('priceRange')">Filter by Price Range</button>
+        <button onclick="filterProducts('rating')">Filter by Rating</button>
+    </aside>
+    <section class="controls">
+        <button onclick="sortProducts('popularity')">Sort by Popularity</button>
+        <button onclick="sortProducts('priceLowToHigh')">Sort by Price: Low to High</button>
+        <button onclick="sortProducts('priceHighToLow')">Sort by Price: High to Low</button>
+        <button onclick="sortProducts('newest')">Sort by Newest</button>
+    </section>
+    <section id="product-grid" class="grid">
+        <div class="product-item">
+            <img src="phone.jpg" alt="Black Phone" description="Description for product 1, such as a black phone">
+            <div class="description">Description for product 1, such as a black phone</div>
+            <div class="price">$20</div>
+            <div class="rating">⭐⭐⭐⭐</div>
+            <div class="availability">In Stock</div>
+            <div class="discount-badge">10% OFF</div>
+            <button class="quick-view">Quick View</button>
+            <button class="wishlist">Add to Wishlist</button>
+        </div>
+        <div class="product-item">
+            <img src="dress.jpg" alt="Red Dress" description="Description for product 2, such as a red dress">
+            <div class="description">Description for product 2, such as a red dress</div>
+            <div class="price">$25</div>
+            <div class="rating">⭐⭐⭐⭐</div>
+            <div class="availability">In Stock</div>
+            <div class="discount-badge">15% OFF</div>
+            <button class="quick-view">Quick View</button>
+            <button class="wishlist">Add to Wishlist</button>
+        </div>
+        <div class="product-item">
+            <img src="kitchen.jpg" alt="Kitchen Item" description="Description for product 3, such as a kitchen item">
+            <div class="description">Description for product 3, such as a kitchen item</div>
+            <div class="price">$30</div>
+            <div class="rating">⭐⭐⭐⭐</div>
+            <div class="availability">Out of Stock</div>
+            <div class="discount-badge">5% OFF</div>
+            <button class="quick-view">Quick View</button>
+            <button class="wishlist">Add to Wishlist</button>
+        </div>
+    </section>
+    <div class="pagination">
+        <button id="load-more">Load More</button>
+    </div>
+    <footer>
+        <nav>
+            <a href="index.html">Main Page</a>
+            <a href="#top">Back to Top</a>
+        </nav>
+        <p>&copy; 2023 Your Store. All rights reserved.</p>
+    </footer>
+    <script src="newarrivals.js"></script>
+</body>
+</html>

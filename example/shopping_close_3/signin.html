@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="logo.jpg" alt="Shopping Website Logo" description="This is the logo of a shopping website, resembling a little dog">
+            <div class="banner">
+                <img src="promo_banner.jpg" alt="Promotional Banner" description="Exclusive deals and discounts available!">
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="signin-form">
+            <h1>Sign In</h1>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember Me</label>
+                </div>
+                
+                <button type="button" onclick="authenticateUser()">Sign In</button>
+                <button type="button" onclick="window.location.href='signup.html'">Sign Up</button>
+                <button type="button" onclick="window.location.href='index.html'">Main Page</button>
+            </form>
+            <div class="social-login">
+                <p>Or sign in with:</p>
+                <button class="social-btn google"><i class="fab fa-google"></i> Google</button>
+                <button class="social-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+            </div>
+            <div class="links">
+                <a href="reset_password.html">Forgot Password</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="terms_of_service.html">Terms of Service</a>
+            </div>
+        </section>
+        <section class="product-gallery">
+            <img src="product1.jpg" alt="Product 1" description="A popular product available at a discount">
+            <img src="product2.jpg" alt="Product 2" description="Another great product with exclusive deals">
+            <img src="product3.jpg" alt="Product 3" description="Limited time offer on this product">
+            <img src="product4.jpg" alt="Product 4" description="Grab this product at a special price">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+    </footer>
+    <script src="signin.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.product-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+header .logo {
+    font-size: 1.75em;
+    font-weight: bold;
+    animation: logo-animation 2s infinite;
+}
+
+@keyframes logo-animation {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #f4f4f4;
+    text-decoration: underline;
+}
+
+header input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.product-gallery,
+.product-details,
+.related-products,
+.customer-reviews {
+    margin: 20px 0;
+}
+
+.product-gallery img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.product-gallery img:hover {
+    transform: scale(1.1);
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.thumbnails img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.thumbnails img:hover {
+    transform: scale(1.1);
+}
+
+.product-details {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.product-details h2 {
+    margin-top: 0;
+}
+
+.product-details .price {
+    font-size: 1.5em;
+    color: #ff7e5f;
+}
+
+.product-details .description {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.product-details .stock-status {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-details .buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border-radius: 5px;
+}
+
+button i {
+    margin-right: 5px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.1);
+}
+
+.related-products .carousel {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.related-products .carousel img {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.related-products .carousel img:hover {
+    transform: scale(1.1);
+}
+
+.related-products .carousel-navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.related-products .carousel-navigation button {
+    background: #ff7e5f;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border-radius: 5px;
+}
+
+.related-products .carousel-navigation button:hover {
+    background: #feb47b;
+    transform: scale(1.1);
+}
+
+.customer-reviews .review {
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.customer-reviews .review-form {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.customer-reviews .review-form h4 {
+    margin-top: 0;
+}
+
+.customer-reviews .review-form input,
+.customer-reviews .review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.customer-reviews .review-form .star-rating {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #ff7e5f;
+    cursor: pointer;
+}
+
+.customer-reviews .review-form .star-rating span:hover,
+.customer-reviews .review-form .star-rating span:hover ~ span {
+    color: #feb47b;
+}
+
+.customer-reviews .review-form button {
+    background: #ff7e5f;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border-radius: 5px;
+}
+
+.customer-reviews .review-form button:hover {
+    background: #feb47b;
+    transform: scale(1.1);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-50%) translateY(-100%);
+    animation: wave-animation 5s infinite linear;
+}
+
+@keyframes wave-animation {
+    0% {
+        transform: translateX(-50%) translateY(-100%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0%);
+    }
+}
+
+footer a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #feb47b;
+}
+
+@media (max-width: 768px) {
+    .product-gallery img {
+        max-width: 100%;
+    }
+    .thumbnails img {
+        width: 80px;
+        height: 80px;
+    }
+    .related-products .carousel img {
+        width: 150px;
+        height: 150px;
+    }
+    header nav {
+        flex-direction: column;
+    }
+    header input {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

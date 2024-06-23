@@ -1,5 +1,10 @@
 import yaml
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -26,37 +31,46 @@ class Webserver:
         else:
             download_dir = os.path.join(os.getcwd(), save_file)
         
-        web_type = cfg.get("web_browser", "chrome")
-
+        web_type = cfg.get("web_type", "chrome")
+        self.web_type = web_type
         if web_type == "chrome":
             options = ChromeOptions()
             options.add_argument("start-maximized")  
+            options.add_argument("--headless")  
             options.add_experimental_option("prefs", {
                 "download.default_directory": download_dir,  
                 "directory_upgrade": True,
                 "safebrowsing.enabled": True,
             })
+            print("begin install the chrome manager")
             driver_path = ChromeDriverManager().install()
+            print("successfully install the chrome manager")
             service = ChromeService(driver_path)
             self.driver = webdriver.Chrome(service=service, options=options)
         elif web_type == "firefox":
             options = FirefoxOptions()
+            options.add_argument("headless")
             options.set_preference("browser.download.folderList", 2)
             options.set_preference("browser.download.manager.showWhenStarting", False)
             options.set_preference("browser.download.dir", download_dir)  
             options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+            print("begin install the firefox manager")
             driver_path = GeckoDriverManager().install()
+            print("successfully install the firefox manager")
             service = FirefoxService(driver_path)
             self.driver = webdriver.Firefox(service=service, options=options)
         elif web_type == "edge":
             options = EdgeOptions()
+            options.add_argument("headless")
             options.add_argument("start-maximized") 
             options.add_experimental_option("prefs", {
                 "download.default_directory": download_dir,  
                 "directory_upgrade": True,
                 "safebrowsing.enabled": True,
             })
+            print("begin install the edge manager")
             driver_path = EdgeChromiumDriverManager().install()
+            print("successfully install the edge manager")
             service = EdgeService(driver_path)
             self.driver = webdriver.Edge(service=service, options=options)
         else:
@@ -65,36 +79,56 @@ class Webserver:
         self.save_file = save_file
         print("Successfully initialized WebDriver")
 
-    def get_screenshot(self, local_html_path , save_path = None):
+    def get_screenshot(self, local_html_path , save_path = None , is_local = True):
         if save_path is None:
             save_path = os.path.join(self.save_file, "screenshot.png")
         try:
-            if os.path.isabs(local_html_path):
-                html_path = local_html_path
+            if is_local:
+                if os.path.isabs(local_html_path):
+                    html_path = local_html_path
+                else:
+                    html_path = os.path.join(os.getcwd() ,local_html_path)
+                # 使用file协议打开本地HTML文件
+                print(f"Opening local HTML file {html_path}")
+                self.driver.get("file:///" + html_path.replace("\\", "/"))
             else:
-                html_path = os.path.join(os.getcwd() ,local_html_path)
-            # 使用file协议打开本地HTML文件
-            print(f"Opening local HTML file {html_path}")
-            self.driver.get("file:///" + html_path.replace("\\", "/"))
+                print(f"Opening website {local_html_path}")
+                self.driver.get(local_html_path)
+                try:
+                    accept_button = WebDriverWait(self.driver, 10).until(
+                        EC.element_to_be_clickable((By.CLASS_NAME, "accept-btn"))
+                    )
+                    accept_button.click()
+                except Exception as e:
+                    print("接受 cookies 按钮未找到", e)
             # 等待页面加载完成，根据实际情况调整等待时间
-            time.sleep(8)
+            time.sleep(5)
             # 截图并保存
-            scroll_height = self.driver.execute_script("return document.documentElement.scrollHeight")
-            window_height = self.driver.execute_script("return window.innerHeight")
-            window_width = self.driver.execute_script("return window.innerWidth")
-            stitched_image = Image.new('RGB', (window_width, scroll_height))
-            for y in range(0, scroll_height, window_height):
-                self.driver.execute_script(f"window.scrollTo(0, {y});")
-                time.sleep(0.5)
-                img = Image.open(io.BytesIO(self.driver.get_screenshot_as_png())).resize((window_width, window_height))
-                if y + window_height > scroll_height:
-                    img = img.crop((0, window_height - scroll_height + y, window_width, scroll_height))
+            if self.web_type in ["chrome","firefox","edge"]:
+                scroll_height = self.driver.execute_script("return document.documentElement.scrollHeight")
+                scroll_width = self.driver.execute_script("return document.documentElement.scrollWidth")
+                self.driver.set_window_size(scroll_width, scroll_height)
+                self.driver.save_screenshot(save_path)
+            else:
+                self.driver.fullscreen_window()
+                window_height = self.driver.get_window_size()["height"]
+                window_width = self.driver.get_window_size()["width"]
+                scroll_height = self.driver.execute_script("return document.body.scrollHeight")        
+                stitched_image = Image.new('RGB', (window_width, scroll_height))
+                for y in range(0, scroll_height, window_height):
+                    self.driver.execute_script(f"window.scrollTo(0, {y});")
+                    time.sleep(0.5)
+                    img = Image.open(io.BytesIO(self.driver.get_screenshot_as_png())).resize((window_width, window_height))
+                    if y + window_height > scroll_height:
+                        img = img.crop((0, window_height - scroll_height + y, window_width, scroll_height))
+                        stitched_image.paste(img, (0, y))
+                        break
                     stitched_image.paste(img, (0, y))
-                    break
-                stitched_image.paste(img, (0, y))
+                    stitched_image.save(save_path)
+            img = Image.open(save_path)
             if img.size[1] > 10000:
-                stitched_image = stitched_image.resize((img.size[0] // 2, img.size[1] // 2))
-            stitched_image.save(save_path)
+                img = img.resize((img.size[0] // 2, img.size[1] // 2))
+            img.save(save_path)
             print(f"Screenshot of local HTML saved as {save_path}")
         finally:
             pass
@@ -113,5 +147,5 @@ class Webserver:
 
 if __name__ == "__main__":
     webserver = Webserver()
-    webserver.get_screenshot("")
+    webserver.get_screenshot("https://damo.alibaba.com/?language=zh","damo.png",False)
     webserver.stop()

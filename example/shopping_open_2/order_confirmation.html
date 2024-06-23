@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="order_confirmation.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Thank You for Your Purchase!</h1>
+    </header>
+    <aside class="sidebar">
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="products.html"><i class="fas fa-box"></i> Products</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <section class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Order Number: <strong>123456</strong></p>
+            <p>Estimated Delivery Time: <strong>3-5 Business Days</strong></p>
+        </section>
+        <section class="delivery-info">
+            <h2>Delivery Information</h2>
+            <p>Shipping Address: <strong>1234 Shopping St, Shopville, SH 56789</strong></p>
+        </section>
+        <section class="payment-details">
+            <h2>Payment Details</h2>
+            <p>Payment Method: <strong>Credit Card</strong></p>
+            <p>Total Amount: <strong>$200.00</strong></p>
+        </section>
+        <section class="post-purchase-actions">
+            <h2>What would you like to do next?</h2>
+            <div class="button-group">
+                <button class="btn continue-shopping" onclick="window.location.href='index.html'">Continue Shopping</button>
+                <button class="btn view-order" onclick="window.location.href='order_detail.html'">View Order</button>
+                <button class="btn main-page" onclick="window.location.href='index.html'">Main Page</button>
+                <button class="btn print-receipt" onclick="printReceipt()">Print Receipt</button>
+                <button class="btn track-order" onclick="window.location.href='track_order.html'">Track Order</button>
+            </div>
+        </section>
+        <section class="recommendations">
+            <h2>Recommended for You</h2>
+            <div id="recommendations">
+                <div class="recommendation-item">
+                    <img src="black_phone.jpg" alt="Black Phone" description="Description for product 1, such as a black phone">
+                    <p>Black Phone</p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="white_tablet.jpg" alt="White Tablet" description="Description for product 2, such as a white tablet">
+                    <p>White Tablet</p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="smart_watch.jpg" alt="Smart Watch" description="Description for product 3, such as a smart watch">
+                    <p>Smart Watch</p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="headphones.jpg" alt="Headphones" description="Description for product 4, such as a pair of headphones">
+                    <p>Headphones</p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="gaming_console.jpg" alt="Gaming Console" description="Description for product 5, such as a gaming console">
+                    <p>Gaming Console</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <nav>
+            <a href="order_detail.html"><i class="fas fa-receipt"></i> Order Details</a>
+            <a href="support.html"><i class="fas fa-headset"></i> Customer Support</a>
+            <a href="privacy.html"><i class="fas fa-user-shield"></i> Privacy Policy</a>
+            <a href="terms.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+        </nav>
+    </footer>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="order_confirmation.js"></script>
+</body>
+</html>

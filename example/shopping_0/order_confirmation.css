@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.order-summary, .post-purchase-actions, .recommendations, footer {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+.order-summary h2, .recommendations h2 {
+    margin-top: 0;
+}
+
+.post-purchase-actions button {
+    background: #ff7e5f;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.post-purchase-actions button:hover {
+    background: #feb47b;
+}
+
+footer a {
+    color: #ff7e5f;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 10px;
+}

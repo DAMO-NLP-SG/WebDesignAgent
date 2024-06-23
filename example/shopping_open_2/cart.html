@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart.css">
+    <script src="cart.js" defer></script>
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="products.html">Continue Shopping</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside id="sidebar">
+            <h3>Special Offers</h3>
+            <p>Check out our special offers!</p>
+        </aside>
+        <section id="promotional-banner">
+            <a href="offers.html"><img src="banner.jpg" alt="Promotional Banner" description="This is a promotional banner for the shopping website"></a>
+        </section>
+        <section id="cart-items">
+            <h2>Your Cart</h2>
+            <!-- Cart items will be dynamically inserted here -->
+        </section>
+        <section id="cart-summary">
+            <h2>Summary</h2>
+            <div id="cost-breakdown">
+                <p>Subtotal: <span id="subtotal">$0.00</span></p>
+                <p>Estimated Shipping: <span id="shipping">$0.00</span></p>
+                <p>Total: <span id="total">$0.00</span></p>
+            </div>
+            <input type="text" id="discount-code" placeholder="Discount Code">
+            <button onclick="applyDiscountCode()">Apply Discount Code</button>
+            <button onclick="proceedToCheckout()">Checkout</button>
+            <button onclick="saveForLater()">Save for Later</button>
+        </section>
+        <section id="product-recommendations">
+            <h2>Recommended Products</h2>
+            <!-- Recommended products will be dynamically inserted here -->
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

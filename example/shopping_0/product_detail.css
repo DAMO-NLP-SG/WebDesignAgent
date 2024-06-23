@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+header {
+    background: #343a40;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header .logo img {
+    width: 150px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.product-section {
+    display: flex;
+    padding: 2em;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.image-gallery {
+    flex: 1;
+    max-width: 50%;
+}
+
+.image-gallery .main-image img {
+    width: 100%;
+    height: auto;
+}
+
+.image-gallery .thumbnails img {
+    width: 100px;
+    height: auto;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+.product-details {
+    flex: 1;
+    padding: 2em;
+}
+
+.product-details h1 {
+    color: #343a40;
+}
+
+.product-details p {
+    margin: 1em 0;
+}
+
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 0.5em 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.related-products, .customer-reviews {
+    padding: 2em;
+    background: #fff;
+    margin: 2em 0;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+}
+
+.carousel img {
+    width: 150px;
+    height: auto;
+    margin: 0.5em;
+}
+
+footer {
+    background: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 0.5em;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="signin.css">
+    <script defer src="signin.js"></script>
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Company Logo" class="header-logo" description="This is the logo of the company, resembling a little dog">
+        <h1>Sign In</h1>
+    </header>
+    <main>
+        <form id="signin-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error" id="username-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error" id="password-error"></div>
+            </div>
+            <button type="submit" class="primary-btn">Sign In</button>
+            <div class="separator">or</div>
+            <button type="button" onclick="location.href='index.html'" class="secondary-btn">Back to Home</button>
+            <button type="button" onclick="location.href='reset_password.html'" class="secondary-btn">Forgot Password</button>
+            <button type="button" onclick="location.href='signup.html'" class="secondary-btn">Create Account</button>
+        </form>
+        <div class="social-signin">
+            <p>Or sign in with:</p>
+            <button id="google-signin" class="google-btn">Google</button>
+            <button id="facebook-signin" class="facebook-btn">Facebook</button>
+        </div>
+    </main>
+    <footer>
+        <a href="privacy_policy.html">Privacy Policy</a>
+        <a href="terms_of_service.html">Terms of Service</a>
+    </footer>
+    <div id="loading-spinner" class="spinner"></div>
+</body>
+</html>
