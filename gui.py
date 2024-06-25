@@ -35,6 +35,8 @@ class Application(tk.Tk):
         self.css_frame_var = tk.StringVar(value="Tailwind")
         self.agent.css_frame = "Tailwind"
 
+        self.gen_img_var = tk.StringVar(value="Open")
+        self.agent.gen_img = True
 
         self.model_options = ["gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
         self.model_var = tk.StringVar(value="gpt-4o")
@@ -98,11 +100,10 @@ class Application(tk.Tk):
 
         css_frame_options = ["Tailwind","Bootstrap","Materialize","Bulma","None"]
         self.css_frame_var = tk.StringVar(value="Tailwind")
-        css_frame_menu = ttk.OptionMenu(web_design_widgets["input_frame"], self.css_frame_var, css_frame_options[0], *css_frame_options)
+        css_frame_menu = ttk.OptionMenu(web_design_widgets["input_frame"], self.css_frame_var, css_frame_options[0], *css_frame_options,command=self.on_css_frame_change)
         css_frame_menu.grid(row=0, column=1, padx=10, pady=10)
         css_frame_menu_label = tk.Label(web_design_widgets["input_frame"], text="CSS Framework:")
         css_frame_menu_label.grid(row=0, column=0, padx=10, pady=10)
-        self.css_frame_var.trace('w', self.on_css_frame_change)
         
 
         # Add multiple input fields to input_frame
@@ -115,37 +116,38 @@ class Application(tk.Tk):
             web_design_widgets["input_labels"].append(label)
             web_design_widgets["input_entries"].append(entry)
 
-        # refine_options = [ "Close","Open",]
-        # refine_var = tk.StringVar(value="Close")
-        # refine_menu = ttk.OptionMenu(web_design_widgets["input_frame"], refine_var, refine_options[0], *refine_options)
-        # refine_menu.grid(row=6, column=1, padx=10, pady=10)
-        # refine_menu_label = tk.Label(web_design_widgets["input_frame"], text="Refine Augment:")
-        # refine_menu_label.grid(row=6, column=0, padx=10, pady=10)
-        # web_design_widgets["refine_var"] = refine_var
+        gen_img_options = [ "Open","Close"]
+        gen_img_var = tk.StringVar(value="Open")
+        self.gen_img_var = gen_img_var
+        gen_img_menu = ttk.OptionMenu(web_design_widgets["input_frame"], gen_img_var, gen_img_options[0], *gen_img_options,command=self.change_gen_img)
+        gen_img_menu.grid(row=6, column=1, padx=10, pady=10)
+        gen_img_menu_label = tk.Label(web_design_widgets["input_frame"], text="Gen IMG:")
+        gen_img_menu_label.grid(row=6, column=0, padx=10, pady=10)
+        
 
         # Animation Label
         label = tk.Label(web_design_widgets["input_frame"], text="🤖 Status: ")
-        label.grid(row=6, column=0, padx=10, pady=10)
+        label.grid(row=7, column=0, padx=10, pady=10)
         self.animation_label = tk.Label(web_design_widgets["input_frame"], text="💡 idle")
-        self.animation_label.grid(row=6, column=1, columnspan=2, padx=10, pady=10)
+        self.animation_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
         self.animation_idx = 0
 
         # cost label
         label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Token Cost: ")
-        label.grid(row=7, column=0, padx=10, pady=10)
+        label.grid(row=8, column=0, padx=10, pady=10)
         self.token_cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.token_cost_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
+        self.token_cost_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
 
         label = tk.Label(web_design_widgets["input_frame"], text="💰 Total IMG Cost: ")
-        label.grid(row=8, column=0, padx=10, pady=10)
+        label.grid(row=9, column=0, padx=10, pady=10)
         self.token_img_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.token_img_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)        
+        self.token_img_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)        
 
 
         label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
-        label.grid(row=9, column=0, padx=10, pady=10)
+        label.grid(row=10, column=0, padx=10, pady=10)
         self.time_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="⏱️ 0 s")
-        self.time_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)
+        self.time_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)
 
         plan_button = tk.Button(self.scrollable_frame, text="Plan", command=self.plan)
         auto_gen_button = tk.Button(self.scrollable_frame, text="Auto Generate", command=self.auto_gen_website)
@@ -181,6 +183,7 @@ class Application(tk.Tk):
 
     def switch_model(self,model):
         self.agent.model = model
+        print(f"Switched to {model}")
 
     def switch_mode(self, mode):
         self.clear_widgets()
@@ -192,6 +195,7 @@ class Application(tk.Tk):
             self.model_options = ["gpt-4o"]
             self.model_menu.set_menu(self.model_options[0],*self.model_options)
             self.display_web_design_mode()
+        print(f"Switched to {mode}")
     
     def clear_widgets(self):
         for widget in self.scrollable_frame.winfo_children():
@@ -273,7 +277,16 @@ class Application(tk.Tk):
         self.begin_time = time.time()
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         threading.Thread(target=long_operation).start()
-        
+    
+
+    def change_gen_img(self):
+        gen_img = self.gen_img_var.get()
+        if gen_img == "Open":
+            self.agent.gen_img = True
+        else:
+            self.agent.gen_img = False
+        print(f"Change Gen IMG to: {gen_img}")
+
     
     def display_table_page(self):
         table_frame = self.web_design_widgets["output_text"]
@@ -493,8 +506,6 @@ class Application(tk.Tk):
             if not os.path.exists(html_path):
                 messagebox.showerror("Error", "Please create the website first")
                 return
-            # refine_option = self.web_design_widgets["refine_var"].get()
-            # refine_option = True if refine_option == "Open" else False
             self.agent.refine(page)
             
             # Update UI on the main thread

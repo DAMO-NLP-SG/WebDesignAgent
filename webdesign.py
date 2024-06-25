@@ -27,6 +27,7 @@ class WebDesignAgent(BaseAgent):
             os.makedirs(save_file)
         # ["Tailwind","Boostrap","Materialize","Bulma",None]
         self.css_frame = "Tailwind"
+        self.gen_img = True
         self.save_file = save_file
         self.total_prompt_cost_tokens = 0
         self.total_completion_cost_tokens = 0
@@ -318,10 +319,12 @@ class WebDesignAgent(BaseAgent):
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
             write_file(os.path.join(self.save_file,js_name), js)
-            asyncio.run(self.add_imgs_async(html,os.path.join(self.save_file,html_name)))
+            if self.gen_img:
+                asyncio.run(self.add_imgs_async(html,os.path.join(self.save_file,html_name)))
         else:
             write_file(os.path.join(self.save_file,html_name), html)
-            asyncio.run(self.add_imgs_async(html,os.path.join(self.save_file,html_name)))
+            if self.gen_img:
+                asyncio.run(self.add_imgs_async(html,os.path.join(self.save_file,html_name)))
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
@@ -338,10 +341,12 @@ class WebDesignAgent(BaseAgent):
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
             write_file(os.path.join(self.save_file,js_name), js)
-            await self.add_imgs_async(html,os.path.join(self.save_file,html_name))
+            if self.gen_img:
+                await self.add_imgs_async(html,os.path.join(self.save_file,html_name))
         else:
             write_file(os.path.join(self.save_file,html_name), html)
-            await self.add_imgs_async(html,os.path.join(self.save_file,html_name))
+            if self.gen_img:
+                await self.add_imgs_async(html,os.path.join(self.save_file,html_name))
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
