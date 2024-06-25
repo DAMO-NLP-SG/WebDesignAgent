@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .bg-animated {
+      background: linear-gradient(270deg, #1e3a8a, #3b82f6, #2563eb);
+      background-size: 600% 600%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+  </style>
+</head>
+<body class="bg-animated text-white font-sans">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center p-6 bg-opacity-50 bg-black">
+    <a href="index.html" class="text-2xl font-bold flex items-center">
+      <img src="img_66.png" alt="Brand logo placeholder" class="mr-2" style="width: 40px; height: 40px;">
+      BrandLogo
+    </a>
+    <nav>
+      <a href="index.html" class="mx-2 hover:text-yellow-300 transition-colors duration-300">Home</a>
+      <a href="help.html" class="mx-2 hover:text-yellow-300 transition-colors duration-300">Help</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-center min-h-screen p-6">
+    <section class="bg-white text-black rounded-lg shadow-lg p-10 max-w-lg w-full relative">
+      <h1 class="text-3xl font-bold mb-6 text-center text-blue-700">Create an Account</h1>
+      
+      <!-- Decorative Graphic -->
+      <div class="absolute top-0 left-0 -mt-20 -ml-20 w-40 h-40 bg-indigo-500 rounded-full opacity-30"></div>
+      
+      <!-- Registration Form -->
+      <form class="space-y-4">
+        <div class="relative">
+          <label for="username" class="block text-sm font-medium">Username</label>
+          <input type="text" id="username" name="username" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+          <span class="tooltip hidden absolute bg-black text-white text-xs rounded p-1 -mt-6 -ml-2">Enter your desired username</span>
+        </div>
+        
+        <div class="relative">
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+          <span class="tooltip hidden absolute bg-black text-white text-xs rounded p-1 -mt-6 -ml-2">Enter your valid email address</span>
+        </div>
+        
+        <div class="relative">
+          <label for="phone" class="block text-sm font-medium">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+          <span class="tooltip hidden absolute bg-black text-white text-xs rounded p-1 -mt-6 -ml-2">Enter your phone number</span>
+        </div>
+        
+        <div class="relative">
+          <label for="password" class="block text-sm font-medium">Password</label>
+          <input type="password" id="password" name="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+          <p class="text-xs text-gray-500 mt-1">Password strength: <span class="font-bold">Strong</span></p>
+          <a href="#" class="text-blue-600 hover:underline text-xs">Forgot Password?</a>
+          <span class="tooltip hidden absolute bg-black text-white text-xs rounded p-1 -mt-6 -ml-2">Choose a strong password</span>
+        </div>
+
+        <div class="flex items-center">
+          <input type="checkbox" id="terms" name="terms" class="h-4 w-4 text-blue-600 border-gray-300 rounded" required>
+          <label for="terms" class="ml-2 block text-sm">I agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a></label>
+        </div>
+        
+        <div class="flex justify-center mt-6">
+          <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <a href="login.html" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-2 px-4 rounded transition-colors duration-300">Sign In</a>
+          <a href="index.html" class="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white py-2 px-4 rounded transition-colors duration-300">Cancel</a>
+          <button type="submit" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2 px-4 rounded transition-colors duration-300" onclick="submitRegistrationForm()">Register</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black bg-opacity-50 p-6 text-center">
+    <div class="flex justify-center space-x-4 mb-4">
+      <a href="#" class="hover:underline">Privacy Policy</a>
+      <a href="#" class="hover:underline">Terms of Service</a>
+      <a href="#" class="hover:underline">Contact Us</a>
+    </div>
+    <p>&copy; 2023 BrandLogo. All rights reserved.</p>
+  </footer>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('focus', () => {
+        const tooltip = input.nextElementSibling;
+        if (tooltip && tooltip.classList.contains('tooltip')) {
+          tooltip.classList.remove('hidden');
+        }
+      });
+      input.addEventListener('blur', () => {
+        const tooltip = input.nextElementSibling;
+        if (tooltip && tooltip.classList.contains('tooltip')) {
+          tooltip.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 openai
 pillow
 PyYAML
-Requests==2.32.3
-selenium==4.21.0
-tenacity==8.3.0
-webdriver_manager==4.0.1
-yaspin==3.0.2
+Requests
+selenium
+tenacity
+webdriver_manager
+yaspin

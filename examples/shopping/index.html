@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website - Main Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .parallax {
+            background-attachment: fixed;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .hover-bg-transition:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-500 to-pink-600 p-6 flex justify-between items-center shadow-lg">
+        <div class="flex items-center space-x-4">
+            <img src="img_86.png" alt="Logo of the shopping website" class="w-10 h-10 rounded-full" style="width: 40px; height: 40px;">
+            <h1 class="text-3xl font-bold text-white">Shopping Website</h1>
+        </div>
+        <nav class="space-x-4">
+            <a href="index.html" class="text-white hover:text-gray-300 transition">Home</a>
+            <a href="cart.html" class="text-white hover:text-gray-300 transition">Cart</a>
+            <a href="contact.html" class="text-white hover:text-gray-300 transition">Contact Us</a>
+            <a href="about.html" class="text-white hover:text-gray-300 transition">About Us</a>
+            <a href="privacy_policy.html" class="text-white hover:text-gray-300 transition">Privacy Policy</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6">
+        <!-- Hero Section -->
+        <section class="text-center py-20 bg-cover bg-center rounded-lg shadow-lg parallax relative" style="background-image: url('https://placehold.co/1200x400');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-50"></div>
+            <h2 class="text-4xl font-bold mb-4 text-white relative z-10 animate-fadeIn">Welcome to Our Shopping Website</h2>
+            <p class="mb-8 text-white relative z-10">Discover featured products, explore the latest deals, and enjoy a seamless shopping experience!</p>
+            <a href="product_list.html" class="bg-white text-green-500 py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition transform hover:scale-105 relative z-10">Shop Now</a>
+        </section>
+
+        <!-- Search Bar -->
+        <section class="my-12 bg-gradient-to-r from-gray-200 to-gray-300 p-6 rounded-lg shadow-lg">
+            <div class="relative">
+                <input type="text" class="w-full py-3 px-4 rounded-lg shadow-md border border-gray-300" placeholder="Search for products...">
+                <button class="absolute right-3 top-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-1 px-3 rounded-lg shadow-md hover:bg-blue-700 transition">Search</button>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="my-12 bg-gradient-to-r from-gray-100 to-gray-200 p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold mb-6">Featured Products</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-4 rounded-lg shadow-md transform hover:scale-105 transition hover:bg-gray-50">
+                    <img src="img_83.png" alt="Placeholder image of a featured product" class="w-full h-48 object-cover rounded-t-lg" style="width: 300px; height: 300px;">
+                    <h4 class="text-lg font-bold mt-4">Product Name 1</h4>
+                    <p class="text-gray-600 mt-2">$99.99</p>
+                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md mt-4 hover:bg-blue-700 transition">View Details</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md transform hover:scale-105 transition hover:bg-gray-50">
+                    <img src="img_83.png" alt="Placeholder image of a featured product" class="w-full h-48 object-cover rounded-t-lg" style="width: 300px; height: 300px;">
+                    <h4 class="text-lg font-bold mt-4">Product Name 2</h4>
+                    <p class="text-gray-600 mt-2">$89.99</p>
+                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md mt-4 hover:bg-blue-700 transition">View Details</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md transform hover:scale-105 transition hover:bg-gray-50">
+                    <img src="img_83.png" alt="Placeholder image of a featured product" class="w-full h-48 object-cover rounded-t-lg" style="width: 300px; height: 300px;">
+                    <h4 class="text-lg font-bold mt-4">Product Name 3</h4>
+                    <p class="text-gray-600 mt-2">$79.99</p>
+                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md mt-4 hover:bg-blue-700 transition">View Details</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md transform hover:scale-105 transition hover:bg-gray-50">
+                    <img src="img_83.png" alt="Placeholder image of a featured product" class="w-full h-48 object-cover rounded-t-lg" style="width: 300px; height: 300px;">
+                    <h4 class="text-lg font-bold mt-4">Product Name 4</h4>
+                    <p class="text-gray-600 mt-2">$69.99</p>
+                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md mt-4 hover:bg-blue-700 transition">View Details</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Offers -->
+        <section class="my-12">
+            <h3 class="text-2xl font-bold mb-6">Latest Deals</h3>
+            <div class="bg-cover bg-center p-6 text-white rounded-lg shadow-lg parallax relative" style="background-image: url('https://placehold.co/1200x400');">
+                <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-50"></div>
+                <h4 class="text-xl font-bold relative z-10">Don't Miss Out on Today's Deals!</h4>
+                <p class="mt-2 relative z-10">Check out the hottest deals and save big on your favorite products!</p>
+                <a href="deals.html" class="bg-white text-yellow-500 py-2 px-4 rounded-lg shadow-md mt-4 inline-block hover:bg-gray-100 transition transform hover:scale-105 relative z-10">Today's Deals</a>
+            </div>
+        </section>
+
+        <!-- User Account Management -->
+        <section class="my-12 flex justify-center space-x-4">
+            <a href="login.html" class="bg-gradient-to-r from-purple-500 to-purple-700 text-white py-2 px-4 rounded-lg shadow-md hover:bg-purple-800 transition transform hover:scale-105">Sign In</a>
+            <a href="register.html" class="bg-gradient-to-r from-purple-500 to-purple-700 text-white py-2 px-4 rounded-lg shadow-md hover:bg-purple-800 transition transform hover:scale-105">Sign Up</a>
+        </section>
+
+        <!-- Newsletter Subscription -->
+        <section class="my-12 bg-gradient-to-r from-gray-100 to-gray-200 p-6 rounded-lg shadow-lg bg-cover relative" style="background-image: url('https://placehold.co/1200x400');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-50"></div>
+            <h3 class="text-2xl font-bold mb-4 relative z-10">Subscribe to Our Newsletter</h3>
+            <p class="mb-4 relative z-10">Get the latest updates and promotions directly to your inbox.</p>
+            <div class="flex relative z-10">
+                <input type="email" class="w-full py-3 px-4 rounded-l-lg shadow-md border border-gray-300" placeholder="Enter your email">
+                <button class="bg-blue-600 text-white py-3 px-6 rounded-r-lg shadow-md hover:bg-blue-700 transition">Subscribe</button>
+            </div>
+        </section>
+
+        <!-- Social Media Links -->
+        <section class="my-12 text-center">
+            <h3 class="text-2xl font-bold mb-4">Follow Us</h3>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="text-blue-400 hover:text-blue-600 transition"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#" class="text-pink-600 hover:text-pink-800 transition"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </section>
+
+        <!-- Live Chat Support -->
+        <section class="my-12 text-center">
+            <a href="customer_service.html" class="bg-green-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-green-700 transition transform hover:scale-105">Live Chat Support</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-700 to-gray-900 text-white p-6 text-center shadow-inner">
+        <p>&copy; 2023 Shopping Website. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

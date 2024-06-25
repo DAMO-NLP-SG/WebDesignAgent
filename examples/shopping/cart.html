@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-pattern {
+            background-image: url('https://placehold.co/1000x1000');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Navigation Bar -->
+    <nav class="bg-gradient-to-r from-blue-700 to-purple-700 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold">ShopLogo</a>
+            <div class="space-x-6 text-lg">
+                <a href="index.html" class="hover:text-yellow-300 transition duration-300">Home</a>
+                <a href="contact.html" class="hover:text-yellow-300 transition duration-300">Contact Us</a>
+                <a href="help.html" class="hover:text-yellow-300 transition duration-300">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Promotional Banner -->
+    <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 text-center font-bold">
+        <p>Special Offer! Use code <span class="underline">SAVE10</span> at checkout for 10% off your order!</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg bg-pattern">
+        <h1 class="text-4xl font-bold mb-6">Your Shopping Cart</h1>
+
+        <!-- Cart Items -->
+        <div class="space-y-6">
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-lg transition duration-300 hover:shadow-xl">
+                <img src="img_67.png" alt="Product image: A stylish modern chair" class="w-24 h-24 rounded-md" style="width: 100px; height: 100px;">
+                <div class="flex-1 ml-4">
+                    <h2 class="text-2xl font-semibold">Modern Chair</h2>
+                    <p class="text-gray-600">Comfortable and stylish chair for your home office.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="number" value="1" class="w-16 p-2 border rounded-md">
+                    <span class="text-2xl font-bold">$99.00</span>
+                    <button class="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 transition duration-300">Remove</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-xl font-semibold">Subtotal:</span>
+                <span class="text-xl font-bold">$198.00</span>
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-xl font-semibold">Tax:</span>
+                <span class="text-xl font-bold">$19.80</span>
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-xl font-semibold">Shipping:</span>
+                <span class="text-xl font-bold">$10.00</span>
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-xl font-semibold">Total:</span>
+                <span class="text-xl font-bold">$227.80</span>
+            </div>
+        </div>
+
+        <!-- Apply Discount Code -->
+        <div class="mt-8 p-4 bg-gray-50 rounded-lg shadow-sm flex items-center space-x-4">
+            <input type="text" placeholder="Discount Code" class="w-full p-4 border rounded-md">
+            <button class="bg-green-500 text-white p-4 rounded-md hover:bg-green-600 transition duration-300">Apply</button>
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-8 flex space-x-4">
+            <button class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 rounded-md shadow-md hover:bg-green-600 transition duration-300" onclick="updateCart()">Update Cart</button>
+            <button class="bg-gradient-to-r from-red-500 to-pink-500 text-white p-4 rounded-md shadow-md hover:bg-red-600 transition duration-300" onclick="clearCart()">Clear Cart</button>
+            <a href="checkout.html" class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-4 rounded-md shadow-md hover:bg-blue-600 transition duration-300 flex-1 text-center">Checkout</a>
+            <a href="product_list.html" class="bg-gradient-to-r from-gray-500 to-gray-700 text-white p-4 rounded-md shadow-md hover:bg-gray-600 transition duration-300 flex-1 text-center">Continue Shopping</a>
+        </div>
+    </div>
+
+    <!-- Suggested Items -->
+    <div class="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold mb-6">Suggested Items</h2>
+        <div class="flex space-x-6">
+            <div class="w-1/4 p-4 bg-gray-50 rounded-lg shadow-lg transition duration-300 hover:shadow-xl">
+                <img src="img_68.png" alt="Product image: A sleek modern desk lamp" class="w-full rounded-md mb-4" style="width: 150px; height: 150px;">
+                <h3 class="text-2xl font-semibold mb-2">Desk Lamp</h3>
+                <p class="text-gray-600 mb-4">$49.00</p>
+                <button class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">Add to Cart</button>
+            </div>
+            <div class="w-1/4 p-4 bg-gray-50 rounded-lg shadow-lg transition duration-300 hover:shadow-xl">
+                <img src="img_65.png" alt="Product image: A comfortable ergonomic office chair" class="w-full rounded-md mb-4" style="width: 150px; height: 150px;">
+                <h3 class="text-2xl font-semibold mb-2">Ergonomic Chair</h3>
+                <p class="text-gray-600 mb-4">$129.00</p>
+                <button class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">Add to Cart</button>
+            </div>
+            <div class="w-1/4 p-4 bg-gray-50 rounded-lg shadow-lg transition duration-300 hover:shadow-xl">
+                <img src="img_69.png" alt="Product image: A spacious modern office desk" class="w-full rounded-md mb-4" style="width: 150px; height: 150px;">
+                <h3 class="text-2xl font-semibold mb-2">Office Desk</h3>
+                <p class="text-gray-600 mb-4">$199.00</p>
+                <button class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">Add to Cart</button>
+            </div>
+            <div class="w-1/4 p-4 bg-gray-50 rounded-lg shadow-lg transition duration-300 hover:shadow-xl">
+                <img src="img_62.png" alt="Product image: A stylish and functional book shelf" class="w-full rounded-md mb-4" style="width: 150px; height: 150px;">
+                <h3 class="text-2xl font-semibold mb-2">Book Shelf</h3>
+                <p class="text-gray-600 mb-4">$79.00</p>
+                <button class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-700 to-purple-700 text-white p-6 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 ShopLogo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateCart() {
+            alert('Cart updated!');
+        }
+
+        function clearCart() {
+            alert('Cart cleared!');
+        }
+    </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 import base64
 import re
 import os
+import httpx
 from yaspin import yaspin
 
 
@@ -66,22 +67,37 @@ def wrap_func(func,**args):
     return result
 
 
+def extract_dimensions(url):
+    # Regular expression to match numbers in the format '300x200'
+    matches = re.findall(r"(\d+)x(\d+)", url)
+
+    if matches:
+        width, height = matches[0]  # Extract the first match
+        width = int(width)
+        height = int(height)
+        return (width, height)
+    else:
+        return (100, 100)
+
+
 def extract_img_from_html(html_code):
     pattern = r'<img\s+([^>]+)>'
     img_tags = re.findall(pattern, html_code)
     result = []
     for tag in img_tags:
-        img_info = {}
+        img_info = {"original": tag}
         src_match = re.search(r'src="([^"]*)"', tag)
         if src_match:
             img_info["src"] = src_match.group(1)
         alt_match = re.search(r'alt="([^"]*)"', tag)
         if alt_match:
             img_info["alt"] = alt_match.group(1)
-        data_description_match = re.search(r'description="([^"]*)"', tag)
-        if data_description_match:
-            img_info["description"] = data_description_match.group(1)
-        result.append(img_info)
+        
+        class_match = re.search(r'class="([^"]*)"', tag)
+        if class_match:
+            img_info["class"] = class_match.group(1)
+        if "src" in img_info and "alt" in img_info:
+            result.append(img_info)
     return result
 
 def create_file(path):
@@ -102,3 +118,25 @@ def modify_input_dict(s):
     s = s.replace("\"s","\'s")
     s = s.replace(" \'"," \"")
     return s
+
+def get_html_css_js_from_response(response):
+    html = get_content_between_a_b("```html", "```", response) if "```html" in response else None
+    css = get_content_between_a_b("```css", "```", response) if "```css" in response else None
+    js = get_content_between_a_b("```javascript", "```", response) if "```javascript" in response else None
+    js = get_content_between_a_b("```js", "```", response) if "```js" in response else js
+    return html,css,js
+
+
+async def fetch_image(url):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+        response.raise_for_status()  # Ensure the request was successful
+        return response.content
+
+if __name__ == "__main__":
+    html_code = """
+    <img src="https://example.com/image1.jpg" alt="Image 1" />
+    <img src="https://example.com/image2.jpg" alt="Image 2" />
+    """
+    images = extract_img_from_html(html_code)
+    print(images)  # [{'src': 'https://example.com/image1.jpg', 'alt': 'Image 1'}, {'src': 'https://example.com/image2.jpg', 'alt': 'Image 2'}]

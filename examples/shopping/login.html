@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, rgba(29,78,216,1) 0%, rgba(167,139,250,1) 100%);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        .hover-effect:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-lg">
+        <div class="bg-white shadow-lg rounded-lg p-10 mb-10 border border-gray-200 hover-effect">
+            <div class="flex justify-center mb-6">
+                <img src="img_50.png" alt="Company Logo - A sleek, modern emblem representing a tech-savvy company" class="w-24 h-24" style="width: 100px; height: 100px;">
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Sign In to Your Account</h2>
+            <form id="loginForm" class="space-y-6" onsubmit="submitLoginForm(); return false;">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" placeholder="you@example.com" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" placeholder="••••••••" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="forgot_password.html" class="font-medium text-blue-600 hover:text-blue-500 transition-all">Forgot Password?</a>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all">Sign In</button>
+                </div>
+                <div class="text-center mt-6">
+                    <p class="text-sm text-gray-600">Or sign in with</p>
+                    <div class="flex justify-center mt-3 space-x-4">
+                        <button class="w-10 h-10 flex items-center justify-center bg-red-600 rounded-full text-white hover:bg-red-700 transition-all">
+                            <img src="img_56.png" alt="Google logo for Google sign-in option" class="w-6 h-6" style="width: 24px; height: 24px;">
+                        </button>
+                        <button class="w-10 h-10 flex items-center justify-center bg-blue-600 rounded-full text-white hover:bg-blue-700 transition-all">
+                            <img src="img_54.png" alt="Facebook logo for Facebook sign-in option" class="w-6 h-6" style="width: 24px; height: 24px;">
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <p class="text-sm text-gray-600">Don't have an account? <a href="register.html" class="font-medium text-blue-600 hover:text-blue-500 transition-all">Register</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <a href="index.html" class="text-white text-sm hover:underline transition-all">Home</a>
+        </div>
+    </div>
+    <footer class="text-center text-white mt-8">
+        <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="hover:underline transition-all">Privacy Policy</a>
+            <a href="#" class="hover:underline transition-all">Terms of Service</a>
+            <a href="#" class="hover:underline transition-all">Contact Us</a>
+        </div>
+    </footer>
+</body>
+
+</html>

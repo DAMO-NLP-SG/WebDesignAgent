@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hover-shadow:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-blue-100 font-sans leading-normal tracking-normal">
+
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-blue-500 to-blue-700 p-4 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-extrabold">ShopLogo</a>
+            <div>
+                <a href="index.html" class="mx-3 text-lg hover:underline">Home</a>
+                <a href="contact.html" class="mx-3 text-lg hover:underline">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-8">
+        <div class="bg-white shadow-lg rounded-lg p-10 border border-gray-200">
+            <h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Order Confirmation</h1>
+
+            <!-- Order Details -->
+            <div class="mb-8 border-b pb-6">
+                <h2 class="text-2xl font-semibold text-gray-700">Order Details</h2>
+                <p class="text-gray-600 mt-2">Order Number: <span class="font-bold">#123456789</span></p>
+                <p class="text-gray-600 mt-1">Estimated Delivery Date: <span class="font-bold">March 25, 2023</span></p>
+            </div>
+
+            <!-- Itemized List of Products -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Purchased Products</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                        <img src="img_95.png" alt="Product 1 - Placeholder image for Product 1" class="w-24 h-24 mr-4 rounded-lg" style="width: 100px; height: 100px;">
+                        <div>
+                            <p class="font-bold text-gray-700">Product 1</p>
+                            <p class="text-gray-600">Price: $25.00</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                        <img src="img_96.png" alt="Product 2 - Placeholder image for Product 2" class="w-24 h-24 mr-4 rounded-lg" style="width: 100px; height: 100px;">
+                        <div>
+                            <p class="font-bold text-gray-700">Product 2</p>
+                            <p class="text-gray-600">Price: $15.00</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                        <img src="img_99.png" alt="Product 3 - Placeholder image for Product 3" class="w-24 h-24 mr-4 rounded-lg" style="width: 100px; height: 100px;">
+                        <div>
+                            <p class="font-bold text-gray-700">Product 3</p>
+                            <p class="text-gray-600">Price: $30.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping Address -->
+            <div class="mb-8 p-4 bg-gray-100 rounded-lg">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Shipping Address</h2>
+                <p class="text-gray-600">John Doe</p>
+                <p class="text-gray-600">1234 Elm Street</p>
+                <p class="text-gray-600">Springfield, IL 62704</p>
+                <p class="text-gray-600">United States</p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-around mt-10">
+                <a href="product_list.html" class="bg-gradient-to-r from-green-400 to-green-600 text-white py-2 px-6 rounded-lg hover-shadow transition-colors">Continue Shopping</a>
+                <button onclick="printOrder()" class="bg-gradient-to-r from-blue-400 to-blue-600 text-white py-2 px-6 rounded-lg hover-shadow transition-colors">Print Order</button>
+                <a href="track_order.html" class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white py-2 px-6 rounded-lg hover-shadow transition-colors">Track Order</a>
+                <a href="order_history.html" class="bg-gradient-to-r from-red-400 to-red-600 text-white py-2 px-6 rounded-lg hover-shadow transition-colors">View Order History</a>
+            </div>
+        </div>
+
+        <!-- Suggested Products -->
+        <div class="bg-white shadow-lg rounded-lg p-10 mt-10 border border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-6">Suggested Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                    <img src="img_100.png" alt="Suggested Product 1 - Placeholder image for Suggested Product 1" class="w-full h-32 object-cover mb-4 rounded-lg" style="width: 100px; height: 100px;">
+                    <p class="font-bold text-gray-700">Suggested Product 1</p>
+                    <p class="text-gray-600">Price: $20.00</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                    <img src="img_98.png" alt="Suggested Product 2 - Placeholder image for Suggested Product 2" class="w-full h-32 object-cover mb-4 rounded-lg" style="width: 100px; height: 100px;">
+                    <p class="font-bold text-gray-700">Suggested Product 2</p>
+                    <p class="text-gray-600">Price: $18.00</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                    <img src="img_94.png" alt="Suggested Product 3 - Placeholder image for Suggested Product 3" class="w-full h-32 object-cover mb-4 rounded-lg" style="width: 100px; height: 100px;">
+                    <p class="font-bold text-gray-700">Suggested Product 3</p>
+                    <p class="text-gray-600">Price: $22.00</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg hover:shadow-md transition-shadow hover-scale">
+                    <img src="img_97.png" alt="Suggested Product 4 - Placeholder image for Suggested Product 4" class="w-full h-32 object-cover mb-4 rounded-lg" style="width: 100px; height: 100px;">
+                    <p class="font-bold text-gray-700">Suggested Product 4</p>
+                    <p class="text-gray-600">Price: $25.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 to-blue-700 p-6 text-white mt-10">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 ShopLogo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function printOrder() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

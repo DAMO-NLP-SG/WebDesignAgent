@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hover-zoom:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans smooth-scroll">
+
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-blue-500 to-purple-500 shadow-md">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold text-white">ShopName</a>
+            <div class="space-x-6">
+                <a href="index.html" class="text-white hover:text-gray-300 text-lg">Home</a>
+                <a href="cart.html" class="text-white hover:text-gray-300 text-lg">Cart</a>
+                <a href="contact.html" class="text-white hover:text-gray-300 text-lg">Contact Us</a>
+                <a href="related_products.html" class="text-white hover:text-gray-300 text-lg">Related Products</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 p-6 bg-gradient-to-br from-white to-gray-100 shadow-lg rounded-lg">
+        <div class="flex flex-col lg:flex-row">
+            <!-- Product Images -->
+            <div class="lg:w-1/2 p-4">
+                <img src="img_92.png" alt="High-quality image of the product" class="rounded-md shadow-md mb-4 hover-zoom" style="width: 600px; height: 600px;">
+                <div class="flex space-x-2">
+                    <img src="img_82.png" alt="Additional image of the product 1" class="w-24 h-24 rounded-md shadow-md hover-zoom" style="width: 100px; height: 100px;">
+                    <img src="img_90.png" alt="Additional image of the product 2" class="w-24 h-24 rounded-md shadow-md hover-zoom" style="width: 100px; height: 100px;">
+                    <img src="img_81.png" alt="Additional image of the product 3" class="w-24 h-24 rounded-md shadow-md hover-zoom" style="width: 100px; height: 100px;">
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="lg:w-1/2 p-4">
+                <h2 class="text-4xl font-bold text-gray-900">Product Name</h2>
+                <p class="text-xl text-gray-700 mt-2">$99.99</p>
+                <p class="text-green-600 mt-2">In Stock</p>
+                <p class="mt-4 text-gray-600 shadow-md p-4 rounded-md">This is a detailed description of the product. It provides all the essential information that a customer would need to know before making a purchase. The materials, dimensions, and other specifications are listed here.</p>
+                
+                <div class="mt-4 space-y-2">
+                    <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700 hover-zoom">Add to Cart</button>
+                    <button class="w-full bg-green-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-700 hover-zoom" onclick="addToWishlist()">Add to Wishlist</button>
+                    <button class="w-full bg-yellow-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-yellow-700 hover-zoom" onclick="shareProduct()">Share</button>
+                    <button class="w-full bg-red-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-red-700 hover-zoom">Buy Now</button>
+                </div>
+                
+                <button class="mt-4 w-full bg-gray-400 text-white py-2 px-4 rounded-md shadow-md hover:bg-gray-500 hover-zoom">Back to Products</button>
+            </div>
+        </div>
+        
+        <!-- Customer Reviews -->
+        <div class="mt-8">
+            <h3 class="text-3xl font-bold text-gray-900">Customer Reviews</h3>
+            <div class="space-y-4 mt-4">
+                <div class="bg-gradient-to-r from-gray-100 to-gray-200 p-4 rounded-md shadow-md flex items-center space-x-4">
+                    <img src="img_78.png" alt="Avatar of John Doe" class="w-12 h-12 rounded-full" style="width: 50px; height: 50px;">
+                    <div>
+                        <p class="font-bold">John Doe</p>
+                        <p class="text-gray-600">This product is amazing! High quality and exactly as described. Would definitely recommend to others.</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-gray-100 to-gray-200 p-4 rounded-md shadow-md flex items-center space-x-4">
+                    <img src="img_89.png" alt="Avatar of Jane Smith" class="w-12 h-12 rounded-full" style="width: 50px; height: 50px;">
+                    <div>
+                        <p class="font-bold">Jane Smith</p>
+                        <p class="text-gray-600">Good value for money. It arrived on time and in perfect condition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="mt-8">
+            <h3 class="text-3xl font-bold text-gray-900">Related Products</h3>
+            <div class="flex space-x-4 mt-4 overflow-x-auto">
+                <div class="bg-gradient-to-br from-white to-gray-100 p-4 rounded-md shadow-md w-1/4 flex-shrink-0 hover-zoom">
+                    <img src="img_91.png" alt="Related product image 1" class="rounded-md mb-2" style="width: 200px; height: 200px;">
+                    <p class="text-gray-700">Related Product 1</p>
+                    <p class="text-gray-900 font-bold">$49.99</p>
+                </div>
+                <div class="bg-gradient-to-br from-white to-gray-100 p-4 rounded-md shadow-md w-1/4 flex-shrink-0 hover-zoom">
+                    <img src="img_88.png" alt="Related product image 2" class="rounded-md mb-2" style="width: 200px; height: 200px;">
+                    <p class="text-gray-700">Related Product 2</p>
+                    <p class="text-gray-900 font-bold">$59.99</p>
+                </div>
+                <div class="bg-gradient-to-br from-white to-gray-100 p-4 rounded-md shadow-md w-1/4 flex-shrink-0 hover-zoom">
+                    <img src="img_93.png" alt="Related product image 3" class="rounded-md mb-2" style="width: 200px; height: 200px;">
+                    <p class="text-gray-700">Related Product 3</p>
+                    <p class="text-gray-900 font-bold">$69.99</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 to-purple-500 shadow-md mt-8">
+        <div class="container mx-auto p-4 text-center text-white text-lg">
+            &copy; 2023 ShopName. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function addToWishlist() {
+            alert('Added to Wishlist!');
+        }
+
+        function shareProduct() {
+            alert('Share this product!');
+        }
+    </script>
+
+</body>
+</html>

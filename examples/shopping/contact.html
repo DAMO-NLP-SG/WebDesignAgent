@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .wave {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+            animation: wave-animation 5s infinite;
+        }
+        @keyframes wave-animation {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+    <header class="gradient-bg text-white shadow-md p-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="img_35.png" alt="Company logo" class="rounded-full" style="width: 50px; height: 50px;">
+                <h1 class="text-3xl font-bold">Contact Us</h1>
+            </div>
+            <nav class="relative">
+                <button class="text-lg hover:text-gray-300 transition duration-300">Menu</button>
+                <ul class="absolute hidden space-y-4 bg-white text-gray-800 shadow-md rounded-lg mt-2 p-4">
+                    <li><a href="index.html" class="text-lg hover:text-gray-300 transition duration-300">Home</a></li>
+                    <li><a href="faq.html" class="text-lg hover:text-gray-300 transition duration-300">FAQ</a></li>
+                    <li><a href="support.html" class="text-lg hover:text-gray-300 transition duration-300">Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="wave py-20 text-center text-white">
+        <h2 class="text-5xl font-bold mb-6">Get in Touch</h2>
+        <p class="text-xl mb-10">We are here to assist you with any inquiries, support, or feedback.</p>
+    </section>
+
+    <main class="container mx-auto py-12 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                    <p class="mb-2 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M14.293 5.293a1 1 0 010 1.414L9.414 11.586a1 1 0 01-1.414 0L5.707 9.293a1 1 0 011.414-1.414L8 10.172l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <strong>Email:</strong> <a href="mailto:support@company.com" class="text-purple-600 hover:underline">support@company.com</a>
+                    </p>
+                    <p class="mb-2 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L10.586 10 6.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                        <strong>Phone:</strong> <a href="tel:+1234567890" class="text-purple-600 hover:underline">+1 234 567 890</a>
+                    </p>
+                    <p class="flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-13a1 1 0 11-2 0 1 1 0 012 0zm-1 3a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 100-2h-1v-1a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <strong>Live Chat:</strong> <a href="live_chat.html" class="text-purple-600 hover:underline">Start Chat</a>
+                    </p>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4">Office Hours</h3>
+                    <p>Monday - Friday: 9am - 5pm</p>
+                    <p>Saturday - Sunday: Closed</p>
+                </div>
+            </div>
+            <div>
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4">Contact Form</h3>
+                    <form id="contactForm" onsubmit="submitForm(); return false;">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Your Message" class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" onclick="resetForm()" class="bg-gray-300 text-gray-700 hover:bg-gray-400 px-4 py-2 rounded-md transition duration-300">Reset</button>
+                            <button type="submit" class="bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:bg-purple-700 px-4 py-2 rounded-md transition duration-300">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h3 class="text-2xl font-bold mb-4">Our Location</h3>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-4 p-6">
+                <p class="mb-4"><strong>Address:</strong> 123 Company St, Melbourne, VIC 3000, Australia</p>
+                <iframe class="w-full h-64" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0195055384544!2d144.95744331531654!3d-37.81627917975147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727dbf8de0d8c8!2sGoogle!5e0!3m2!1sen!2sau!4v1636499258701!5m2!1sen!2sau" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h3 class="text-2xl font-bold mb-4">Frequently Asked Questions</h3>
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <details>
+                    <summary class="font-semibold text-purple-600 hover:underline cursor-pointer">What is your return policy?</summary>
+                    <p class="mt-2">Our return policy allows returns within 30 days of purchase...</p>
+                </details>
+                <details class="mt-4">
+                    <summary class="font-semibold text-purple-600 hover:underline cursor-pointer">How do I track my order?</summary>
+                    <p class="mt-2">You can track your order using the tracking number provided in the confirmation email...</p>
+                </details>
+                <p class="mt-4">For more answers, visit our <a href="faq.html" class="text-purple-600 hover:underline">FAQ section</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="gradient-bg text-white text-center py-6">
+        <div class="flex justify-center space-x-4 mb-4">
+            <a href="#" class="hover:text-gray-300 transition duration-300"><img src="img_36.png" alt="Facebook icon" style="width: 30px; height: 30px;"></a>
+            <a href="#" class="hover:text-gray-300 transition duration-300"><img src="img_33.png" alt="Twitter icon" style="width: 30px; height: 30px;"></a>
+            <a href="#" class="hover:text-gray-300 transition duration-300"><img src="img_34.png" alt="LinkedIn icon" style="width: 30px; height: 30px;"></a>
+        </div>
+        <p>&copy; 2023 Company Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function submitForm() {
+            alert('Form submitted!');
+        }
+
+        function resetForm() {
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>
