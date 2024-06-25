@@ -12,4 +12,4 @@ OPENAI_PROXY_URL : ""
 
 
 # img generation settings (if not set, it will use the openai settings)
-IMG_GEN_TYPE : "delle3" # "openai"
+IMG_GEN_TYPE : "dalle3" # "dalle3"

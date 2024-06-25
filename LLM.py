@@ -145,7 +145,7 @@ class openai_llm(base_llm):
         return response
     
 
-class Delle3_llm(base_img_llm):
+class Dalle3_llm(base_img_llm):
     def __init__(self) -> None:
         super().__init__()
         is_azure = config.get("is_azure", True)
@@ -263,7 +263,7 @@ def get_llm():
     else:
         raise ValueError(f"Unknown LLM type: {llm_type}")
     if img_gen_type == "dalle3":
-        img_generator = Delle3_llm()
+        img_generator = Dalle3_llm()
     else:
         raise ValueError(f"Unknown image generator type: {img_gen_type}")
     return llm, img_generator

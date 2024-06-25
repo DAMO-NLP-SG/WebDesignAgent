@@ -173,8 +173,7 @@ class Application(tk.Tk):
         return web_design_widgets
 
 
-    def on_css_frame_change(self, *args):
-        css_frame = self.css_frame_var.get()
+    def on_css_frame_change(self, css_frame):
         if css_frame == "None":
             self.agent.css_frame = None
         else:
@@ -279,8 +278,7 @@ class Application(tk.Tk):
         threading.Thread(target=long_operation).start()
     
 
-    def change_gen_img(self):
-        gen_img = self.gen_img_var.get()
+    def change_gen_img(self,gen_img):
         if gen_img == "Open":
             self.agent.gen_img = True
         else:
