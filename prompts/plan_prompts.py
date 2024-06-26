@@ -23,6 +23,7 @@ original_page_template = """
 },
 "practice_features": {practical features that page need to have},
 "additional_features": {additional features you want to add to the page},
+"page_style": {The style of the page},
 "is_main_page" : {true or false,true, if the page is the image we provided}
 }
 ...
@@ -52,6 +53,7 @@ other_page_template = """
 },
 "practice_features": {practical features that page need to have},
 "additional_features": {additional features you want to add to the page},
+"page_style": {The style of the page},
 "is_main_page" : {true or false,true, if the page is the image we provided}
 }
 ...
@@ -78,6 +80,7 @@ original_page_example = """
     },
     "practice_features": "Search result display, pagination, interactive sorting options.",
     "additional_features": "Filters for search results including categories, date range, and price range. Real-time search suggestions as the user types.",
+    "page_style": "Clean and modern design with a focus on usability and readability.",
     "is_main_page": false
     }
 """
@@ -100,6 +103,7 @@ other_page_example = """
     },
     "practice_features": "Search result display, pagination, interactive sorting options.",
     "additional_features": "Filters for search results including categories, date range, and price range. Real-time search suggestions as the user types.",
+    "page_style": "Clean and modern design with a focus on usability and readability.",
     "is_main_page": false
     }
 """
