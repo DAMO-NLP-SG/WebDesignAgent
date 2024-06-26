@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Join Us - Career Opportunities
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   /* Add custom styles here */
+    .gradient-bg {
+      background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .carousel {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .carousel-item {
+      flex: none;
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .testimonial-carousel {
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    .testimonial-item {
+      flex: none;
+      width: 100%;
+      max-width: 300px;
+      transition: transform 0.5s ease;
+      margin-right: 1rem;
+    }
+  </style>
+ </head>
+ <body class="font-sans antialiased bg-gray-100 text-gray-900">
+  <header class="gradient-bg text-white p-6 sticky-header">
+   <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-4xl font-bold">
+     Career Opportunities
+    </h1>
+    <nav>
+     <ul class="flex space-x-6">
+      <li>
+       <a class="hover:underline" href="index.html">
+        Main Page
+       </a>
+      </li>
+      <li>
+       <button class="hover:underline focus:outline-none" onclick="openApplicationForm()">
+        Apply Now
+       </button>
+      </li>
+      <li>
+       <button class="hover:underline focus:outline-none" onclick="openContactForm()">
+        Contact HR
+       </button>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <main class="container mx-auto py-12">
+   <!-- Job Listings Section -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Open Positions
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+     <!-- Example Job Listing -->
+     <div class="bg-white p-6 rounded-lg shadow hover-scale transition transform duration-200">
+      <h3 class="text-xl font-semibold mb-2">
+       Software Engineer
+      </h3>
+      <p class="text-gray-700 mb-4">
+       Join our dynamic team of software engineers to develop cutting-edge applications.
+      </p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+       Apply Now
+      </button>
+     </div>
+     <!-- Example Job Listing -->
+     <div class="bg-white p-6 rounded-lg shadow hover-scale transition transform duration-200">
+      <h3 class="text-xl font-semibold mb-2">
+       Data Scientist
+      </h3>
+      <p class="text-gray-700 mb-4">
+       Analyze and interpret complex data to help drive business decisions.
+      </p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+       Apply Now
+      </button>
+     </div>
+     <!-- More job listings similarly -->
+    </div>
+   </section>
+   <!-- Company Culture Section -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Our Company Culture
+    </h2>
+    <p class="text-gray-700 mb-4">
+     We believe in collaboration, innovation, and a supportive work environment. Our team is our greatest asset.
+    </p>
+    <img alt="Team collaborating in a modern office space" class="w-full rounded-lg shadow mb-6" src="img_1.png"/>
+    <img alt="Colleagues brainstorming in a meeting room" class="w-full rounded-lg shadow" src="img_37.png"/>
+   </section>
+   <!-- Employee Testimonials Section -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Employee Testimonials
+    </h2>
+    <div class="testimonial-carousel">
+     <div class="testimonial-item bg-white p-6 rounded-lg shadow hover-scale transition transform duration-200">
+      <img alt="Portrait of a smiling employee" class="w-24 h-24 rounded-full mx-auto mb-4" src="img_0.png"/>
+      <p class="text-gray-700 mb-4">
+       "Working here has been an incredible experience. The team is supportive and the projects are challenging and rewarding."
+      </p>
+      <p class="text-gray-500 text-sm">
+       - Jane Doe, Software Engineer
+      </p>
+     </div>
+     <div class="testimonial-item bg-white p-6 rounded-lg shadow hover-scale transition transform duration-200">
+      <img alt="Portrait of a smiling employee" class="w-24 h-24 rounded-full mx-auto mb-4" src="img_39.png"/>
+      <p class="text-gray-700 mb-4">
+       "The collaborative environment here is unparalleled. I feel valued and challenged every day."
+      </p>
+      <p class="text-gray-500 text-sm">
+       - John Smith, Product Manager
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Employee Benefits Section -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Employee Benefits
+    </h2>
+    <p class="text-gray-700 mb-4">
+     We offer a comprehensive benefits package that includes:
+    </p>
+    <ul class="list-disc pl-6 text-gray-700">
+     <li>
+      Health Insurance
+     </li>
+     <li>
+      Retirement Plans
+     </li>
+     <li>
+      Paid Time Off
+     </li>
+     <li>
+      Professional Development Opportunities
+     </li>
+    </ul>
+    <a class="text-blue-500 hover:underline mt-4 block" href="benefits.html">
+     Learn more about our benefits
+    </a>
+   </section>
+   <!-- FAQ Section -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     FAQ
+    </h2>
+    <div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       What is the application process like?
+      </h3>
+      <p class="text-gray-700">
+       Our application process is designed to be straightforward and transparent. You can apply directly through our website and our HR team will guide you through each step.
+      </p>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       How do I prepare for the interview?
+      </h3>
+      <p class="text-gray-700">
+       We recommend familiarizing yourself with our company values and the job requirements. Be ready to discuss your experience and how it aligns with the role you're applying for.
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="gradient-bg text-white py-6">
+   <div class="container mx-auto text-center">
+    <p>
+     © 2023 Your Company Name. All rights reserved.
+    </p>
+    <div class="mt-4">
+     <a class="text-blue-400 hover:underline mx-2" href="#">
+      Privacy Policy
+     </a>
+     <a class="text-blue-400 hover:underline mx-2" href="#">
+      Terms of Service
+     </a>
+     <a class="text-blue-400 hover:underline mx-2" href="#">
+      Contact Us
+     </a>
+    </div>
+    <div class="mt-4">
+     <a class="text-blue-400 hover:underline mx-2" href="#">
+      <img alt="Facebook" class="inline-block" src="img_47.png"/>
+     </a>
+     <a class="text-blue-400 hover:underline mx-2" href="#">
+      <img alt="Twitter" class="inline-block" src="img_35.png"/>
+     </a>
+     <a class="text-blue-400 hover:underline mx-2" href="#">
+      <img alt="LinkedIn" class="inline-block" src="img_36.png"/>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   function openApplicationForm() {
+      // Implement the function to open the application form
+      alert('Application form will be opened.');
+    }
+
+    function openContactForm() {
+      // Implement the function to open the contact form
+      alert('Contact form will be opened.');
+    }
+  </script>
+ </body>
+</html>

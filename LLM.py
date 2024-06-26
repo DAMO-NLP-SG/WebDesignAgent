@@ -59,17 +59,25 @@ class openai_llm(base_llm):
             if "AZURE_OPENAI_KEY" not in os.environ or os.environ["AZURE_OPENAI_KEY"] == "":
                 raise ValueError("AZURE_OPENAI_KEY is not set")
             if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
-                raise ValueError("AZURE_OPENAI_API_VERSION is not set")
-            self.client = AzureOpenAI(
-                api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-                api_key=os.environ["AZURE_OPENAI_KEY"]
-                )
-            self.async_client = AsyncAzureOpenAI(
-                api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-                api_key=os.environ["AZURE_OPENAI_KEY"]
-                )
+                self.client = AzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    )
+                self.async_client = AsyncAzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    )
+            else:
+                self.client = AzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
+                    )
+                self.async_client = AsyncAzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
+                    )
         else:
             os.environ["OPENAI_API_KEY"] = config.get('OPENAI_API_KEY', '')
             os.environ["OPENAI_PROXY_URL"] = config.get('OPENAI_PROXY_URL', '')
@@ -161,16 +169,26 @@ class Dalle3_llm(base_img_llm):
                 raise ValueError("AZURE_OPENAI_KEY is not set")
             if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
                 raise ValueError("AZURE_OPENAI_API_VERSION is not set")
-            self.client = AzureOpenAI(
-                api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-                api_key=os.environ["AZURE_OPENAI_KEY"]
-                )
-            self.async_client = AsyncAzureOpenAI(
-                api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-                api_key=os.environ["AZURE_OPENAI_KEY"]
-                )
+            if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
+                self.client = AzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    )
+                self.async_client = AsyncAzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    )
+            else:
+                self.client = AzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
+                    )
+                self.async_client = AsyncAzureOpenAI(
+                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
+                    )
         else:
             os.environ["OPENAI_API_KEY"] = config.get('OPENAI_API_KEY', '')
             os.environ["OPENAI_PROXY_URL"] = config.get('OPENAI_PROXY_URL', '')

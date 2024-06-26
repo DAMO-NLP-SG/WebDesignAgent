@@ -299,7 +299,7 @@ class Application(tk.Tk):
                 tk.Label(table_frame, text=key).grid(row=i, column=0, sticky='e')
                 text_frame = tk.Frame(table_frame)
                 text_frame.grid(row=i, column=1, sticky='w')
-                if key in ["is_main_page","html_name","css_name","js_name"]:
+                if key in ["is_main_page","html_name","css_name"]:
                     text_widget = tk.Text(text_frame, wrap=tk.WORD, height=1, width=30)
                 elif key == "relationship":
                     text_widget = tk.Text(text_frame, wrap=tk.WORD, height=15, width=30)
@@ -352,7 +352,7 @@ class Application(tk.Tk):
             col = idx % blocks_per_row
             page_name = html_name.split(".")[0]
             button = tk.Button(frame, text=page_name, bg=color, width=block_width, height=2,
-                               command=lambda idx=idx: self.on_block_click(idx),font=("Arial", 5))
+                               command=lambda idx=idx: self.on_block_click(idx),font=("Arial", 10))
             button.grid(row=row, column=col, padx=5, pady=5)
             self.buttons.append(button)
 
@@ -409,7 +409,8 @@ class Application(tk.Tk):
                 if not os.path.exists(html_path):
                     messagebox.showerror("Error", "Please create the website first")
                     return
-                self.pages[self.current_page] = self.agent.refine_page(page)
+                feedback = self.web_design_widgets["input_entries"][3].get()
+                self.pages[self.current_page] = self.agent.refine_page(page,feedback)
                 with open(os.path.join(self.agent.save_file, "pages.json"), "w",encoding='utf-8') as f:
                     json.dump(self.pages, f)
                 self.is_animating = False
@@ -473,6 +474,12 @@ class Application(tk.Tk):
         if self.is_animating:
             messagebox.showerror("Error", "Please wait for the current operation to finish")
             return
+        
+        website_description = self.web_design_widgets["input_entries"][1].get()
+        website_img = self.web_design_widgets["input_entries"][2].get()
+        self.agent.task["text"] = website_description
+        self.agent.task["img"] = website_img
+
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
@@ -495,6 +502,10 @@ class Application(tk.Tk):
         animation_sequence = ["🤔💭 Refine now", "🧐💭 Refine now.", "😅💭 Refine now..", "🤯💭 Refine now..."]
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
+        website_description = self.web_design_widgets["input_entries"][1].get()
+        website_img = self.web_design_widgets["input_entries"][2].get()
+        self.agent.task["text"] = website_description
+        self.agent.task["img"] = website_img
 
         def long_operation():
             self.agent.user_feedback = self.web_design_widgets["input_entries"][3].get()
@@ -559,6 +570,10 @@ class Application(tk.Tk):
         animation_sequence = ["🤔💭 Generating now", "🧐💭 Generating now.", "😅💭 Generating now..", "🤯💭 Generating now..."]
         self.refine_times = int(self.web_design_widgets["input_entries"][4].get()) if self.web_design_widgets["input_entries"][4].get() else 3
         self.agent.refine_times = self.refine_times
+        web_description = self.web_design_widgets["input_entries"][1].get()
+        web_img = self.web_design_widgets["input_entries"][2].get()
+        self.agent.task["text"] = web_description
+        self.agent.task["img"] = web_img
         
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():

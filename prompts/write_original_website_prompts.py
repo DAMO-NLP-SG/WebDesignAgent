@@ -1,4 +1,4 @@
-original_role = "You are an expert Html developer.You are very good at writing a webpage by using HTML, CSS, and JavaScript."
+original_role = "You are an expert Html developer.You are very good at writing a webpage by using HTML, CSS, and JavaScript.(No need to output js file, embed js file into html file)"
 
 Tailwind_role = "You are an expert Tailwind developer.You are very good at writing a webpage by using Tailwind CSS framework."
 
@@ -15,42 +15,61 @@ Your task is to build a single page app according to the screenshot and the page
 - Make sure the your create page looks exactly like the screenshot.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. Match the colors and sizes exactly.
 - Use the exact text from the screenshot.
-- Do not add comments in the code such as "<!-- Add other navigation links as needed -->" and "<!-- ... other news items ... -->" in place of writing the full code. WRITE THE FULL CODE.
 - Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
 - For images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
+- Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
 - You must ensure that the page you generate is completely consistent with the page we provide(Layout, Format, Text, Content)!
 - You are encouraged to use more js to implement some operation functions to make the page more practical and interesting.
 """
 
 text_img_task = """
-The above picture is a screenshot of the webpage we provide to you. 
+The above picture is a screenshot of the reference webpage we provide to you. 
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
-Your task is to build a single page app according to the screenshot and the page information.
-- Make sure the your create page's layout looks exactly like the screenshot.(content can be different).
+Your task is to build a new web page by imitating the structure and layout of the reference web page and the provided page information
+- Don't match the text on the reference webpage! Add text based on your own needs!
+- It does not need to be consistent with the reference web page, just learn from its excellent points.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
-- Do not add comments in the code such as "<!-- Add other navigation links as needed -->" and "<!-- ... other news items ... -->" in place of writing the full code. WRITE THE FULL CODE.
 - For images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
 - Try to make the page appear rich and not boring. 
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
+- Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
 - Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on. 
-- You are encouraged to use more js to implement some operation functions to make the page more practical and interesting.
+- If you want to add images through constants in js, please define constants in the following way:
+const imageInfo = {{
+imgsrc: "https://via.placeholder.com/150",
+alt: "This is an example image",
+width: 600,
+height: 400,
+title: "Example image title",
+}}
+That is, be sure to use "imgsrc" to add the image address(use placeholder images from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
+- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
 """
 
 text_task = """
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
 Your task is to build a single page app according to the page information.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
-- Do not add comments in the code such as "<!-- Add other navigation links as needed -->" and "<!-- ... other news items ... -->" in place of writing the full code. WRITE THE FULL CODE.
 - For images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
 - Try to make the page appear rich and not boring. 
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
 - Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on.
-- You are encouraged to use more js to implement some operation functions to make the page more practical and interesting.
+- Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
+- If you want to add images through constants in js, please define constants in the following way:
+const imageInfo = {{
+imgsrc: "https://via.placeholder.com/150",
+alt: "This is an example image",
+width: 600,
+height: 400,
+title: "Example image title",
+}}
+That is, be sure to use "imgsrc" to add the image address(use placeholder images from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
+- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
 """
 
 # - Use the Tailwind CSS framework to style the page.
 original_output_format = """
-Please output the html, css and js code.
+Please output the html(contain js code), css code.
 """
 
 Tailwind_output_format = """

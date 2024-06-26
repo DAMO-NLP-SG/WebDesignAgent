@@ -105,9 +105,15 @@ class Webserver:
             time.sleep(5)
             # 截图并保存
             if self.web_type in ["chrome","firefox","edge"]:
+                try:
+                    alert = self.driver.switch_to.alert
+                    alert.accept()
+                except Exception as e:
+                    pass
+                screen_width = self.driver.execute_script("return window.screen.width")
                 scroll_height = self.driver.execute_script("return document.documentElement.scrollHeight")
-                scroll_width = self.driver.execute_script("return document.documentElement.scrollWidth")
-                self.driver.set_window_size(scroll_width, scroll_height)
+                # scroll_width = self.driver.execute_script("return document.documentElement.scrollWidth")
+                self.driver.set_window_size(screen_width, scroll_height)
                 self.driver.save_screenshot(save_path)
             else:
                 self.driver.fullscreen_window()
@@ -147,5 +153,5 @@ class Webserver:
 
 if __name__ == "__main__":
     webserver = Webserver()
-    webserver.get_screenshot("https://damo.alibaba.com/?language=zh","damo.png",False)
+    webserver.get_screenshot("/Users/jianghuyihei/code/WebDesignAgent/saves/game/index.html","assets/game.png")
     webserver.stop()

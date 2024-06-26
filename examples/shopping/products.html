@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Products
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .hover-effect:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-gradient {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+        }
+        .footer-gradient {
+            background: linear-gradient(to right, #43c6ac, #f8ffae);
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4facfe;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+        .back-to-top:hover {
+            background-color: #00f2fe;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 text-gray-900 font-sans">
+  <!-- Header -->
+  <header class="header-gradient p-4 shadow-md fixed w-full z-10 top-0">
+   <div class="container mx-auto flex justify-between items-center">
+    <a class="text-3xl font-bold text-white" href="index.html">
+     Logo
+    </a>
+    <nav class="flex space-x-4">
+     <a class="text-white hover:text-yellow-500" href="index.html">
+      Home
+     </a>
+     <a class="text-white hover:text-yellow-500" href="products.html">
+      Products
+     </a>
+     <a class="text-white hover:text-yellow-500" href="about.html">
+      About Us
+     </a>
+     <a class="text-white hover:text-yellow-500" href="contact.html">
+      Contact
+     </a>
+    </nav>
+    <div class="flex space-x-4">
+     <input class="p-2 border rounded-md w-64" placeholder="Search products..." type="text"/>
+     <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">
+      Search
+     </button>
+     <a class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600" href="cart.html">
+      Cart
+     </a>
+    </div>
+   </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="gradient-bg text-white py-20 mt-16">
+   <div class="container mx-auto text-center">
+    <h1 class="text-5xl font-bold mb-4 animate-bounce">
+     Welcome to Our Product Shop
+    </h1>
+    <p class="text-xl mb-8">
+     Discover the best products at unbeatable prices
+    </p>
+    <a class="bg-white text-blue-500 px-8 py-4 rounded-md text-lg hover:bg-gray-200" href="products.html">
+     Shop Now
+    </a>
+   </div>
+  </section>
+  <!-- Main Content -->
+  <main class="container mx-auto mt-20">
+   <div class="flex justify-between items-center mb-6">
+    <h1 class="text-4xl font-bold">
+     Products
+    </h1>
+    <div class="flex space-x-4">
+     <button class="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400" onclick="sortProducts('price')">
+      Sort by Price
+     </button>
+     <button class="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400" onclick="sortProducts('popularity')">
+      Sort by Popularity
+     </button>
+     <button class="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400" onclick="sortProducts('newest')">
+      Sort by Newest
+     </button>
+    </div>
+   </div>
+   <!-- Filters -->
+   <div class="mb-6">
+    <h2 class="text-2xl font-bold mb-2">
+     Filters
+    </h2>
+    <div class="flex space-x-4">
+     <select class="p-2 border rounded-md">
+      <option>
+       Category
+      </option>
+      <option>
+       Electronics
+      </option>
+      <option>
+       Fashion
+      </option>
+      <option>
+       Home &amp; Garden
+      </option>
+      <option>
+       Beauty
+      </option>
+      <option>
+       Sports
+      </option>
+     </select>
+     <select class="p-2 border rounded-md">
+      <option>
+       Price Range
+      </option>
+      <option>
+       $0 - $50
+      </option>
+      <option>
+       $50 - $100
+      </option>
+      <option>
+       $100 - $200
+      </option>
+      <option>
+       $200 - $500
+      </option>
+     </select>
+     <select class="p-2 border rounded-md">
+      <option>
+       Ratings
+      </option>
+      <option>
+       1 Star &amp; Up
+      </option>
+      <option>
+       2 Stars &amp; Up
+      </option>
+      <option>
+       3 Stars &amp; Up
+      </option>
+      <option>
+       4 Stars &amp; Up
+      </option>
+     </select>
+    </div>
+   </div>
+   <!-- Product Listings -->
+   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Example product card -->
+    <div class="bg-white p-4 rounded-md shadow-md hover-effect">
+     <img alt="A high-quality image of the product" class="w-full h-64 object-cover mb-4" src="img_11.png"/>
+     <h2 class="text-xl font-bold mb-2">
+      Product Title
+     </h2>
+     <p class="text-gray-700 mb-2">
+      $99.99
+     </p>
+     <div class="flex items-center mb-4">
+      <span class="text-yellow-500">
+       ★★★★☆
+      </span>
+      <span class="text-gray-600 ml-2">
+       (120)
+      </span>
+     </div>
+     <p class="text-gray-600 mb-4">
+      Brief description of the product goes here. It should be concise and informative.
+     </p>
+     <div class="flex justify-between items-center">
+      <a class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" href="product_detail.html">
+       View Product
+      </a>
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">
+       Add to Wishlist
+      </button>
+      <button class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+       Add to Cart
+      </button>
+     </div>
+    </div>
+    <!-- Repeat the product card as needed -->
+    <div class="bg-white p-4 rounded-md shadow-md hover-effect">
+     <img alt="A placeholder image of the product" class="w-full h-64 object-cover mb-4" src="img_33.png"/>
+     <h2 class="text-xl font-bold mb-2">
+      Product Title
+     </h2>
+     <p class="text-gray-700 mb-2">
+      $99.99
+     </p>
+     <div class="flex items-center mb-4">
+      <span class="text-yellow-500">
+       ★★★★☆
+      </span>
+      <span class="text-gray-600 ml-2">
+       (80)
+      </span>
+     </div>
+     <p class="text-gray-600 mb-4">
+      Brief description of the product goes here. It should be concise and informative.
+     </p>
+     <div class="flex justify-between items-center">
+      <a class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" href="product_detail.html">
+       View Product
+      </a>
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">
+       Add to Wishlist
+      </button>
+      <button class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+       Add to Cart
+      </button>
+     </div>
+    </div>
+   </div>
+   <!-- Pagination -->
+   <div class="flex justify-center mt-8">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mx-2 hover:bg-blue-600">
+     Previous
+    </button>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mx-2 hover:bg-blue-600">
+     Next
+    </button>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="footer-gradient p-4 mt-12 shadow-md">
+   <div class="container mx-auto text-center">
+    <p>
+     © 2023 Your Company. All rights reserved.
+    </p>
+    <nav class="flex justify-center space-x-4 mt-4">
+     <a class="text-gray-700 hover:text-blue-500" href="privacy.html">
+      Privacy Policy
+     </a>
+     <a class="text-gray-700 hover:text-blue-500" href="terms.html">
+      Terms of Service
+     </a>
+     <a class="text-gray-700 hover:text-blue-500" href="contact.html">
+      Contact Us
+     </a>
+    </nav>
+   </div>
+  </footer>
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="back-to-top" onclick="scrollToTop()">
+   ↑
+  </div>
+  <script>
+   // JavaScript functions to handle sorting
+        function sortProducts(criteria) {
+            console.log(`Sorting products by ${criteria}`);
+            // Implement sorting logic here
+        }
+
+        // Back to Top Functionality
+        window.onscroll = function() {
+            const backToTop = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+  </script>
+ </body>
+</html>

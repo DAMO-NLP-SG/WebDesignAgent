@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Research Areas
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   /* Custom styles for special effects */
+    .wave-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .wave-effect::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 200%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(0,0,0,0));
+      transform: translateX(-50%) translateY(-100%);
+      animation: wave 2s linear infinite;
+    }
+    @keyframes wave {
+      0% {
+        transform: translateX(-50%) translateY(-100%);
+      }
+      50% {
+        transform: translateX(-50%) translateY(0);
+      }
+      100% {
+        transform: translateX(-50%) translateY(100%);
+      }
+    }
+  </style>
+ </head>
+ <body class="bg-gray-100 text-gray-800 font-sans">
+  <header class="bg-gradient-to-r from-blue-800 to-purple-900 text-white p-6 shadow-md">
+   <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-3xl font-extrabold">
+     Research Areas
+    </h1>
+    <nav class="flex space-x-6">
+     <a class="hover:underline text-xl" href="main.html">
+      主页
+     </a>
+     <a class="hover:underline text-xl" href="contact_us.html">
+      联系我们
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="container mx-auto p-6 space-y-12">
+   <section class="wave-effect p-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-lg">
+    <h2 class="text-4xl font-bold mb-6">
+     Overview
+    </h2>
+    <p class="text-xl">
+     This page provides an in-depth overview of the various research areas within the organization. Each area is described in detail, showcasing the scope, objectives, and key projects.
+    </p>
+   </section>
+   <section>
+    <h2 class="text-3xl font-bold mb-6">
+     Research Areas
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <!-- Visual Technology -->
+     <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+      <img alt="Image representing visual technology research area" class="mb-4 rounded" height="400" src="img_38.png" width="600"/>
+      <h3 class="text-2xl font-bold mb-3">
+       视觉技术
+      </h3>
+      <p class="mb-4">
+       Explore our groundbreaking work in visual technology, including image recognition, computer vision, and more.
+      </p>
+      <a class="bg-blue-500 text-white px-5 py-3 rounded hover:bg-blue-700" href="visual_technology.html">
+       Learn More
+      </a>
+     </div>
+     <!-- Language Technology -->
+     <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+      <img alt="Image representing language technology research area" class="mb-4 rounded" height="400" src="img_36.png" width="600"/>
+      <h3 class="text-2xl font-bold mb-3">
+       语言技术
+      </h3>
+      <p class="mb-4">
+       Discover our advancements in language technology, including natural language processing, machine translation, and more.
+      </p>
+      <a class="bg-blue-500 text-white px-5 py-3 rounded hover:bg-blue-700" href="language_technology.html">
+       Learn More
+      </a>
+     </div>
+     <!-- Decision Intelligence -->
+     <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+      <img alt="Image representing decision intelligence research area" class="mb-4 rounded" height="400" src="img_39.png" width="600"/>
+      <h3 class="text-2xl font-bold mb-3">
+       决策智能
+      </h3>
+      <p class="mb-4">
+       Learn about our pioneering work in decision intelligence, including predictive analytics, AI-driven decision making, and more.
+      </p>
+      <a class="bg-blue-500 text-white px-5 py-3 rounded hover:bg-blue-700" href="decision_intelligence.html">
+       Learn More
+      </a>
+     </div>
+    </div>
+   </section>
+   <section>
+    <h2 class="text-3xl font-bold mb-6">
+     Additional Features
+    </h2>
+    <ul class="list-disc list-inside space-y-3">
+     <li class="flex items-center">
+      <svg class="h-6 w-6 text-blue-500 mr-2" fill="currentColor" viewbox="0 0 20 20">
+       <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm0 18a8 8 0 110-16 8 8 0 010 16z">
+       </path>
+       <path d="M10 5a1 1 0 11-.001 2.001A1 1 0 0110 5zm-1 4a1 1 0 000 2h1v4a1 1 0 002 0v-4h1a1 1 0 000-2h-4z">
+       </path>
+      </svg>
+      Downloadable research papers and publications
+     </li>
+     <li class="flex items-center">
+      <svg class="h-6 w-6 text-blue-500 mr-2" fill="currentColor" viewbox="0 0 20 20">
+       <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm0 18a8 8 0 110-16 8 8 0 010 16z">
+       </path>
+       <path d="M10 5a1 1 0 11-.001 2.001A1 1 0 0110 5zm-1 4a1 1 0 000 2h1v4a1 1 0 002 0v-4h1a1 1 0 000-2h-4z">
+       </path>
+      </svg>
+      Interactive infographics and visualizations
+     </li>
+     <li class="flex items-center">
+      <svg class="h-6 w-6 text-blue-500 mr-2" fill="currentColor" viewbox="0 0 20 20">
+       <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm0 18a8 8 0 110-16 8 8 0 010 16z">
+       </path>
+       <path d="M10 5a1 1 0 11-.001 2.001A1 1 0 0110 5zm-1 4a1 1 0 000 2h1v4a1 1 0 002 0v-4h1a1 1 0 000-2h-4z">
+       </path>
+      </svg>
+      Search functionality to find specific research topics
+     </li>
+     <li class="flex items-center">
+      <svg class="h-6 w-6 text-blue-500 mr-2" fill="currentColor" viewbox="0 0 20 20">
+       <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm0 18a8 8 0 110-16 8 8 0 010 16z">
+       </path>
+       <path d="M10 5a1 1 0 11-.001 2.001A1 1 0 0110 5zm-1 4a1 1 0 000 2h1v4a1 1 0 002 0v-4h1a1 1 0 000-2h-4z">
+       </path>
+      </svg>
+      Subscription to research newsletters
+     </li>
+    </ul>
+   </section>
+   <section class="py-8">
+    <h2 class="text-3xl font-bold mb-6">
+     Navigation
+    </h2>
+    <div class="flex space-x-6">
+     <a class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-5 py-3 rounded hover:bg-green-700" href="main.html">
+      回到主页
+     </a>
+     <a class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-5 py-3 rounded hover:bg-green-700" href="contact_us.html">
+      联系我们
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-gradient-to-r from-blue-800 to-purple-900 text-white p-6 mt-12">
+   <div class="container mx-auto text-center">
+    <p>
+     © 2023 Research Organization. All rights reserved.
+    </p>
+    <div class="flex justify-center space-x-4 mt-4">
+     <a href="#">
+      <img alt="Social media icon 1" height="24" src="img_41.png" width="24"/>
+     </a>
+     <a href="#">
+      <img alt="Social media icon 2" height="24" src="img_28.png" width="24"/>
+     </a>
+     <a href="#">
+      <img alt="Social media icon 3" height="24" src="img_23.png" width="24"/>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   // Example of adding dynamic interactivity
+  document.addEventListener('DOMContentLoaded', () => {
+    const imageInfo = {
+      imgsrc: "https://placehold.co/600x400",
+      alt: "This is an example image",
+      width: 600,
+      height: 400,
+      title: "Example image title",
+    };
+
+    // Function to dynamically change image on hover
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.addEventListener('mouseover', () => {
+        img.src = imageInfo.imgsrc;
+        img.alt = imageInfo.alt;
+      });
+      img.addEventListener('mouseout', () => {
+        img.src = "https://placehold.co/600x400";
+        img.alt = "Default image";
+      });
+    });
+  });
+  </script>
+ </body>
+</html>

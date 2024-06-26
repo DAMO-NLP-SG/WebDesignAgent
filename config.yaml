@@ -1,6 +1,7 @@
 web_type : "chrome" # "chrome" or "firefox" or "edge"
 LLM_TYPE : "openai" # openai
 
+# LLM settings
 # openai settings
 is_auzer : True
 AZURE_OPENAI_ENDPOINT : ""
@@ -11,5 +12,5 @@ OPENAI_API_KEY : ""
 OPENAI_PROXY_URL : ""
 
 
-# img generation settings (if not set, it will use the openai settings)
+# IMG Generator settings (if not set, it will use the openai settings)
 IMG_GEN_TYPE : "dalle3" # "dalle3"

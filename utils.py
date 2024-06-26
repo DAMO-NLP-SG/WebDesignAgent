@@ -119,12 +119,10 @@ def modify_input_dict(s):
     s = s.replace(" \'"," \"")
     return s
 
-def get_html_css_js_from_response(response):
+def get_html_css_from_response(response):
     html = get_content_between_a_b("```html", "```", response) if "```html" in response else None
     css = get_content_between_a_b("```css", "```", response) if "```css" in response else None
-    js = get_content_between_a_b("```javascript", "```", response) if "```javascript" in response else None
-    js = get_content_between_a_b("```js", "```", response) if "```js" in response else js
-    return html,css,js
+    return html,css
 
 
 async def fetch_image(url):

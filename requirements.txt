@@ -1,6 +1,6 @@
 openai
 pillow
-PyYAML
+pyyaml  
 Requests
 selenium
 tenacity

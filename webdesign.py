@@ -1,9 +1,11 @@
 import asyncio
 import os
 import json
+
+from bs4 import BeautifulSoup
 from base_agent import BaseAgent
 from webserver import Webserver
-from utils import get_openai_url,write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost,extract_dimensions,get_html_css_js_from_response
+from utils import get_openai_url,write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost,extract_dimensions,get_html_css_from_response
 import re
 import argparse
 from prompts import *
@@ -161,10 +163,11 @@ class WebDesignAgent(BaseAgent):
         return modified_page       
 
 
-    def refine_page(self,page_info):
+    def refine_page(self,page_info,feedback = None):
         task = self.task["text"]
         task_info = f"The requirements of the website is {task}" if self.task["text"] else ""
-        prompt = get_refine_page_prompt(task_info=task_info,page_info=page_info,css_frame=self.css_frame)
+        feedback = f"The user feedback on the webpage(Very important! You must pay extra attention to the content here and prioritize making modifications to it) is : {feedback}" if feedback else ""
+        prompt = get_refine_page_prompt(task_info=task_info,page_info=page_info,css_frame=self.css_frame,feedback=feedback)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},
@@ -214,52 +217,49 @@ class WebDesignAgent(BaseAgent):
             print("The page_info is not correct.")
             return
         messages = self.get_write_original_website_messages(page_info)
-        html,css,js,cnt = None,None,None,0
-        while not html and cnt < 5 or (not self.css_frame and (not css or not js)):
+        html,css,cnt = None,None,0
+        while not html and cnt < 5 or (not self.css_frame and not css):
             response = wrap_func(self.get_answer, messages=messages,wrap_text="Writing original website now...")
-            html,css,js = get_html_css_js_from_response(response)
+            html,css = get_html_css_from_response(response)
             cnt += 1
-        if not html or (not self.css_frame and (not css or not js)):
+        if not html or (not self.css_frame and not css):
             print(response)
             assert False, "Failed to get the original website."
-        self.update_html_css_js(page_info,html,css,js)
+        self.update_html_css(page_info,html,css)
     
     async def write_original_website_async(self,page_info):
         if "html_name" not in page_info:
             print("The page_info is not correct.")
             return
         messages = self.get_write_original_website_messages(page_info)
-        html,css,js,cnt = None,None,None,0
-        while not html and cnt < 5 or (not self.css_frame and (not css or not js)):
+        html,css,cnt = None,None,0
+        while not html and cnt < 5 or (not self.css_frame and not css):
             response = await self.get_answer_async(messages=messages)
-            html,css,js = get_html_css_js_from_response(response)
+            html,css = get_html_css_from_response(response)
             cnt += 1
-        if not html or (not self.css_frame and (not css or not js)):
+        if not html or (not self.css_frame and not css):
             print(response)
             assert False, "Failed to get the original website."
-        await self.update_html_css_js_async(page_info,html,css,js)
+        await self.update_html_css_async(page_info,html,css)
         page_name = page_info["html_name"]
         print(f"Original website has been written to {page_name}")
 
     def get_refine_messages(self,page_info):
         html_name = page_info["html_name"]
         css_name = page_info["css_name"] if "css_name" in page_info else None
-        js_name = page_info["js_name"] if "js_name" in page_info else None
         img = self.task["img"] if page_info["is_main_page"] else None
         text = self.task["text"]
         css_frame = self.css_frame
         html_path = os.path.join(self.save_file,html_name)
         css_path = os.path.join(self.save_file,css_name) if css_name else None
-        js_path = os.path.join(self.save_file,js_name) if js_name else None
 
         html_code = open(html_path,encoding='utf-8').read()
         css_code = open(css_path,encoding='utf-8').read() if css_name else None
-        js_code = open(js_path,encoding='utf-8').read() if js_name else None
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
 
-        feedback = f"The user feedback on the webpage(Very important! You must pay extra attention to the content here and prioritize making modifications to it) is : {self.user_feedback}" if self.user_feedback else ""
-        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,js_code=js_code,feedback=feedback,page_info=page_info,css_frame=css_frame)
+        feedback = self.user_feedback if self.user_feedback else ""
+        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame)
         if img:
             messages = [
                 {"role":"user","content":[
@@ -283,8 +283,8 @@ class WebDesignAgent(BaseAgent):
             return
         messages = self.get_refine_messages(page_info)
         response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining now...")
-        html_code,css_code,js_code = get_html_css_js_from_response(response)
-        self.update_html_css_js(page_info,html_code,css_code,js_code)
+        html_code,css_code = get_html_css_from_response(response)
+        self.update_html_css(page_info,html_code,css_code)
     
     async def refine_async(self,page_info):
         if "html_name" not in page_info:
@@ -292,8 +292,8 @@ class WebDesignAgent(BaseAgent):
             return
         messages = self.get_refine_messages(page_info)
         response = await self.get_answer_async(messages=messages)
-        html_code,css_code,js_code = get_html_css_js_from_response(response)
-        await self.update_html_css_js_async(page_info,html_code,css_code,js_code)
+        html_code,css_code = get_html_css_from_response(response)
+        await self.update_html_css_async(page_info,html_code,css_code)
         page_name = page_info["html_name"]
         print(f"Page {page_name} has been refined.")
 
@@ -308,45 +308,45 @@ class WebDesignAgent(BaseAgent):
             print(f"Page {page_info['html_name']} has been refined.")
         
 
-    def update_html_css_js(self,page_info,html,css,js):
+    def update_html_css(self,page_info,html,css):
         html_name = page_info["html_name"]
         css_name = page_info["css_name"] if "css_name" in page_info else None
-        js_name = page_info["js_name"] if "js_name" in page_info else None
         if not self.css_frame:
-            if not css_name or not js_name:
-                print("The css_name or js_name is not provided.")
+            if not css_name:
+                print("The css_name is not provided.")
                 return
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
-            write_file(os.path.join(self.save_file,js_name), js)
             if self.gen_img:
-                asyncio.run(self.add_imgs_async(html,os.path.join(self.save_file,html_name)))
+                html_code = asyncio.run(self.add_imgs_async(html))
+                write_file(os.path.join(self.save_file,html_name), html_code)
         else:
             write_file(os.path.join(self.save_file,html_name), html)
             if self.gen_img:
-                asyncio.run(self.add_imgs_async(html,os.path.join(self.save_file,html_name)))
+                html_code = asyncio.run(self.add_imgs_async(html))
+                write_file(os.path.join(self.save_file,html_name), html_code)
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
         print(f"Screenshot has been saved to {page_img_path}")
     
-    async def update_html_css_js_async(self,page_info,html,css,js):
+    async def update_html_css_async(self,page_info,html,css):
         html_name = page_info["html_name"]
         css_name = page_info["css_name"] if "css_name" in page_info else None
-        js_name = page_info["js_name"] if "js_name" in page_info else None
         if not self.css_frame:
-            if not css_name or not js_name:
-                print("The css_name or js_name is not provided.")
+            if not css_name:
+                print("The css_name is not provided.")
                 return
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
-            write_file(os.path.join(self.save_file,js_name), js)
             if self.gen_img:
-                await self.add_imgs_async(html,os.path.join(self.save_file,html_name))
+                html_code = await self.add_imgs_async(html)
+                write_file(os.path.join(self.save_file,html_name), html_code)
         else:
             write_file(os.path.join(self.save_file,html_name), html)
             if self.gen_img:
-                await self.add_imgs_async(html,os.path.join(self.save_file,html_name))
+                html_code = await self.add_imgs_async(html)
+                write_file(os.path.join(self.save_file,html_name), html_code)
         page_name = html_name.split(".")[0]
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
         self.webserver.get_screenshot(os.path.join(self.save_file,html_name),page_img_path)
@@ -403,23 +403,43 @@ class WebDesignAgent(BaseAgent):
         return pages
     
 
-    async def add_imgs_async(self,html_code,html_path):
-        img_contents = extract_img_from_html(html_code)
+    async def add_imgs_async(self,html_code):
+        soup = BeautifulSoup(html_code, "html.parser")
+        images = soup.find_all("img")
+        scripts = soup.find_all("script")
         tasks = []
-        for img_content in img_contents:
-            task = self.add_img_async(img_content,html_code,html_path)
-            tasks.append(task)
-        results = await asyncio.gather(*tasks)
-        return results
+        for image in images:
+            tasks.append(self.add_img_async(image))
+
+        async def process_script(script):
+            if script.string:
+                script.string = await self.add_imgs_to_script_async(script.string)
+        for script in scripts:
+            tasks.append(process_script(script))
+        await asyncio.gather(*tasks)
+        return soup.prettify()
+    
+    async def add_imgs_to_script_async(self,script):
+        pattern = re.compile(r'{[^}]*\bimgsrc:\s*\'([^\']*)\'[^}]*\balt:\s*\'([^\']*)\'[^}]*}')
+        for match in pattern.finditer(script):
+            imgsrc = match.group(1)
+            alt = match.group(2)
+            img = await self.get_img_async(alt)
+            image = self.save_img(img,{"src":imgsrc,"alt":alt})
+            new_imgsrc = image["src"]
+            old_segment = match.group(0)
+            new_segment = old_segment.replace(imgsrc,new_imgsrc)
+            script = script.replace(old_segment,new_segment,1)
+        return script
 
 
-    async def add_img_async(self,img_content,html_code,html_path):
+    async def add_img_async(self,img_content):
         src = img_content["src"]
         alt = img_content["alt"]
         if not src.startswith("https://placehold.co"):
             return
         img = await self.get_img_async(alt)
-        self.save_img_and_update_html(img,img_content,html_code,html_path)
+        self.save_img(img,img_content)
 
     
     async def get_img_async(self,description):
@@ -427,25 +447,45 @@ class WebDesignAgent(BaseAgent):
         return img
 
 
-    def add_imgs(self,html_code,html_path):
-        img_contents = extract_img_from_html(html_code)
-        for img_content in img_contents:
-            src = img_content["src"]
-            alt = img_content["alt"]
+    def add_imgs(self,html_code):
+        soup = BeautifulSoup(html_code, "html.parser")
+        images = soup.find_all("img")
+        scripts = soup.find_all("script")
+        for image in images:
+            src = image["src"]
+            alt = image["alt"]
             if not src.startswith("https://placehold.co"):
                 continue
             img = self.get_img(alt)
-            self.save_img_and_update_html(img,img_content,html_code,html_path)
+            image = self.save_img(img,image)
+        for script in scripts:
+            if script.string:
+                script.string = self.add_imgs_to_script(script.string)
+        return soup.prettify()
+    
+    def add_imgs_to_script(self,script):
+        pattern = re.compile(r'{[^}]*\bimgsrc:\s*\'([^\']*)\'[^}]*\balt:\s*\'([^\']*)\'[^}]*}')
+        for match in pattern.finditer(script):
+            imgsrc = match.group(1)
+            alt = match.group(2)
+            img = self.get_img(alt)
+            image = self.save_img(img,{"src":imgsrc,"alt":alt})
+            new_imgsrc = image["src"]
+            old_segment = match.group(0)
+            new_segment = old_segment.replace(imgsrc,new_imgsrc)
+            script = script.replace(old_segment,new_segment,1)
+        return script
+
 
     def get_img(self,description):
         img = self.img_generator.get_img(description)
         return img
 
-    def save_img_and_update_html(self,img,img_content,html_code,html_path):
-        src = img_content["src"]
-        alt = img_content["alt"]
-        original = img_content["original"]
+    def save_img(self,img,image):
+        src = image["src"]
         width,height = extract_dimensions(src)
+        image["height"] = height
+        image["width"] = width
         for i in range(10000):
             img_name = f"img_{i}.png"
             img_path = os.path.join(self.save_file,img_name)
@@ -453,15 +493,9 @@ class WebDesignAgent(BaseAgent):
                 break
         create_file(img_path)
         img.save(img_path)
-        html_code = open(html_path,encoding='utf-8').read()
-        if "class" in img_content:
-            img_class = img_content["class"]
-            html_code = html_code.replace(original,f'src="{img_name}" alt="{alt}" class="{img_class}" style="width: {width}px; height: {height}px;"')
-        else:
-            html_code = html_code.replace(original,f'src="{img_name}" alt="{alt}" style="width: {width}px; height: {height}px;"')
-        with open(html_path, "w",encoding='utf-8') as f:
-            f.write(html_code)
+        image["src"] = img_name
         print(f"Image {img_path} has been added to the folder.")
+        return image
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -480,4 +514,7 @@ if __name__ == "__main__":
     print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
     cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
     print(f"Total cost: {cost}")
+
+
+
 

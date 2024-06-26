@@ -3,7 +3,6 @@ original_page_template = """
 {
 "html_name": {HTML name},
 "css_name": {css name},
-"js_name" : {js name},
 "js_description": {What JavaScript features need to be designed for this page},
 "description": {Description of the page},
 "relationship": {
@@ -63,7 +62,6 @@ original_page_example = """
 {
     "html_name": "search_results.html",
     "css_name": "search_results.css",
-    "js_name": "search_results.js",
     "js_description": "Display search results based on the query and dynamically update the results as the user interacts with filters and pagination.",
     "description": "This page shows the search results for the user's query, providing a list of relevant items based on the search term. Users can refine their search using filters and navigate through multiple pages of results.",
     "relationship": {
@@ -125,6 +123,7 @@ You can enrich the page details by enriching the description and other methods(F
 The page is:
 {page_info}
 
+{feedback}
 The output format should be as follows:
 modified_page:
 {{your modified page}}
@@ -158,7 +157,7 @@ Thinking steps:
 
 def get_plan_prompt(text = None,img = None ,css_frame = None):
     if img and text:
-        prompt = f"Your task is to design which pages we should create to design the website for task: {text};The above image is a reference website we have provided to you. "
+        prompt = f"Your task is to design which pages we should create to design the website for task: {text};The above image is a reference website we have provided to you. Instead of designing the website according to the above image, you need to imitate the image and then design a new website based on your task."
     elif img:
         prompt = "Your task is to design which pages we should create to design the website based on the website images I provided you."
     else:
@@ -169,12 +168,12 @@ def get_plan_prompt(text = None,img = None ,css_frame = None):
         prompt += plan_output_format_prompt + other_page_template
     return prompt
 
-def get_refine_page_prompt(task_info,page_info,css_frame = None):
+def get_refine_page_prompt(task_info,page_info,css_frame = None,feadback = ""):
     if not css_frame:
         page_example = original_page_example
     else:
         page_example = other_page_example
-    return refine_page_prompt.format(task_info = task_info,page_info = page_info,page_example = page_example)
+    return refine_page_prompt.format(task_info = task_info,page_info = page_info,page_example = page_example,feedback = feadback)
 
 if __name__ == "__main__":
     print(get_refine_page_prompt("You are a web design master, and your current task is to modify the details of a website.","2",css_frame = "1"))

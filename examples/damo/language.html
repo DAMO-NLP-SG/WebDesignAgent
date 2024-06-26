@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Language Selection
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .gradient-bg {
+      background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 50%, #FFDD00 100%);
+    }
+    .btn-hover:hover {
+      transform: scale(1.05);
+    }
+    .fade-in {
+      animation: fadeIn 2s ease-in;
+    }
+    .btn-shadow:hover {
+      box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%; 
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+ </head>
+ <body class="gradient-bg min-h-screen flex flex-col items-center justify-center">
+  <header class="w-full text-center p-4 bg-gray-800 text-white shadow-md">
+   <img alt="Logo" class="mx-auto mb-2" height="50" src="img_1.png" width="50"/>
+   <p class="text-xl font-semibold">
+    Welcome to Our Language Selection Page
+   </p>
+  </header>
+  <div class="bg-white p-10 rounded-lg shadow-lg max-w-md w-full text-center fade-in mt-8">
+   <h1 class="text-4xl font-bold mb-6 text-gray-800">
+    Select Your Language
+   </h1>
+   <div class="flex flex-col space-y-4">
+    <a class="tooltip block bg-blue-600 text-white py-3 px-5 rounded-lg hover:bg-blue-700 transition duration-300 btn-hover btn-shadow" href="main.html">
+     中文
+     <span class="tooltiptext">
+      Select Chinese
+     </span>
+    </a>
+    <a class="tooltip block bg-green-600 text-white py-3 px-5 rounded-lg hover:bg-green-700 transition duration-300 btn-hover btn-shadow" href="main.html">
+     EN
+     <span class="tooltiptext">
+      Select English
+     </span>
+    </a>
+    <a class="tooltip block bg-red-600 text-white py-3 px-5 rounded-lg hover:bg-red-700 transition duration-300 btn-hover btn-shadow" href="main.html">
+     Español
+     <span class="tooltiptext">
+      Select Spanish
+     </span>
+    </a>
+    <a class="tooltip block bg-yellow-600 text-white py-3 px-5 rounded-lg hover:bg-yellow-700 transition duration-300 btn-hover btn-shadow" href="main.html">
+     Français
+     <span class="tooltiptext">
+      Select French
+     </span>
+    </a>
+   </div>
+   <div class="mt-6">
+    <a class="text-blue-800 hover:underline hover:text-blue-900 transition duration-300" href="index.html">
+     Main Page
+    </a>
+   </div>
+   <div class="mt-8">
+    <img alt="This is an example image" height="400" src="https://via.placeholder.com/600x400" title="Example image title" width="600"/>
+    <p class="text-sm text-gray-600 mt-2">
+     This is an example image to demonstrate the layout of the page.
+    </p>
+   </div>
+  </div>
+  <footer class="w-full text-center p-4 bg-gray-800 text-white shadow-md mt-8">
+   <p class="text-sm">
+    © 2023 Company Name. All rights reserved.
+   </p>
+  </footer>
+  <script>
+   const languageButtons = document.querySelectorAll('.flex .tooltip a');
+    languageButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        localStorage.setItem('preferredLanguage', button.textContent.trim());
+      });
+    });
+  </script>
+ </body>
+</html>
