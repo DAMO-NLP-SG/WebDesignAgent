@@ -6,3 +6,4 @@ selenium
 tenacity
 webdriver_manager
 yaspin
+bs4
