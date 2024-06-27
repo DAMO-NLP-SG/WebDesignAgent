@@ -12,8 +12,12 @@
   
 </p>
 
+##  📰 Update
 
-## Descriptions
+* **[2024.6.27]** WebDesignAgent is now support building Chinese Website!
+* **[2024.6.26]**  The first version of WebDesignAgent!
+  
+## 🚀 What is WebDesignAgnet
 Unleash the full potential of your web design dreams with our cutting-edge AI-powered agent! 
 
 ### User Input
@@ -42,20 +46,16 @@ It supports building webpages with text and images.
 [add_new_page.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/1fbea13f-dd2f-43a3-8a67-9297fcb733ff)
 
 
-## Update
-2024.6.26  We push the first version!
-2024.6.27  We support generating Chinese Website!
 
-
-## Quick Start
+## Requirements and Installation
 ```bash
 git clone https://github.com/DAMO-NLP-SG/WebDesignAgent.git
 cd WebDesignAgent
 pip install -r requirements.txt
 ```
 
-### Set config
-set config.yaml
+### API config
+set config.yaml to use the OpenAI APIs.
 ```yaml
 web_type : "chrome" # "chrome" or "firefox" or "edge"
 LLM_TYPE : "openai" # openai
