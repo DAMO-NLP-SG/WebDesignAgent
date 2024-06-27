@@ -79,7 +79,8 @@ IMG_GEN_TYPE : "dalle3" # "dalle3"
 We offer two modes for using WebDesignAgent: terminal-based and GUI-based. We recommend trying the GUI mode for its user-friendly interface and greater control.
 
 
-### Run in GUI
+### 1. Run in GUI
+#### Auto Generation
 ```python
 python gui.py
 ```
@@ -87,21 +88,14 @@ Then you will enter the gui as follows:
 <img alt="gui" src="assets/gui.png">
 
 For a quick usage of our WebDesignAgent, please following these steps:
-1. Config `Select Mode` to be `Web Design Mode`.
+1. Config `Select Mode` to `Web Design Mode`.
 2. Config `Select Model` according to your APIs. In our demos, we primarily use `gpt-4o`.
-3. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
-4. Set `save_file`, which saves your generated websites.
-5. Input your request either in `website_description` or 
-
-#### Auto Generation
-If you want to auto generate a website. You can follow the following steps to proceed：
-
-1. set save file(the generated website will be saved in this file).
-2. set the description of the website or give a img for website or both.
-3. click plan.
-4. set refine times you want.
-5. click auto generation.
-
+3. Select the websites language in `Language` field.
+4. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
+5. Set `save_file`, which saves your generated websites.
+6. **Enter your request in either the `website_description` field for textual requests, the `website_img` field for image requests, or both for a combined input.**
+7. Click `Plan` button, which will return the textual descriptions of planned websites, their contents and their relations. You can also change these descriptions if you find them unsuitable.
+8. Click `Auto Generate` to generate all the above websites for you. (It may takes some time for the entire websites generation)
 
 #### Human Feedback
 If you want to generate a website more human control. You can follow the following steps to proceed：
@@ -113,7 +107,7 @@ If you want to generate a website more human control. You can follow the followi
 5. click create website.
 6. enter feedback if needed and click refine website.
 
-### Run in terminal
+### 2. Run in terminal
 Our method support three ways to generate a website: 
 
 1. Depend on a description of a website.
