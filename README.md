@@ -14,11 +14,11 @@
 
 ##  📰 Update
 
-* **[2024.6.27]** WebDesignAgent is now support building Chinese Website!
+* **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
   
-## 🚀 What is WebDesignAgnet
-Unleash the full potential of your web design dreams with our cutting-edge AI-powered agent! 
+## 😊 What is WebDesignAgnet
+WebDesignAgnet is an autonomous agent that can help you build a series of websites with one sentence!
 
 ### User Input
 It supports building webpages with text and images.
@@ -28,7 +28,7 @@ It supports building webpages with text and images.
 
 ### Key Features
 1. **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
-2. **User-specifc Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
+2. **User-specific Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
 3. **Iterative Refinement**: Make precise alterations to your website’s code based on your invaluable feedback.
 4. **Visual React**: Leverage strong visual models to refine and enhance the webpage layout autonomously.
 
@@ -47,7 +47,7 @@ It supports building webpages with text and images.
 
 
 
-## Requirements and Installation
+## 🛠️ Requirements and Installation
 ```bash
 git clone https://github.com/DAMO-NLP-SG/WebDesignAgent.git
 cd WebDesignAgent
@@ -75,8 +75,39 @@ OPENAI_PROXY_URL : ""
 IMG_GEN_TYPE : "dalle3" # "dalle3"
 ```
 
+## 🚀 Quick Start
+We offer two modes for using WebDesignAgent: terminal-based and GUI-based. We recommend trying the GUI mode for its user-friendly interface and greater control.
 
-### Run in terminal
+
+### 1. Run in GUI
+#### Auto Generation
+```python
+python gui.py
+```
+Then you will enter the gui as follows:
+<img alt="gui" src="assets/gui.png">
+
+For a quick usage of our WebDesignAgent, please following these steps:
+1. Config `Select Mode` to `Web Design Mode`.
+2. Config `Select Model` according to your APIs. In our demos, we primarily use `gpt-4o`.
+3. Select the websites language in `Language` field.
+4. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
+5. Set `save_file`, which saves your generated websites.
+6. **Enter your request in either the `website_description` field for textual requests, the `website_img` field for image requests, or both for a combined input.**
+7. Click `Plan` button, which will return the textual descriptions of planned websites, their contents and their relations. You can also change these descriptions if you find them unsuitable.
+8. Click `Auto Generate` to generate all the above websites for you. (It may takes some time for the entire websites generation)
+
+#### Human Feedback
+If you want to generate a website more human control. You can follow the following steps to proceed：
+
+1. set save file(the generated website will be saved in this file).
+2. set the description of the website or give a img for website or both.
+3. click plan.
+4. click page you want to modify, and modify anything you want to change.
+5. click create website.
+6. enter feedback if needed and click refine website.
+
+### 2. Run in terminal
 Our method support three ways to generate a website: 
 
 1. Depend on a description of a website.
@@ -91,36 +122,7 @@ python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  -
 
 
 
-### Run in GUI
-```python
-python gui.py
-```
-Then you will enter the gui as follows:
-<img alt="gui" src="assets/gui.png">
-
-You can select the mode between chat and web design, and choose the model.
-
-#### Auto Generation
-If you want to auto generate a website. You can follow the following steps to proceed：
-
-1. set save file(the generated website will be saved in this file).
-2. set the description of the website or give a img for website or both.
-3. click plan.
-4. set refine times you want.
-5. click auto generation.
-
-
-#### Human Feedback
-If you want to generate a website more human control. You can follow the following steps to proceed：
-
-1. set save file(the generated website will be saved in this file).
-2. set the description of the website or give a img for website or both.
-3. click plan.
-4. click page you want to modify, and modify anything you want to change.
-5. click create website.
-6. enter feedback if needed and click refine website.
-
-## Cost
+## 💰Cost
 | Web Name  | Page Numbers | Refine Times | Image Generation | Total Token Cost | Total Image Cost | Total Time Cost |
 |-----------|--------------|--------------|------------------|------------------|------------------|-----------------|
 | shopping  | 8            | 2            | open             | $1.14            | $1.48            | 661s            |

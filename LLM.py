@@ -163,10 +163,10 @@ class Dalle3_llm(base_img_llm):
             os.environ["AZURE_OPENAI_DALLE_KEY"] = config.get('AZURE_OPENAI_DALLE_KEY', '')
             os.environ["AZURE_OPENAI_API_VERSION"] = config.get('AZURE_OPENAI_API_VERSION', '')
 
-            if "AZURE_OPENAI_DALLE_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_DALLE_ENDPOINT"] == "":
-                raise ValueError("AZURE_OPENAI_DALLE_ENDPOINT is not set")
-            if "AZURE_OPENAI_DALLE_KEY" not in os.environ or os.environ["AZURE_OPENAI_DALLE_KEY"] == "":
-                raise ValueError("AZURE_OPENAI_DALLE_KEY is not set")
+            if "AZURE_OPENAI_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_ENDPOINT"] == "":
+                raise ValueError("AZURE_OPENAI_ENDPOINT is not set")
+            if "AZURE_OPENAI_KEY" not in os.environ or os.environ["AZURE_OPENAI_KEY"] == "":
+                raise ValueError("AZURE_OPENAI_KEY is not set")
             if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
                 self.client = AzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
