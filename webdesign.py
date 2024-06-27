@@ -30,6 +30,7 @@ class WebDesignAgent(BaseAgent):
         # ["Tailwind","Boostrap","Materialize","Bulma",None]
         self.css_frame = "Tailwind"
         self.gen_img = True
+        self.language = "en"
         self.save_file = save_file
         self.total_prompt_cost_tokens = 0
         self.total_completion_cost_tokens = 0
@@ -95,7 +96,8 @@ class WebDesignAgent(BaseAgent):
         text = self.task["text"]
         img = self.task["img"]
         print(self.css_frame)
-        prompt = get_plan_prompt(text=text,img=img,css_frame=self.css_frame)
+        feedback = self.user_feedback if self.user_feedback else ""
+        prompt = get_plan_prompt(text=text,img=img,css_frame=self.css_frame,feedback=feedback,language=self.language)
         if img:
             messages = [
                 {"role":"user","content":[
@@ -113,7 +115,7 @@ class WebDesignAgent(BaseAgent):
         while try_cnt < 3:
             response = wrap_func(self.get_answer, messages=messages,wrap_text="Planning now...")
             try:
-                pages = response.split("Designed pages:")[-1]
+                pages = extract(response,"designed_pages")
                 pages = pages.strip()
                 pages = json.loads(pages)
                 break
@@ -144,7 +146,7 @@ class WebDesignAgent(BaseAgent):
     
 
     def get_modified_page_from_response(self,response,page_info):
-        modified_page = response.split("modified_page:")[-1].strip()
+        modified_page = extract(response,"modified_page")
         if "```python" in modified_page:
             modified_page = get_content_between_a_b("```python","```",modified_page)
         if "```json" in modified_page:
@@ -163,11 +165,9 @@ class WebDesignAgent(BaseAgent):
         return modified_page       
 
 
-    def refine_page(self,page_info,feedback = None):
+    def refine_page(self,page_info,feedback = ""):
         task = self.task["text"]
-        task_info = f"The requirements of the website is {task}" if self.task["text"] else ""
-        feedback = f"The user feedback on the webpage(Very important! You must pay extra attention to the content here and prioritize making modifications to it) is : {feedback}" if feedback else ""
-        prompt = get_refine_page_prompt(task_info=task_info,page_info=page_info,css_frame=self.css_frame,feedback=feedback)
+        prompt = get_refine_page_prompt(task=task,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},
@@ -178,10 +178,9 @@ class WebDesignAgent(BaseAgent):
         print(f"Page has been refined.")
         return modified_page
     
-    async def refine_page_async(self,idx,page_info):
+    async def refine_page_async(self,idx,page_info,feedback = ""):
         task = self.task["text"]
-        task_info = f"The requirements of the website is {task}" if self.task["text"] else ""
-        prompt = get_refine_page_prompt(task_info=task_info,page_info=page_info,css_frame=self.css_frame)
+        prompt = get_refine_page_prompt(task=task,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},
@@ -196,7 +195,8 @@ class WebDesignAgent(BaseAgent):
     def get_write_original_website_messages(self,page_info):
         img = self.task["img"] if page_info["is_main_page"] else None
         text = self.task["text"]
-        prompt = get_write_original_website_prompt(text=text,img=img,page_info=page_info,css_frame=self.css_frame)
+        feedback = self.user_feedback if self.user_feedback else ""
+        prompt = get_write_original_website_prompt(text=text,img=img,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language)
         if img:
             messages = [
                 {"role":"user","content":[
@@ -259,7 +259,7 @@ class WebDesignAgent(BaseAgent):
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
 
         feedback = self.user_feedback if self.user_feedback else ""
-        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame)
+        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame,language=self.language)
         if img:
             messages = [
                 {"role":"user","content":[
@@ -361,7 +361,8 @@ class WebDesignAgent(BaseAgent):
                 other_pages_info += f"Page {i+1}: {page}\n"
         other_pages_info = modify_input_dict(other_pages_info)
         page_info = modify_input_dict(page_info)
-        prompt = page_complete_prompt.format(other_pages_info=other_pages_info,page_info=page_info)
+        feedback = self.user_feedback if self.user_feedback else ""
+        prompt = get_page_complete_prompt(page_info=page_info,other_pages_info=other_pages_info,feedback=feedback,language=self.language)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},

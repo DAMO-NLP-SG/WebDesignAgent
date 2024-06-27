@@ -153,5 +153,5 @@ class Webserver:
 
 if __name__ == "__main__":
     webserver = Webserver()
-    webserver.get_screenshot("/Users/jianghuyihei/code/WebDesignAgent/saves/game/index.html","assets/game.png")
+    webserver.get_screenshot("http://www.grs.zju.edu.cn/","zju.png",is_local = False)
     webserver.stop()

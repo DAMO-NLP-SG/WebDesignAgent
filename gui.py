@@ -98,18 +98,26 @@ class Application(tk.Tk):
         web_design_widgets["input_labels"] = []
         web_design_widgets["input_entries"] = []
 
+        language_options = ["en","zh"]
+        language_var = tk.StringVar(value="en")
+        self.language_var = language_var
+        language_menu = ttk.OptionMenu(web_design_widgets["input_frame"], language_var, language_options[0], *language_options,command=self.change_language)
+        language_menu.grid(row=0, column=1, padx=10, pady=10)
+        language_menu_label = tk.Label(web_design_widgets["input_frame"], text="Language:")
+        language_menu_label.grid(row=0, column=0, padx=10, pady=10)
+
         css_frame_options = ["Tailwind","Bootstrap","Materialize","Bulma","None"]
         self.css_frame_var = tk.StringVar(value="Tailwind")
         css_frame_menu = ttk.OptionMenu(web_design_widgets["input_frame"], self.css_frame_var, css_frame_options[0], *css_frame_options,command=self.on_css_frame_change)
-        css_frame_menu.grid(row=0, column=1, padx=10, pady=10)
+        css_frame_menu.grid(row=1, column=1, padx=10, pady=10)
         css_frame_menu_label = tk.Label(web_design_widgets["input_frame"], text="CSS Framework:")
-        css_frame_menu_label.grid(row=0, column=0, padx=10, pady=10)
+        css_frame_menu_label.grid(row=1, column=0, padx=10, pady=10)
         
 
         # Add multiple input fields to input_frame
         input_labels = ["save_file", "website_description", "website_img", "feedback","each refine times"]
-        for i in range(1,6):
-            label = tk.Label(web_design_widgets['input_frame'], text=input_labels[i-1])
+        for i in range(2,7):
+            label = tk.Label(web_design_widgets['input_frame'], text=input_labels[i-2])
             entry = tk.Entry(web_design_widgets['input_frame'])
             label.grid(row=i, column=0, padx=10, pady=5)
             entry.grid(row=i, column=1, padx=10, pady=5)
@@ -120,34 +128,34 @@ class Application(tk.Tk):
         gen_img_var = tk.StringVar(value="Open")
         self.gen_img_var = gen_img_var
         gen_img_menu = ttk.OptionMenu(web_design_widgets["input_frame"], gen_img_var, gen_img_options[0], *gen_img_options,command=self.change_gen_img)
-        gen_img_menu.grid(row=6, column=1, padx=10, pady=10)
+        gen_img_menu.grid(row=7, column=1, padx=10, pady=10)
         gen_img_menu_label = tk.Label(web_design_widgets["input_frame"], text="Gen IMG:")
-        gen_img_menu_label.grid(row=6, column=0, padx=10, pady=10)
+        gen_img_menu_label.grid(row=7, column=0, padx=10, pady=10)
         
 
         # Animation Label
         label = tk.Label(web_design_widgets["input_frame"], text="🤖 Status: ")
-        label.grid(row=7, column=0, padx=10, pady=10)
+        label.grid(row=8, column=0, padx=10, pady=10)
         self.animation_label = tk.Label(web_design_widgets["input_frame"], text="💡 idle")
-        self.animation_label.grid(row=7, column=1, columnspan=2, padx=10, pady=10)
+        self.animation_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
         self.animation_idx = 0
 
         # cost label
         label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Token Cost: ")
-        label.grid(row=8, column=0, padx=10, pady=10)
+        label.grid(row=9, column=0, padx=10, pady=10)
         self.token_cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.token_cost_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
+        self.token_cost_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)
 
         label = tk.Label(web_design_widgets["input_frame"], text="💰 Total IMG Cost: ")
-        label.grid(row=9, column=0, padx=10, pady=10)
+        label.grid(row=10, column=0, padx=10, pady=10)
         self.token_img_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.token_img_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)        
+        self.token_img_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)        
 
 
         label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
-        label.grid(row=10, column=0, padx=10, pady=10)
+        label.grid(row=11, column=0, padx=10, pady=10)
         self.time_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="⏱️ 0 s")
-        self.time_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)
+        self.time_label.grid(row=11, column=1, columnspan=2, padx=10, pady=10)
 
         plan_button = tk.Button(self.scrollable_frame, text="Plan", command=self.plan)
         auto_gen_button = tk.Button(self.scrollable_frame, text="Auto Generate", command=self.auto_gen_website)
@@ -195,6 +203,10 @@ class Application(tk.Tk):
             self.model_menu.set_menu(self.model_options[0],*self.model_options)
             self.display_web_design_mode()
         print(f"Switched to {mode}")
+     
+    def change_language(self,language):
+        self.agent.language = language
+        print(f"Change language to: {language}")
     
     def clear_widgets(self):
         for widget in self.scrollable_frame.winfo_children():

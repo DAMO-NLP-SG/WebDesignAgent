@@ -37,6 +37,12 @@ It supports:
 ### Create a New Page
 [add_new_page.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/1fbea13f-dd2f-43a3-8a67-9297fcb733ff)
 
+
+## Update
+2024.6.26  We push the first version!
+2024.6.27  We support generating Chinese Website!
+
+
 ## Quick Start
 ```bash
 git clone https://github.com/DAMO-NLP-SG/WebDesignAgent.git
