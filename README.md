@@ -13,17 +13,21 @@
 </p>
 
 
-## Description
-A powerful agent can help you with web design and related code generation.
+## Descriptions
+Unleash the full potential of your web design dreams with our cutting-edge AI-powered agent! 
 
-It supports:
-1. Generate corresponding websites based on text descriptions.
-2. Generate corresponding websites based on the corresponding images.
-3. Generate websites based on both text and images simultaneously.
-4. Code modifications can be made based on user feedback.
-5. Use visual models for React.
-6. Support the generation of multiple web pages, and web pages can be connected and redirected between them.
-7. Users can manually add or delete web pages and modify their content.
+### User Input
+It supports building webpages with text and images.
+1. **Text-to-Website Magic**: Transform your textual descriptions into fully functional, beautifully designed websites effortlessly.
+2. **Image-to-Website Conversion**: Bring your visual ideas to reality by generating websites from your images.
+3. **Hybrid Design Capabilities**: Seamlessly combine text and images to create stunning, cohesive web designs.
+
+### Key Features
+1. **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
+2. **User-specifc Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
+3. **Iterative Refinement**: Make precise alterations to your website’s code based on your invaluable feedback.
+4. **Visual React**: Leverage strong visual models to refine and enhance the webpage layout autonomously.
+
 
 ## Demo Video
 ### Auto Generation
