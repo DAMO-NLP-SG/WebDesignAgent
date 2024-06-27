@@ -14,11 +14,11 @@
 
 ##  📰 Update
 
-* **[2024.6.27]** WebDesignAgent is now support building Chinese Website!
+* **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
   
-## 🚀 What is WebDesignAgnet
-Unleash the full potential of your web design dreams with our cutting-edge AI-powered agent! 
+## 😊 What is WebDesignAgnet
+WebDesignAgnet is an autonomous agent that can help you build a series of websites with one sentence!
 
 ### User Input
 It supports building webpages with text and images.
@@ -28,7 +28,7 @@ It supports building webpages with text and images.
 
 ### Key Features
 1. **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
-2. **User-specifc Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
+2. **User-specific Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
 3. **Iterative Refinement**: Make precise alterations to your website’s code based on your invaluable feedback.
 4. **Visual React**: Leverage strong visual models to refine and enhance the webpage layout autonomously.
 
@@ -47,7 +47,7 @@ It supports building webpages with text and images.
 
 
 
-## Requirements and Installation
+## 🛠️ Requirements and Installation
 ```bash
 git clone https://github.com/DAMO-NLP-SG/WebDesignAgent.git
 cd WebDesignAgent
@@ -75,20 +75,8 @@ OPENAI_PROXY_URL : ""
 IMG_GEN_TYPE : "dalle3" # "dalle3"
 ```
 
-
-### Run in terminal
-Our method support three ways to generate a website: 
-
-1. Depend on a description of a website.
-2. Depend on a img of a website.
-3. Both on them.
-
-
-Set save path and img(img path) or text
-```bash
-python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  --refine_times 2
-```
-
+## 🚀 Quick Start
+We offer two modes for using WebDesignAgent: terminal-based and GUI-based. We recommend trying the GUI mode for its user-friendly interface and greater control.
 
 
 ### Run in GUI
@@ -98,7 +86,12 @@ python gui.py
 Then you will enter the gui as follows:
 <img alt="gui" src="assets/gui.png">
 
-You can select the mode between chat and web design, and choose the model.
+For a quick usage of our WebDesignAgent, please following these steps:
+1. Config `Select Mode` to be `Web Design Mode`.
+2. Config `Select Model` according to your APIs. In our demos, we primarily use `gpt-4o`.
+3. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
+4. Set `save_file`, which saves your generated websites.
+5. Input your request either in `website_description` or 
 
 #### Auto Generation
 If you want to auto generate a website. You can follow the following steps to proceed：
@@ -120,7 +113,22 @@ If you want to generate a website more human control. You can follow the followi
 5. click create website.
 6. enter feedback if needed and click refine website.
 
-## Cost
+### Run in terminal
+Our method support three ways to generate a website: 
+
+1. Depend on a description of a website.
+2. Depend on a img of a website.
+3. Both on them.
+
+
+Set save path and img(img path) or text
+```bash
+python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  --refine_times 2
+```
+
+
+
+## 💰Cost
 | Web Name  | Page Numbers | Refine Times | Image Generation | Total Token Cost | Total Image Cost | Total Time Cost |
 |-----------|--------------|--------------|------------------|------------------|------------------|-----------------|
 | shopping  | 8            | 2            | open             | $1.14            | $1.48            | 661s            |
