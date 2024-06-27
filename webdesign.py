@@ -435,6 +435,8 @@ class WebDesignAgent(BaseAgent):
 
 
     async def add_img_async(self,img_content):
+        if "src" not in img_content or "alt" not in img_content:
+            return
         src = img_content["src"]
         alt = img_content["alt"]
         if not src.startswith("https://placehold.co"):
