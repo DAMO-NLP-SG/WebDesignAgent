@@ -24,8 +24,8 @@ class Application(tk.Tk):
         self.title_frame = tk.Frame(self)
         self.title_frame.grid(row=0, column=0, padx=10, pady=10)
         # Dropdown menu to select mode
-        self.mode_var = tk.StringVar(value="Chat Mode")
-        self.mode_options = ["Chat Mode", "Web Design Mode"]
+        self.mode_var = tk.StringVar(value="Web Design Mode")
+        self.mode_options = [ "Web Design Mode", "Chat Mode"]
         self.mode_menu = ttk.OptionMenu(self.title_frame, self.mode_var, self.mode_options[0], *self.mode_options, command=self.switch_mode)
         self.mode_menu.grid(row=0, column=1, padx=10, pady=10)
         self.mode_menu_label = tk.Label(self.title_frame, text="Select Mode:")
