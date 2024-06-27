@@ -61,12 +61,15 @@ web_type : "chrome" # "chrome" or "firefox" or "edge"
 LLM_TYPE : "openai" # openai
 
 # LLM settings
-# openai settings
+# azure openai settings
 is_auzer : True # set True if you use azure api
 AZURE_OPENAI_ENDPOINT : ""
 AZURE_OPENAI_KEY : ""
 AZURE_OPENAI_API_VERSION : "" # can be blank
+AZURE_OPENAI_DALLE_ENDPOINT : ""
+AZURE_OPENAI_DALLE_KEY : ""
 
+# openai settings
 OPENAI_API_KEY : ""
 OPENAI_PROXY_URL : ""
 
