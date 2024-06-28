@@ -13,6 +13,12 @@ WebDesignAgent : A web design agent that can help you easily build a website.
 <a><img src="https://hits.dwyl.com/DAMO-NLP-SG/WebDesignAgent.svg?style=flat-square&show=unique"></a>
 </p>
 
+# Generation Example Video
+### Rely on website images（https://www.heishenhua.com/） and descriptions (黑神话八戒的官方网站，要求有游戏的相关介绍以及介绍游戏科学的发展历史，同时要提供猪八戒智能ai对话功能。游戏科学的成名作是黑神话悟空，它刚获得了2024TGA年度最佳游戏) to generate
+[黑八戒.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/f69b1992-4ef0-47e9-91ce-b0b696b581d0)
+
+
+
 ##  📰 Update
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
