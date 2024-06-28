@@ -1,9 +1,15 @@
 from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
 from abc import abstractmethod
+from abc import abstractmethod
 import yaml
+import os
 import os
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
+
+for key, value in config.items():
+    os.environ[key] = str(value)
+
 
 for key, value in config.items():
     os.environ[key] = str(value)
@@ -166,14 +172,20 @@ class Dalle3_llm(base_img_llm):
                 self.client = AzureOpenAI(
                     azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
                     api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
                 self.async_client = AsyncAzureOpenAI(
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
                     api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
             else:
                 self.client = AzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
                     api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
@@ -278,6 +290,24 @@ def get_llm():
     else:
         raise ValueError(f"Unknown image generator type: {img_gen_type}")
     return llm, img_generator
+    
+
+
+
+
+if __name__ == "__main__":
+    llm , delle = get_llm()
+    print("success")
+    prompt = """
+黑暗风格的猪八戒
+    """
+    img = delle.get_img(prompt,save_path="/Users/jianghuyihei/code/black_myth_pic/bajie.png")
+
+
+
+
+
+
     
 
 
