@@ -4,10 +4,12 @@ from abc import abstractmethod, ABC
 import yaml
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
+import time
 import httpx
 import logging
 import os
 import json
+import asyncio
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -22,10 +24,6 @@ def before_retry_fn(retry_state):
     if retry_state.attempt_number > 1:
         logging.info(f"Retrying API call. Attempt #{retry_state.attempt_number}, f{retry_state}")
 token_log_file = os.environ.get("TOKEN_LOG_FILE", "logs/token.json")
-
-model = config.get("LLM_MODEL_NAME", "")
-if model == "":
-    raise ValueError("LLM_MODEL_NAME is not set")
 
 class base_llm:
     def __init__(self) -> None:
@@ -94,12 +92,10 @@ class openai_llm(base_llm):
 
     @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
     def response(self,messages,**kwargs):
-
-        
         try:
             response = self.client.chat.completions.create(
                 # gpt-35-turbo-16k  gpt4-turbo-2024-04-29 gpt-4o-2
-                model=config.get("LLM_MODEL_NAME", "gpt-35-turbo-16k"),
+                model=kwargs.get("model", "gpt-35-turbo-16k"),
                 messages=messages,
                 n = kwargs.get("n", 1),
                 temperature= kwargs.get("temperature", 0.7),
@@ -115,7 +111,7 @@ class openai_llm(base_llm):
                 json.dump({},f)
         with open(token_log_file, "r") as f:
             tokens = json.load(f)
-            current_model = config.get("LLM_MODEL_NAME", "gpt-35-turbo-16k")
+            current_model = kwargs.get("model", "gpt-35-turbo-16k")
             if current_model not in tokens:
                 tokens[current_model] = [0,0]
             tokens[current_model][0] += response.usage.prompt_tokens
@@ -130,7 +126,7 @@ class openai_llm(base_llm):
         try:
             response = await self.async_client.chat.completions.create(
                 # gpt-35-turbo-16k  gpt4-turbo-2024-04-29 gpt-4o-2
-                model=config.get("LLM_MODEL_NAME", "gpt-35-turbo-16k"),
+                model=kwargs.get("model", "gpt-35-turbo-16k"),
                 messages=messages,
                 n = kwargs.get("n", 1),
                 temperature= kwargs.get("temperature", 0.7),
@@ -146,7 +142,7 @@ class openai_llm(base_llm):
                 json.dump({},f)
         with open(token_log_file, "r") as f:
             tokens = json.load(f)
-            current_model = config.get("LLM_MODEL_NAME", "gpt-35-turbo-16k")
+            current_model = kwargs.get("model", "gpt-35-turbo-16k")
             if current_model not in tokens:
                 tokens[current_model] = [0,0]
             tokens[current_model][0] += response.usage.prompt_tokens
@@ -163,8 +159,8 @@ class Dalle3_llm(base_img_llm):
         is_azure = config.get("is_azure", True)
 
         if is_azure:
-            os.environ["AZURE_OPENAI_DALLE_ENDPOINT"] = config.get('AZURE_OPENAI_DALLE_ENDPOINT', '')
-            os.environ["AZURE_OPENAI_DALLE_KEY"] = config.get('AZURE_OPENAI_DALLE_KEY', '')
+            os.environ["AZURE_OPENAI_ENDPOINT"] = config.get('AZURE_OPENAI_ENDPOINT', '')
+            os.environ["AZURE_OPENAI_KEY"] = config.get('AZURE_OPENAI_KEY', '')
             os.environ["AZURE_OPENAI_API_VERSION"] = config.get('AZURE_OPENAI_API_VERSION', '')
 
             if "AZURE_OPENAI_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_ENDPOINT"] == "":
@@ -174,22 +170,22 @@ class Dalle3_llm(base_img_llm):
             if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
                 self.client = AzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
                     )
                 self.async_client = AsyncAzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
                     )
             else:
                 self.client = AzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
                     )
                 self.async_client = AsyncAzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
+                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
                     )
         else:
             os.environ["OPENAI_API_KEY"] = config.get('OPENAI_API_KEY', '')
