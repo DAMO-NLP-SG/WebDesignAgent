@@ -14,7 +14,7 @@ WebDesignAgent : A web design agent that can help you easily build a website.
 </p>
 
 ##  📰 Update
-* **[2024.6.28]** WebDesignAgent can build websites with your provided images!
+* **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
   
