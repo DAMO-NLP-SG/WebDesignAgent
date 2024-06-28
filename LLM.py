@@ -1,15 +1,16 @@
 from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
-from utils import get_openai_url
-from abc import abstractmethod, ABC
+from abc import abstractmethod
 import yaml
+import os
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
-import time
+
+for key, value in config.items():
+    os.environ[key] = str(value)
+
 import httpx
 import logging
-import os
 import json
-import asyncio
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -50,10 +51,6 @@ class openai_llm(base_llm):
         is_azure = config.get("is_azure", True)
 
         if is_azure:
-            os.environ["AZURE_OPENAI_ENDPOINT"] = config.get('AZURE_OPENAI_ENDPOINT', '')
-            os.environ["AZURE_OPENAI_KEY"] = config.get('AZURE_OPENAI_KEY', '')
-            os.environ["AZURE_OPENAI_API_VERSION"] = config.get('AZURE_OPENAI_API_VERSION', '')
-
             if "AZURE_OPENAI_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_ENDPOINT"] == "":
                 raise ValueError("AZURE_OPENAI_ENDPOINT is not set")
             if "AZURE_OPENAI_KEY" not in os.environ or os.environ["AZURE_OPENAI_KEY"] == "":
@@ -159,33 +156,31 @@ class Dalle3_llm(base_img_llm):
         is_azure = config.get("is_azure", True)
 
         if is_azure:
-            os.environ["AZURE_OPENAI_ENDPOINT"] = config.get('AZURE_OPENAI_ENDPOINT', '')
-            os.environ["AZURE_OPENAI_KEY"] = config.get('AZURE_OPENAI_KEY', '')
-            os.environ["AZURE_OPENAI_API_VERSION"] = config.get('AZURE_OPENAI_API_VERSION', '')
+            if "AZURE_OPENAI_DALLE_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_DALLE_ENDPOINT"] == "":
+                raise ValueError("AZURE_OPENAI_DALLE_ENDPOINT is not set")
+            if "AZURE_OPENAI_DALLE_KEY" not in os.environ or os.environ["AZURE_OPENAI_DALLE_KEY"] == "":
+                raise ValueError("AZURE_OPENAI_DALLE_KEY is not set")
 
-            if "AZURE_OPENAI_ENDPOINT" not in os.environ or os.environ["AZURE_OPENAI_ENDPOINT"] == "":
-                raise ValueError("AZURE_OPENAI_ENDPOINT is not set")
-            if "AZURE_OPENAI_KEY" not in os.environ or os.environ["AZURE_OPENAI_KEY"] == "":
-                raise ValueError("AZURE_OPENAI_KEY is not set")
+
             if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
                 self.client = AzureOpenAI(
-                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
                 self.async_client = AsyncAzureOpenAI(
-                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
             else:
                 self.client = AzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_KEY"]
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
                 self.async_client = AsyncAzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_KEY"]
+                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
         else:
             os.environ["OPENAI_API_KEY"] = config.get('OPENAI_API_KEY', '')
@@ -289,17 +284,13 @@ def get_llm():
 
 
 if __name__ == "__main__":
+    llm , delle = get_llm()
+    print("success")
     prompt = """
-hello, please tell me 1 + 1 = ?
-"""
-    messages = [
-        {"role":"user","content":[
-            {"type":"text","text":prompt},
-    ]},
-    ]
-    llm , _= get_llm()
-    response = llm.response(messages,model = "gpt4o-0513")
-    print(response)
+黑暗风格的猪八戒
+    """
+    img = delle.get_img(prompt,save_path="/Users/jianghuyihei/code/black_myth_pic/bajie.png")
+
 
 
 
