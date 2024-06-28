@@ -24,8 +24,8 @@ WebDesignAgnet is an autonomous agent that can help you build a series of websit
 ### User Input
 It supports building webpages with text and images.
 1. **Text → Website**: Transform your textual descriptions into fully functional, beautifully designed websites effortlessly.
-2.**Images → Website**: Simply upload your images, and watch as they are seamlessly integrated into stunning websites.
-3. **Visual Clues → Website**: Bring your visual layout to reality by generating websites from your images.
+2. **Images → Website**: Simply upload your images, and watch as they are seamlessly integrated into stunning websites.
+3. **Visual Clues → Website**: Bring your visual layout to the websites.
 4. **Hybrid Design**: Seamlessly combine text, images and other visual clues to create stunning, cohesive web designs.
 
 ### Key Features
