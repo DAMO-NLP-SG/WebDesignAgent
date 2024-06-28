@@ -32,7 +32,7 @@ Your task is to build a new web page by imitating the structure and layout of th
 - It does not need to be consistent with the reference web page, just learn from its excellent points.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
-- Try to make the page appear rich and not boring. 
+- Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
 - Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
@@ -54,7 +54,7 @@ The page information is as follows:{page_info}(The file names of the jump pages 
 Your task is to build a single page app according to the page information.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
-- Try to make the page appear rich and not boring. 
+- Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
 - Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on.

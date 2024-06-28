@@ -51,7 +51,7 @@ original_page_example = """
     },
     "practice_features": "搜索结果显示，分页，交互式排序选项。",
     "additional_features": "搜索结果的过滤器，包括类别，日期范围和价格范围。用户输入时实时搜索建议。",
-    "page_style": "简洁现代的设计，注重可用性和可读性。",
+    "page_style": "简洁现代的设计，背景颜色丰富，注重可用性和可读性。",
     "is_main_page": false
     }
 """
@@ -192,7 +192,7 @@ refine_page_local_img_prompt = """
 {local_img_storage}
 
 页面是:
-{page_info}(请注意button和link的跳转页面的文件名是它们的链接地址)
+{page_info}(请注意button和link的跳转页面的文件名是它们的链接地址,同时不要修改页面的html_name)
 
 {feedback}
 
@@ -209,7 +209,7 @@ page_complete_prompt = """
 {other_pages_info}
 
 当前页面信息如下:
-{page_info}(请注意button和link的跳转页面的文件名是它们的链接地址)
+{page_info}(请注意button和link的跳转页面的文件名是它们的链接地址,同时不要修改页面的html_name)
 
 {feedback}
 
@@ -236,7 +236,7 @@ page_complete_prompt_local_img = """
 {other_pages_info}
 
 当前页面信息如下:
-{page_info}(请注意button和link的跳转页面的文件名是它们的链接地址)
+{page_info}(请注意button和link的跳转页面的文件名是它们的链接地址,同时不要修改页面的html_name)
 
 {feedback}
 

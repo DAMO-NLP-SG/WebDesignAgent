@@ -462,7 +462,7 @@ class WebDesignAgent(BaseAgent):
             alt = img_content["alt"]
         except:
             return 
-        if not src.startswith("https://placehold.co"):
+        if os.path.exists(os.path.join(self.save_file,src)):
             return
         img = await self.get_img_async(alt)
         self.save_img(img,img_content)
@@ -483,7 +483,7 @@ class WebDesignAgent(BaseAgent):
                 alt = image["alt"]
             except:
                 continue
-            if not src.startswith("https://placehold.co"):
+            if os.path.exists(os.path.join(self.save_file,src)):
                 continue
             img = self.get_img(alt)
             image = self.save_img(img,image)

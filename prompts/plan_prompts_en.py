@@ -51,7 +51,7 @@ original_page_example = """
     },
     "practice_features": "Search result display, pagination, interactive sorting options.",
     "additional_features": "Filters for search results including categories, date range, and price range. Real-time search suggestions as the user types.",
-    "page_style": "Clean and modern design with a focus on usability and readability.",
+    "page_style": "Simple and modern design with rich background colors, emphasizing usability and readability.",
     "is_main_page": false
     }
 """
@@ -170,7 +170,7 @@ For example:
 You can enrich the page details by enriching the description and other methods(For example, adding descriptions of layout, adding web page effects, adding practical features, adding buttons and so on)).
 
 The page is:
-{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses)
+{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses and do not change the html_name)
 
 {feedback}
 The output format should be as follows:
@@ -192,7 +192,7 @@ The following are local image information that you may need. If you need to add 
 {local_img_storage}
 
 The page is:
-{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses)
+{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses and do not change the html_name)
 
 {feedback}
 
@@ -209,7 +209,7 @@ The other page information is as follows:
 {other_pages_info}
 
 The current page information is as follows:
-{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses)
+{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses and do not change the html_name)
 
 {feedback}
 
@@ -235,7 +235,7 @@ The other page information is as follows:
 {other_pages_info}
 
 The current page information is as follows:
-{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses)
+{page_info}(Note that the file names of the jump pages of the bottom and link are their link addresses and do not change the html_name)
 
 {feedback}
 

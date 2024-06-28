@@ -38,7 +38,7 @@ Your goal is to modify the webpage code of the second img by imitating the layou
 - It does not need to be consistent with the reference web page, just learn from its excellent points.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later. For images that already exist on the web page, do not change their address.
-- Try to make the page appear rich and not boring. 
+- Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
 - Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on. 
@@ -67,12 +67,13 @@ The page information is as follows:{page_info}(The file names of the jump pages 
 Your task is to modify the code of the current webpage to update it to meet the page information requirements and make the page more beautiful and harmonious.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later. For images that already exist on the web page, do not change their address.
-- Try to make the page appear rich and not boring. 
+- Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
-- Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on.
+- Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on. 
 - Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
 - Enhanced Functionality and Practicality: Think about how to improve the functionality and practicality of the page by modifying the code.
+- You need to learn the good points of the reference webpage and adopt them into your web design, not just copy them.
 - Please analyze the current page's header, navigation, content arrangement, sidebars, footers, visual elements, layout, call to action, responsiveness, and any other features, and analyze how to optimize these to make the layout more beautiful and harmonious.
 - Please think about how to modify the code to make the page meet our needs (such as adding images, adding buttons, increasing animation effectsincreasing animation effects or add some text content, detailed content etc.).
 - If you want to add images through constants in js, please define constants in the following way:
@@ -93,11 +94,17 @@ The image above is a web page screenshot that you have already built.
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
 
 Your task is to modify your code based on user feedback to meet user needs.
+- Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later. For images that already exist on the web page, do not change their address.
-- You must pay close attention to user feedback and try to modify your code based on user feedback so that the final effect meets user needs.
-- You can add js or modify the css layout, or add elements to meet user feedback.
+- Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
+- Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
+- Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on. 
 - Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
+- Enhanced Functionality and Practicality: Think about how to improve the functionality and practicality of the page by modifying the code.
+- You need to learn the good points of the reference webpage and adopt them into your web design, not just copy them.
+- Please analyze the current page's header, navigation, content arrangement, sidebars, footers, visual elements, layout, call to action, responsiveness, and any other features, and analyze how to optimize these to make the layout more beautiful and harmonious.
+- Please think about how to modify the code to make the page meet our needs (such as adding images, adding buttons, increasing animation effectsincreasing animation effects or add some text content, detailed content etc.).
 - If you want to add images through constants in js, please define constants in the following way:
 const imageInfo = {{
 imgsrc: "search.png",
