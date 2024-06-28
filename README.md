@@ -1,15 +1,16 @@
 <p align="center">
-<a href=""><img src="assets/logo.jpg"" width="150px"></a> 
+<a href=""><img src="assets/logo.jpg"" width="200px"></a> 
 </p>
-<p align="center"">
-<b>WebDesignAgent : A web design agent that can help you easily build a website.</b>
-</p>
+
+<h3 align="center">
+WebDesignAgent : A web design agent that can help you easily build a website.
+</h3>
+
 <p align="center">
-<a href="https://opensource.org/license/apache-2-0"><img src="https://img.shields.io/badge/License-Alpaca-blue.svg"></a>
+<a href="https://opensource.org/license/apache-2-0"><img src="https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg"></a>
 <a href="https://github.com/DAMO-NLP-SG"><img src="https://img.shields.io/badge/Institution-DAMO-red"></a>
 <a href="[https://github.com/DAMO-NLP-SG](https://github.com/DAMO-NLP-SG/WebDesignAgent/issues)"><img src="https://img.shields.io/bitbucket/issues/DAMO-NLP-SG/WebDesignAgent"></a>
 <a><img src="https://hits.dwyl.com/DAMO-NLP-SG/WebDesignAgent.svg?style=flat-square&show=unique"></a>
-  
 </p>
 
 ##  📰 Update
@@ -22,9 +23,10 @@ WebDesignAgnet is an autonomous agent that can help you build a series of websit
 
 ### User Input
 It supports building webpages with text and images.
-1. **Text-to-Website Magic**: Transform your textual descriptions into fully functional, beautifully designed websites effortlessly.
-2. **Image-to-Website Conversion**: Bring your visual ideas to reality by generating websites from your images.
-3. **Hybrid Design Capabilities**: Seamlessly combine text and images to create stunning, cohesive web designs.
+1. **Text → Website**: Transform your textual descriptions into fully functional, beautifully designed websites effortlessly.
+2.**Images → Website**: Simply upload your images, and watch as they are seamlessly integrated into stunning websites.
+3. **Visual Clues → Website**: Bring your visual layout to reality by generating websites from your images.
+4. **Hybrid Design**: Seamlessly combine text, images and other visual clues to create stunning, cohesive web designs.
 
 ### Key Features
 1. **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
