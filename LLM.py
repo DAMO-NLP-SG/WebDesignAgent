@@ -1,19 +1,11 @@
 from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
 from abc import abstractmethod
-from abc import abstractmethod
 import yaml
-import os
 import os
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
-
 for key, value in config.items():
     os.environ[key] = str(value)
-
-
-for key, value in config.items():
-    os.environ[key] = str(value)
-
 import httpx
 import logging
 import json
@@ -25,7 +17,7 @@ from tenacity import (
 import requests
 from PIL import Image
 from io import BytesIO
-from utils import wrap_func,fetch_image
+from utils import fetch_image
 
 def before_retry_fn(retry_state):
     if retry_state.attempt_number > 1:
@@ -63,12 +55,12 @@ class openai_llm(base_llm):
                 raise ValueError("AZURE_OPENAI_KEY is not set")
             if "AZURE_OPENAI_API_VERSION" not in os.environ or os.environ["AZURE_OPENAI_API_VERSION"] == "":
                 self.client = AzureOpenAI(
-                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
                     azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
                     )
                 self.async_client = AsyncAzureOpenAI(
-                    api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
                     azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+                    api_key=os.environ["AZURE_OPENAI_KEY"]
                     )
             else:
                 self.client = AzureOpenAI(
@@ -172,20 +164,14 @@ class Dalle3_llm(base_img_llm):
                 self.client = AzureOpenAI(
                     azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
                     api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
                 self.async_client = AsyncAzureOpenAI(
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
                     api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
             else:
                 self.client = AzureOpenAI(
                     api_version=os.environ.get("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-                    azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
-                    api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     azure_endpoint=os.environ["AZURE_OPENAI_DALLE_ENDPOINT"],
                     api_key=os.environ["AZURE_OPENAI_DALLE_KEY"]
                     )
@@ -301,25 +287,7 @@ if __name__ == "__main__":
     prompt = """
 黑暗风格的猪八戒
     """
-    img = delle.get_img(prompt,save_path="/Users/jianghuyihei/code/black_myth_pic/bajie.png")
-
-
-
-
-
-
-    
-
-
-
-
-if __name__ == "__main__":
-    llm , delle = get_llm()
-    print("success")
-    prompt = """
-猪八戒
-    """
-    img = delle.get_img(prompt,save_path="/Users/jianghuyihei/code/black_myth_pic/bajie.png")
+    img = delle.get_img(prompt,save_path="")
 
 
 
