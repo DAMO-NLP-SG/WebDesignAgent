@@ -91,6 +91,7 @@ class Webserver:
                 # 使用file协议打开本地HTML文件
                 print(f"Opening local HTML file {html_path}")
                 self.driver.get("file:///" + html_path.replace("\\", "/"))
+                time.sleep(5)
             else:
                 print(f"Opening website {local_html_path}")
                 self.driver.get(local_html_path)
@@ -102,7 +103,7 @@ class Webserver:
                 except Exception as e:
                     print("接受 cookies 按钮未找到", e)
             # 等待页面加载完成，根据实际情况调整等待时间
-            time.sleep(15)
+                time.sleep(15)
             # 截图并保存
             if self.web_type in ["chrome","firefox","edge"]:
                 try:
