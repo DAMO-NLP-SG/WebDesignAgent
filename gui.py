@@ -35,11 +35,8 @@ class Application(tk.Tk):
         self.css_frame_var = tk.StringVar(value="Tailwind")
         self.agent.css_frame = "Tailwind"
 
-        self.gen_img_var = tk.StringVar(value="Open")
-        self.agent.gen_img = True
-
         self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
-        self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
+        self.web_design_model_options = ["gpt4o-0513","gpt-4o"]
 
         self.model_var = tk.StringVar(value=self.web_design_model_options[0])
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)
@@ -132,6 +129,7 @@ class Application(tk.Tk):
 
         gen_img_options = [ "Gen","Local","None"]
         gen_img_var = tk.StringVar(value="Gen")
+        self.agent.gen_img = gen_img_options[0]
         self.gen_img_var = gen_img_var
         gen_img_menu = ttk.OptionMenu(web_design_widgets["input_frame"], gen_img_var, gen_img_options[0], *gen_img_options,command=self.change_gen_img)
         gen_img_menu.grid(row=8, column=1, padx=10, pady=10)
@@ -230,9 +228,13 @@ class Application(tk.Tk):
         self.is_animating = True
         threading.Thread(target=self.animate, args=(["🤔💭 Uploading now", "🧐💭 Uploading now.", "😅💭 Uploading now..", "🤯💭 Uploading now..."],)).start()
         def long_operation():
-            self.agent.load_local_img_storage()
-            self.is_animating = False
-            self.update_cost()
+            try:
+                self.agent.load_local_img_storage()
+                self.is_animating = False
+                self.update_cost()
+            except Exception as e:
+                messagebox.showerror("Error", f"Error occurred: {e}")
+                self.is_animating = False
         self.begin_time = time.time()
         threading.Thread(target=long_operation).start()
         print(f"Upload local_img_storage to: {self.agent.local_img_storage_path}")
@@ -308,11 +310,15 @@ class Application(tk.Tk):
             messagebox.showerror("Error", "Please wait for the current operation to finish")
             return
         def long_operation():
-            self.pages = self.agent.plan()
-            self.is_animating = False
-            self.current_page = 0
-            self.display_table_page()
-            self.update_cost()
+            try:
+                self.pages = self.agent.plan()
+                self.is_animating = False
+                self.current_page = 0
+                self.display_table_page()
+                self.update_cost()
+            except Exception as e:
+                messagebox.showerror("Error", f"Error occurred: {e}")
+                self.is_animating = False
 
         for widget in self.web_design_widgets['output_image_frame'].winfo_children():
             widget.destroy()
@@ -460,19 +466,23 @@ class Application(tk.Tk):
             self.is_animating = True
             threading.Thread(target=self.animate, args=(animation_sequence,)).start()
             def long_operation():
-                page = self.pages[self.current_page]
-                html_name = page["html_name"]
-                html_path = os.path.join(self.agent.save_file, html_name)
-                if not os.path.exists(html_path):
-                    messagebox.showerror("Error", "Please create the website first")
-                    return
-                feedback = self.web_design_widgets["input_entries"][3].get()
-                self.pages[self.current_page] = self.agent.refine_page(page,feedback)
-                with open(os.path.join(self.agent.save_file, "pages.json"), "w",encoding='utf-8') as f:
-                    json.dump(self.pages, f)
-                self.is_animating = False
-                self.display_table_page()
-                self.update_cost()
+                try:
+                    page = self.pages[self.current_page]
+                    html_name = page["html_name"]
+                    html_path = os.path.join(self.agent.save_file, html_name)
+                    if not os.path.exists(html_path):
+                        messagebox.showerror("Error", "Please create the website first")
+                        return
+                    feedback = self.web_design_widgets["input_entries"][3].get()
+                    self.pages[self.current_page] = self.agent.refine_page(page,feedback)
+                    with open(os.path.join(self.agent.save_file, "pages.json"), "w",encoding='utf-8') as f:
+                        json.dump(self.pages, f)
+                    self.is_animating = False
+                    self.display_table_page()
+                    self.update_cost()
+                except Exception as e:
+                    messagebox.showerror("Error", f"Error occurred: {e}")
+                    self.is_animating = False
             self.begin_time = time.time()
             threading.Thread(target=long_operation).start()
 
@@ -485,12 +495,16 @@ class Application(tk.Tk):
         animation_sequence = ["🤔💭 Completing now", "🧐💭 Completing now.", "😅💭 Completing now..", "🤯💭 Completing now..."]
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
-            self.pages = self.agent.complete_page(self.pages, self.current_page)
-            with open(os.path.join(self.agent.save_file, "pages.json"), "w",encoding='utf-8') as f:
-                json.dump(self.pages, f)
-            self.is_animating = False
-            self.display_table_page()
-            self.update_cost()
+            try:
+                self.pages = self.agent.complete_page(self.pages, self.current_page)
+                with open(os.path.join(self.agent.save_file, "pages.json"), "w",encoding='utf-8') as f:
+                    json.dump(self.pages, f)
+                self.is_animating = False
+                self.display_table_page()
+                self.update_cost()
+            except Exception as e:
+                messagebox.showerror("Error", f"Error occurred: {e}")
+                self.is_animating = False
         self.begin_time = time.time()
         threading.Thread(target=long_operation).start()
 
@@ -537,14 +551,18 @@ class Application(tk.Tk):
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
-            if not self.pages:
-                messagebox.showerror("Error", "Please plan the website first")
-                return
-            page = self.pages[self.current_page]
-            self.agent.write_original_website(page)
-            self.after(0, self.update_ui_after_refine_website)
-            self.is_animating = False
-            self.update_cost()
+            try:
+                if not self.pages:
+                    messagebox.showerror("Error", "Please plan the website first")
+                    return
+                page = self.pages[self.current_page]
+                self.agent.write_original_website(page)
+                self.after(0, self.update_ui_after_refine_website)
+                self.is_animating = False
+                self.update_cost()
+            except Exception as e:
+                messagebox.showerror("Error", f"Error occurred: {e}")
+                self.is_animating = False
 
         self.begin_time = time.time()
         threading.Thread(target=long_operation).start()
@@ -559,19 +577,23 @@ class Application(tk.Tk):
         self.read_input_entries()
 
         def long_operation():
-            self.agent.user_feedback = self.web_design_widgets["input_entries"][3].get()
-            page = self.pages[self.current_page]
-            html_name = page["html_name"]
-            html_path = os.path.join(self.agent.save_file, html_name)
-            if not os.path.exists(html_path):
-                messagebox.showerror("Error", "Please create the website first")
-                return
-            self.agent.refine(page)
-            
-            # Update UI on the main thread
-            self.after(0, self.update_ui_after_refine_website)
-            self.is_animating = False
-            self.update_cost()
+            try:
+                self.agent.user_feedback = self.web_design_widgets["input_entries"][3].get()
+                page = self.pages[self.current_page]
+                html_name = page["html_name"]
+                html_path = os.path.join(self.agent.save_file, html_name)
+                if not os.path.exists(html_path):
+                    messagebox.showerror("Error", "Please create the website first")
+                    return
+                self.agent.refine(page)
+                
+                # Update UI on the main thread
+                self.after(0, self.update_ui_after_refine_website)
+                self.is_animating = False
+                self.update_cost()
+            except Exception as e:
+                messagebox.showerror("Error", f"Error occurred: {e}")
+                self.is_animating = False
         self.begin_time = time.time()
         threading.Thread(target=long_operation).start()
 
@@ -623,16 +645,20 @@ class Application(tk.Tk):
         
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
-            self.begin_time = time.time()
-            if not self.pages:
-                self.pages = self.agent.plan()
-            self.update_cost()
-            need_create_pages = []
-            for page in self.pages:
-                html_name = page["html_name"]
-                html_path = os.path.join(self.agent.save_file, html_name)
-                if not os.path.exists(html_path) and page["description"]:
-                    need_create_pages.append(page)
+            try:
+                self.begin_time = time.time()
+                if not self.pages:
+                    self.pages = self.agent.plan()
+                self.update_cost()
+                need_create_pages = []
+                for page in self.pages:
+                    html_name = page["html_name"]
+                    html_path = os.path.join(self.agent.save_file, html_name)
+                    if not os.path.exists(html_path) and page["description"]:
+                        need_create_pages.append(page)
+            except Exception as e:
+                messagebox.showerror("Error", f"Error occurred: {e}")
+                self.is_animating = False
             
             asyncio.run(self.agent.deal_task_async(need_create_pages))
             self.update_cost()

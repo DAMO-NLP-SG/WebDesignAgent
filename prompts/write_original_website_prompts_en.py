@@ -12,15 +12,16 @@ img_task = """
 The above picture is a screenshot of the webpage we provide to you. 
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
 Your task is to build a single page app according to the screenshot and the page relationship.
-- Make sure the your create page looks exactly like the screenshot.
-- Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. Match the colors and sizes exactly.
+- Make sure the page you create is exactly the same as the screenshot.
+- Pay attention to the layout of the page, image distribution, image size, related text, buttons, links, etc. to be consistent with the screenshot.
+- Pay attention to the background color, text color, font size, font family, padding, margins, borders, etc. Exactly match the color and size to be consistent with the screenshot.
 - Use the exact text from the screenshot.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
 - Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
 - You must ensure that the page you generate is completely consistent with the page we provide(Layout, Format, Text, Content)!
-- You are encouraged to use more js to implement some operation functions to make the page more practical and interesting.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 text_img_task = """
@@ -45,7 +46,7 @@ height: 400,
 title: "Example image title",
 }}
 That is, be sure to use "imgsrc" to add the image address(try to use a local address, otherwise use a placeholder image from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
-- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 text_task = """
@@ -67,7 +68,7 @@ height: 400,
 title: "Example image title",
 }}
 That is, be sure to use "imgsrc" to add the image address(try to use a local address, otherwise use a placeholder image from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
-- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 # - Use the Tailwind CSS framework to style the page.

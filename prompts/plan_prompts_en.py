@@ -241,7 +241,7 @@ The current page information is as follows:
 
 Please complete and refine the information on this page based on the information on other pages and the known information on the current page (pay attention to the jump relationship between pages), and consider which pages need to be designed with buttons to jump to the current page
 
-The following are local image information that you may need. If you need to add an image, please select from the following images:
+The following are local image information that you may need. If you need to add an image, please select from the following images(Please select images based on their content, size and description, and decide the purpose of the images.):
 {local_img_storage}
 
 Your output should be in the following format:

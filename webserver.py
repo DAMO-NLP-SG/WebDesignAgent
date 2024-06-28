@@ -102,7 +102,7 @@ class Webserver:
                 except Exception as e:
                     print("接受 cookies 按钮未找到", e)
             # 等待页面加载完成，根据实际情况调整等待时间
-            time.sleep(5)
+            time.sleep(15)
             # 截图并保存
             if self.web_type in ["chrome","firefox","edge"]:
                 try:
@@ -153,5 +153,5 @@ class Webserver:
 
 if __name__ == "__main__":
     webserver = Webserver()
-    webserver.get_screenshot("http://www.grs.zju.edu.cn/","zju.png",is_local = False)
+    webserver.get_screenshot("https://tb.alicdn.com/","taobao.png",is_local = False)
     webserver.stop()

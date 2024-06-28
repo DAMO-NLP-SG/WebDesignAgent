@@ -2,20 +2,20 @@ def get_plan_prompt(text = None,img = None ,css_frame = None,feedback = "",langu
     if language == "en":
         from .plan_prompts_en import plan_output_format_prompt,original_page_template,plan_output_format_prompt_local_img,local_img_storage_page_template
         if img and text:
-            prompt = f"Your task is to design which pages we should create to design the website for task: {text};The above image is a reference website we have provided to you. Instead of designing the website according to the above image, you need to imitate the image and then design a new website based on your task."
+            prompt = f"Your task is to design which pages we should create to design the website for task: {text};The above image is a reference website we have provided to you. Instead of designing the website according to the above image, you need to imitate the image and then design a new website based on your task.Remember, you need to keep the style consistent between each web page, that is, describe the page_style in detail to ensure the consistency of style between pages (describe the commonality through a common style, and then describe the different styles of each page)"
         elif img:
-            prompt = "Your task is to design which pages we should create to design the website based on the website images I provided you."
+            prompt = "Your task is to design which pages we should create to design the website based on the website images I provided you.Remember, you need to keep the style consistent between each web page, that is, describe the page_style in detail to ensure the consistency of style between pages (describe the commonality through a common style, and then describe the different styles of each page)"
         else:
-            prompt = f"Your task is to design which pages we should create to design the website for task: {text};"
+            prompt = f"Your task is to design which pages we should create to design the website for task: {text};Remember, you need to keep the style consistent between each web page, that is, describe the page_style in detail to ensure the consistency of style between pages (describe the commonality through a common style, and then describe the different styles of each page)"
         feedback = f"The user's requirements on the website(Very important! You must pay extra attention to the content here and meet user's needs) is : {feedback}" if feedback else ""
     elif language == "zh":
         from .plan_prompts_zh import plan_output_format_prompt,original_page_template,plan_output_format_prompt_local_img,local_img_storage_page_template
         if img and text:
-            prompt = f"你的任务是确定我们需要创建哪些页面来设计该任务的网站：{text};上方的图片是我们提供的参考网站。你需要根据该图片进行模仿，但不是完全照搬，而是根据你需要完成的任务设计一个全新的网站。"
+            prompt = f"你的任务是确定我们需要创建哪些页面来设计该任务的网站：{text};上方的图片是我们提供的参考网站。你需要根据该图片进行模仿，但不是完全照搬，而是根据你需要完成的任务设计一个全新的网站。记住，你要保持各个网页之间的风格统一，即详细描述page_style来保证页面之间的风格一致（通过一段共性style描述共性，再描述各个页面的不同style）。"
         elif img:
-            prompt = "你的任务是确定我们需要创建哪些页面来设计基于我提供的网站图片的网站。(需要完全根据图片设计，尽量做到一致)"
+            prompt = "你的任务是确定我们需要创建哪些页面来设计基于我提供的网站图片的网站。(需要完全根据图片设计，尽量做到一致)。记住，你要保持各个网页之间的风格统一，即详细描述page_style来保证页面之间的风格一致（通过一段共性style描述共性，再描述各个页面的不同style）"
         else:
-            prompt = f"你的任务是确定我们需要创建哪些页面来设计该任务的网站：{text};"
+            prompt = f"你的任务是确定我们需要创建哪些页面来设计该任务的网站：{text};记住，你要保持各个网页之间的风格统一，即详细描述page_style来保证页面之间的风格一致（通过一段共性style描述共性，再描述各个页面的不同style）"
         feedback = f"用户对网站的需求(非常重要！你必须特别注意这里的内容，并满足用户的需求)是：{feedback}" if feedback else ""
     if local_img_storage:
         prompt += plan_output_format_prompt_local_img.format(local_img_storage = local_img_storage,page_template = local_img_storage_page_template)

@@ -279,9 +279,9 @@ if __name__ == "__main__":
     llm , delle = get_llm()
     print("success")
     prompt = """
-黑暗风格的猪八戒
+猪八戒(猪头人身，手拿九齿钉耙，穿和尚衣服，肥头大耳),在跟如来佛祖（金光佛像，装严肃膜）大战，背景是西方极乐世界，就是天空，佛光万丈，身后全是金身罗汉，画面整体写实黑暗风
     """
-    img = delle.get_img(prompt,save_path="")
+    img = delle.get_img(prompt,save_path="/Users/jianghuyihei/code/black_myth_pic/bajie_vs_fozu3.png")
 
 
 

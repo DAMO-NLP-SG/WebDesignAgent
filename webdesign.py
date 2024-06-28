@@ -276,6 +276,8 @@ class WebDesignAgent(BaseAgent):
 
         if len(self.local_img_storage) > 10:
             local_img_storage = random.sample(self.local_img_storage,10)
+        else:
+            local_img_storage = self.local_img_storage
         prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame,language=self.language,local_img_storage=local_img_storage)
         if img:
             messages = [
@@ -328,6 +330,7 @@ class WebDesignAgent(BaseAgent):
     def update_html_css(self,page_info,html,css):
         html_name = page_info["html_name"]
         css_name = page_info["css_name"] if "css_name" in page_info else None
+        print(self.gen_img)
         if not self.css_frame:
             if not css_name:
                 print("The css_name is not provided.")
@@ -340,6 +343,7 @@ class WebDesignAgent(BaseAgent):
         else:
             write_file(os.path.join(self.save_file,html_name), html)
             if self.gen_img == "Gen":
+                print("begin add imgs")
                 html_code = asyncio.run(self.add_imgs_async(html))
                 write_file(os.path.join(self.save_file,html_name), html_code)
         page_name = html_name.split(".")[0]
@@ -453,10 +457,11 @@ class WebDesignAgent(BaseAgent):
 
 
     async def add_img_async(self,img_content):
-        if "src" not in img_content or "alt" not in img_content:
-            return
-        src = img_content["src"]
-        alt = img_content["alt"]
+        try:
+            src = img_content["src"]
+            alt = img_content["alt"]
+        except:
+            return 
         if not src.startswith("https://placehold.co"):
             return
         img = await self.get_img_async(alt)
@@ -473,8 +478,11 @@ class WebDesignAgent(BaseAgent):
         images = soup.find_all("img")
         scripts = soup.find_all("script")
         for image in images:
-            src = image["src"]
-            alt = image["alt"]
+            try:
+                src = image["src"]
+                alt = image["alt"]
+            except:
+                continue
             if not src.startswith("https://placehold.co"):
                 continue
             img = self.get_img(alt)

@@ -16,14 +16,15 @@ The page information is as follows:
 
 Your goal is to modify the code of the second webpage to update it to look more like the target page(The first image).
 
-- Make sure your create page looks exactly like the screenshot.
-- Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. Match the colors and sizes exactly.
+- Make sure the page you create is exactly the same as the screenshot.
+- Pay attention to the layout of the page, image distribution, image size, related text, buttons, links, etc. to be consistent with the screenshot.
+- Pay attention to the background color, text color, font size, font family, padding, margins, borders, etc. Exactly match the color and size to be consistent with the screenshot.
 - Use the exact text from the screenshot.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
 - Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later. For images that already exist on the web page, do not change their address.
-- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 refine_img_text_task = """
@@ -55,7 +56,7 @@ height: 400,
 title: "Example image title",
 }}
 That is, be sure to use "imgsrc" to add the image address(try to use a local address, otherwise use a placeholder image from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
-- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 refine_text_task = """
@@ -83,7 +84,7 @@ height: 400,
 title: "Example image title",
 }}
 That is, be sure to use "imgsrc" to add the image address(try to use a local address, otherwise use a placeholder image from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
-- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 refine_feedback_task = """
@@ -106,7 +107,7 @@ height: 400,
 title: "Example image title",
 }}
 That is, be sure to use "imgsrc" to add the image address(try to use a local address, otherwise use a placeholder image from https://placehold.co), and use "alt" to describe the image content(an image generation AI can generate the image later), and add other keywords as needed.
-- You are encouraged to enhance the interactivity and functionality of the webpage by implementing additional JavaScript operation functions. Aim to make the page more practical and engaging for users.
+- You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
 
 
