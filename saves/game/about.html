@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Black Myth Wukong</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-dark {
+            background-color: #1a1a1a;
+        }
+
+        .text-primary {
+            color: #ffbf00;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(90deg, #1a1a1a 0%, #333333 100%);
+        }
+
+        .wave-effect::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placehold.co/300x60') repeat-x;
+            background-size: cover;
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .hover-underline-animation {
+            position: relative;
+            color: #ffbf00;
+            text-decoration: none;
+        }
+
+        .hover-underline-animation:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ffbf00;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .fade-in {
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white font-sans">
+    <header class="p-5 bg-gradient shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://placehold.co/50x50" alt="Company Logo" class="mr-3">
+                <div class="text-2xl font-bold text-primary">Black Myth Wukong</div>
+            </div>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover-underline-animation">Home</a></li>
+                <li><a href="games.html" class="hover-underline-animation">Games</a></li>
+                <li><button onclick="openChatInterface()" class="hover-underline-animation">Chat with Sun Wukong</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-10">
+        <section class="mb-10 fade-in">
+            <h1 class="text-4xl font-bold mb-5 text-primary">About Us</h1>
+            <p class="text-lg">Welcome to our company. We pride ourselves on our rich history, strong mission, and dedicated team. Recently, we celebrated our win at the 2024 TGA Game of the Year for our work on Black Myth Wukong.</p>
+        </section>
+
+        <section id="gallery" class="mb-10 fade-in">
+            <h2 class="text-3xl font-bold mb-5 text-primary">Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="relative group">
+                    <img src="img_28.png" alt="Scientists in an advanced laboratory" class="w-full h-auto rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <p class="text-sm text-primary">Showcases the high-tech environment of the company</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="img_15.png" alt="Modern office building" class="w-full h-auto rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <p class="text-sm text-primary">Depicts the company's headquarters</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="img_0.png" alt="Hero battling a giant monster" class="w-full h-auto rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <p class="text-sm text-primary">Represents the epic adventures in the company's games, including Black Myth Wukong</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="img_16.png" alt="Trophy with the inscription 'DALULO ACADEMY FELLOWSHIP AWARD'" class="w-full h-auto rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <p class="text-sm text-primary">Illustrates the company's recent achievement of winning the 2024 TGA Game of the Year</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="mb-10 slide-up">
+            <h2 class="text-3xl font-bold mb-5 text-primary">Meet the Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg relative group">
+                    <img src="https://placehold.co/150x150" alt="John Doe" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary">John Doe</h3>
+                            <p class="text-sm">Lead Developer</p>
+                            <p class="text-sm mt-2">John has over 10 years of experience in game development and has been a key figure in the creation of Black Myth Wukong.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg relative group">
+                    <img src="https://placehold.co/150x150" alt="Jane Smith" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary">Jane Smith</h3>
+                            <p class="text-sm">Art Director</p>
+                            <p class="text-sm mt-2">Jane's artistic vision has shaped the stunning visuals of Black Myth Wukong, earning critical acclaim.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg relative group">
+                    <img src="https://placehold.co/150x150" alt="Alice Johnson" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-center p-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary">Alice Johnson</h3>
+                            <p class="text-sm">Project Manager</p>
+                            <p class="text-sm mt-2">Alice ensures that all projects are delivered on time and meet the highest quality standards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-10 slide-up">
+            <h2 class="text-3xl font-bold mb-5 text-primary">Company Timeline</h2>
+            <div class="relative">
+                <div class="absolute border-l-4 border-primary h-full left-1/2 transform -translate-x-1/2"></div>
+                <div class="space-y-10">
+                    <div class="relative w-1/2 ml-auto p-5 border border-gray-700 bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-primary">2020</h3>
+                        <p class="text-sm mt-2">Company founded with a mission to create groundbreaking games.</p>
+                    </div>
+                    <div class="relative w-1/2 mr-auto p-5 border border-gray-700 bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-primary">2022</h3>
+                        <p class="text-sm mt-2">Released our first game, which quickly gained a loyal following.</p>
+                    </div>
+                    <div class="relative w-1/2 ml-auto p-5 border border-gray-700 bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-primary">2024</h3>
+                        <p class="text-sm mt-2">Won the TGA Game of the Year award for Black Myth Wukong.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="p-5 bg-gradient">
+        <div class="container mx-auto text-center">
+            <p class="text-sm text-gray-400">&copy; 2024 Black Myth Wukong. All rights reserved.</p>
+            <ul class="flex justify-center space-x-4 mt-2">
+                <li><a href="team.html" class="hover-underline-animation">Team</a></li>
+                <li><a href="#" class="hover-underline-animation">Privacy Policy</a></li>
+                <li><a href="#" class="hover-underline-animation">Contact Us</a></li>
+            </ul>
+            <div class="mt-4">
+                <a href="#" class="text-gray-400 hover:text-primary mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-primary mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-400 hover:text-primary mx-2"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openChatInterface() {
+            alert("Chat interface with Sun Wukong will open here.");
+        }
+    </script>
+</body>
+
+</html>

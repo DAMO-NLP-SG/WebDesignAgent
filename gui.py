@@ -10,7 +10,7 @@ from utils import cal_cost
 import asyncio
 
 class Application(tk.Tk):
-    def __init__(self, agent=None):
+    def __init__(self, agent:WebDesignAgent = None):
         super().__init__()
 
         self.title("Web Design Agent")
@@ -38,12 +38,13 @@ class Application(tk.Tk):
         self.gen_img_var = tk.StringVar(value="Open")
         self.agent.gen_img = True
 
-        self.model_options = ["gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
-        self.model_var = tk.StringVar(value="gpt-4o")
+        self.model_options = ["gpt4o-0513","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
+        self.model_var = tk.StringVar(value="gpt4o-0513")
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.model_options[0], *self.model_options,command=self.switch_model)
         self.model_menu.grid(row=0, column=3, padx=10, pady=10)
         self.model_menu_label = tk.Label(self.title_frame, text="Select Model:")
         self.model_menu_label.grid(row=0, column=2, padx=10, pady=10)
+        self.agent.model = "gpt4o-0513"
 
         self.is_animating = False
 
@@ -115,50 +116,56 @@ class Application(tk.Tk):
         
 
         # Add multiple input fields to input_frame
-        input_labels = ["save_file", "website_description", "website_img", "feedback","each refine times"]
-        for i in range(2,7):
+        input_labels = ["save_file", "website_description", "website_img", "feedback","each refine times","local_img_storage_path"]
+        for i in range(2,8):
             label = tk.Label(web_design_widgets['input_frame'], text=input_labels[i-2])
             entry = tk.Entry(web_design_widgets['input_frame'])
             label.grid(row=i, column=0, padx=10, pady=5)
             entry.grid(row=i, column=1, padx=10, pady=5)
             web_design_widgets["input_labels"].append(label)
             web_design_widgets["input_entries"].append(entry)
+        
+        local_img_storage_button = tk.Button(web_design_widgets['input_frame'], text="load", command=self.upload_local_img_storage)
+        local_img_storage_button.grid(row=7, column=2, padx=10, pady=10)
 
-        gen_img_options = [ "Open","Close"]
-        gen_img_var = tk.StringVar(value="Open")
+        gen_img_options = [ "Gen","Local","None"]
+        gen_img_var = tk.StringVar(value="Gen")
         self.gen_img_var = gen_img_var
         gen_img_menu = ttk.OptionMenu(web_design_widgets["input_frame"], gen_img_var, gen_img_options[0], *gen_img_options,command=self.change_gen_img)
-        gen_img_menu.grid(row=7, column=1, padx=10, pady=10)
-        gen_img_menu_label = tk.Label(web_design_widgets["input_frame"], text="Gen IMG:")
-        gen_img_menu_label.grid(row=7, column=0, padx=10, pady=10)
+        gen_img_menu.grid(row=8, column=1, padx=10, pady=10)
+        gen_img_menu_label = tk.Label(web_design_widgets["input_frame"], text="IMG Source:")
+        gen_img_menu_label.grid(row=8, column=0, padx=10, pady=10)
         
 
         # Animation Label
         label = tk.Label(web_design_widgets["input_frame"], text="🤖 Status: ")
-        label.grid(row=8, column=0, padx=10, pady=10)
+        label.grid(row=9, column=0, padx=10, pady=10)
         self.animation_label = tk.Label(web_design_widgets["input_frame"], text="💡 idle")
-        self.animation_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
+        self.animation_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)
         self.animation_idx = 0
 
         # cost label
         label = tk.Label(web_design_widgets["input_frame"], text="💰 Total Token Cost: ")
-        label.grid(row=9, column=0, padx=10, pady=10)
+        label.grid(row=10, column=0, padx=10, pady=10)
         self.token_cost_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.token_cost_label.grid(row=9, column=1, columnspan=2, padx=10, pady=10)
+        self.token_cost_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)
 
         label = tk.Label(web_design_widgets["input_frame"], text="💰 Total IMG Cost: ")
-        label.grid(row=10, column=0, padx=10, pady=10)
+        label.grid(row=11, column=0, padx=10, pady=10)
         self.token_img_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="💰 0 $")
-        self.token_img_label.grid(row=10, column=1, columnspan=2, padx=10, pady=10)        
+        self.token_img_label.grid(row=11, column=1, columnspan=2, padx=10, pady=10)        
 
 
         label = tk.Label(web_design_widgets["input_frame"], text="⏱️ Time Cost: ")
-        label.grid(row=11, column=0, padx=10, pady=10)
+        label.grid(row=12, column=0, padx=10, pady=10)
         self.time_label = tk.Label(web_design_widgets["input_frame"], wraplength=200,text="⏱️ 0 s")
-        self.time_label.grid(row=11, column=1, columnspan=2, padx=10, pady=10)
+        self.time_label.grid(row=12, column=1, columnspan=2, padx=10, pady=10)
 
         plan_button = tk.Button(self.scrollable_frame, text="Plan", command=self.plan)
         auto_gen_button = tk.Button(self.scrollable_frame, text="Auto Generate", command=self.auto_gen_website)
+        clean_useless_imgs_button = tk.Button(self.scrollable_frame, text="Clean Useless IMG", command=self.clean_useless_imgs)
+
+
         create_button = tk.Button(self.scrollable_frame, text="Create Website", command=self.create_website)
         refine_button = tk.Button(self.scrollable_frame, text="Refine Website", command=self.refine_website)
 
@@ -169,6 +176,7 @@ class Application(tk.Tk):
 
         web_design_widgets["plan_button"] = plan_button
         web_design_widgets["auto_gen_button"] = auto_gen_button
+        web_design_widgets["clean_useless_imgs_button"] = clean_useless_imgs_button
 
         web_design_widgets["create_button"] = create_button
         web_design_widgets["refine_button"] = refine_button
@@ -203,7 +211,48 @@ class Application(tk.Tk):
             self.model_menu.set_menu(self.model_options[0],*self.model_options)
             self.display_web_design_mode()
         print(f"Switched to {mode}")
-     
+    
+    def read_input_entries(self):
+        input_entries = self.web_design_widgets["input_entries"]
+        save_file = input_entries[0].get()
+        self.agent.change_save_file(save_file)
+        self.agent.task["text"] = input_entries[1].get()
+        self.agent.task["img"] = input_entries[2].get()
+        self.agent.user_feedback = input_entries[3].get() if input_entries[3].get() else ""
+        self.agent.refine_times = int(input_entries[4].get()) if input_entries[4].get() else 2
+        self.agent.local_img_storage_path = self.web_design_widgets["input_entries"][5].get() if self.web_design_widgets["input_entries"][5].get() else ""
+    
+    def upload_local_img_storage(self):
+        self.read_input_entries()
+        self.is_animating = True
+        threading.Thread(target=self.animate, args=(["🤔💭 Uploading now", "🧐💭 Uploading now.", "😅💭 Uploading now..", "🤯💭 Uploading now..."],)).start()
+        def long_operation():
+            self.agent.load_local_img_storage()
+            self.is_animating = False
+            self.update_cost()
+        self.begin_time = time.time()
+        threading.Thread(target=long_operation).start()
+        print(f"Upload local_img_storage to: {self.agent.local_img_storage_path}")
+
+    def change_gen_img(self,gen_img):
+        if gen_img == "None":
+            self.agent.gen_img = False
+            self.agent.local_img_storage_copy = self.agent.local_img_storage.copy()
+            self.agent.local_img_storage = []
+        elif gen_img == "Local":
+            if not self.agent.local_img_storage:    
+                messagebox.showerror("Error", "Please upload the local_img_storage first")
+                return
+            self.agent.gen_img = gen_img
+            if self.agent.local_img_storage_copy:
+                self.agent.local_img_storage = self.agent.local_img_storage_copy.copy()
+            print(self.agent.local_img_storage)
+        else:
+            self.agent.gen_img = gen_img
+            self.agent.local_img_storage_copy = self.agent.local_img_storage.copy()
+            self.agent.local_img_storage = []
+        print(f"Change Gen IMG to: {gen_img}")
+
     def change_language(self,language):
         self.agent.language = language
         print(f"Change language to: {language}")
@@ -221,6 +270,7 @@ class Application(tk.Tk):
         self.web_design_widgets['input_frame'].grid(row=1, column=0, padx=10, pady=10)
         self.web_design_widgets['plan_button'].grid(row=2, column=0, padx=10, pady=10)
         self.web_design_widgets['auto_gen_button'].grid(row=3, column=0, padx=10, pady=10)
+        self.web_design_widgets['clean_useless_imgs_button'].grid(row=4, column=0, padx=10, pady=10)
 
         self.web_design_widgets['output_text'].grid(row=1, column=1, padx=10, pady=10)
         self.web_design_widgets['delete_page_button'].grid(row=2, column=1, padx=10, pady=10)
@@ -269,9 +319,7 @@ class Application(tk.Tk):
         if not self.agent:
             messagebox.showerror("Error", "Please initialize the agent first")
             return
-
-        save_file = self.web_design_widgets["input_entries"][0].get()
-        self.agent.change_save_file(save_file)
+        self.read_input_entries()
         website_description = self.web_design_widgets["input_entries"][1].get()
         website_img = self.web_design_widgets["input_entries"][2].get()
         if not website_description and not os.path.exists(website_img):
@@ -289,13 +337,6 @@ class Application(tk.Tk):
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         threading.Thread(target=long_operation).start()
     
-
-    def change_gen_img(self,gen_img):
-        if gen_img == "Open":
-            self.agent.gen_img = True
-        else:
-            self.agent.gen_img = False
-        print(f"Change Gen IMG to: {gen_img}")
 
     
     def display_table_page(self):
@@ -407,6 +448,7 @@ class Application(tk.Tk):
             self.display_table_page()
 
     def refine_page(self):
+        self.read_input_entries()
         if self.is_animating:
             messagebox.showerror("Error", "Please wait for the current operation to finish")
             return
@@ -432,6 +474,7 @@ class Application(tk.Tk):
             threading.Thread(target=long_operation).start()
 
     def complete_page(self):
+        self.read_input_entries()
         if self.is_animating:
             messagebox.showerror("Error", "Please wait for the current operation to finish")
             return
@@ -486,11 +529,7 @@ class Application(tk.Tk):
         if self.is_animating:
             messagebox.showerror("Error", "Please wait for the current operation to finish")
             return
-        
-        website_description = self.web_design_widgets["input_entries"][1].get()
-        website_img = self.web_design_widgets["input_entries"][2].get()
-        self.agent.task["text"] = website_description
-        self.agent.task["img"] = website_img
+        self.read_input_entries()
 
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
@@ -514,10 +553,7 @@ class Application(tk.Tk):
         animation_sequence = ["🤔💭 Refine now", "🧐💭 Refine now.", "😅💭 Refine now..", "🤯💭 Refine now..."]
         self.is_animating = True
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
-        website_description = self.web_design_widgets["input_entries"][1].get()
-        website_img = self.web_design_widgets["input_entries"][2].get()
-        self.agent.task["text"] = website_description
-        self.agent.task["img"] = website_img
+        self.read_input_entries()
 
         def long_operation():
             self.agent.user_feedback = self.web_design_widgets["input_entries"][3].get()
@@ -580,12 +616,7 @@ class Application(tk.Tk):
             return
         self.is_animating = True
         animation_sequence = ["🤔💭 Generating now", "🧐💭 Generating now.", "😅💭 Generating now..", "🤯💭 Generating now..."]
-        self.refine_times = int(self.web_design_widgets["input_entries"][4].get()) if self.web_design_widgets["input_entries"][4].get() else 3
-        self.agent.refine_times = self.refine_times
-        web_description = self.web_design_widgets["input_entries"][1].get()
-        web_img = self.web_design_widgets["input_entries"][2].get()
-        self.agent.task["text"] = web_description
-        self.agent.task["img"] = web_img
+        self.read_input_entries()
         
         threading.Thread(target=self.animate, args=(animation_sequence,)).start()
         def long_operation():
@@ -604,6 +635,9 @@ class Application(tk.Tk):
             self.update_cost()
             self.is_animating = False
         threading.Thread(target=long_operation).start()
+    
+    def clean_useless_imgs(self):
+        self.agent.clean_useless_imgs()
 
 
     def animate(self,animation_sequence):

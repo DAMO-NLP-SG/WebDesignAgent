@@ -1,13 +1,15 @@
 import asyncio
 import os
 import json
-
+import shutil
 from bs4 import BeautifulSoup
 from base_agent import BaseAgent
 from webserver import Webserver
-from utils import get_openai_url,write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost,extract_dimensions,get_html_css_from_response
+from utils import get_openai_url,write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost,extract_dimensions,get_html_css_from_response,get_all_files_in_dir
+from PIL import Image
 import re
 import argparse
+import random
 from prompts import *
 
 class WebDesignAgent(BaseAgent):
@@ -29,7 +31,12 @@ class WebDesignAgent(BaseAgent):
             os.makedirs(save_file)
         # ["Tailwind","Boostrap","Materialize","Bulma",None]
         self.css_frame = "Tailwind"
-        self.gen_img = True
+        self.gen_img = "Gen"
+        self.local_img_storage = []
+        self.local_img_storage_path = None
+        self.local_img_storage_copy = []
+        self.local_img_storage_en = []
+        self.local_img_storage_zh = []
         self.language = "en"
         self.save_file = save_file
         self.total_prompt_cost_tokens = 0
@@ -97,7 +104,7 @@ class WebDesignAgent(BaseAgent):
         img = self.task["img"]
         print(self.css_frame)
         feedback = self.user_feedback if self.user_feedback else ""
-        prompt = get_plan_prompt(text=text,img=img,css_frame=self.css_frame,feedback=feedback,language=self.language)
+        prompt = get_plan_prompt(text=text,img=img,css_frame=self.css_frame,feedback=feedback,language=self.language,local_img_storage=self.local_img_storage)
         if img:
             messages = [
                 {"role":"user","content":[
@@ -118,6 +125,10 @@ class WebDesignAgent(BaseAgent):
                 pages = extract(response,"designed_pages")
                 pages = pages.strip()
                 pages = json.loads(pages)
+                if self.css_frame:
+                    for page in pages:
+                        if "css_name" in page:
+                            del page["css_name"]
                 break
             except:
                 print(response)
@@ -162,12 +173,15 @@ class WebDesignAgent(BaseAgent):
                 print("Failed to get the modified page. Please check the format.")
                 print(modified_page)
                 modified_page = page_info
+        if self.css_frame:
+            if "css_name" in modified_page:
+                del modified_page["css_name"]
         return modified_page       
 
 
     def refine_page(self,page_info,feedback = ""):
         task = self.task["text"]
-        prompt = get_refine_page_prompt(task=task,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language)
+        prompt = get_refine_page_prompt(task=task,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language,local_img_storage=self.local_img_storage)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},
@@ -180,7 +194,7 @@ class WebDesignAgent(BaseAgent):
     
     async def refine_page_async(self,idx,page_info,feedback = ""):
         task = self.task["text"]
-        prompt = get_refine_page_prompt(task=task,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language)
+        prompt = get_refine_page_prompt(task=task,page_info=page_info,css_frame=self.css_frame,feedback=feedback,language=self.language,local_img_storage=self.local_img_storage)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},
@@ -259,7 +273,10 @@ class WebDesignAgent(BaseAgent):
         page_img_path = os.path.join(self.save_file,f"{page_name}.png")
 
         feedback = self.user_feedback if self.user_feedback else ""
-        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame,language=self.language)
+
+        if len(self.local_img_storage) > 10:
+            local_img_storage = random.sample(self.local_img_storage,10)
+        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame,language=self.language,local_img_storage=local_img_storage)
         if img:
             messages = [
                 {"role":"user","content":[
@@ -317,12 +334,12 @@ class WebDesignAgent(BaseAgent):
                 return
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
-            if self.gen_img:
+            if self.gen_img == "Gen":
                 html_code = asyncio.run(self.add_imgs_async(html))
                 write_file(os.path.join(self.save_file,html_name), html_code)
         else:
             write_file(os.path.join(self.save_file,html_name), html)
-            if self.gen_img:
+            if self.gen_img == "Gen":
                 html_code = asyncio.run(self.add_imgs_async(html))
                 write_file(os.path.join(self.save_file,html_name), html_code)
         page_name = html_name.split(".")[0]
@@ -339,12 +356,12 @@ class WebDesignAgent(BaseAgent):
                 return
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
-            if self.gen_img:
+            if self.gen_img == "Gen":
                 html_code = await self.add_imgs_async(html)
                 write_file(os.path.join(self.save_file,html_name), html_code)
         else:
             write_file(os.path.join(self.save_file,html_name), html)
-            if self.gen_img:
+            if self.gen_img == "Gen":
                 html_code = await self.add_imgs_async(html)
                 write_file(os.path.join(self.save_file,html_name), html_code)
         page_name = html_name.split(".")[0]
@@ -362,7 +379,8 @@ class WebDesignAgent(BaseAgent):
         other_pages_info = modify_input_dict(other_pages_info)
         page_info = modify_input_dict(page_info)
         feedback = self.user_feedback if self.user_feedback else ""
-        prompt = get_page_complete_prompt(page_info=page_info,other_pages_info=other_pages_info,feedback=feedback,language=self.language)
+        task = self.task["text"] if self.task["text"] else ""
+        prompt = get_page_complete_prompt(task = task,page_info=page_info,other_pages_info=other_pages_info,feedback=feedback,language=self.language,local_img_storage=self.local_img_storage)
         messages = [
             {"role":"user","content":[
                 {"type":"text","text":prompt},
@@ -435,6 +453,8 @@ class WebDesignAgent(BaseAgent):
 
 
     async def add_img_async(self,img_content):
+        if "src" not in img_content or "alt" not in img_content:
+            return
         src = img_content["src"]
         alt = img_content["alt"]
         if not src.startswith("https://placehold.co"):
@@ -497,6 +517,101 @@ class WebDesignAgent(BaseAgent):
         image["src"] = img_name
         print(f"Image {img_path} has been added to the folder.")
         return image
+
+    def load_local_img_storage(self):
+        local_img_storage_path = self.local_img_storage_path
+        if os.path.exists(os.path.join(local_img_storage_path,f"local_img_storage_en.json")):
+            with open(os.path.join(local_img_storage_path,f"local_img_storage_en.json"), "r",encoding="utf-8") as f:
+                self.local_img_storage_en = json.load(f)
+        if os.path.exists(os.path.join(local_img_storage_path,f"local_img_storage_zh.json")):
+            with open(os.path.join(local_img_storage_path,f"local_img_storage_zh.json"), "r",encoding="utf-8") as f:
+                self.local_img_storage_zh = json.load(f)
+        if os.path.exists(os.path.join(local_img_storage_path,f"local_img_storage_zh.json")):
+            if self.language == "en":
+                self.local_img_storage = self.local_img_storage_en
+            elif self.language == "zh":
+                self.local_img_storage = self.local_img_storage_zh
+        else:
+            self.local_img_storage = []
+
+        known_img_paths = [img["img_path"] for img in self.local_img_storage]
+        all_files = get_all_files_in_dir(local_img_storage_path)
+        img_files = []
+        for file in all_files:
+            if file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
+                img_name = os.path.basename(file)
+                new_img_path = os.path.join(self.save_file,img_name)
+                shutil.copy(file,new_img_path)
+                if img_name in known_img_paths:
+                    continue
+                img_files.append(new_img_path)
+        asyncio.run(self.add_imgs_to_storage_async(img_files))
+        with open(os.path.join(local_img_storage_path,"local_img_storage_en.json"), "w",encoding="utf-8") as f:
+            json.dump(self.local_img_storage_en,f)
+        with open(os.path.join(local_img_storage_path,"local_img_storage_zh.json"), "w",encoding="utf-8") as f:
+            json.dump(self.local_img_storage_zh,f)
+        
+        if self.language == "en":
+            self.local_img_storage = self.local_img_storage_en
+        elif self.language == "zh":
+            self.local_img_storage = self.local_img_storage_zh
+        print(self.local_img_storage)
+    
+    async def add_imgs_to_storage_async(self,img_files):
+        tasks = []
+        for img_path in img_files:
+            tasks.append(self.add_img_to_storage_async(img_path))
+        await asyncio.gather(*tasks)
+
+    
+    async def add_img_to_storage_async(self,img_path):
+        img = Image.open(img_path)
+        width,height = img.size
+        img_name = os.path.basename(img_path)
+        process_img_prompt = get_process_img_prompt(language=self.language)
+        messages = [
+            {"role":"user","content":[
+                {"type":"image_url","image_url":{"url":get_openai_url(img_path),"detail":"high"}},
+                {"type":"text","text":process_img_prompt},
+        ]},
+        ]
+        response = await self.get_answer_async(messages=messages)
+        chinese_description = extract(response,"Chinese")
+        english_description = extract(response,"English")
+        self.local_img_storage_en.append({"img_path":img_name,"description":english_description,"height":height,"width":width})
+        self.local_img_storage_zh.append({"img_path":img_name,"description":chinese_description,"height":height,"width":width})
+        print(f"Image {img_name} has been added to the local image storage.")
+    
+    def clean_useless_imgs(self):
+        srcs = []
+        for page in self.task_queue:
+            html_name = page["html_name"]
+            page_name = html_name.split(".")[0]
+            page_img = os.path.join(self.save_file,f"{page_name}.png")
+            srcs.append(page_img)
+            html_path = os.path.join(self.save_file,html_name)
+            if not os.path.exists(html_path):
+                continue
+            html_code = open(html_path,encoding='utf-8').read()
+            soup = BeautifulSoup(html_code, "html.parser")
+            images = soup.find_all("img")
+            for image in images:
+                src = image["src"]
+                srcs.append(src)
+            scripts = soup.find_all("script")
+            for script in scripts:
+                if script.string:
+                    pattern = re.compile(r'{[^}]*\bimgsrc:\s*\'([^\']*)\'[^}]*\balt:\s*\'([^\']*)\'[^}]*}')
+                    for match in pattern.finditer(script.string):
+                        src = match.group(1)
+                        srcs.append(src)
+        all_files = get_all_files_in_dir(self.save_file)
+        for file in all_files:
+            if file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
+                img_name = os.path.basename(file)
+                if img_name not in srcs:
+                    os.remove(file)
+                    print(f"Image {img_name} has been removed.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

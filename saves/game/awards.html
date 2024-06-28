@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards & Achievements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        }
+
+        .hover-effect:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #fdbb2d;
+        }
+
+        .hover-link:hover {
+            color: #fdbb2d;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+    <header class="gradient-bg p-4 shadow-lg">
+        <nav class="flex justify-between items-center">
+            <div class="text-2xl font-bold text-gold-500">Your Company Logo</div>
+            <div class="flex space-x-6">
+                <a href="index.html" class="text-xl text-gold-500 hover-link">Home</a>
+                <a href="games.html" class="text-xl text-gold-500 hover-link">Games</a>
+                <a href="about_us.html" class="text-xl text-gold-500 hover-link">About Us</a>
+                <a href="contact.html" class="text-xl text-gold-500 hover-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <section class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gold-400">Awards & Recognitions</h1>
+            <p class="text-lg mt-2">Celebrating our achievements and milestones</p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                <img src="img_23.png" alt="Tech Academy Innovation Awards" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-2xl font-semibold">Tech Academy Innovation Awards</h2>
+                    <p class="mt-2 text-gray-400">Award ceremony image showcasing the company's recognition at the Tech Academy Innovation Awards.</p>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                <img src="img_16.png" alt="DALULO Academy Fellowship Award" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-2xl font-semibold">DALULO Academy Fellowship Award</h2>
+                    <p class="mt-2 text-gray-400">Trophy image representing the DALULO Academy Fellowship Award.</p>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                <img src="img_0.png" alt="Hero battling a giant monster" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-2xl font-semibold">Black Myth Wukong</h2>
+                    <p class="mt-2 text-gray-400">An image from Black Myth Wukong, depicting a heroic battle scene, reflecting the game's epic nature and award-winning quality.</p>
+                </div>
+            </div>
+            <!-- Placeholder for additional images -->
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                <img src="https://placehold.co/600x400" alt="Placeholder image for an additional award" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-2xl font-semibold">Additional Award</h2>
+                    <p class="mt-2 text-gray-400">Description of the additional award.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-3xl font-bold text-gold-400 mb-6">Award Details</h2>
+            <div class="space-y-4">
+                <a href="award_details.html" class="flex items-center text-xl text-gold-500 hover-link">
+                    <span class="material-icons mr-2">star</span>
+                    2024 TGA Game of the Year
+                </a>
+                <a href="previous_awards.html" class="flex items-center text-xl text-gold-500 hover-link">
+                    <span class="material-icons mr-2">history</span>
+                    Previous Awards
+                </a>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-3xl font-bold text-gold-400 mb-6">Award Videos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                    <video controls autoplay loop class="w-full h-48 object-cover rounded-t-lg">
+                        <source src="video_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="p-4">
+                        <h2 class="text-2xl font-semibold">Tech Academy Innovation Awards 2024</h2>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                    <video controls autoplay loop class="w-full h-48 object-cover rounded-t-lg">
+                        <source src="video_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="p-4">
+                        <h2 class="text-2xl font-semibold">DALULO Academy Fellowship Award 2024</h2>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover-effect">
+                    <video controls autoplay loop class="w-full h-48 object-cover rounded-t-lg">
+                        <source src="video_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="p-4">
+                        <h2 class="text-2xl font-semibold">Black Myth Wukong - TGA 2024</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="gradient-bg p-4 mt-12">
+        <div class="text-center text-gray-400">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="hover-link social-icon">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="#" class="hover-link social-icon">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" class="hover-link social-icon">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+                <a href="#" class="hover-link social-icon">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

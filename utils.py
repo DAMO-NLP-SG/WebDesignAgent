@@ -12,6 +12,14 @@ def write_file(file_path, content):
     with open(file_path, "w",encoding='utf-8') as f:
         f.write(content)
 
+def get_all_files_in_dir(directory):
+    file_list = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            file_list.append(os.path.join(root, file))
+    return file_list
+
+
 def get_content_between_a_b(start_tag, end_tag, text):
     """
     Args:
@@ -132,9 +140,7 @@ async def fetch_image(url):
         return response.content
 
 if __name__ == "__main__":
-    html_code = """
-    <img src="https://example.com/image1.jpg" alt="Image 1" />
-    <img src="https://example.com/image2.jpg" alt="Image 2" />
-    """
-    images = extract_img_from_html(html_code)
-    print(images)  # [{'src': 'https://example.com/image1.jpg', 'alt': 'Image 1'}, {'src': 'https://example.com/image2.jpg', 'alt': 'Image 2'}]
+    file_list = get_all_files_in_dir("/Users/jianghuyihei/code/WebDesignAgent")
+    for file in file_list:
+        if file.endswith(".py"):
+            print(file)
