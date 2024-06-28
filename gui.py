@@ -38,13 +38,15 @@ class Application(tk.Tk):
         self.gen_img_var = tk.StringVar(value="Open")
         self.agent.gen_img = True
 
-        self.model_options = ["gpt4o-0513","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
-        self.model_var = tk.StringVar(value="gpt4o-0513")
-        self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.model_options[0], *self.model_options,command=self.switch_model)
+        self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
+        self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
+
+        self.model_var = tk.StringVar(value=self.web_design_model_options[0])
+        self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)
         self.model_menu.grid(row=0, column=3, padx=10, pady=10)
         self.model_menu_label = tk.Label(self.title_frame, text="Select Model:")
         self.model_menu_label.grid(row=0, column=2, padx=10, pady=10)
-        self.agent.model = "gpt4o-0513"
+        self.agent.model = self.web_design_model_options[0]
 
         self.is_animating = False
 
@@ -203,12 +205,13 @@ class Application(tk.Tk):
     def switch_mode(self, mode):
         self.clear_widgets()
         if mode == "Chat Mode":
-            self.model_options = ["gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
-            self.model_menu.set_menu(self.model_options[0],*self.model_options)
+            self.model_menu.set_menu(self.chat_model_options[0],*self.chat_model_options)
+            self.agent.model = self.chat_model_options[0]
             self.display_chat_mode()
         elif mode == "Web Design Mode":
             self.model_options = ["gpt-4o"]
-            self.model_menu.set_menu(self.model_options[0],*self.model_options)
+            self.model_menu.set_menu(self.web_design_model_options[0],*self.web_design_model_options)
+            self.agent.model = self.web_design_model_options[0]
             self.display_web_design_mode()
         print(f"Switched to {mode}")
     
