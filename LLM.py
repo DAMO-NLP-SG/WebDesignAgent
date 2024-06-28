@@ -287,7 +287,7 @@ if __name__ == "__main__":
     llm , delle = get_llm()
     print("success")
     prompt = """
-黑暗风格的猪八戒
+猪八戒
     """
     img = delle.get_img(prompt,save_path="/Users/jianghuyihei/code/black_myth_pic/bajie.png")
 
