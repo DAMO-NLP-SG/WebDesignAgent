@@ -1,31 +1,30 @@
-from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
-from abc import abstractmethod
-from abc import abstractmethod
+import os
+import json
 import yaml
-import os
-import os
+import httpx
+import logging
+import requests
+
+from PIL import Image
+from io import BytesIO
+from abc import abstractmethod
+from openai import AzureOpenAI, OpenAI, AsyncAzureOpenAI,AsyncOpenAI
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_fixed,
+)
+
+from utils import wrap_func, fetch_image
+
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
 for key, value in config.items():
     os.environ[key] = str(value)
 
-
 for key, value in config.items():
     os.environ[key] = str(value)
-
-import httpx
-import logging
-import json
-from tenacity import (
-    retry,
-    stop_after_attempt,
-    wait_fixed,
-)
-import requests
-from PIL import Image
-from io import BytesIO
-from utils import wrap_func,fetch_image
 
 def before_retry_fn(retry_state):
     if retry_state.attempt_number > 1:
