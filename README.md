@@ -14,10 +14,10 @@ WebDesignAgent : A web design agent that can help you easily build a website.
 </p>
 
 # Generation Example Video
-### Website images（taobao.png） + Human Feedback (Windows system)
+### Website images（taobao.png） + Human Feedback + AI IMG generation + Windows system
 [taobao.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/95006555-b60e-4d6a-8cf9-a7d3a733bd2a)
 
-### Website images（https://www.heishenhua.com/） + Website descriptions (黑神话八戒的官方网站，要求有游戏的相关介绍以及介绍游戏科学的发展历史，同时要提供猪八戒智能ai对话功能。游戏科学的成名作是黑神话悟空，它刚获得了2024TGA年度最佳游戏) + Human Feedback (IOS system)
+### Website images（https://www.heishenhua.com/） + Website descriptions (黑神话八戒的官方网站，要求有游戏的相关介绍以及介绍游戏科学的发展历史，同时要提供猪八戒智能ai对话功能。游戏科学的成名作是黑神话悟空，它刚获得了2024TGA年度最佳游戏) + Human Feedback + local IMG + IOS system
 [黑八戒.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/f69b1992-4ef0-47e9-91ce-b0b696b581d0)
 
 
