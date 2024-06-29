@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-WebDesignAgent : A web design agent that can help you easily build a website.
+WebDesignAgent :  Towards Effortless Websites Creation
 </h3>
 
 <p align="center">
@@ -30,33 +30,35 @@ These websites are built based on the following materials:
 * **[2024.6.26]**  The first version of WebDesignAgent!
   
 ## 😊 What is WebDesignAgnet
-WebDesignAgnet is an autonomous agent that can help you build a series of websites with one sentence!
+WebDesignAgnet is an autonomous agent that can help you build a series of websites.
 
-### User Input
-It supports building webpages with text and images.
-1. **Text → Website**: Transform your textual descriptions into fully functional, beautifully designed websites effortlessly.
-2. **Images → Website**: Simply upload your images, and watch as they are seamlessly integrated into stunning websites.
-3. **Visual Clues → Website**: Bring your visual layout to the websites.
-4. **Hybrid Design**: Seamlessly combine text, images and other visual clues to create stunning, cohesive web designs.
+It supports building webpages with:
+*  **Text → Website**: Transform your textual descriptions into fully functional, beautifully designed websites effortlessly.
+*  **Images → Website**: Simply upload your images, and watch as they are seamlessly integrated into stunning websites.
+*  **Visual Clues → Website**: Bring your visual layout to the websites.
+*  **Hybrid Design**: Seamlessly combine text, images and other visual clues to create stunning, cohesive web designs.
 
-### Key Features
-1. **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
-2. **User-specific Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
-3. **Iterative Refinement**: Make precise alterations to your website’s code based on your invaluable feedback.
-4. **Visual React**: Leverage strong visual models to refine and enhance the webpage layout autonomously.
+It has the following key features:
+*  **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
+*  **User-specific Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
+*  **Iterative Refinement**: Make precise alterations to your website’s code based on your invaluable feedback.
+*  **Visual Reflection**: Leverage strong visual models to refine and enhance the webpage layout autonomously.
 
-
-## Demo Video
-### Auto Generation
-[autogen_new.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/5c6eee6f-2692-420b-8c3c-681de8323b86)
-
-
-### Create and Refine a Page
-[create_and_refine.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/d2d4dc62-9737-4757-a64a-4730ae048ee8)
+<!--
+ ## Demo Video
+ ### Auto Generation
+ [autogen_new.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/5c6eee6f-2692-420b-8c3c-681de8323b86)
 
 
-### Create a New Page
-[add_new_page.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/1fbea13f-dd2f-43a3-8a67-9297fcb733ff)
+ ### Create and Refine a Page
+ [create_and_refine.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/d2d4dc62-9737-4757-a64a-4730ae048ee8)
+
+
+ ### Create a New Page
+ [add_new_page.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/1fbea13f-dd2f-43a3-8a67-9297fcb733ff)
+-->
+
+
 
 
 
@@ -96,49 +98,40 @@ We offer two modes for using WebDesignAgent: terminal-based and GUI-based. We re
 
 
 ### 1. Run in GUI
-#### Auto Generation
+
 ```python
 python gui.py
 ```
-Then you will enter the gui as follows:
+Then you will enter the GUI as follows:
 <img alt="gui" src="assets/gui.png">
 
-For a quick usage of our WebDesignAgent, please following these steps:
+#### Auto Generation
+For a quick usage of our WebDesignAgent, please follow these steps:
 1. Config `Select Mode` to `Web Design Mode`.
 2. Config `Select Model` according to your APIs. In our demos, we primarily use `gpt-4o`.
-3. Select the websites language in `Language` field.
+3. Select the website language in the `Language` field.
 4. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
 5. Set `save_file`, which saves your generated websites.
 6. **Enter your request in either the `website_description` field for textual requests, the `website_img` field for image requests, or both for a combined input.**
-7. Click `Plan` button, which will return the textual descriptions of planned websites, their contents and their relations. You can also change these descriptions if you find them unsuitable.
-8. Click `Auto Generate` to generate all the above websites for you. (It may takes some time for the entire websites generation)
+7. Click the `Plan` button, which will return the textual descriptions of planned websites, their contents, and their relations. You can also change these descriptions if you find them unsuitable.
+8. Click `Auto Generate` to generate all the above websites for you. The screenshot of your created websites will show on the right part of the GUI tool. (It may take some time for the entire website generation)
 
 #### Human Feedback
-If you want to generate a website more human control. You can follow the following steps to proceed：
+If you want to generate a website with more human control. 
+Following steps 1-7 in **Auto Generation** to get the automatically generated plans. Then customize your websites with the following ways:
+  * You can modify the plan results by directly typing your own thoughts.
+  * You can also add/delete the unsatisfied web pages.
+  * You can also provide some feedback in the `feedback` field to globally control the created websites.
 
-1. set save file(the generated website will be saved in this file).
-2. set the description of the website or give a img for website or both.
-3. click plan.
-4. click page you want to modify, and modify anything you want to change.
-5. click create website.
-6. enter feedback if needed and click refine website.
 
 ### 2. Run in terminal
-Our method support three ways to generate a website: 
-
-1. Depend on a description of a website.
-2. Depend on a img of a website.
-3. Both on them.
-
-
-Set save path and img(img path) or text
 ```bash
 python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  --refine_times 2
 ```
 
 
 
-## 💰Cost
+## 💰 Cost
 | Web Name  | Page Numbers | Refine Times | Image Generation | Total Token Cost | Total Image Cost | Total Time Cost |
 |-----------|--------------|--------------|------------------|------------------|------------------|-----------------|
 | shopping  | 8            | 2            | open             | $1.14            | $1.48            | 661s            |
@@ -154,17 +147,13 @@ Change LLM.py(get_llm()) to replace the drawing model.
 
 
 
-## Examples
-### 1. Website images（taobao.png） + Human Feedback + AI IMG generation + Windows system
+## 👀 Examples
+### 1. Build Websites from Images
 [taobao.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/95006555-b60e-4d6a-8cf9-a7d3a733bd2a)
 
 
 
-We provide three website generated by web design agent(We removed all images to reduce the size of the repository).
-
-You can find in examples/
-
-### 2.damo
+### 2.Alibaba DAMO
 website generated by an img(damo.png) (examples/damo/index.html)
 <p align="center">
 <a href=""><img src="assets/damo.png"></a>
@@ -174,7 +163,7 @@ website generated by an img(damo.png) (examples/damo/index.html)
 ---
 ---
 
-### 3.shopping
+### 3.Shopping
 website generated by a description(a shopping website) (examples/shopping/index.html)
 <p align="center">
 <a href=""><img src="assets/shopping.png"></a>
@@ -185,14 +174,14 @@ website generated by a description(a shopping website) (examples/shopping/index.
 ---
 
 
-### 4.game
+### 4.Game
 website generated by an img(damo.png) and a description(An action game company, whose famous work is Black Myth Wukong) (examples/game/index.html)
 
 <p align="center">
 <a href=""><img src="assets/game.png"></a>
 </p>
 
-## Plan (To do)
+## 📑 TODO lists
 
 1. Generate supporting backend code.
 2. Support more LLMs.
