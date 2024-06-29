@@ -23,11 +23,13 @@ These websites are built based on the following materials:
 *  Local Images
 *  IOS system
 *  Human Feedback
-  
+
+<!--
 ##  📰 Update
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
+-->
   
 ## 😊 What is WebDesignAgnet
 WebDesignAgnet is an autonomous agent that can help you build a series of websites.
