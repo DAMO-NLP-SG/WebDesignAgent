@@ -40,7 +40,7 @@ It supports building webpages with:
 *  **Hybrid Design**: Seamlessly combine text, images and other visual clues to create stunning, cohesive web designs.
 
 It has the following key features:
-*  **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities for a seamless user experience.
+*  **Multi-Page Mastery**: Generate and design interconnected web pages with dynamic redirect capabilities.
 *  **User-specific Add/Delete**: Exercise full control by manually adding, deleting, or modifying web pages, their contents and their relations to tailor your site to perfection.
 *  **Iterative Refinement**: Make precise alterations to your website’s code based on your invaluable feedback.
 *  **Visual Reflection**: Leverage strong visual models to refine and enhance the webpage layout autonomously.
