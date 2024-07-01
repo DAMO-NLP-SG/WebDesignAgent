@@ -431,6 +431,8 @@ class WebDesignAgent(BaseAgent):
         images = soup.find_all("img")
         scripts = soup.find_all("script")
         tasks = []
+
+        tasks.append(self.add_imgs_to_background_async(html_code))
         for image in images:
             tasks.append(self.add_img_async(image))
 
@@ -441,6 +443,31 @@ class WebDesignAgent(BaseAgent):
             tasks.append(process_script(script))
         await asyncio.gather(*tasks)
         return soup.prettify()
+    
+    async def add_imgs_to_background_async(self,html_code):
+        # 正则表达式模式
+        pattern = r"url\(['\"]?(.*?)['\"]?\)"
+        # 搜索匹配
+        matchs = re.findall(pattern, html_code)
+        # 提取文件名
+        for match in matchs:
+            image_filename = match
+            if "png" in image_filename or "jpg" in image_filename or "jpeg" in image_filename:
+                img_name = os.path.basename(image_filename).split(".")[0]
+                img_path = os.path.join(self.save_file,f"{img_name}.png")
+                if os.path.exists(img_path):
+                    continue
+                text = self.task["text"] if self.task["text"] else ""
+                if text:
+                    description = f"This is a image used in the background of the website. The website description is: {text}, The image name is {img_name}."
+                else:
+                    description = f"This is a image used in the background of the website. The image name is {img_name}."
+                img = await self.get_img_async(description)
+                create_file(img_path)
+                img.save(img_path)
+                print(f"Image {img_path} has been added to the folder.")
+
+
     
     async def add_imgs_to_script_async(self,script):
         pattern = re.compile(r'{[^}]*\bimgsrc:\s*\'([^\']*)\'[^}]*\balt:\s*\'([^\']*)\'[^}]*}')
