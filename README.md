@@ -24,6 +24,7 @@ These websites are built based on the following materials:
 *  Human Feedback
 
 [taobao.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/62f96da3-6b10-4d91-9ccb-fb2c408163bf)
+
 These websites are built based on the following materials:
 *  A reference website layout: *taobao.png*
 *  AI Generation Images
