@@ -1,4 +1,5 @@
 def get_plan_prompt(text = None,img = None ,css_frame = None,feedback = "",language = "en",local_img_storage = []):
+    """Get plan prompt"""
     if language == "en":
         from .plan_prompts_en import plan_output_format_prompt,original_page_template,plan_output_format_prompt_local_img,local_img_storage_page_template
         if img and text:
