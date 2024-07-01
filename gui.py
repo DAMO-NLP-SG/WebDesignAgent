@@ -115,7 +115,7 @@ class Application(tk.Tk):
         
 
         # Add multiple input fields to input_frame
-        input_labels = ["save_file", "website_description", "website_img", "feedback","each refine times","local_img_storage_path"]
+        input_labels = ["save_file", "website_description", "website_template_path", "feedback","each refine times","local_img_storage_path"]
         for i in range(2,8):
             label = tk.Label(web_design_widgets['input_frame'], text=input_labels[i-2])
             entry = tk.Entry(web_design_widgets['input_frame'])
