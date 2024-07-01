@@ -36,7 +36,7 @@ class Application(tk.Tk):
         self.agent.css_frame = "Tailwind"
 
         self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
-        self.web_design_model_options = ["gpt4o-0513","gpt-4o"]
+        self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
 
         self.model_var = tk.StringVar(value=self.web_design_model_options[0])
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)

@@ -279,9 +279,9 @@ if __name__ == "__main__":
     llm , delle = get_llm()
     print("success")
     prompt = """
-
+A black wizard hat
     """
-    img = delle.get_img(prompt,save_path="")
+    img = delle.get_img(prompt,save_path="saves/harry/img_78.png")
 
 
 
