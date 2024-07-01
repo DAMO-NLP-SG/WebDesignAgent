@@ -27,9 +27,9 @@ def get_write_original_website_prompt(text = None,img = None,page_info = None,cs
         task = text_img_task.format(page_info=page_info)
         prompt = write_original_prompt.format(role=role,task=task,page_info=page_info,output_format=output_format)
     elif img:
-        task = img_task.format(page_info=page_info)
+        task = img_task.format(page_info =page_info)
         prompt = write_original_prompt.format(role=role,task=task,output_format=output_format)
     else:
-        task = text_task.format(page_info = page_info)
+        task = text_task.format(page_info =page_info)
         prompt = write_original_prompt.format(role=role,task=task,output_format=output_format)
     return prompt

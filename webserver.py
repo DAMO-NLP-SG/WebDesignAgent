@@ -92,16 +92,16 @@ class Webserver:
                 print(f"Opening local HTML file {html_path}")
                 self.driver.get("file:///" + html_path.replace("\\", "/"))
                 time.sleep(5)
-            else:
-                print(f"Opening website {local_html_path}")
-                self.driver.get(local_html_path)
-                try:
-                    accept_button = WebDriverWait(self.driver, 10).until(
-                        EC.element_to_be_clickable((By.CLASS_NAME, "accept-btn"))
-                    )
-                    accept_button.click()
-                except Exception as e:
-                    print("接受 cookies 按钮未找到", e)
+            # else:
+            #     print(f"Opening website {local_html_path}")
+            #     self.driver.get(local_html_path)
+            #     try:
+            #         accept_button = WebDriverWait(self.driver, 10).until(
+            #             EC.element_to_be_clickable((By.CLASS_NAME, "accept-btn"))
+            #         )
+            #         accept_button.click()
+            #     except Exception as e:
+            #         print("接受 cookies 按钮未找到", e)
             # 等待页面加载完成，根据实际情况调整等待时间
                 time.sleep(15)
             # 截图并保存

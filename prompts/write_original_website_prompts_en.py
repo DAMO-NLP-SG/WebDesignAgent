@@ -16,10 +16,11 @@ Your task is to build a single page app according to the screenshot and the page
 - Pay attention to the layout of the page, image distribution, image size, related text, buttons, links, etc. to be consistent with the screenshot.
 - Pay attention to the background color, text color, font size, font family, padding, margins, borders, etc. Exactly match the color and size to be consistent with the screenshot.
 - Use the exact text from the screenshot.
+- Be careful not to let the image cover the text, the text layer should be the top layer.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
-- Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
+- Avoid using placehold as background. Such as: background: url('https://placehold.co/1600x900').You can use gradient colors as background or local images as background.
 - You must ensure that the page you generate is completely consistent with the page we provide(Layout, Format, Text, Content)!
 - You are encouraged to enhance the interactivity and functionality of web pages by implementing additional JavaScript operations (e.g. scrolling, clicking, hovering, color changes, click effects, page switching, etc.). The purpose is to make the page more practical and attractive to users.
 """
@@ -29,13 +30,14 @@ The above picture is a screenshot of the reference webpage we provide to you.
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
 Your task is to build a new web page by imitating the structure and layout of the reference web page and the provided page information
 - Don't match the text on the reference webpage! Add text based on your own needs!
+- Be careful not to let the image cover the text, the text layer should be the top layer.
 - It does not need to be consistent with the reference web page, just learn from its excellent points.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
 - Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
-- Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
+- Avoid using placehold as background. Such as: background: url('https://placehold.co/1600x900').You can use gradient colors as background or local images as background.
 - Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on. 
 - If you want to add images through constants in js, please define constants in the following way:
 const imageInfo = {{
@@ -52,13 +54,14 @@ That is, be sure to use "imgsrc" to add the image address(try to use a local add
 text_task = """
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
 Your task is to build a single page app according to the page information.
+- Be careful not to let the image cover the text, the text layer should be the top layer.
 - Pay close attention to background color, text color, font size, font family, padding, margin, border, etc. 
 - For images, try to use local images in the page information and do not modify its file path. If you want to add additional images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
 - Try to make the page look rich and not boring, such as using rich background colors, button colors, font colors, etc.
 - Please pay close attention to the image size to ensure that the final page looks good.
 - Attention should be paid to coordination, for example, technology websites should be designed with a sense of technology, while shopping websites should have a sense of freshness.
 - Encourage you to use more colors, more buttons, and more exquisite layout, and try adding more special effects, such as wave effects, gradient effects, scrolling effects, and so on.
-- Avoid using images as background. Such as: background: url('https://placehold.co/1600x900').
+- Avoid using placehold as background. Such as: background: url('https://placehold.co/1600x900').You can use gradient colors as background or local images as background.
 - If you want to add images through constants in js, please define constants in the following way:
 const imageInfo = {{
 imgsrc: "search.png",
