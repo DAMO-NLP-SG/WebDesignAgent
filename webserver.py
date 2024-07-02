@@ -43,10 +43,10 @@ class Webserver:
                 "safebrowsing.enabled": True,
             })
             print("begin install the chrome manager")
-            # driver_path = ChromeDriverManager().install()
-            # print("successfully install the chrome manager")
-            # service = ChromeService(driver_path)
-            self.driver = webdriver.Chrome(options=options)
+            driver_path = ChromeDriverManager().install()
+            print("successfully install the chrome manager")
+            service = ChromeService(driver_path)
+            self.driver = webdriver.Chrome(service=service, options=options)
         elif web_type == "firefox":
             options = FirefoxOptions()
             options.add_argument("headless")
