@@ -87,20 +87,23 @@ pip install -r requirements.txt
 set config.yaml to use the OpenAI APIs.
 ```yaml
 web_type : "chrome" # "chrome" or "firefox" or "edge"
-LLM_TYPE : "openai" # openai
+LLM_TYPE : "openai" # openai or claude
 
 # LLM settings
-# azure openai settings
-is_auzer : True # set True if you use azure api
+# openai settings
+is_azure : True
 AZURE_OPENAI_ENDPOINT : ""
 AZURE_OPENAI_KEY : ""
-AZURE_OPENAI_API_VERSION : "" # can be blank
+AZURE_OPENAI_API_VERSION : ""
+
 AZURE_OPENAI_DALLE_ENDPOINT : ""
 AZURE_OPENAI_DALLE_KEY : ""
 
-# openai settings
 OPENAI_API_KEY : ""
 OPENAI_PROXY_URL : ""
+
+# claude settings
+CLAUDE_API_KEY : ""
 
 
 # IMG Generator settings (if not set, it will use the openai settings)
