@@ -20,7 +20,7 @@ class BaseAgent:
     
     def get_answer(self,messages,**kwargs):
         response = self.get_LLM_response(messages,model = self.model,**kwargs)
-        return response.choices[0].message.content
+        return response
     
     async def get_LLM_response_async(self,messages,**kwargs):
         if kwargs.get("model") == None:
@@ -29,7 +29,7 @@ class BaseAgent:
     
     async def get_answer_async(self,messages,**kwargs):
         response = await self.get_LLM_response_async(messages,model = self.model,**kwargs)
-        return response.choices[0].message.content
+        return response
 
 
     

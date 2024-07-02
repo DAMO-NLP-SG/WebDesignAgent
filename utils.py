@@ -5,8 +5,13 @@ import httpx
 from yaspin import yaspin
 
 
-def cal_cost(prompt_tokens,completion_tokens):
-    return prompt_tokens/1000 *0.005 + completion_tokens/1000 *0.015
+def cal_cost(prompt_tokens,completion_tokens,model = "gpt-4"):
+    if "gpt-4o" in model:
+        return prompt_tokens/1000000 * 5 + completion_tokens/1000000 * 15
+    elif "Sonnet" in model:
+        return prompt_tokens/1000000 * 3 + completion_tokens/1000000 * 15
+    else:
+        return prompt_tokens/1000 *0.005 + completion_tokens/1000 *0.015
 
 def write_file(file_path, content):
     with open(file_path, "w",encoding='utf-8') as f:
@@ -18,6 +23,8 @@ def get_all_files_in_dir(directory):
         for file in files:
             file_list.append(os.path.join(root, file))
     return file_list
+
+
 
 
 def get_content_between_a_b(start_tag, end_tag, text):
@@ -140,7 +147,5 @@ async def fetch_image(url):
         return response.content
 
 if __name__ == "__main__":
-    file_list = get_all_files_in_dir("/Users/jianghuyihei/code/WebDesignAgent")
-    for file in file_list:
-        if file.endswith(".py"):
-            print(file)
+    img_url = get_openai_url("/Users/jianghuyihei/code/WebDesignAgent/damo.png")
+    print(img_url)

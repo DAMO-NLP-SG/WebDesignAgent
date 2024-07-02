@@ -5,7 +5,7 @@ import shutil
 from bs4 import BeautifulSoup
 from base_agent import BaseAgent
 from webserver import Webserver
-from utils import get_openai_url,write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost,extract_dimensions,get_html_css_from_response,get_all_files_in_dir
+from utils import write_file,get_content_between_a_b,wrap_func,extract_img_from_html,create_file,extract,modify_input_dict,cal_cost,extract_dimensions,get_html_css_from_response,get_all_files_in_dir
 from PIL import Image
 import re
 import argparse
@@ -108,7 +108,7 @@ class WebDesignAgent(BaseAgent):
         if img:
             messages = [
                 {"role":"user","content":[
-                    {"type":"image_url","image_url":{"url":get_openai_url(img),"detail":"high"}},
+                    {"type":"image","url":img},
                     {"type":"text","text":prompt},
             ]},
             ]
@@ -214,7 +214,7 @@ class WebDesignAgent(BaseAgent):
         if img:
             messages = [
                 {"role":"user","content":[
-                    {"type":"image_url","image_url":{"url":get_openai_url(img),"detail":"high"}},
+                    {"type":"image","url":img},
                     {"type":"text","text":prompt},
             ]},
             ]
@@ -282,15 +282,15 @@ class WebDesignAgent(BaseAgent):
         if img:
             messages = [
                 {"role":"user","content":[
-                    {"type":"image_url","image_url":{"url":get_openai_url(img),"detail":"high"}},
-                    {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
+                    {"type":"image","url":img},
+                    {"type":"image","url":page_img_path},
                     {"type":"text","text":prompt},
             ]},
             ]
         else:
             messages = [
                 {"role":"user","content":[
-                    {"type":"image_url","image_url":{"url":get_openai_url(page_img_path),"detail":"high"}},
+                    {"type":"image","url":page_img_path},
                     {"type":"text","text":prompt},
             ]},
             ]
@@ -606,7 +606,7 @@ class WebDesignAgent(BaseAgent):
         process_img_prompt = get_process_img_prompt(language=self.language)
         messages = [
             {"role":"user","content":[
-                {"type":"image_url","image_url":{"url":get_openai_url(img_path),"detail":"high"}},
+                {"type":"image","url":img_path},
                 {"type":"text","text":process_img_prompt},
         ]},
         ]

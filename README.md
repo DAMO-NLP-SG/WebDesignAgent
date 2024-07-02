@@ -35,12 +35,13 @@ These websites are built based on the following materials:
 *  AI Generation Images
 *  Human Feedback
 
-<!--
+
 ##  📰 Update
+* **[2024.7.2]** WebDesignAgent can support Claude model!
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
--->
+
   
 ## 😊 What is WebDesignAgent
 WebDesignAgnet is an autonomous agent that can help you build a series of websites.

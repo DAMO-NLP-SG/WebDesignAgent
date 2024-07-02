@@ -43,10 +43,10 @@ class Webserver:
                 "safebrowsing.enabled": True,
             })
             print("begin install the chrome manager")
-            driver_path = ChromeDriverManager().install()
-            print("successfully install the chrome manager")
-            service = ChromeService(driver_path)
-            self.driver = webdriver.Chrome(service=service, options=options)
+            # driver_path = ChromeDriverManager().install()
+            # print("successfully install the chrome manager")
+            # service = ChromeService(driver_path)
+            self.driver = webdriver.Chrome(options=options)
         elif web_type == "firefox":
             options = FirefoxOptions()
             options.add_argument("headless")
@@ -103,7 +103,7 @@ class Webserver:
             #     except Exception as e:
             #         print("接受 cookies 按钮未找到", e)
             # 等待页面加载完成，根据实际情况调整等待时间
-                time.sleep(15)
+                # time.sleep(15)
             # 截图并保存
             if self.web_type in ["chrome","firefox","edge"]:
                 try:

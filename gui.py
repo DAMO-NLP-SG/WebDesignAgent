@@ -3,12 +3,17 @@ import os
 import time
 import threading
 import tkinter as tk
+import yaml
 from tkinter import scrolledtext, ttk, messagebox
 from webdesign import WebDesignAgent
 from PIL import ImageTk, Image
 from utils import cal_cost
 import asyncio
 
+with open('config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+for key, value in config.items():
+    os.environ[key] = str(value)
 class Application(tk.Tk):
     def __init__(self, agent:WebDesignAgent = None):
         super().__init__()
@@ -31,12 +36,22 @@ class Application(tk.Tk):
         self.mode_menu_label = tk.Label(self.title_frame, text="Select Mode:")
         self.mode_menu_label.grid(row=0, column=0, padx=10, pady=10)
 
+        # self.local_model_label = tk.Label(self.title_frame, text="Local Model Path:")
+        # self.local_model_label.grid(row=0, column=4, padx=10, pady=10)
+        # self.local_model_entry = tk.Entry(self.title_frame)
+        # self.local_model_entry.grid(row=0, column=5, padx=10, pady=10)
+        # self.local_model_button = tk.Button(self.title_frame, text="Load", command=self.load_local_model)
+        # self.local_model_button.grid(row=0, column=6, padx=10, pady=10)
 
         self.css_frame_var = tk.StringVar(value="Tailwind")
         self.agent.css_frame = "Tailwind"
-
-        self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
-        self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
+        llm_type = config.get("LLM_TYPE","openai")
+        if llm_type == "openai":
+            self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
+            self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
+        elif llm_type == "claude":
+            self.chat_model_options = ["claude-3-5-sonnet-20240620","claude-3-opus-20240229","claude-3-sonnet-20240229","claude-3-haiku-20240307"]
+            self.web_design_model_options = ["claude-3-5-sonnet-20240620","claude-3-sonnet-20240229"]
 
         self.model_var = tk.StringVar(value=self.web_design_model_options[0])
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)
@@ -80,6 +95,15 @@ class Application(tk.Tk):
         self.total_cost = 0
         self.time_cost = 0
         self.img_ref = None     
+    
+    def load_local_model(self):
+        messagebox.showinfo("Info", "The function not implemented yet")
+        # local_model_path = self.local_model_entry.get()
+        # if not os.path.exists(local_model_path):
+        #     messagebox.showerror("Error", "Invalid model path")
+        #     return
+        # self.agent.llm.load_local_model(local_model_path)
+        # print(f"Load local model from: {local_model_path}")
 
     def create_chat_widgets(self):
         chat_widgets = {}
@@ -207,7 +231,6 @@ class Application(tk.Tk):
             self.agent.model = self.chat_model_options[0]
             self.display_chat_mode()
         elif mode == "Web Design Mode":
-            self.model_options = ["gpt-4o"]
             self.model_menu.set_menu(self.web_design_model_options[0],*self.web_design_model_options)
             self.agent.model = self.web_design_model_options[0]
             self.display_web_design_mode()
@@ -535,7 +558,7 @@ class Application(tk.Tk):
         current_del_cost = tokens["dalle3"]
         total_prompt_cost = current_prompt_cost - self.begin_prompt_cost
         total_completion_cost = current_completion_cost - self.begin_completion_cost
-        self.total_cost = cal_cost(total_prompt_cost, total_completion_cost)
+        self.total_cost = cal_cost(total_prompt_cost, total_completion_cost,self.agent.model)
         self.time_cost += time.time() - self.begin_time
         self.token_cost_label.config(text=f"💰 {self.total_cost} $")
         self.token_img_label.config(text=f"💰 {(current_del_cost - self.begin_dell_cost) * 4 / 100} $")

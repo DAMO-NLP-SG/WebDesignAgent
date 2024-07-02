@@ -1,4 +1,6 @@
 from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
+from anthropic import Anthropic,AsyncAnthropic
+
 from abc import abstractmethod
 import yaml
 import os
@@ -17,12 +19,13 @@ from tenacity import (
 import requests
 from PIL import Image
 from io import BytesIO
-from utils import fetch_image
+from utils import fetch_image,get_openai_url,encode_image
 
 def before_retry_fn(retry_state):
     if retry_state.attempt_number > 1:
         logging.info(f"Retrying API call. Attempt #{retry_state.attempt_number}, f{retry_state}")
 token_log_file = os.environ.get("TOKEN_LOG_FILE", "logs/token.json")
+
 
 class base_llm:
     def __init__(self) -> None:
@@ -83,10 +86,29 @@ class openai_llm(base_llm):
             proxy_url = os.environ.get("OPENAI_PROXY_URL")
             self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY") if proxy_url is None or proxy_url == "" else OpenAI(api_key= os.environ.get("OPENAI_API_KEY"), http_client=httpx.Client(proxy=proxy_url)))
             self.async_client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY") if proxy_url is None or proxy_url == "" else AsyncOpenAI(api_key= os.environ.get("OPENAI_API_KEY"), http_client=httpx.AsyncClient(proxy=proxy_url)))
-
-
+    
+    def process_messages(self, messages):
+        new_messages = []
+        for message in messages:
+            if message["role"] == "user":
+                content = message["content"]
+                if isinstance(content, list):
+                    new_content= []
+                    for c in content:
+                        if c["type"] == "image":
+                            new_content.append({"type":"image_url","image_url":{"url":get_openai_url(c["url"]),"detail":"high"}})
+                        else:
+                            new_content.append(c)
+                    new_messages.append({"role":"user","content":new_content})
+                else:
+                    new_messages.append(message)
+            else:
+                new_messages.append(message)
+        return new_messages
+    
     @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
     def response(self,messages,**kwargs):
+        messages = self.process_messages(messages)
         try:
             response = self.client.chat.completions.create(
                 # gpt-35-turbo-16k  gpt4-turbo-2024-04-29 gpt-4o-2
@@ -114,10 +136,11 @@ class openai_llm(base_llm):
         with open(token_log_file, "w") as f:
             json.dump(tokens, f)
 
-        return response
+        return response.choices[0].message.content
     
     @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
     async def response_async(self,messages,**kwargs):
+        messages = self.process_messages(messages)
         try:
             response = await self.async_client.chat.completions.create(
                 # gpt-35-turbo-16k  gpt4-turbo-2024-04-29 gpt-4o-2
@@ -145,8 +168,99 @@ class openai_llm(base_llm):
         with open(token_log_file, "w") as f:
             json.dump(tokens, f)
 
-        return response
+        return response.choices[0].message.content
+
+
+class claude_llm(base_llm):
+    def __init__(self) -> None:
+        super().__init__()
+        if "CLAUDE_API_KEY" not in os.environ or os.environ["CLAUDE_API_KEY"] == "":
+            raise ValueError("CLAUDE_API_KEY is not set")
+        self.client = Anthropic(api_key=os.environ["CLAUDE_API_KEY"])
+        self.async_client = AsyncAnthropic(api_key=os.environ["CLAUDE_API_KEY"])
     
+    def process_messages(self, messages):
+        new_messages = []
+        for message in messages:
+            if message["role"] == "user":
+                content = message["content"]
+                if isinstance(content, list):
+                    new_content = []
+                    for c in content:
+                        if c["type"] == "image":
+                            image_type = c["url"].split(".")[-1]
+                            if image_type == "jpg":
+                                image_type = "jpeg"
+                            new_content.append({"type":"image","source":{"type":"base64","media_type":f"image/{image_type}","data":encode_image(c["url"])}})
+                        else:
+                            new_content.append(c)
+                    new_messages.append({"role":"user","content":new_content})
+                else:
+                    new_messages.append(message)
+            else:
+                new_messages.append(message)
+        return new_messages
+    
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    def response(self, messages, **kwargs):
+        messages = self.process_messages(messages)
+        try:
+            response = self.client.messages.create(
+                model = kwargs.get("model", "claude-3-5-sonnet-20240620"),
+                temperature= kwargs.get("temperature", 0.7),
+                max_tokens=kwargs.get("max_tokens", 4000),
+                messages=messages,
+                timeout=kwargs.get("timeout", 180)
+            )
+        except Exception as e:
+            print(e)
+            logging.info(e)
+
+        if not os.path.exists(token_log_file):
+            with open(token_log_file, "w") as f:
+                json.dump({},f)
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            current_model = kwargs.get("model", "gpt-35-turbo-16k")
+            if current_model not in tokens:
+                tokens[current_model] = [0,0]
+            tokens[current_model][0] += response.usage.input_tokens
+            tokens[current_model][1] += response.usage.output_tokens
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+
+        return response.content[0].text
+
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    async def response_async(self, messages, **kwargs):
+        messages = self.process_messages(messages)
+        try:
+            response = await self.async_client.messages.create(
+                model = kwargs.get("model", "claude-3-5-sonnet-20240620"),
+                temperature= kwargs.get("temperature", 0.7),
+                max_tokens=kwargs.get("max_tokens", 4000),
+                messages=messages,
+                timeout=kwargs.get("timeout", 180)
+            )
+        except Exception as e:
+            print(e)
+            logging.info(e)
+
+        if not os.path.exists(token_log_file):
+            with open(token_log_file, "w") as f:
+                json.dump({},f)
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            current_model = kwargs.get("model", "gpt-35-turbo-16k")
+            if current_model not in tokens:
+                tokens[current_model] = [0,0]
+            tokens[current_model][0] += response.usage.input_tokens
+            tokens[current_model][1] += response.usage.output_tokens
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return response.content[0].text
+
+
 
 class Dalle3_llm(base_img_llm):
     def __init__(self) -> None:
@@ -270,6 +384,8 @@ def get_llm():
     llm , img_generator = None,None
     if llm_type == "openai":
         llm = openai_llm()
+    elif llm_type == "claude":
+        llm = claude_llm()
     else:
         raise ValueError(f"Unknown LLM type: {llm_type}")
     if img_gen_type == "dalle3":
@@ -284,11 +400,23 @@ def get_llm():
 
 if __name__ == "__main__":
     llm , delle = get_llm()
-    print("success")
-    prompt = """
-A black wizard hat
-    """
-    img = delle.get_img(prompt,save_path="saves/harry/img_78.png")
+    prompt = "告诉我两张图片的区别"
+    img = ""
+    page_img_path = ""
+    messages = [
+        {"role":"user","content":[
+            {"type":"text","text":prompt},
+    ]},
+        {"role":"assistant","content":"请提供给我相关图片"},
+        {"role":"user","content":[
+            {"type":"image","url":page_img_path},
+            {"type":"image","url":img},
+        ]},
+    ]
+    messages = llm.process_messages(messages)
+    # print(messages)
+    response = llm.response(messages,model = "gpt4o-0513")
+    print(response)
 
 
 
