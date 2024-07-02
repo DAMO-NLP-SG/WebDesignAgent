@@ -42,7 +42,7 @@ These websites are built based on the following materials:
 * **[2024.6.26]**  The first version of WebDesignAgent!
 -->
   
-## 😊 What is WebDesignAgnet
+## 😊 What is WebDesignAgent
 WebDesignAgnet is an autonomous agent that can help you build a series of websites.
 
 It supports building webpages with:
