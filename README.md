@@ -23,7 +23,7 @@ These websites are built based on the following materials:
 [黑八戒.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/f69b1992-4ef0-47e9-91ce-b0b696b581d0)
 
 These websites are built based on the following materials:
-* A reference website layout: *https://www.heishenhua.com*
+* A reference website layout: *wukong.png*
 * A simple description: *Please build official websites for Black Myth: Bajie. It requires a detailed introduction to the game as well as a history of Game Science's development. Additionally, it should provide a smart AI conversation feature with Bajie. Game Science's renowned work is Black Myth: Wukong, which has just won the 2024 TGA Game of the Year award.*
 *  Local Images
 *  Human Feedback

@@ -682,6 +682,7 @@ class Application(tk.Tk):
             except Exception as e:
                 messagebox.showerror("Error", f"Error occurred: {e}")
                 self.is_animating = False
+                return
             
             asyncio.run(self.agent.deal_task_async(need_create_pages))
             self.update_cost()
