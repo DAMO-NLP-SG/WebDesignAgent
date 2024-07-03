@@ -704,6 +704,15 @@ class Application(tk.Tk):
 
 
     def animate(self,animation_sequence):
+        """
+        This function is responsible for handling the animation of the object.
+        
+        Parameters:
+        animation_sequence (list): A list of strings that represent the frames of the animation.
+        
+        Returns:
+        None
+        """
         if self.is_animating:
             self.animation_label.config(text=animation_sequence[self.animation_idx])
             self.animation_idx = (self.animation_idx + 1) % len(animation_sequence)
