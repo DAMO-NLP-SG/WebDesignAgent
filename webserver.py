@@ -47,6 +47,11 @@ class Webserver:
             print("successfully install the chrome manager")
             service = ChromeService(driver_path)
             self.driver = webdriver.Chrome(service=service, options=options)
+
+            preview_options = ChromeOptions()
+            preview_options.add_argument("start-maximized")
+            self.preview_driver = webdriver.Chrome(service=service, options=preview_options)
+
         elif web_type == "firefox":
             options = FirefoxOptions()
             options.add_argument("headless")
@@ -59,6 +64,11 @@ class Webserver:
             print("successfully install the firefox manager")
             service = FirefoxService(driver_path)
             self.driver = webdriver.Firefox(service=service, options=options)
+
+            preview_options = FirefoxOptions()
+            preview_options.add_argument("start-maximized")
+            self.preview_driver = webdriver.Firefox(service=service, options=preview_options)
+
         elif web_type == "edge":
             options = EdgeOptions()
             options.add_argument("headless")
@@ -73,6 +83,10 @@ class Webserver:
             print("successfully install the edge manager")
             service = EdgeService(driver_path)
             self.driver = webdriver.Edge(service=service, options=options)
+
+            preview_options = EdgeOptions()
+            preview_options.add_argument("start-maximized")
+            self.preview_driver = webdriver.Edge(service=service, options=preview_options)
         else:
             raise ValueError(f"Unsupported web browser type: {web_type}")
 
@@ -137,7 +151,7 @@ class Webserver:
             html_path = local_html_path
         else:
             html_path = os.path.join(os.getcwd(), local_html_path)
-        self.driver.get("file:///" + html_path.replace("\\", "/"))
+        self.preview_driver.get("file:///" + html_path.replace("\\", "/"))
 
 
     def stop(self):

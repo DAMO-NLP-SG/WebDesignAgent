@@ -48,6 +48,7 @@ class Application(tk.Tk):
         llm_type = config.get("LLM_TYPE","openai")
         if llm_type == "openai":
             self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
+            # self.web_design_model_options = ["gpt-4o-0513","gpt-4o"]
             self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
         elif llm_type == "claude":
             self.chat_model_options = ["claude-3-5-sonnet-20240620","claude-3-opus-20240229","claude-3-sonnet-20240229","claude-3-haiku-20240307"]
@@ -192,6 +193,7 @@ class Application(tk.Tk):
 
         create_button = tk.Button(self.scrollable_frame, text="Create Website", command=self.create_website)
         refine_button = tk.Button(self.scrollable_frame, text="Refine Website", command=self.refine_website)
+        open_website_button = tk.Button(self.scrollable_frame, text="Open Website", command=self.open_website)
 
         delete_page_button = tk.Button(self.scrollable_frame, text="Delete Page", command=self.delete_page)
         add_page_button = tk.Button(self.scrollable_frame, text="Add Page", command=self.add_page)
@@ -204,6 +206,7 @@ class Application(tk.Tk):
 
         web_design_widgets["create_button"] = create_button
         web_design_widgets["refine_button"] = refine_button
+        web_design_widgets["open_website_button"] = open_website_button
 
         web_design_widgets["delete_page_button"] = delete_page_button
         web_design_widgets["add_page_button"] = add_page_button
@@ -310,6 +313,7 @@ class Application(tk.Tk):
 
         self.web_design_widgets['create_button'].grid(row=3, column=2, padx=10, pady=10)
         self.web_design_widgets['refine_button'].grid(row=4, column=2, padx=10, pady=10)
+        self.web_design_widgets['open_website_button'].grid(row=5, column=2, padx=10, pady=10)
 
     
     def send_message(self):
@@ -538,6 +542,12 @@ class Application(tk.Tk):
         self.pages.append(page_template)
         self.current_page = len(self.pages) - 1
         self.display_table_page()
+    
+    def open_website(self):
+        html_name = self.pages[self.current_page]["html_name"]
+        html_path = os.path.join(self.agent.save_file, html_name)
+        self.agent.webserver.open_website(html_path)
+        
     
     def save_value(self, event, key, idx):
         text_widget = event.widget
