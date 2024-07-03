@@ -9,8 +9,8 @@ WebDesignAgent :  Towards Effortless Websites Creation
 <p align="center">
 <a href="https://opensource.org/license/apache-2-0"><img src="https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg"></a>
 <a href="https://github.com/DAMO-NLP-SG"><img src="https://img.shields.io/badge/Institution-DAMO-red"></a>
-<a href="[https://github.com/DAMO-NLP-SG](https://github.com/DAMO-NLP-SG/WebDesignAgent/issues)"><img src="https://img.shields.io/bitbucket/issues/DAMO-NLP-SG/WebDesignAgent"></a>
 <a><img src="https://hits.dwyl.com/DAMO-NLP-SG/WebDesignAgent.svg?style=flat-square&show=unique"></a>
+<a><img src="https://img.shields.io/badge/PRs-Welcome-red"></a>
 </p>
 
 [harry 1.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/d7ddd748-00d3-47e1-96aa-5a022e857df8)
