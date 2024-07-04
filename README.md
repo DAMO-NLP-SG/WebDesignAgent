@@ -91,7 +91,7 @@ LLM_TYPE : "openai" # openai or claude
 
 # LLM settings
 # openai settings
-is_azure : True
+is_azure : True # set it False if you do not use azure_openai
 AZURE_OPENAI_ENDPOINT : ""
 AZURE_OPENAI_KEY : ""
 AZURE_OPENAI_API_VERSION : ""
@@ -131,8 +131,9 @@ For a quick usage of our WebDesignAgent, please follow these steps:
 4. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
 5. Set `save_file`, which saves your generated websites.
 6. **Enter your request in either the `website_description` field for textual requests, the `website_img` field for image requests, or both for a combined input.**
-7. Click the `Plan` button, which will return the textual descriptions of planned websites, their contents, and their relations. You can also change these descriptions if you find them unsuitable.
-8. Click `Auto Generate` to generate all the above websites for you. The screenshot of your created websites will show on the right part of the GUI tool. (It may take some time for the entire website generation)
+7. If you want to use local img, please set 'local_img_storage_path'(should be a file(we will auto find all imgs in the file)) and click load, then set 'IMG Source' to 'local'
+8. Click the `Plan` button, which will return the textual descriptions of planned websites, their contents, and their relations. You can also change these descriptions if you find them unsuitable.
+9. Click `Auto Generate` to generate all the above websites for you. The screenshot of your created websites will show on the right part of the GUI tool. (It may take some time for the entire website generation)
 
 #### Human Feedback
 If you want to generate a website with more human control. 
