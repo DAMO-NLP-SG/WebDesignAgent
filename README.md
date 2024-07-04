@@ -130,8 +130,8 @@ For a quick usage of our WebDesignAgent, please follow these steps:
 3. Select the website language in the `Language` field.
 4. Config `CSS Framework` to your favored style, e.g. `Tailwind`.
 5. Set `save_file`, which saves your generated websites.
-6. **Enter your request in either the `website_description` field for textual requests, the `website_img` field for image requests, or both for a combined input.**
-7. If you want to use local img, please set 'local_img_storage_path'(should be a file(we will auto find all imgs in the file)) and click load, then set 'IMG Source' to 'local'
+   . **Enter your request in either the `website_description` field for textual requests, the `website_template_path` field for image template requests, or both for a combined input.**
+7. If you want to build your website with your local images, please indicate the image storage path `local_img_storage_path` for our agent to load and then click `load`.
 8. Click the `Plan` button, which will return the textual descriptions of planned websites, their contents, and their relations. You can also change these descriptions if you find them unsuitable.
 9. Click `Auto Generate` to generate all the above websites for you. The screenshot of your created websites will show on the right part of the GUI tool. (It may take some time for the entire website generation)
 
