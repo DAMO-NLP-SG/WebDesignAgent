@@ -139,7 +139,7 @@ class Webserver:
                     stitched_image.paste(img, (0, y))
                     stitched_image.save(save_path)
             img = Image.open(save_path)
-            if img.size[1] > 10000:
+            if img.size[1] > 4096:
                 img = img.resize((img.size[0] // 2, img.size[1] // 2))
             img.save(save_path)
             print(f"Screenshot of local HTML saved as {save_path}")
