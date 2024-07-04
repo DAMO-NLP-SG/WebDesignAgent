@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Social Responsibility
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .bg-gradient {
+      background: linear-gradient(90deg, #1FB6FF 0%, #009EEB 100%);
+    }
+    .wave-effect {
+      background: url('https://placehold.co/1200x200') repeat-x;
+      animation: wave 5s linear infinite;
+    }
+    @keyframes wave {
+      from {
+        background-position: 0;
+      }
+      to {
+        background-position: 1200px;
+      }
+    }
+    .hover-bg-hover {
+      transition: background-color 0.3s;
+    }
+    .hover-bg-hover:hover {
+      background-color: #005F99;
+    }
+    .scrolling-banner {
+      overflow: hidden;
+      white-space: nowrap;
+      animation: scroll-left 15s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+ </head>
+ <body class="font-sans bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-gradient text-white py-6 wave-effect shadow-lg">
+   <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-4xl font-bold">
+     <img alt="Organization Logo" class="inline-block mr-2" height="80" src="img_19.png" width="80"/>
+     Social Responsibility
+    </h1>
+    <nav class="flex space-x-6 text-xl">
+     <a class="hover:underline" href="main.html">
+      主页
+     </a>
+     <a class="hover:underline" href="about_us.html">
+      About Us
+     </a>
+     <a class="hover:underline" href="contact.html">
+      Contact
+     </a>
+    </nav>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main class="container mx-auto py-10">
+   <!-- Introduction Section -->
+   <section class="mb-10">
+    <div class="text-center mb-6">
+     <h2 class="text-3xl font-bold">
+      Our Social Responsibility Initiatives
+     </h2>
+     <p class="text-lg text-gray-600">
+      Showcasing various projects, their impact, and opportunities for community involvement.
+     </p>
+    </div>
+    <img alt="An overview of various social responsibility projects" class="w-full h-auto rounded-lg shadow-lg" height="400" src="img_21.png" width="1200"/>
+   </section>
+   <!-- Projects Section -->
+   <section class="mb-10 bg-gradient-to-r from-blue-100 to-blue-200 p-10 rounded-lg">
+    <h3 class="text-2xl font-semibold mb-4">
+     Project Descriptions
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <!-- Project Item -->
+     <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <img alt="Project image showing community development" class="w-full h-auto rounded-lg mb-4" height="400" src="img_20.png" width="600"/>
+      <h4 class="text-xl font-bold mb-2">
+       Community Development
+      </h4>
+      <p class="text-gray-600">
+       Our community development projects aim to improve local infrastructure and provide essential services.
+      </p>
+     </div>
+     <!-- Repeat similar project items -->
+    </div>
+   </section>
+   <!-- Impact Statistics Section -->
+   <section class="mb-10 bg-gradient-to-r from-green-100 to-green-200 p-10 rounded-lg">
+    <h3 class="text-2xl font-semibold mb-4">
+     Impact Statistics
+    </h3>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+     <p class="text-gray-600">
+      Our projects have impacted over 10,000 lives, with over 500 volunteers participating annually.
+     </p>
+    </div>
+   </section>
+   <!-- Testimonials Section -->
+   <section class="mb-10 bg-gradient-to-r from-purple-100 to-purple-200 p-10 rounded-lg">
+    <h3 class="text-2xl font-semibold mb-4">
+     Success Stories &amp; Testimonials
+    </h3>
+    <div class="bg-white p-6 rounded-lg shadow-lg scrolling-banner">
+     <p class="text-gray-600">
+      "The initiatives have profoundly changed our community for the better." - Beneficiary
+     </p>
+     <p class="text-gray-600">
+      "Volunteering here has been a rewarding experience." - Volunteer
+     </p>
+     <!-- Repeat similar testimonials -->
+    </div>
+   </section>
+   <!-- Interactive Map Section -->
+   <section class="mb-10 bg-gradient-to-r from-yellow-100 to-yellow-200 p-10 rounded-lg">
+    <h3 class="text-2xl font-semibold mb-4">
+     Interactive Project Map
+    </h3>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+     <iframe height="480" src="https://www.google.com/maps/d/embed?mid=1GmXz9kM4Cm8P7bT7nP5A5A5" width="100%">
+     </iframe>
+    </div>
+   </section>
+   <!-- Call to Action Buttons -->
+   <section class="text-center mb-10">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-2 transition-transform transform hover:scale-105" onclick="openVolunteerForm()">
+     <i class="fas fa-hands-helping mr-2">
+     </i>
+     Volunteer Now
+    </button>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full m-2 transition-transform transform hover:scale-105" onclick="openDonationPage()">
+     <i class="fas fa-donate mr-2">
+     </i>
+     Donate
+    </button>
+    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full m-2 transition-transform transform hover:scale-105" onclick="openProjectGallery()">
+     <i class="fas fa-images mr-2">
+     </i>
+     Project Gallery
+    </button>
+    <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full m-2 transition-transform transform hover:scale-105" href="main.html">
+     <i class="fas fa-arrow-left mr-2">
+     </i>
+     Back to Main
+    </a>
+   </section>
+   <!-- Additional Features -->
+   <section class="mb-10 bg-gradient-to-r from-pink-100 to-pink-200 p-10 rounded-lg">
+    <h3 class="text-2xl font-semibold mb-4">
+     Additional Features
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+     <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <img alt="Volunteer sign-up form interaction" class="w-full h-auto rounded-lg mb-4" height="400" src="img_45.png" width="600"/>
+      <h4 class="text-xl font-bold mb-2">
+       Volunteer Sign-Up Forms
+      </h4>
+      <p class="text-gray-600">
+       Sign up to become a volunteer and join our efforts in making a difference.
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <img alt="Donation options illustration" class="w-full h-auto rounded-lg mb-4" height="400" src="img_46.png" width="600"/>
+      <h4 class="text-xl font-bold mb-2">
+       Donation Options
+      </h4>
+      <p class="text-gray-600">
+       Choose from various causes and make a donation to support our initiatives.
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <img alt="Newsletter subscription form" class="w-full h-auto rounded-lg mb-4" height="400" src="img_47.png" width="600"/>
+      <h4 class="text-xl font-bold mb-2">
+       Newsletter Subscription
+      </h4>
+      <p class="text-gray-600">
+       Subscribe to our newsletter for the latest updates on our projects and initiatives.
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <img alt="Embedded project videos" class="w-full h-auto rounded-lg mb-4" height="400" src="img_43.png" width="600"/>
+      <h4 class="text-xl font-bold mb-2">
+       Project Videos
+      </h4>
+      <p class="text-gray-600">
+       Watch embedded videos highlighting our projects and their impact.
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <img alt="Annual social responsibility report cover" class="w-full h-auto rounded-lg mb-4" height="400" src="img_42.png" width="600"/>
+      <h4 class="text-xl font-bold mb-2">
+       Annual Reports
+      </h4>
+      <p class="text-gray-600">
+       Download our annual social responsibility reports to learn more about our efforts and achievements.
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 fixed bottom-0 w-full">
+   <div class="container mx-auto text-center">
+    <p class="text-sm">
+     © 2023 Your Organization. All rights reserved.
+    </p>
+    <div class="flex justify-center space-x-4">
+     <a class="hover:underline" href="main.html">
+      主页
+     </a>
+     <a class="hover:underline" href="about_us.html">
+      About Us
+     </a>
+     <a class="hover:underline" href="contact.html">
+      Contact
+     </a>
+     <a class="hover:underline" href="#">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a class="hover:underline" href="#">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a class="hover:underline" href="#">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script src="https://kit.fontawesome.com/a076d05399.js">
+  </script>
+  <script>
+   // JavaScript functions for button actions
+    function openVolunteerForm() {
+      alert('Volunteer form will open here.');
+    }
+
+    function openDonationPage() {
+      alert('Donation page will open here.');
+    }
+
+    function openProjectGallery() {
+      alert('Project gallery will open here.');
+    }
+  </script>
+ </body>
+</html>

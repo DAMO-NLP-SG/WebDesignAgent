@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Order Confirmation
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .gradient-bg {
+            background: linear-gradient(90deg, #4f46e5, #6d28d9);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .wave {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background: #4f46e5;
+        }
+        .wave::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            width: 200%;
+            height: 200%;
+            background: url('https://www.heropatterns.com/waves/svg/horizontal-waves.svg') repeat-x;
+            animation: wave 10s linear infinite;
+        }
+        @keyframes wave {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <!-- Navbar Start -->
+  <nav class="gradient-bg shadow-lg">
+   <div class="container mx-auto p-4 flex justify-between items-center">
+    <a class="text-2xl font-extrabold text-white hover:underline" href="index.html">
+     Logo
+    </a>
+    <div>
+     <a class="text-white hover:text-gray-200 hover:underline" href="support.html">
+      Customer Support
+     </a>
+    </div>
+   </div>
+  </nav>
+  <!-- Navbar End -->
+  <main class="container mx-auto p-6">
+   <div class="bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-4xl font-extrabold text-center gradient-text mb-4">
+     Thank You for Your Purchase!
+    </h1>
+    <p class="text-center text-gray-700 mb-6">
+     Your order has been successfully processed. Below are the details of your purchase.
+    </p>
+    <div class="mb-6">
+     <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+      Order Details
+     </h2>
+     <div class="bg-gray-50 p-4 rounded-lg shadow border border-gray-200">
+      <!-- Order Details -->
+      <p class="text-gray-600">
+       <strong>
+        Confirmation Number:
+       </strong>
+       #123456
+      </p>
+      <p class="text-gray-600">
+       <strong>
+        Estimated Delivery Date:
+       </strong>
+       Oct 25, 2023
+      </p>
+      <p class="text-gray-600">
+       <strong>
+        Customer Information:
+       </strong>
+      </p>
+      <ul class="list-disc pl-5">
+       <li class="text-gray-600">
+        <i class="fas fa-user">
+        </i>
+        Name: John Doe
+       </li>
+       <li class="text-gray-600">
+        <i class="fas fa-envelope">
+        </i>
+        Email: john.doe@example.com
+       </li>
+       <li class="text-gray-600">
+        <i class="fas fa-map-marker-alt">
+        </i>
+        Address: 1234 Elm Street, Springfield, USA
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="mb-6">
+     <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+      Recommended Products
+     </h2>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+       <img alt="A beautifully designed smart thermostat with a sleek and modern look" class="w-full h-40 object-cover rounded-t-lg" height="200" src="img_26.png" width="200"/>
+       <div class="p-4">
+        <h3 class="text-lg text-gray-800">
+         Product 1
+        </h3>
+        <p class="text-gray-600">
+         $19.99
+        </p>
+       </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+       <img alt="A high-tech smartwatch with various app icons displayed on the screen" class="w-full h-40 object-cover rounded-t-lg" height="200" src="img_22.png" width="200"/>
+       <div class="p-4">
+        <h3 class="text-lg text-gray-800">
+         Product 2
+        </h3>
+        <p class="text-gray-600">
+         $29.99
+        </p>
+       </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+       <img alt="A futuristic virtual reality headset placed on a modern display stand" class="w-full h-40 object-cover rounded-t-lg" height="200" src="img_18.png" width="200"/>
+       <div class="p-4">
+        <h3 class="text-lg text-gray-800">
+         Product 3
+        </h3>
+        <p class="text-gray-600">
+         $39.99
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="mb-6">
+     <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+      Special Offers
+     </h2>
+     <div class="bg-gray-50 p-4 rounded-lg shadow border border-gray-200">
+      <p class="text-gray-600">
+       Get 20% off on your next purchase! Use code: THANKYOU20
+      </p>
+     </div>
+    </div>
+    <div class="flex justify-between mt-6">
+     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="window.print()">
+      Print Receipt
+     </button>
+     <div>
+      <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2" href="products.html">
+       Continue Shopping
+      </a>
+      <a class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2" href="index.html">
+       Home
+      </a>
+      <a class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" href="order_details.html">
+       View Order Details
+      </a>
+     </div>
+    </div>
+   </div>
+  </main>
+  <footer class="gradient-bg text-white mt-6 p-4 relative">
+   <div class="container mx-auto text-center">
+    <p>
+     © 2023 Your Store. All rights reserved.
+    </p>
+    <div class="flex justify-center mt-4">
+     <a class="mx-2 hover:text-gray-300" href="#">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a class="mx-2 hover:text-gray-300" href="#">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a class="mx-2 hover:text-gray-300" href="#">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+    </div>
+    <a class="mt-4 inline-block text-white hover:text-gray-300" href="#">
+     Back to top
+    </a>
+   </div>
+   <div class="wave">
+   </div>
+  </footer>
+  <script crossorigin="anonymous" src="https://kit.fontawesome.com/a076d05399.js">
+  </script>
+  <script>
+   const imageInfo = {
+        imgsrc: "https://placehold.co/600x400",
+        alt: "This is an example image",
+        width: 600,
+        height: 400,
+        title: "Example image title"
+    };
+  </script>
+ </body>
+</html>

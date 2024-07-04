@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Registration Page
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .bg-custom-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .btn-animate {
+            transition: transform 0.2s ease-in-out, background-color 0.2s;
+        }
+        .btn-animate:hover {
+            transform: scale(1.05);
+            background-color: #5a67d8;
+        }
+        .nav-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .sticky-top {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .password-weak {
+            color: red;
+        }
+        .password-moderate {
+            color: orange;
+        }
+        .password-strong {
+            color: green;
+        }
+  </style>
+ </head>
+ <body class="bg-custom-gradient min-h-screen flex flex-col items-center justify-center font-sans text-gray-800">
+  <header class="w-full p-4 sticky-top nav-shadow bg-white">
+   <nav class="flex justify-between items-center max-w-6xl mx-auto">
+    <a class="text-indigo-600 text-2xl font-bold" href="index.html">
+     Company
+    </a>
+    <div class="space-x-4">
+     <a class="text-gray-800 hover:text-indigo-600" href="index.html">
+      Home
+     </a>
+     <a class="text-gray-800 hover:text-indigo-600" href="privacy_policy.html">
+      Privacy Policy
+     </a>
+     <a class="text-gray-800 hover:text-indigo-600" href="terms_of_service.html">
+      Terms of Service
+     </a>
+     <a class="text-gray-800 hover:text-indigo-600" href="help.html">
+      Help
+     </a>
+    </div>
+   </nav>
+  </header>
+  <div class="bg-white shadow-lg rounded-lg p-10 max-w-lg w-full form-container">
+   <div class="flex items-center justify-center mb-6">
+    <a href="index.html">
+     <img alt="Company Logo" class="w-24 h-24" src="img_13.png"/>
+    </a>
+   </div>
+   <h1 class="text-3xl font-bold text-center mb-6">
+    Create New Account
+   </h1>
+   <form class="space-y-6" id="registrationForm">
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="username">
+      Username
+     </label>
+     <div class="relative mt-1">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+       <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20">
+        <path clip-rule="evenodd" d="M6 8a6 6 0 1 1 12 0 6 6 0 0 1-12 0zm8 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0zM2 16a6 6 0 0 1 12 0H2z" fill-rule="evenodd">
+        </path>
+       </svg>
+      </span>
+      <input class="mt-1 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="username" name="username" required="" type="text"/>
+     </div>
+    </div>
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="email">
+      Email
+     </label>
+     <div class="relative mt-1">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+       <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M2.94 4.94a1 1 0 0 1 1.32-.08L10 8.586l5.74-3.656a1 1 0 0 1 1.32 1.5L10 11.414 2.94 6.44a1 1 0 0 1-.08-1.5z">
+        </path>
+       </svg>
+      </span>
+      <input class="mt-1 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" name="email" required="" type="email"/>
+     </div>
+    </div>
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="password">
+      Password
+     </label>
+     <div class="relative mt-1">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+       <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20">
+        <path clip-rule="evenodd" d="M10 2a6 6 0 0 1 6 6v4h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h1V8a6 6 0 0 1 6-6zm0 2a4 4 0 0 0-4 4v4h8V8a4 4 0 0 0-4-4z" fill-rule="evenodd">
+        </path>
+       </svg>
+      </span>
+      <input class="mt-1 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="password" name="password" required="" type="password"/>
+      <div class="mt-2 text-sm text-gray-600" id="passwordStrength">
+       Password strength:
+       <span class="font-semibold password-weak">
+        Weak
+       </span>
+      </div>
+     </div>
+    </div>
+    <div>
+     <label class="flex items-center">
+      <input class="form-checkbox" required="" type="checkbox"/>
+      <span class="ml-2">
+       I agree to the
+       <a class="text-indigo-600 hover:text-indigo-900" href="terms_of_service.html">
+        Terms and Conditions
+       </a>
+      </span>
+     </label>
+    </div>
+    <div>
+     <label class="flex items-center">
+      <input class="form-checkbox" type="checkbox"/>
+      <span class="ml-2">
+       Sign up for our newsletter
+      </span>
+     </label>
+    </div>
+    <div class="mb-4 flex items-center" id="captcha">
+     <img alt="Captcha verification image with random characters" height="100" src="img_19.png" width="300"/>
+     <button class="ml-4 bg-gray-200 p-2 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-animate" type="button">
+      Refresh
+     </button>
+    </div>
+    <div>
+     <button class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-animate" type="submit">
+      Register
+     </button>
+    </div>
+   </form>
+   <div class="mt-6 text-center">
+    <p class="text-sm text-gray-600">
+     Already have an account?
+     <a class="text-indigo-600 hover:text-indigo-900" href="login.html">
+      Login
+     </a>
+    </p>
+   </div>
+   <div class="mt-6 text-center">
+    <a class="text-gray-600 hover:text-gray-900" href="help.html">
+     Help
+    </a>
+   </div>
+  </div>
+  <footer class="w-full p-4 bg-gray-800 mt-10">
+   <div class="flex justify-center items-center space-x-4">
+    <a class="text-gray-400 hover:text-white" href="#">
+     Contact Us
+    </a>
+    <a class="text-gray-400 hover:text-white" href="#">
+     About Us
+    </a>
+    <a class="text-gray-400 hover:text-white" href="#">
+     Careers
+    </a>
+    <a class="text-gray-400 hover:text-white" href="#">
+     Social Media
+    </a>
+   </div>
+  </footer>
+  <script>
+   document.getElementById('password').addEventListener('input', function (e) {
+        const password = e.target.value;
+        let strength = 'Weak';
+        let strengthClass = 'password-weak';
+        if (password.length > 8) {
+            strength = 'Moderate';
+            strengthClass = 'password-moderate';
+        }
+        if (password.length > 12) {
+            strength = 'Strong';
+            strengthClass = 'password-strong';
+        }
+        const strengthSpan = document.getElementById('passwordStrength').querySelector('span');
+        strengthSpan.textContent = strength;
+        strengthSpan.className = strengthClass;
+    });
+
+    function submitRegistrationForm() {
+        alert('Registration form submitted!');
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitRegistrationForm();
+    });
+
+    const imageInfo = {
+        imgsrc: "https://placehold.co/300x100",
+        alt: "Captcha verification image with random characters",
+        width: 300,
+        height: 100,
+        title: "Captcha Image"
+    };
+    document.getElementById('captcha').innerHTML = `<img src="${imageInfo.imgsrc}" alt="${imageInfo.alt}" width="${imageInfo.width}" height="${imageInfo.height}" title="${imageInfo.title}" /><button type="button" class="ml-4 bg-gray-200 p-2 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-animate">Refresh</button>`;
+  </script>
+ </body>
+</html>

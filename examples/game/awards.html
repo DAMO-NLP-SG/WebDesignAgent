@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Awards - Black Myth Wukong
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .hover-shadow:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+    .card-hover:hover {
+      transform: scale(1.05);
+    }
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+    .sticky-nav {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-900 text-white font-sans scroll-smooth">
+  <!-- Navigation -->
+  <nav class="bg-gradient-to-r from-gray-800 to-gray-700 p-4 shadow-lg sticky-nav">
+   <div class="container mx-auto flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+     <img alt="Logo image placeholder" class="w-12 h-12 rounded-full" height="50" src="img_60.png" width="50"/>
+     <h1 class="text-2xl font-bold">
+      Black Myth Wukong Awards
+     </h1>
+    </div>
+    <div class="space-x-4">
+     <a class="text-gray-300 hover:text-white transition duration-300" href="index.html">
+      Main Page
+     </a>
+     <a class="text-gray-300 hover:text-white transition duration-300" href="previous_awards.html">
+      Previous Awards
+     </a>
+     <a class="text-gray-300 hover:text-white transition duration-300" href="next_awards.html">
+      Next Awards
+     </a>
+     <a class="text-gray-300 hover:text-white transition duration-300" href="contact.html">
+      Contact Us
+     </a>
+    </div>
+   </div>
+  </nav>
+  <!-- Main Content -->
+  <main class="container mx-auto py-8 px-4 bg-gradient-to-b from-gray-800 to-gray-900">
+   <section class="mb-8">
+    <h2 class="text-4xl font-bold mb-4">
+     Awards and Recognitions
+    </h2>
+    <p class="text-lg mb-6">
+     Explore the accolades awarded to Black Myth Wukong and understand their significance in the gaming industry.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <!-- Example Award Card -->
+     <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform card-hover transition duration-300 hover-shadow">
+      <img alt="Award ceremony image" class="w-full h-48 object-cover rounded-md mb-4" height="200" src="img_16.png" width="300"/>
+      <h3 class="text-2xl font-semibold mb-2">
+       Best Action Game
+      </h3>
+      <p class="text-gray-400 mb-4">
+       Awarded by the International Gaming Association for outstanding action gameplay and innovation.
+      </p>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+       Learn More
+      </button>
+     </div>
+     <!-- Additional Award Cards -->
+     <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform card-hover transition duration-300 hover-shadow">
+      <img alt="Placeholder for award image 1" class="w-full h-48 object-cover rounded-md mb-4" height="200" src="img_61.png" width="300"/>
+      <h3 class="text-2xl font-semibold mb-2">
+       Best Graphics
+      </h3>
+      <p class="text-gray-400 mb-4">
+       Awarded for outstanding graphics and visual design.
+      </p>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+       Learn More
+      </button>
+     </div>
+     <!-- Add more award cards similarly -->
+    </div>
+    <div class="text-center mt-8">
+     <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded">
+      View More Awards
+     </button>
+    </div>
+   </section>
+   <!-- Interactive Timeline -->
+   <section class="mb-8">
+    <h2 class="text-4xl font-bold mb-4">
+     Interactive Timeline
+    </h2>
+    <div class="flex overflow-x-scroll space-x-4" id="timeline">
+     <!-- Scroll Buttons -->
+     <button class="bg-gray-700 text-white px-4 py-2 rounded-l" onclick="document.getElementById('timeline').scrollBy({left: -300, behavior: 'smooth'})">
+      ←
+     </button>
+     <!-- Timeline Event Example -->
+     <div class="bg-gray-800 rounded-lg p-6 shadow-lg w-80 border border-gray-700">
+      <img alt="Placeholder for timeline event image" class="w-full h-32 object-cover rounded-md mb-4" height="128" src="img_62.png" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Award Ceremony 2023
+      </h3>
+      <p class="text-gray-400">
+       Description of the event and its significance.
+      </p>
+     </div>
+     <!-- Add more timeline events similarly -->
+     <button class="bg-gray-700 text-white px-4 py-2 rounded-r" onclick="document.getElementById('timeline').scrollBy({left: 300, behavior: 'smooth'})">
+      →
+     </button>
+    </div>
+   </section>
+   <!-- User Comments and Testimonials -->
+   <section class="mb-8">
+    <h2 class="text-4xl font-bold mb-4">
+     User Comments and Testimonials
+    </h2>
+    <div class="space-y-8" id="comments">
+     <!-- Example Comment -->
+     <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+      <div class="flex items-center space-x-4 mb-4">
+       <img alt="User profile picture placeholder" class="w-12 h-12 rounded-full" height="48" src="img_67.png" width="48"/>
+       <p class="text-gray-400">
+        "Black Myth Wukong is a groundbreaking game with stunning visuals and immersive gameplay. Truly deserving of all its awards!" - User123
+       </p>
+      </div>
+     </div>
+     <!-- Add more comments similarly -->
+    </div>
+   </section>
+   <!-- Social Media Sharing -->
+   <section class="mb-8">
+    <h2 class="text-4xl font-bold mb-4">
+     Share on Social Media
+    </h2>
+    <div class="flex space-x-4">
+     <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded flex items-center">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M24 4.56v14.88c0 2.52-2.04 4.56-4.56 4.56H4.56C2.04 24 0 21.96 0 19.44V4.56C0 2.04 2.04 0 4.56 0h14.88C21.96 0 24 2.04 24 4.56zM9.56 9.56H6.44v8.88h3.12V9.56zM7.98 8.44c-1.02 0-1.78-.76-1.78-1.78s.76-1.78 1.78-1.78 1.78.76 1.78 1.78-.76 1.78-1.78 1.78zm12.44 9.44h-3.12v-4.44c0-1.02-.76-1.78-1.78-1.78s-1.78.76-1.78 1.78v4.44h-3.12V9.56h3.12v1.02c.76-.76 1.78-1.02 2.8-1.02 2.04 0 3.56 1.52 3.56 3.56v4.88z">
+       </path>
+      </svg>
+      Share on Facebook
+     </button>
+     <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded flex items-center">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M24 4.56v14.88c0 2.52-2.04 4.56-4.56 4.56H4.56C2.04 24 0 21.96 0 19.44V4.56C0 2.04 2.04 0 4.56 0h14.88C21.96 0 24 2.04 24 4.56zM7.98 17.34c-3.34 0-6.12-2.78-6.12-6.12s2.78-6.12 6.12-6.12 6.12 2.78 6.12 6.12-2.78 6.12-6.12 6.12zm8.88-2.28c0-.76-.76-1.52-1.52-1.52s-1.52.76-1.52 1.52.76 1.52 1.52 1.52 1.52-.76 1.52-1.52z">
+       </path>
+      </svg>
+      Share on Twitter
+     </button>
+     <button class="bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded flex items-center">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M24 4.56v14.88c0 2.52-2.04 4.56-4.56 4.56H4.56C2.04 24 0 21.96 0 19.44V4.56C0 2.04 2.04 0 4.56 0h14.88C21.96 0 24 2.04 24 4.56zM19.44 7.56c-.92 0-1.68-.76-1.68-1.68s.76-1.68 1.68-1.68 1.68.76 1.68 1.68-.76 1.68-1.68 1.68zm-1.68 3.12v8.88h-3.12v-8.88h3.12zm-6.24-4.44c-.92 0-1.68.76-1.68 1.68s.76 1.68 1.68 1.68 1.68-.76 1.68-1.68-.76-1.68-1.68-1.68zm0 4.44v8.88h-3.12v-8.88h3.12zm-6.24 0v8.88H4.56v-8.88h3.12z">
+       </path>
+      </svg>
+      Share on Instagram
+     </button>
+     <button class="bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded flex items-center">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M24 4.56v14.88c0 2.52-2.04 4.56-4.56 4.56H4.56C2.04 24 0 21.96 0 19.44V4.56C0 2.04 2.04 0 4.56 0h14.88C21.96 0 24 2.04 24 4.56zM12 4.44c-4.12 0-7.56 3.44-7.56 7.56s3.44 7.56 7.56 7.56 7.56-3.44 7.56-7.56-3.44-7.56-7.56-7.56zm0 13.2c-3.12 0-5.64-2.52-5.64-5.64s2.52-5.64 5.64-5.64 5.64 2.52 5.64 5.64-2.52 5.64-5.64 5.64zM15.36 8.64c-.56 0-1.12.24-1.52.64-.4.4-.64.96-.64 1.52s.24 1.12.64 1.52c.4.4.96.64 1.52.64s1.12-.24 1.52-.64c.4-.4.64-.96.64-1.52s-.24-1.12-.64-1.52c-.4-.4-.96-.64-1.52-.64z">
+       </path>
+      </svg>
+      Share on LinkedIn
+     </button>
+    </div>
+   </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-gray-800 to-gray-700 p-4 mt-8">
+   <div class="container mx-auto text-center">
+    <p class="text-gray-400">
+     © 2023 Black Myth Wukong. All rights reserved.
+    </p>
+    <div class="space-x-4">
+     <a class="text-gray-300 hover:text-white transition duration-300" href="privacy.html">
+      Privacy Policy
+     </a>
+     <a class="text-gray-300 hover:text-white transition duration-300" href="terms.html">
+      Terms of Service
+     </a>
+    </div>
+    <div class="mt-4">
+     <a class="text-gray-300 hover:text-white transition duration-300" href="#">
+      Back to top
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   const imageInfo = {
+      imgsrc: "https://placehold.co/600x400",
+      alt: "Detailed image description for AI generation",
+      width: 600,
+      height: 400,
+      title: "Example image title",
+    };
+
+    // Additional JS functions for interactivity
+    document.addEventListener('DOMContentLoaded', function () {
+      // Example: Add event listeners for interactive elements
+    });
+  </script>
+ </body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Product Detail
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100 text-gray-900 font-sans">
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+   <a class="text-xl font-bold text-blue-500" href="index.html">
+    Logo
+   </a>
+   <nav>
+    <ul class="flex space-x-4">
+     <li>
+      <a class="hover:text-blue-500" href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-blue-500" href="privacy_policy.html">
+       Privacy Policy
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-blue-500" href="terms_of_service.html">
+       Terms of Service
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <!-- Main Content -->
+  <main class="container mx-auto p-4">
+   <div class="bg-white p-6 rounded-lg shadow-lg">
+    <!-- Product Images -->
+    <div class="flex flex-wrap -mx-4">
+     <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0">
+      <img alt="Detailed image of the product showcasing its features" class="rounded-lg shadow-lg" height="400" src="img_38.png" width="600"/>
+     </div>
+     <div class="w-full md:w-1/2 px-4">
+      <!-- Product Title and Description -->
+      <h1 class="text-3xl font-bold mb-2">
+       Product Title
+      </h1>
+      <p class="text-lg mb-4">
+       A comprehensive description of the product highlighting its unique features and benefits. This section should provide enough information to persuade the customer about the product's value.
+      </p>
+      <!-- Price Display -->
+      <div class="text-2xl font-bold text-green-500 mb-4">
+       $99.99
+      </div>
+      <!-- Add to Cart and Buy Now Buttons -->
+      <div class="flex space-x-4 mb-4">
+       <button class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600" onclick="addToCart()">
+        Add to Cart
+       </button>
+       <button class="bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600" onclick="buyNow()">
+        Buy Now
+       </button>
+      </div>
+      <!-- Additional Options -->
+      <div class="flex space-x-4 mb-4">
+       <button class="bg-yellow-500 text-white px-4 py-2 rounded shadow hover:bg-yellow-600" onclick="addToWishlist()">
+        Add to Wishlist
+       </button>
+       <button class="bg-gray-500 text-white px-4 py-2 rounded shadow hover:bg-gray-600" onclick="window.location.href='products.html'">
+        Back to Products
+       </button>
+       <button class="bg-gray-500 text-white px-4 py-2 rounded shadow hover:bg-gray-600" onclick="window.location.href='index.html'">
+        Home
+       </button>
+      </div>
+     </div>
+    </div>
+    <!-- Customer Reviews Section -->
+    <section class="mt-8">
+     <h2 class="text-2xl font-bold mb-4">
+      Customer Reviews
+     </h2>
+     <!-- Review 1 -->
+     <div class="bg-gray-50 p-4 rounded-lg shadow mb-4">
+      <div class="flex items-center mb-2">
+       <div class="text-yellow-400">
+        ★★★★☆
+       </div>
+       <div class="ml-2 font-bold">
+        John Doe
+       </div>
+      </div>
+      <p>
+       Great product! Really met my expectations and I am very satisfied with the quality.
+      </p>
+     </div>
+     <!-- Review 2 -->
+     <div class="bg-gray-50 p-4 rounded-lg shadow mb-4">
+      <div class="flex items-center mb-2">
+       <div class="text-yellow-400">
+        ★★★☆☆
+       </div>
+       <div class="ml-2 font-bold">
+        Jane Smith
+       </div>
+      </div>
+      <p>
+       The product is good, but I think it could be improved in certain areas. Overall, a decent purchase.
+      </p>
+     </div>
+    </section>
+    <!-- Related Products Carousel -->
+    <section class="mt-8">
+     <h2 class="text-2xl font-bold mb-4">
+      Related Products
+     </h2>
+     <div class="flex space-x-4 overflow-x-auto">
+      <!-- Related Product 1 -->
+      <div class="bg-white p-4 rounded-lg shadow min-w-[200px]">
+       <img alt="Image of related product 1" class="rounded-lg mb-2" height="100" src="img_37.png" width="150"/>
+       <div class="font-bold">
+        Product 1
+       </div>
+       <div class="text-green-500">
+        $49.99
+       </div>
+      </div>
+      <!-- Related Product 2 -->
+      <div class="bg-white p-4 rounded-lg shadow min-w-[200px]">
+       <img alt="Image of related product 2" class="rounded-lg mb-2" height="100" src="img_40.png" width="150"/>
+       <div class="font-bold">
+        Product 2
+       </div>
+       <div class="text-green-500">
+        $59.99
+       </div>
+      </div>
+      <!-- Related Product 3 -->
+      <div class="bg-white p-4 rounded-lg shadow min-w-[200px]">
+       <img alt="Image of related product 3" class="rounded-lg mb-2" height="100" src="img_39.png" width="150"/>
+       <div class="font-bold">
+        Product 3
+       </div>
+       <div class="text-green-500">
+        $39.99
+       </div>
+      </div>
+     </div>
+    </section>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-white shadow-md p-4 mt-8">
+   <div class="container mx-auto text-center">
+    <p class="text-gray-600">
+     © 2023 Shopping Website. All rights reserved.
+    </p>
+   </div>
+  </footer>
+  <!-- JavaScript Functions -->
+  <script>
+   function addToCart() {
+            alert('Product added to cart');
+        }
+
+        function buyNow() {
+            alert('Proceeding to buy now');
+        }
+
+        function addToWishlist() {
+            alert('Product added to wishlist');
+        }
+  </script>
+ </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   About Us
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wave {
+            background: linear-gradient(45deg, #6B46C1, #805AD5);
+            position: relative;
+        }
+
+        .wave:after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url('https://www.svgrepo.com/show/19396/wave.svg') repeat-x;
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1000px;
+            }
+        }
+
+        .btn-hover:hover {
+            background-color: #6B46C1;
+            transition: background-color 0.3s ease;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 text-gray-900">
+  <!-- Header Section -->
+  <header class="wave text-white py-12 mb-12">
+   <div class="container mx-auto text-center">
+    <h1 class="text-5xl font-bold">
+     About Our Organization
+    </h1>
+    <p class="mt-4 text-xl">
+     Learn more about our history, mission, vision, values, and team.
+    </p>
+   </div>
+  </header>
+  <!-- Main Content Section -->
+  <main class="container mx-auto px-4">
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Our Mission
+    </h2>
+    <p class="text-lg leading-relaxed">
+     Our mission is to provide exceptional services and establish a strong presence
+            in our industry. We aim to deliver value to our clients and stakeholders through innovation, dedication, and
+            excellence.
+    </p>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Our Vision
+    </h2>
+    <p class="text-lg leading-relaxed">
+     Our vision is to be a leading organization recognized for our commitment to
+            quality and our ability to continuously adapt and thrive in a dynamic environment.
+    </p>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Our Values
+    </h2>
+    <ul class="list-disc pl-6 space-y-2">
+     <li class="text-lg">
+      Integrity
+     </li>
+     <li class="text-lg">
+      Innovation
+     </li>
+     <li class="text-lg">
+      Excellence
+     </li>
+     <li class="text-lg">
+      Collaboration
+     </li>
+     <li class="text-lg">
+      Customer Focus
+     </li>
+    </ul>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Our Team
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="bg-white p-6 rounded-lg shadow-lg">
+      <img alt="Portrait of team member" class="w-32 h-32 rounded-full mx-auto mb-4" height="150" src="img_26.png" width="150"/>
+      <h3 class="text-xl font-semibold text-center">
+       Team Member Name
+      </h3>
+      <p class="text-center text-gray-700">
+       Position
+      </p>
+     </div>
+     <!-- Repeat for more team members with unique images and details -->
+    </div>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Our History
+    </h2>
+    <div class="relative h-40 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg shadow-lg">
+     <div class="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold">
+      Interactive Timeline Coming Soon
+     </div>
+    </div>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Testimonials
+    </h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+     <p class="text-lg italic leading-relaxed">
+      "This organization has been instrumental in our success. Their
+                dedication and professionalism are unmatched."
+     </p>
+     <p class="mt-4 text-right">
+      - Satisfied Partner
+     </p>
+    </div>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Downloadable Brochures and Reports
+    </h2>
+    <div class="flex flex-col sm:flex-row gap-4">
+     <a class="bg-purple-500 text-white px-4 py-2 rounded-md text-center btn-hover" href="#">
+      Download Brochure
+     </a>
+     <a class="bg-purple-500 text-white px-4 py-2 rounded-md text-center btn-hover" href="#">
+      Download Report
+     </a>
+    </div>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6">
+     Frequently Asked Questions (FAQ)
+    </h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+     <h3 class="text-2xl font-semibold mb-4">
+      Question 1
+     </h3>
+     <p class="text-lg leading-relaxed">
+      Answer to the question goes here.
+     </p>
+     <h3 class="text-2xl font-semibold mt-6 mb-4">
+      Question 2
+     </h3>
+     <p class="text-lg leading-relaxed">
+      Answer to the question goes here.
+     </p>
+     <!-- Repeat for more FAQs -->
+    </div>
+   </section>
+   <section>
+    <h2 class="text-3xl font-semibold mb-6">
+     Live Chat Support
+    </h2>
+    <div class="flex justify-center">
+     <button class="bg-purple-500 text-white px-4 py-2 rounded-md btn-hover">
+      Start Live Chat
+     </button>
+    </div>
+   </section>
+  </main>
+  <!-- Navigation Buttons Section -->
+  <footer class="mt-12 bg-gray-800 text-white py-8">
+   <div class="container mx-auto text-center">
+    <div class="flex flex-wrap justify-center gap-4 mb-6">
+     <button class="bg-purple-500 text-white px-4 py-2 rounded-md btn-hover" onclick="navigateTo('contact_us.html')">
+      Contact Us
+     </button>
+     <button class="bg-purple-500 text-white px-4 py-2 rounded-md btn-hover" onclick="navigateTo('team.html')">
+      Our Team
+     </button>
+     <button class="bg-purple-500 text-white px-4 py-2 rounded-md btn-hover" onclick="navigateTo('history.html')">
+      Our History
+     </button>
+     <button class="bg-purple-500 text-white px-4 py-2 rounded-md btn-hover" onclick="window.location.href='main.html'">
+      Back to Main
+     </button>
+    </div>
+    <a class="text-purple-500 underline" href="main.html">
+     主页
+    </a>
+   </div>
+  </footer>
+  <script>
+   function navigateTo(page) {
+        window.location.href = page;
+    }
+  </script>
+ </body>
+</html>

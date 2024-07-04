@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Collaboration Opportunities
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .wave {
+            background: linear-gradient(90deg, rgba(29, 78, 216, 1) 0%, rgba(37, 99, 235, 1) 100%);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .shadow-button {
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .hover-grow:hover {
+            transform: scale(1.05);
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+        .carousel img {
+            scroll-snap-align: start;
+        }
+        .navbar-link:hover {
+            text-decoration: underline;
+        }
+        .feature-box:hover {
+            box-shadow: 0px 10px 20px -3px rgba(0, 0, 0, 0.1), 0px 6px 8px -2px rgba(0, 0, 0, 0.05);
+        }
+        .smooth-transition {
+            transition: all 0.3s ease-in-out;
+        }
+  </style>
+ </head>
+ <body class="font-sans leading-normal tracking-normal text-gray-900 bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-blue-600 p-4 shadow-lg">
+   <div class="container mx-auto flex justify-between items-center">
+    <div class="text-white text-lg font-bold flex items-center">
+     <img alt="Logo" class="mr-2" height="50" src="img_8.png" width="50"/>
+     Collaboration Hub
+    </div>
+    <div class="text-white flex space-x-4">
+     <a class="navbar-link hover:underline" href="main.html">
+      主页
+     </a>
+     <a class="navbar-link hover:underline" href="about_us.html">
+      关于我们
+     </a>
+    </div>
+   </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="wave text-white p-12 text-center gradient-bg">
+   <h1 class="text-6xl font-bold mb-4 shadow-text">
+    Collaboration Opportunities
+   </h1>
+   <p class="text-3xl">
+    Explore various collaboration opportunities and ongoing projects.
+   </p>
+  </section>
+  <!-- Buttons Section -->
+  <section class="container mx-auto p-6">
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a class="gradient-button text-white p-4 rounded-lg hover:bg-blue-700 transition duration-300 hover-grow shadow-button smooth-transition" href="collaboration_projects.html">
+     合作项目
+    </a>
+    <a class="gradient-button text-white p-4 rounded-lg hover:bg-green-700 transition duration-300 hover-grow shadow-button smooth-transition" href="joint_labs.html">
+     联合实验室
+    </a>
+    <a class="gradient-button text-white p-4 rounded-lg hover:bg-purple-700 transition duration-300 hover-grow shadow-button smooth-transition" href="postdoc_stations.html">
+     博士后工作站
+    </a>
+    <button class="gradient-button text-white p-4 rounded-lg hover:bg-yellow-700 transition duration-300 hover-grow shadow-button smooth-transition" onclick="submitApplicationForm()">
+     提交申请
+    </button>
+    <a class="gradient-button text-white p-4 rounded-lg hover:bg-red-700 transition duration-300 hover-grow shadow-button smooth-transition" href="contact_us.html">
+     联系我们
+    </a>
+   </div>
+  </section>
+  <!-- Information Section -->
+  <section class="container mx-auto p-6">
+   <div class="bg-white p-8 rounded-lg shadow-lg space-y-8">
+    <div>
+     <h2 class="text-3xl font-bold mb-2">
+      How to Collaborate
+     </h2>
+     <p>
+      Information on how to collaborate with us.
+     </p>
+    </div>
+    <div>
+     <h2 class="text-3xl font-bold mb-2">
+      Current Projects
+     </h2>
+     <p>
+      List of current collaborators and projects.
+     </p>
+    </div>
+    <div>
+     <h2 class="text-3xl font-bold mb-2">
+      Contact Information
+     </h2>
+     <p>
+      Contact information for collaboration inquiries.
+     </p>
+    </div>
+    <div>
+     <h2 class="text-3xl font-bold mb-2">
+      Types of Collaboration
+     </h2>
+     <p>
+      Details about different types of collaboration available.
+     </p>
+    </div>
+   </div>
+  </section>
+  <!-- Additional Features Section -->
+  <section class="container mx-auto p-6">
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-8 rounded-lg shadow-lg flex items-center space-x-4 feature-box smooth-transition">
+     <img alt="Application Forms Icon" height="50" src="img_12.png" width="50"/>
+     <div>
+      <h2 class="text-2xl font-bold mb-2">
+       Application Forms
+      </h2>
+      <p>
+       Forms for potential collaborators to apply.
+      </p>
+     </div>
+    </div>
+    <div class="bg-white p-8 rounded-lg shadow-lg flex items-center space-x-4 feature-box smooth-transition">
+     <img alt="FAQs Icon" height="50" src="img_10.png" width="50"/>
+     <div>
+      <h2 class="text-2xl font-bold mb-2">
+       FAQs
+      </h2>
+      <p>
+       Frequently asked questions about collaboration.
+      </p>
+     </div>
+    </div>
+    <div class="bg-white p-8 rounded-lg shadow-lg flex items-center space-x-4 feature-box smooth-transition">
+     <img alt="Success Stories Icon" height="50" src="img_11.png" width="50"/>
+     <div>
+      <h2 class="text-2xl font-bold mb-2">
+       Success Stories
+      </h2>
+      <p>
+       Success stories from past collaborations.
+      </p>
+     </div>
+    </div>
+    <div class="bg-white p-8 rounded-lg shadow-lg flex items-center space-x-4 feature-box smooth-transition">
+     <img alt="Downloadable Brochures Icon" height="50" src="img_14.png" width="50"/>
+     <div>
+      <h2 class="text-2xl font-bold mb-2">
+       Downloadable Brochures
+      </h2>
+      <p>
+       Brochures and guidelines available for download.
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Gallery Section -->
+  <section class="container mx-auto p-6 text-center">
+   <h2 class="text-3xl font-bold mb-4">
+    Gallery
+   </h2>
+   <div class="carousel space-x-4">
+    <img alt="Placeholder image of a collaborative meeting" class="rounded-lg shadow-lg" height="400" src="img_7.png" width="600"/>
+    <img alt="Placeholder image of a project discussion" class="rounded-lg shadow-lg" height="400" src="img_15.png" width="600"/>
+    <img alt="Placeholder image of a team brainstorming" class="rounded-lg shadow-lg" height="400" src="img_5.png" width="600"/>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-blue-600 p-6 text-white">
+   <div class="container mx-auto text-center">
+    <p>
+     © 2023 Collaboration Hub. All rights reserved.
+    </p>
+    <div class="flex justify-center space-x-4 mt-4">
+     <a class="hover:underline" href="#">
+      Facebook
+     </a>
+     <a class="hover:underline" href="#">
+      Twitter
+     </a>
+     <a class="hover:underline" href="#">
+      LinkedIn
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   function submitApplicationForm() {
+        // Add your form submission logic here
+        alert("Form submission logic goes here.");
+    }
+  </script>
+ </body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Checkout - Complete Your Purchase
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 shadow-lg sticky top-0 z-50">
+   <div class="container mx-auto flex justify-between items-center">
+    <a class="text-2xl font-bold" href="index.html">
+     <img alt="Company Logo" class="inline-block mr-2" height="50" src="img_24.png" width="50"/>
+     Logo
+    </a>
+    <nav>
+     <a class="ml-4 hover:text-yellow-300 hover:shadow-lg transition duration-300 transform hover:scale-110" href="index.html">
+      Home
+     </a>
+     <a class="ml-4 hover:text-yellow-300 hover:shadow-lg transition duration-300 transform hover:scale-110" href="privacy_policy.html">
+      Privacy Policy
+     </a>
+     <a class="ml-4 hover:text-yellow-300 hover:shadow-lg transition duration-300 transform hover:scale-110" href="terms_of_service.html">
+      Terms of Service
+     </a>
+    </nav>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main class="container mx-auto p-4 mt-6">
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Billing Information Form -->
+    <section class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-bold mb-4">
+      Billing Information
+     </h2>
+     <img alt="Illustrative image for billing information, showing an icon of a credit card and a form" class="mb-4" height="150" src="img_35.png" width="150"/>
+     <form id="billing-info-form">
+      <div class="mb-4">
+       <label class="block text-sm font-bold mb-2" for="billing-name">
+        Name
+       </label>
+       <input class="w-full p-2 border rounded" id="billing-name" required="" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-sm font-bold mb-2" for="billing-email">
+        Email
+       </label>
+       <input class="w-full p-2 border rounded" id="billing-email" required="" type="email"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-sm font-bold mb-2" for="billing-address">
+        Address
+       </label>
+       <input class="w-full p-2 border rounded" id="billing-address" required="" type="text"/>
+      </div>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105" onclick="editBillingInfo()" type="button">
+       Edit Billing Information
+      </button>
+     </form>
+    </section>
+    <!-- Shipping Information Form -->
+    <section class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-bold mb-4">
+      Shipping Information
+     </h2>
+     <img alt="Illustrative image for shipping information, showing an icon of a delivery truck and a form" class="mb-4" height="150" src="img_36.png" width="150"/>
+     <form id="shipping-info-form">
+      <div class="mb-4">
+       <label class="block text-sm font-bold mb-2" for="shipping-name">
+        Name
+       </label>
+       <input class="w-full p-2 border rounded" id="shipping-name" required="" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-sm font-bold mb-2" for="shipping-address">
+        Address
+       </label>
+       <input class="w-full p-2 border rounded" id="shipping-address" required="" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-sm font-bold mb-2" for="shipping-city">
+        City
+       </label>
+       <input class="w-full p-2 border rounded" id="shipping-city" required="" type="text"/>
+      </div>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105" onclick="editShippingInfo()" type="button">
+       Edit Shipping Information
+      </button>
+     </form>
+    </section>
+   </div>
+   <!-- Payment Method Selection -->
+   <section class="bg-white p-6 rounded-lg shadow-md mt-6">
+    <h2 class="text-xl font-bold mb-4">
+     Payment Method
+    </h2>
+    <div>
+     <label class="block mb-2">
+      <input class="mr-2" name="payment-method" type="radio" value="credit-card"/>
+      <img alt="Credit Card Icon" class="inline-block mr-2" height="20" src="img_25.png" width="20"/>
+      Credit Card
+     </label>
+     <label class="block mb-2">
+      <input class="mr-2" name="payment-method" type="radio" value="paypal"/>
+      <img alt="PayPal Icon" class="inline-block mr-2" height="20" src="img_23.png" width="20"/>
+      PayPal
+     </label>
+    </div>
+   </section>
+   <!-- Order Summary -->
+   <section class="bg-white p-6 rounded-lg shadow-md mt-6">
+    <h2 class="text-xl font-bold mb-4">
+     Order Summary
+    </h2>
+    <div>
+     <div class="flex justify-between items-center mb-2">
+      <span class="flex items-center">
+       <img alt="Product Image" class="inline-block mr-2" height="50" src="img_21.png" width="50"/>
+       Item 1
+      </span>
+      <span>
+       $10.00
+      </span>
+     </div>
+     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105" onclick="applyDiscount()" type="button">
+      Apply Discount
+     </button>
+    </div>
+   </section>
+   <!-- Estimated Delivery Date -->
+   <section class="bg-white p-6 rounded-lg shadow-md mt-6">
+    <h2 class="text-xl font-bold mb-4">
+     Estimated Delivery Date
+    </h2>
+    <p class="text-gray-600">
+     Your order is estimated to be delivered by
+     <strong>
+      August 25, 2023
+     </strong>
+     .
+    </p>
+   </section>
+   <!-- Buttons -->
+   <div class="mt-6 flex justify-end space-x-4">
+    <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105" href="cart.html">
+     Back to Cart
+    </a>
+    <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105" href="index.html">
+     Home
+    </a>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105" onclick="placeOrder()" type="button">
+     Place Order
+    </button>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 mt-6 relative">
+   <div class="container mx-auto text-center">
+    <div class="flex justify-center mb-4">
+     <a class="mx-2 hover:text-yellow-300 transition duration-300 transform hover:scale-110" href="#">
+      <img alt="Facebook Icon" height="20" src="img_27.png" width="20"/>
+     </a>
+     <a class="mx-2 hover:text-yellow-300 transition duration-300 transform hover:scale-110" href="#">
+      <img alt="Twitter Icon" height="20" src="img_28.png" width="20"/>
+     </a>
+     <a class="mx-2 hover:text-yellow-300 transition duration-300 transform hover:scale-110" href="#">
+      <img alt="Instagram Icon" height="20" src="img_20.png" width="20"/>
+     </a>
+    </div>
+    © 2023 Your Company. All rights reserved.
+   </div>
+   <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
+    <svg class="relative block w-full h-12" viewbox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+     <path d="M0,224L1440,96L1440,320L0,320Z" fill="#4f46e5" fill-opacity="1">
+     </path>
+    </svg>
+   </div>
+  </footer>
+  <script>
+   function editBillingInfo() {
+      // JavaScript function to edit billing info
+    }
+
+    function editShippingInfo() {
+      // JavaScript function to edit shipping info
+    }
+
+    function applyDiscount() {
+      // JavaScript function to apply discount
+    }
+
+    function placeOrder() {
+      // JavaScript function to place order
+      window.location.href = 'order_confirmation.html';
+    }
+  </script>
+ </body>
+</html>

@@ -1,0 +1,23 @@
+web_type : "chrome" # "chrome" or "firefox" or "edge"
+LLM_TYPE : "openai" # openai or claude
+
+# LLM settings
+# openai settings
+is_azure : False
+AZURE_OPENAI_ENDPOINT : ""
+AZURE_OPENAI_KEY : ""
+AZURE_OPENAI_API_VERSION : ""
+
+AZURE_OPENAI_DALLE_ENDPOINT : ""
+AZURE_OPENAI_DALLE_KEY : ""
+
+OPENAI_API_KEY : ""
+OPENAI_PROXY_URL : ""
+OPENAI_BASE_URL : ""
+
+# claude settings
+CLAUDE_API_KEY : ""
+
+
+# IMG Generator settings (if not set, it will use the openai settings)
+IMG_GEN_TYPE : "dalle3" # "dalle3"

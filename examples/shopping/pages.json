@@ -1,0 +1,502 @@
+[
+    {
+        "html_name": "index.html",
+        "description": "The main landing page of the shopping website. This page serves as the gateway to the entire site, offering easy navigation to various sections such as products, user account, and cart. It showcases featured products, promotional banners, and customer testimonials to engage visitors and encourage shopping.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Shop Now",
+                    "jump_page": "products.html"
+                },
+                {
+                    "button_name": "Sign In",
+                    "jump_page": "login.html"
+                },
+                {
+                    "button_name": "Register",
+                    "jump_page": "register.html"
+                },
+                {
+                    "button_name": "Cart",
+                    "jump_page": "cart.html"
+                },
+                {
+                    "button_name": "Contact Us",
+                    "jump_page": "contact.html"
+                },
+                {
+                    "button_name": "About Us",
+                    "jump_page": "about.html"
+                },
+                {
+                    "button_name": "Contact Us",
+                    "jump_page": "contact.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Privacy Policy",
+                    "jump_page": "privacy.html"
+                },
+                {
+                    "link_name": "Terms of Service",
+                    "jump_page": "terms.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Featured Products Display",
+            "Search Bar",
+            "Navigation Menu",
+            "Quick Links to Popular Categories",
+            "Responsive Design for Mobile and Desktop"
+        ],
+        "additional_features": [
+            "Promotional Banners",
+            "Customer Testimonials",
+            "Newsletter Signup",
+            "Live Chat Support",
+            "Social Media Integration"
+        ],
+        "is_main_page": true
+    },
+    {
+        "html_name": "products.html",
+        "description": "This page displays all available products in a grid layout with high-quality images, product titles, prices, and brief descriptions. Users can filter products by category, price range, brand, and ratings. Sorting options include price, popularity, and newest arrivals. A search bar at the top allows users to quickly find specific products.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "View Product",
+                    "jump_page": "product_detail.html"
+                },
+                {
+                    "button_name": "Cart",
+                    "jump_page": "cart.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Sort by Price",
+                    "action": "sortProducts('price')"
+                },
+                {
+                    "button_name": "Sort by Popularity",
+                    "action": "sortProducts('popularity')"
+                },
+                {
+                    "button_name": "Sort by Newest",
+                    "action": "sortProducts('newest')"
+                },
+                {
+                    "button_name": "Contact Us",
+                    "jump_page": "contact.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Product Listings",
+            "Filters and Sort Options",
+            "Search Bar",
+            "Pagination to navigate through product pages"
+        ],
+        "additional_features": [
+            "Product Quick View",
+            "Customer Reviews",
+            "Add to Wishlist",
+            "Compare Products",
+            "Hover Effects on Product Images"
+        ],
+        "is_main_page": false
+    },
+    {
+        "html_name": "product_detail.html",
+        "description": "The detailed page of a specific product, providing comprehensive information about the item including images, descriptions, pricing, and customer reviews. Users can add the product to their cart, view related products, and read reviews from other customers.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Add to Cart",
+                    "jump_page": "cart.html"
+                },
+                {
+                    "button_name": "Buy Now",
+                    "action": "buyNow()"
+                },
+                {
+                    "button_name": "Add to Wishlist",
+                    "action": "addToWishlist()"
+                },
+                {
+                    "button_name": "Back to Products",
+                    "jump_page": "products.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Privacy Policy",
+                    "jump_page": "privacy_policy.html"
+                },
+                {
+                    "link_name": "Terms of Service",
+                    "jump_page": "terms_of_service.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Product Images with zoom feature",
+            "Detailed Product Description",
+            "Price Display",
+            "Add to Cart Button",
+            "Customer Reviews Section"
+        ],
+        "additional_features": [
+            "Related Products Carousel",
+            "Customer Reviews with star ratings and comments",
+            "Stock Availability Indicator",
+            "Size and Color Options",
+            "Social Media Share Buttons"
+        ],
+        "is_main_page": false
+    },
+    {
+        "html_name": "cart.html",
+        "description": "The shopping cart page allows users to review the items they have added to their cart, update quantities, remove items, and proceed to checkout. It provides a summary of the total price, including options for applying discount codes and estimating shipping costs.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Proceed to Checkout",
+                    "jump_page": "checkout.html"
+                },
+                {
+                    "button_name": "Continue Shopping",
+                    "jump_page": "products.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Remove All Items",
+                    "action": "clearCart()"
+                },
+                {
+                    "button_name": "Save for Later",
+                    "action": "saveForLater()"
+                },
+                {
+                    "button_name": "Customer Support",
+                    "jump_page": "contact.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Customer Support",
+                    "jump_page": "support.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Cart Items List",
+            "Total Price",
+            "Quantity Update",
+            "Remove Item",
+            "Save Item for Later"
+        ],
+        "additional_features": [
+            "Apply Discount Code",
+            "Estimate Shipping",
+            "Suggested Items",
+            "Wishlist Integration",
+            "Real-time Cart Updates"
+        ],
+        "is_main_page": false,
+        "layout": "The page is divided into a main section displaying the cart items and a sidebar for order summary, discount code application, and shipping estimation. Each item in the cart is displayed with an image, name, price, quantity selector, and remove button.",
+        "web_page_effects": [
+            "Hover effects on buttons",
+            "Smooth transitions for quantity updates",
+            "Real-time price update on quantity change"
+        ]
+    },
+    {
+        "html_name": "checkout.html",
+        "description": "The checkout page is the final step for customers to complete their purchase. It includes forms for billing and shipping information, selection of payment methods, and a summary of the order. This page ensures a smooth and secure transaction process.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Place Order",
+                    "jump_page": "order_confirmation.html"
+                },
+                {
+                    "button_name": "Back to Cart",
+                    "jump_page": "cart.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Edit Billing Information",
+                    "action": "editBillingInfo()"
+                },
+                {
+                    "button_name": "Edit Shipping Information",
+                    "action": "editShippingInfo()"
+                },
+                {
+                    "button_name": "Apply Discount",
+                    "action": "applyDiscount()"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Privacy Policy",
+                    "jump_page": "privacy_policy.html"
+                },
+                {
+                    "link_name": "Terms of Service",
+                    "jump_page": "terms_of_service.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Billing Information Form",
+            "Shipping Information Form",
+            "Payment Method Selection",
+            "Real-time Validation of Form Fields",
+            "Secure Payment Gateway Integration"
+        ],
+        "additional_features": [
+            "Order Summary",
+            "Apply Discount Code",
+            "Guest Checkout Option",
+            "Save Information for Future Use",
+            "Estimated Delivery Date Display"
+        ],
+        "is_main_page": false
+    },
+    {
+        "html_name": "order_confirmation.html",
+        "description": "The order confirmation page displayed after a successful purchase, providing a summary of the order details, confirmation number, and estimated delivery date. This page reassures customers that their order has been processed and offers additional actions.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Continue Shopping",
+                    "jump_page": "products.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "View Order Details",
+                    "jump_page": "order_details.html"
+                },
+                {
+                    "button_name": "Print Receipt",
+                    "action": "window.print()"
+                },
+                {
+                    "button_name": "Customer Support",
+                    "jump_page": "contact.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Customer Support",
+                    "jump_page": "support.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Order Details",
+            "Estimated Delivery Date",
+            "Confirmation Number",
+            "Customer Information Summary"
+        ],
+        "additional_features": [
+            "Recommended Products",
+            "Print Receipt",
+            "Thank You Message",
+            "Special Offers or Promotions"
+        ],
+        "is_main_page": false
+    },
+    {
+        "html_name": "login.html",
+        "description": "The login page for returning users, designed to facilitate a seamless and secure entry into their accounts. The page includes fields for username and password, and offers options for new users to register or existing users to recover their password if forgotten.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Login",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Register",
+                    "jump_page": "register.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Forgot Password",
+                    "jump_page": "forgot_password.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Privacy Policy",
+                    "jump_page": "privacy_policy.html"
+                },
+                {
+                    "link_name": "Terms of Service",
+                    "jump_page": "terms_of_service.html"
+                }
+            ]
+        },
+        "practice_features": "Username Field, Password Field, Login Button, Remember Me Checkbox.",
+        "additional_features": "Forgot Password Link, Social Media Login Options, CAPTCHA Verification, Tooltips for form fields, Error messages for invalid login attempts.",
+        "is_main_page": false,
+        "layout": "The login page features a clean and minimalistic design with a centered form. The logo is positioned at the top, followed by the login form, and footer links for additional resources. The 'Remember Me' checkbox allows users to stay logged in for future visits.",
+        "web_page_effects": "Smooth transitions for form submissions, real-time validation for input fields, and hover effects on buttons and links to enhance user experience."
+    },
+    {
+        "html_name": "register.html",
+        "description": "The registration page for new users. This page allows users to create a new account by entering their personal information. It includes fields for username, password, and email, and integrates validation to ensure data integrity. The page is designed with a clean layout, easy navigation, and user-friendly error messages.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Register",
+                    "action": "submitRegistrationForm()"
+                },
+                {
+                    "button_name": "Login",
+                    "jump_page": "login.html"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Help",
+                    "jump_page": "help.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Privacy Policy",
+                    "jump_page": "privacy_policy.html"
+                },
+                {
+                    "link_name": "Terms of Service",
+                    "jump_page": "terms_of_service.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Username Field",
+            "Password Field",
+            "Email Field",
+            "Register Button",
+            "Form Validation",
+            "Error Messages"
+        ],
+        "additional_features": [
+            "Terms and Conditions Checkbox",
+            "Newsletter Signup Option",
+            "Password Strength Indicator",
+            "Captcha Verification",
+            "Link to Login for Existing Users"
+        ],
+        "is_main_page": false
+    },
+    {
+        "html_name": "contact.html",
+        "description": "The contact page allows users to get in touch with the customer support team for inquiries, feedback, or assistance. It includes a contact form, customer support details, and a map to the physical store location.",
+        "relationship": {
+            "buttons": [
+                {
+                    "button_name": "Submit",
+                    "action": "submitContactForm()"
+                },
+                {
+                    "button_name": "Home",
+                    "jump_page": "index.html"
+                },
+                {
+                    "button_name": "Products",
+                    "jump_page": "products.html"
+                },
+                {
+                    "button_name": "Cart",
+                    "jump_page": "cart.html"
+                }
+            ],
+            "links": [
+                {
+                    "link_name": "Logo",
+                    "jump_page": "index.html"
+                },
+                {
+                    "link_name": "Privacy Policy",
+                    "jump_page": "privacy.html"
+                },
+                {
+                    "link_name": "Terms of Service",
+                    "jump_page": "terms.html"
+                }
+            ]
+        },
+        "practice_features": [
+            "Contact Form with Name, Email, Subject, and Message Fields",
+            "Customer Support Email and Phone Number",
+            "Map to Physical Store Location"
+        ],
+        "additional_features": [
+            "Live Chat Support",
+            "Social Media Links",
+            "FAQ Section",
+            "Automated Response Confirmation"
+        ],
+        "is_main_page": false
+    }
+]

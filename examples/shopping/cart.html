@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Shopping Cart
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   .hover-effect:hover {
+        transition: transform 0.3s;
+        transform: scale(1.05);
+      }
+
+      .bg-gradient-header {
+        background: linear-gradient(
+          90deg,
+          rgba(0, 36, 36, 1) 0%,
+          rgba(0, 121, 121, 1) 35%,
+          rgba(0, 255, 255, 1) 100%
+        );
+      }
+
+      .bg-gradient-footer {
+        background: linear-gradient(
+          90deg,
+          rgba(36, 0, 36, 1) 0%,
+          rgba(121, 9, 121, 1) 35%,
+          rgba(255, 0, 255, 1) 100%
+        );
+      }
+
+      .bg-gradient-main {
+        background: linear-gradient(
+          90deg,
+          rgba(36, 36, 0, 1) 0%,
+          rgba(121, 121, 9, 1) 35%,
+          rgba(255, 255, 0, 1) 100%
+        );
+      }
+  </style>
+ </head>
+ <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <!-- Header -->
+  <header class="bg-gradient-header p-4 text-white">
+   <div class="container mx-auto flex justify-between items-center">
+    <a class="text-2xl font-bold hover:text-gray-300" href="index.html">
+     <img alt="Company Logo" class="h-12 hover-effect" src="https://via.placeholder.com/150x50"/>
+    </a>
+    <nav>
+     <a class="ml-4 hover:text-gray-300" href="products.html">
+      Products
+     </a>
+     <a class="ml-4 hover:text-gray-300" href="support.html">
+      Customer Support
+     </a>
+     <a class="ml-4 hover:text-gray-300" href="index.html">
+      Home
+     </a>
+    </nav>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main class="container mx-auto mt-10 p-4 bg-gradient-main rounded shadow-md">
+   <div class="flex flex-wrap -mx-4">
+    <!-- Cart Items Section -->
+    <section class="w-full lg:w-3/4 px-4 mb-8 lg:mb-0">
+     <div class="bg-white p-6 rounded shadow-md">
+      <h2 class="text-2xl font-bold mb-4">
+       Shopping Cart
+      </h2>
+      <div class="border-b border-gray-300 mb-4">
+      </div>
+      <!-- Cart Item -->
+      <div class="flex items-center mb-4 hover-effect" id="cart-item-1">
+       <img alt="A placeholder image of a product" class="w-24 h-24 rounded shadow-md" src="img_10.png"/>
+       <div class="ml-4 flex-1">
+        <h3 class="text-xl font-semibold">
+         Product Name
+        </h3>
+        <p class="text-gray-600">
+         $
+         <span id="price-1">
+          50
+         </span>
+        </p>
+        <div class="flex items-center mt-2">
+         <label class="mr-2" for="quantity-1">
+          Quantity:
+         </label>
+         <input class="w-16 p-2 border border-gray-300 rounded" id="quantity-1" min="1" name="quantity" onchange="updateCart(1)" type="number" value="1"/>
+        </div>
+       </div>
+       <button class="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="removeItem(1)">
+        Remove
+       </button>
+      </div>
+     </div>
+    </section>
+    <!-- Summary Section -->
+    <aside class="w-full lg:w-1/4 px-4">
+     <div class="bg-white p-6 rounded shadow-md mb-6 border border-gray-300">
+      <h2 class="text-xl font-bold mb-4">
+       Order Summary
+      </h2>
+      <div class="border-b border-gray-300 mb-4">
+      </div>
+      <div class="mb-4">
+       <label class="block mb-2" for="discount-code">
+        Discount Code
+       </label>
+       <input class="w-full p-2 border border-gray-300 rounded" id="discount-code" type="text"/>
+       <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Apply
+       </button>
+      </div>
+      <div class="mb-4">
+       <label class="block mb-2" for="shipping-estimate">
+        Estimate Shipping
+       </label>
+       <input class="w-full p-2 border border-gray-300 rounded" id="shipping-estimate" type="text"/>
+       <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Estimate
+       </button>
+      </div>
+      <div class="border-b border-gray-300 mb-4">
+      </div>
+      <div class="flex justify-between mb-4">
+       <span class="font-semibold">
+        Total Price:
+       </span>
+       <span class="font-semibold">
+        $
+        <span id="total-price">
+         50
+        </span>
+       </span>
+      </div>
+      <button class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-2">
+       Proceed to Checkout
+      </button>
+      <button class="w-full bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mb-2">
+       Continue Shopping
+      </button>
+      <button class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mb-2" onclick="clearCart()">
+       Remove All Items
+      </button>
+      <button class="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mb-2" onclick="saveForLater()">
+       Save for Later
+      </button>
+     </div>
+     <div class="bg-white p-6 rounded shadow-md mb-6 border border-gray-300">
+      <h2 class="text-xl font-bold mb-4">
+       Recommended Items
+      </h2>
+      <div class="border-b border-gray-300 mb-4">
+      </div>
+      <div id="recommended-items">
+       <!-- Recommended Item 1 -->
+       <div class="flex items-center mb-4 hover-effect">
+        <img alt="Placeholder image of a recommended product" class="w-24 h-24 rounded shadow-md" height="100" id="recommended-img-1" src="img_44.png" width="100"/>
+        <div class="ml-4 flex-1">
+         <h3 class="text-xl font-semibold">
+          Recommended Product 1
+         </h3>
+         <p class="text-gray-600">
+          $25
+         </p>
+        </div>
+        <button class="ml-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="addToCart('Recommended Product 1', 25, 'img_44.png')">
+         Add to Cart
+        </button>
+       </div>
+       <!-- Recommended Item 2 -->
+       <div class="flex items-center mb-4 hover-effect">
+        <img alt="Placeholder image of a recommended product" class="w-24 h-24 rounded shadow-md" height="100" id="recommended-img-2" src="img_42.png" width="100"/>
+        <div class="ml-4 flex-1">
+         <h3 class="text-xl font-semibold">
+          Recommended Product 2
+         </h3>
+         <p class="text-gray-600">
+          $30
+         </p>
+        </div>
+        <button class="ml-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="addToCart('Recommended Product 2', 30, 'img_42.png')">
+         Add to Cart
+        </button>
+       </div>
+       <!-- Recommended Item 3 -->
+       <div class="flex items-center mb-4 hover-effect">
+        <img alt="Placeholder image of a recommended product" class="w-24 h-24 rounded shadow-md" height="100" id="recommended-img-3" src="img_43.png" width="100"/>
+        <div class="ml-4 flex-1">
+         <h3 class="text-xl font-semibold">
+          Recommended Product 3
+         </h3>
+         <p class="text-gray-600">
+          $20
+         </p>
+        </div>
+        <button class="ml-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="addToCart('Recommended Product 3', 20, 'img_43.png')">
+         Add to Cart
+        </button>
+       </div>
+      </div>
+     </div>
+    </aside>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gradient-footer p-4 text-white text-center">
+   <div class="container mx-auto">
+    <p>
+     © 2023 Shopping Cart. All rights reserved.
+    </p>
+    <nav class="mt-2">
+     <a class="hover:text-gray-300" href="index.html">
+      Home
+     </a>
+     <span class="mx-2">
+      |
+     </span>
+     <a class="hover:text-gray-300" href="products.html">
+      Products
+     </a>
+     <span class="mx-2">
+      |
+     </span>
+     <a class="hover:text-gray-300" href="support.html">
+      Customer Support
+     </a>
+    </nav>
+   </div>
+  </footer>
+  <script>
+   const imageInfo = {
+        imgsrc: "https://placehold.co/150x150",
+        alt: "A placeholder image of a product",
+        width: 150,
+        height: 150,
+        title: "Product Image",
+      };
+
+      function clearCart() {
+        alert("All items removed from the cart.");
+        document.querySelector('section.w-full.lg\\:w-3\\/4 .bg-white').innerHTML = '';
+        updateTotalPrice();
+      }
+
+      function saveForLater() {
+        alert("Items saved for later.");
+      }
+
+      function removeItem(itemId) {
+        document.getElementById(`cart-item-${itemId}`).remove();
+        updateTotalPrice();
+      }
+
+      function updateCart(itemId) {
+        updateTotalPrice();
+      }
+
+      function updateTotalPrice() {
+        let totalPrice = 0;
+        document.querySelectorAll('[id^="price-"]').forEach((priceElement) => {
+          const itemId = priceElement.id.split("-")[1];
+          const quantity = document.getElementById(`quantity-${itemId}`).value;
+          totalPrice += parseFloat(priceElement.textContent) * quantity;
+        });
+        document.getElementById("total-price").textContent = totalPrice;
+      }
+
+      function addToCart(productName, productPrice, productImage) {
+        const cartSection = document.querySelector('section.w-full.lg\\:w-3\\/4 .bg-white');
+        const cartItem = document.createElement('div');
+        const itemId = Date.now(); // Unique ID for the new item
+
+        cartItem.classList.add('flex', 'items-center', 'mb-4', 'hover-effect');
+        cartItem.id = `cart-item-${itemId}`;
+        cartItem.innerHTML = `
+          <img alt="A placeholder image of a product" class="w-24 h-24 rounded shadow-md" src="${productImage}" width="100" height="100" title="Product Image" />
+          <div class="ml-4 flex-1">
+            <h3 class="text-xl font-semibold">${productName}</h3>
+            <p class="text-gray-600">$<span id="price-${itemId}">${productPrice}</span></p>
+            <div class="flex items-center mt-2">
+              <label class="mr-2" for="quantity-${itemId}">Quantity:</label>
+              <input class="w-16 p-2 border border-gray-300 rounded" id="quantity-${itemId}" min="1" name="quantity" onchange="updateCart(${itemId})" type="number" value="1" />
+            </div>
+          </div>
+          <button class="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="removeItem(${itemId})">Remove</button>
+        `;
+        cartSection.appendChild(cartItem);
+        updateTotalPrice();
+        alert(`${productName} added to the cart.`);
+      }
+  </script>
+ </body>
+</html>
