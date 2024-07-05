@@ -102,7 +102,6 @@ class WebDesignAgent(BaseAgent):
             return self.task_queue
         text = self.task["text"]
         img = self.task["img"]
-        print(self.css_frame)
         feedback = self.user_feedback if self.user_feedback else ""
         prompt = get_plan_prompt(text=text,img=img,css_frame=self.css_frame,feedback=feedback,language=self.language,local_img_storage=self.local_img_storage)
         if img:
@@ -119,6 +118,7 @@ class WebDesignAgent(BaseAgent):
             ]},
             ]
         try_cnt = 0
+        print("Planning the website...")
         while try_cnt < 3:
             response = wrap_func(self.get_answer, messages=messages,wrap_text="Planning now...")
             try:

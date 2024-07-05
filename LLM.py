@@ -87,8 +87,6 @@ class openai_llm(base_llm):
             http_client = httpx.Client(proxy=proxy_url) if proxy_url else None
             async_http_client = httpx.AsyncClient(proxy=proxy_url) if proxy_url else None
 
-            print(f"api_key:{api_key},base_url:{base_url},http_client:{http_client},async_http_client:{async_http_client}")
-
             self.client = OpenAI(api_key=api_key,base_url=base_url,http_client=http_client)
 
             self.async_client = AsyncOpenAI(api_key=api_key,base_url=base_url,http_client=async_http_client)
@@ -126,8 +124,11 @@ class openai_llm(base_llm):
                 timeout=kwargs.get("timeout", 180)
             )
         except Exception as e:
+            model = kwargs.get("model", "gpt-35-turbo-16k")
+            print(f"get {model} response failed: {e}")
             print(e)
             logging.info(e)
+            return
         
         if not os.path.exists(token_log_file):
             with open(token_log_file, "w") as f:
@@ -158,8 +159,11 @@ class openai_llm(base_llm):
                 timeout=kwargs.get("timeout", 180)
             )
         except Exception as e:
+            model = kwargs.get("model", "gpt-35-turbo-16k")
+            print(f"get {model} response failed: {e}")
             print(e)
             logging.info(e)
+            return
         
         if not os.path.exists(token_log_file):
             with open(token_log_file, "w") as f:
@@ -219,8 +223,11 @@ class claude_llm(base_llm):
                 timeout=kwargs.get("timeout", 180)
             )
         except Exception as e:
+            model = kwargs.get("model", "gpt-35-turbo-16k")
+            print(f"get {model} response failed: {e}")
             print(e)
             logging.info(e)
+            return
 
         if not os.path.exists(token_log_file):
             with open(token_log_file, "w") as f:
@@ -249,8 +256,11 @@ class claude_llm(base_llm):
                 timeout=kwargs.get("timeout", 180)
             )
         except Exception as e:
+            model = kwargs.get("model", "gpt-35-turbo-16k")
+            print(f"get {model} response failed: {e}")
             print(e)
             logging.info(e)
+            return
 
         if not os.path.exists(token_log_file):
             with open(token_log_file, "w") as f:
@@ -313,7 +323,7 @@ class Dalle3_llm(base_img_llm):
                 logging.info(f"Safety system error with prompt: {prompt}. Modifying prompt and retrying.")
                 new_prompt = "a colorful abstract painting of a cat"
                 return self._get_img(new_prompt, save_path)
-            raise  # Re-raise the exception for other types of errors
+            print("Error: generate img failed",e)
 
     def _get_img(self,prompt, save_path):
         img_client = self.client
@@ -349,7 +359,7 @@ class Dalle3_llm(base_img_llm):
                 logging.info(f"Safety system error with prompt: {prompt}. Modifying prompt and retrying.")
                 new_prompt = "a colorful abstract painting of a cat"
                 return await self._get_img_async(new_prompt, save_path)
-            raise
+            print("Error: generate img failed",e)
     
     async def _get_img_async(self,prompt, save_path):
         img_client = self.async_client
