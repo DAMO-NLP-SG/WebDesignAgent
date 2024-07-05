@@ -8,3 +8,4 @@ webdriver_manager
 yaspin
 bs4
 anthropic
+zhipuai

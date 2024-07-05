@@ -53,6 +53,9 @@ class Application(tk.Tk):
         elif llm_type == "claude":
             self.chat_model_options = ["claude-3-5-sonnet-20240620","claude-3-opus-20240229","claude-3-sonnet-20240229","claude-3-haiku-20240307"]
             self.web_design_model_options = ["claude-3-5-sonnet-20240620","claude-3-sonnet-20240229"]
+        elif llm_type == "glm":
+            self.chat_model_options = ["glm-4v","glm-4-alltools","glm-4"]
+            self.web_design_model_options = ["glm-4v"]
 
         self.model_var = tk.StringVar(value=self.web_design_model_options[0])
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)

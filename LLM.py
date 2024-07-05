@@ -1,7 +1,8 @@
 from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
 from anthropic import Anthropic,AsyncAnthropic
-
+from zhipuai import ZhipuAI
 from abc import abstractmethod
+import zhipuai
 import yaml
 import os
 with open('config.yaml', 'r') as file:
@@ -11,6 +12,7 @@ for key, value in config.items():
 import httpx
 import logging
 import json
+import time
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -276,6 +278,106 @@ class claude_llm(base_llm):
             json.dump(tokens, f)
         return response.content[0].text
 
+class glm_llm(base_llm):
+    def __init__(self) -> None:
+        super().__init__()
+        if "GLM_API_KEY" not in os.environ or os.environ["GLM_API_KEY"] == "":
+            raise ValueError("GLM_API_KEY is not set")
+        self.client = ZhipuAI(api_key=os.environ["GLM_API_KEY"])
+    
+    def process_messages(self, messages):
+        new_messages = []
+        for message in messages:
+            if message["role"] == "user":
+                content = message["content"]
+                if isinstance(content, list):
+                    new_content= []
+                    for c in content:
+                        if c["type"] == "image":
+                            new_content.append({"type":"image_url","image_url":{"url":get_openai_url(c["url"]),"detail":"high"}})
+                        else:
+                            new_content.append(c)
+                    new_messages.append({"role":"user","content":new_content})
+                else:
+                    new_messages.append(message)
+            else:
+                new_messages.append(message)
+        return new_messages
+    
+    def response(self, messages, **kwargs):
+        messages = self.process_messages(messages)
+        try:
+            response = self.client.chat.completions.create(
+                model = kwargs.get("model", "glm-4v"),
+                messages = messages,
+                timeout = kwargs.get("timeout", 180)
+            )
+        except Exception as e:
+            model = kwargs.get("model", "glm-4v")
+            print(f"get {model} response failed: {e}")
+            print(e)
+            logging.info(e)
+            return
+        
+        if not os.path.exists(token_log_file):
+            with open(token_log_file, "w") as f:
+                json.dump({},f)
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            current_model = kwargs.get("model", "glm-4v")
+            if current_model not in tokens:
+                tokens[current_model] = [0,0]
+            tokens[current_model][0] += response.usage.prompt_tokens
+            tokens[current_model][1] += response.usage.completion_tokens
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return response.choices[0].message.content
+    
+    async def response_async(self, messages, **kwargs):
+        messages = self.process_messages(messages)
+        try:
+            response_total = self.client.chat.asyncCompletions.create(
+                model = kwargs.get("model", "glm-4v"),
+                messages = messages,
+                timeout = kwargs.get("timeout", 180)
+            )
+            task_id = response_total.id
+            task_status = response_total.task_status
+
+            async def time_sleep():
+                await asyncio.sleep(1)
+        
+            get_cnt = 0
+            while task_status != 'SUCCESS' and task_status != 'FAILED' and get_cnt <= 40:
+                await time_sleep()
+                result_response = self.client.chat.asyncCompletions.retrieve_completion_result(id=task_id)
+                task_status = result_response.task_status
+                time.sleep(2)
+                get_cnt += 1
+            response = result_response
+
+
+        except Exception as e:
+            model = kwargs.get("model", "glm-4v")
+            print(f"get {model} response failed: {e}")
+            print(e)
+            logging.info(e)
+            return
+        
+        if not os.path.exists(token_log_file):
+            with open(token_log_file, "w") as f:
+                json.dump({},f)
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            current_model = kwargs.get("model", "glm-4v")
+            if current_model not in tokens:
+                tokens[current_model] = [0,0]
+            tokens[current_model][0] += response.usage.prompt_tokens
+            tokens[current_model][1] += response.usage.completion_tokens
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return response.choices[0].message.content
+
 
 class Dalle3_llm(base_img_llm):
     def __init__(self) -> None:
@@ -297,9 +399,6 @@ class Dalle3_llm(base_img_llm):
                 api_version= api_version
                 )
         else:
-            if "OPENAI_API_KEY" not in os.environ or os.environ["OPENAI_API_KEY"] == "":
-                raise ValueError("OPENAI_API_KEY is not set")
-            
             api_key = os.environ.get("OPENAI_API_KEY",None)
             proxy_url = os.environ.get("OPENAI_PROXY_URL", None)
             if proxy_url == "":
@@ -386,20 +485,16 @@ class Dalle3_llm(base_img_llm):
         return img
 
 
-
-
-
-
-
-
 def get_llm():
     llm_type = config.get("LLM_TYPE", "openai")
     img_gen_type = config.get("IMG_GEN_TYPE", "dalle3")
     llm , img_generator = None,None
-    if llm_type == "openai":
+    if llm_type in ["openai"]:
         llm = openai_llm()
     elif llm_type == "claude":
         llm = claude_llm()
+    elif llm_type == "glm":
+        llm = glm_llm()
     else:
         raise ValueError(f"Unknown LLM type: {llm_type}")
     if img_gen_type == "dalle3":
@@ -415,14 +510,17 @@ def get_llm():
 if __name__ == "__main__":
     llm , delle = get_llm()
     prompt = "告诉我两张图片的区别"
+    img_path = ""
     messages = [
         {"role":"user","content":[
+            {"type":"image","url":img_path},
             {"type":"text","text":prompt},
     ]}
     ]
-    messages = llm.process_messages(messages)
     # print(messages)
-    response = llm.response(messages,model = "gpt-4o-2024-05-13")
+    import asyncio
+    response = asyncio.run(llm.response_async(messages,model = "glm-4v"))
+    # response = llm.response(messages,model = "glm-4v")
     print(response)
 
 

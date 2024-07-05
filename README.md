@@ -37,7 +37,7 @@ These websites are built based on the following materials:
 
 
 ##  📰 Update
-* **[2024.7.2]** WebDesignAgent can support Claude model!
+* **[2024.7.5]** WebDesignAgent can support Claude and chatglm model!
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
@@ -87,11 +87,11 @@ pip install -r requirements.txt
 set config.yaml to use the OpenAI APIs.
 ```yaml
 web_type : "chrome" # "chrome" or "firefox" or "edge"
-LLM_TYPE : "openai" # openai or claude
+LLM_TYPE : "openai" # openai or claude or glm
 
 # LLM settings
 # openai settings
-is_azure : True # set it False if you do not use azure_openai
+is_azure : False
 AZURE_OPENAI_ENDPOINT : ""
 AZURE_OPENAI_KEY : ""
 AZURE_OPENAI_API_VERSION : ""
@@ -106,6 +106,8 @@ OPENAI_BASE_URL : ""
 # claude settings
 CLAUDE_API_KEY : ""
 
+# glm settings
+GLM_API_KEY : ""
 
 # IMG Generator settings (if not set, it will use the openai settings)
 IMG_GEN_TYPE : "dalle3" # "dalle3"
