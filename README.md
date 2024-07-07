@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-WebDesignAgent :  Towards Effortless Websites Creation
+WebDesignAgent :  Towards Effortless Website Creation
 </h3>
 
 <p align="center">
