@@ -178,6 +178,8 @@ class Application(tk.Tk):
         gen_img_menu.grid(row=8, column=1, padx=10, pady=10)
         gen_img_menu_label = tk.Label(web_design_widgets["input_frame"], text="IMG Source:")
         gen_img_menu_label.grid(row=8, column=0, padx=10, pady=10)
+        self.gen_img_menu = gen_img_menu
+        self.agent.gen_img = gen_img_options[0]
         
 
         # Animation Label
@@ -297,8 +299,7 @@ class Application(tk.Tk):
             self.agent.local_img_storage = []
         elif gen_img == "Local":
             if not self.agent.local_img_storage:    
-                messagebox.showerror("Error", "Please upload the local_img_storage first")
-                return
+                messagebox.showerror("Please upload the local_img_storage, current is empty")
             self.agent.gen_img = gen_img
             if self.agent.local_img_storage_copy:
                 self.agent.local_img_storage = self.agent.local_img_storage_copy.copy()
