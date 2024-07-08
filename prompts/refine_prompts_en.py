@@ -90,7 +90,6 @@ That is, be sure to use "imgsrc" to add the image address(try to use a local add
 """
 
 refine_feedback_task = """
-The image above is a web page screenshot that you have already built.
 {local_img_storage}
 The page information is as follows:{page_info}(The file names of the jump pages of the bottom and link are their link addresses);
 

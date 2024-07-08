@@ -136,6 +136,7 @@ For a quick usage of our WebDesignAgent, please follow these steps:
 7. If you want to build your website with your local images, please indicate the image storage path `local_img_storage_path` for our agent to load and then click `load`.
 8. Click the `Plan` button, which will return the textual descriptions of planned websites, their contents, and their relations. You can also change these descriptions if you find them unsuitable.
 9. Click `Auto Generate` to generate all the above websites for you. The screenshot of your created websites will show on the right part of the GUI tool. (It may take some time for the entire website generation)
+10. Set Vision to `Close` can reduce the cost but will decrease the quaility.
 
 #### Human Feedback
 If you want to generate a website with more human control. 

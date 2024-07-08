@@ -60,7 +60,6 @@ title: "参考图片标题",
 """
 
 refine_text_task = """
-上面的图片是您已经构建的网页截图。
 {local_img_storage}
 页面信息如下：{page_info}(button和link的跳转页面的文件名为其链接地址);
 
@@ -91,7 +90,6 @@ title: "参考图片标题",
 """
 
 refine_feedback_task = """
-上面的图片是您已经构建的网页截图。
 {local_img_storage}
 页面信息如下：{page_info}(button和link的跳转页面的文件名为其链接地址);
 

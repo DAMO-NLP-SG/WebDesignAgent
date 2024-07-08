@@ -83,25 +83,25 @@ original_output_format = """
 Tailwind_output_format = """
 {feedback}
 
-现在输出带有Tailwind CSS框架的HTML代码。
+现在输出带有Tailwind CSS框架的HTML代码。(务必添加：<link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"> 到你的html文件中。)
 """
 
 Boostrap_output_format = """
 {feedback}
 
-现在输出带有Bootstrap CSS框架的HTML代码。
+现在输出带有Bootstrap CSS框架的HTML代码。(务必添加：<link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet"> 到你的html文件中。)
 """
 
 Materialize_output_format = """
 {feedback}
 
-现在输出带有Materialize CSS框架的HTML代码。
+现在输出带有Materialize CSS框架的HTML代码。(务必添加：<link href="https://cdn.jsdelivr.net/npm/materialize-css@latest/dist/css/materialize.min.css" rel="stylesheet"> 到你的html文件中。)
 """
 
 Bulma_output_format = """
 {feedback}
 
-现在输出带有Bulma CSS框架的HTML代码。
+现在输出带有Bulma CSS框架的HTML代码。(务必添加：<link href="https://cdn.jsdelivr.net/npm/bulma@latest/dist/css/bulma.min.css" rel="stylesheet"> 到你的html文件中。)
 """
 
 

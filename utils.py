@@ -12,8 +12,10 @@ def cal_cost(prompt_tokens,completion_tokens,model = "gpt-4"):
         return prompt_tokens/1000000 * 3 + completion_tokens/1000000 * 15
     elif model == "glm-4-alltools":
         return (prompt_tokens + completion_tokens)/1000 * 0.1 * 0.14 
-    elif model == "glm-4v":
-        return (prompt_tokens + completion_tokens)/1000 * 0.05 * 0.14 
+    elif model == "glm-4-0520":
+        return (prompt_tokens + completion_tokens)/1000 * 0.1 * 0.14 
+    elif model == "glm-4":
+        return (prompt_tokens + completion_tokens)/1000 * 0.001 * 0.14
     else:
         return prompt_tokens/1000 *0.005 + completion_tokens/1000 *0.015
 

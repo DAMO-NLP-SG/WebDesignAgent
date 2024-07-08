@@ -50,12 +50,15 @@ class Application(tk.Tk):
             self.chat_model_options = ["gpt-4o-2024-05-13","gpt-4o","gpt-4-turbo-preview","gpt-3.5-turbo-0125"]
             # self.web_design_model_options = ["gpt-4o-0513","gpt-4o"]
             self.web_design_model_options = ["gpt-4o-2024-05-13","gpt-4o"]
+            self.vision_options = ["Open","Close"]
         elif llm_type == "claude":
             self.chat_model_options = ["claude-3-5-sonnet-20240620","claude-3-opus-20240229","claude-3-sonnet-20240229","claude-3-haiku-20240307"]
             self.web_design_model_options = ["claude-3-5-sonnet-20240620","claude-3-sonnet-20240229"]
+            self.vision_options = ["Open","Close"]
         elif llm_type == "glm":
-            self.chat_model_options = ["glm-4v","glm-4-alltools","glm-4"]
-            self.web_design_model_options = ["glm-4v"]
+            self.chat_model_options = ["glm-4-0520","glm-4-alltools","glm-4"]
+            self.web_design_model_options = ["glm-4-0520","glm-4","glm-4-alltools"]
+            self.vision_options = ["Close"]
 
         self.model_var = tk.StringVar(value=self.web_design_model_options[0])
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)
@@ -63,6 +66,14 @@ class Application(tk.Tk):
         self.model_menu_label = tk.Label(self.title_frame, text="Select Model:")
         self.model_menu_label.grid(row=0, column=2, padx=10, pady=10)
         self.agent.model = self.web_design_model_options[0]
+
+        self.vision_var = tk.StringVar(value=self.vision_options[0])
+        self.vision_menu = ttk.OptionMenu(self.title_frame, self.vision_var, self.vision_options[0], *self.vision_options,command=self.switch_vision)
+        self.vision_menu.grid(row=0, column=5, padx=10, pady=10)
+        self.vision_menu_label = tk.Label(self.title_frame, text="Open Vision:")
+        self.vision_menu_label.grid(row=0, column=4, padx=10, pady=10)
+        self.agent.vision = True if self.vision_var.get() == "Open" else False
+
 
         self.is_animating = False
 
@@ -225,6 +236,13 @@ class Application(tk.Tk):
         else:
             self.agent.css_frame = css_frame
         print(f"Change CSS Frame to: {css_frame}")
+    
+    def switch_vision(self, vision):
+        if vision == "Open":
+            self.agent.vision = True
+        else:
+            self.agent.vision = False
+        print(f"Switched to {vision}")
 
     def switch_model(self,model):
         self.agent.model = model
@@ -247,7 +265,7 @@ class Application(tk.Tk):
         save_file = input_entries[0].get()
         self.agent.change_save_file(save_file)
         self.agent.task["text"] = input_entries[1].get()
-        self.agent.task["img"] = input_entries[2].get()
+        self.agent.task["img"] = input_entries[2].get() if self.agent.vision else None
         self.agent.user_feedback = input_entries[3].get() if input_entries[3].get() else ""
         self.agent.refine_times = int(input_entries[4].get()) if input_entries[4].get() else 2
         self.agent.local_img_storage_path = self.web_design_widgets["input_entries"][5].get() if self.web_design_widgets["input_entries"][5].get() else ""
@@ -360,7 +378,7 @@ class Application(tk.Tk):
             return
         self.read_input_entries()
         website_description = self.web_design_widgets["input_entries"][1].get()
-        website_img = self.web_design_widgets["input_entries"][2].get()
+        website_img = self.web_design_widgets["input_entries"][2].get() if self.agent.vision else None
         if not website_description and not os.path.exists(website_img):
             try:
                 self.agent.driver.get_screenshot(website_img,"target_website.png",False)

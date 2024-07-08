@@ -42,6 +42,7 @@ class WebDesignAgent(BaseAgent):
         self.total_prompt_cost_tokens = 0
         self.total_completion_cost_tokens = 0
         self.refine_times = 2
+        self.vision = True
     
     def act(self,**kwargs):
         self.publish_task(**kwargs)
@@ -278,8 +279,14 @@ class WebDesignAgent(BaseAgent):
             local_img_storage = random.sample(self.local_img_storage,10)
         else:
             local_img_storage = self.local_img_storage
-        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame,language=self.language,local_img_storage=local_img_storage)
-        if img:
+        prompt = get_refine_prompt(text=text,img=img,html_code=html_code,css_code=css_code,feedback=feedback,page_info=page_info,css_frame=css_frame,language=self.language,local_img_storage=local_img_storage,vision=self.vision)
+        if self.vision == False:
+            messages = [
+                {"role":"user","content":[
+                    {"type":"text","text":prompt},
+            ]},
+            ]
+        elif img:
             messages = [
                 {"role":"user","content":[
                     {"type":"image","url":img},

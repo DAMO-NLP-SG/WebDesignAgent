@@ -1,5 +1,5 @@
 # ["Tailwind","Boostrap","Materialize","Bulma",None]
-def get_refine_prompt(text = None,img = None,html_code = None,css_code = None,page_info = None,feedback = "",css_frame = None,language = "en",local_img_storage = []):
+def get_refine_prompt(text = None,img = None,html_code = None,css_code = None,page_info = None,feedback = "",css_frame = None,language = "en",local_img_storage = [],vision = True):
     if language == "en":
         from .refine_prompts_en import refine_Tailwind_output_format,refine_Boostrap_output_format,refine_Materialize_output_format,refine_Bulma_output_format,refine_original_output_format,refine_feedback_task,refine_img_text_task,refine_img_task,refine_text_task,refine_prompt,Tailwind_role,Boostrap_role,Materialize_role,Bulma_role,original_role
         feedback = f"The user's feedback is as follows(very important, please pay attention to it!):{feedback}" if feedback else ""
@@ -29,13 +29,14 @@ def get_refine_prompt(text = None,img = None,html_code = None,css_code = None,pa
         output_format = refine_original_output_format.format(html_code = html_code,css_code=css_code,feedback = feedback)
     if feedback:
         task = refine_feedback_task.format(page_info = page_info,local_img_storage = local_img_storage)
+        task = pre_task + task if vision else task
     elif img and text:
         task = refine_img_text_task.format(page_info = page_info,local_img_storage = local_img_storage)
     elif img:
         task = refine_img_task.format(page_info = page_info,local_img_storage = local_img_storage)
     else:
         task = refine_text_task.format(page_info = page_info,local_img_storage = local_img_storage)
-        task = pre_task + task
+        task = pre_task + task if vision else task
 
     prompt = refine_prompt.format(role = role,task = task,output_format = output_format)
     return prompt

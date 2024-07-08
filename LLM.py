@@ -2,7 +2,6 @@ from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
 from anthropic import Anthropic,AsyncAnthropic
 from zhipuai import ZhipuAI
 from abc import abstractmethod
-import zhipuai
 import yaml
 import os
 with open('config.yaml', 'r') as file:
@@ -18,6 +17,7 @@ from tenacity import (
     stop_after_attempt,
     wait_fixed,
 )
+import asyncio
 import requests
 from PIL import Image
 from io import BytesIO
@@ -310,7 +310,8 @@ class glm_llm(base_llm):
             response = self.client.chat.completions.create(
                 model = kwargs.get("model", "glm-4v"),
                 messages = messages,
-                timeout = kwargs.get("timeout", 180)
+                timeout = kwargs.get("timeout", 180),
+                max_tokens=kwargs.get("max_tokens", 4000)
             )
         except Exception as e:
             model = kwargs.get("model", "glm-4v")
@@ -324,7 +325,7 @@ class glm_llm(base_llm):
                 json.dump({},f)
         with open(token_log_file, "r") as f:
             tokens = json.load(f)
-            current_model = kwargs.get("model", "glm-4v")
+            current_model = kwargs.get("model", "glm-4")
             if current_model not in tokens:
                 tokens[current_model] = [0,0]
             tokens[current_model][0] += response.usage.prompt_tokens
@@ -337,9 +338,10 @@ class glm_llm(base_llm):
         messages = self.process_messages(messages)
         try:
             response_total = self.client.chat.asyncCompletions.create(
-                model = kwargs.get("model", "glm-4v"),
+                model = kwargs.get("model", "glm-4"),
                 messages = messages,
-                timeout = kwargs.get("timeout", 180)
+                timeout = kwargs.get("timeout", 180),
+                max_tokens=kwargs.get("max_tokens", 4000),
             )
             task_id = response_total.id
             task_status = response_total.task_status
@@ -513,13 +515,12 @@ if __name__ == "__main__":
     img_path = ""
     messages = [
         {"role":"user","content":[
-            {"type":"image","url":img_path},
             {"type":"text","text":prompt},
     ]}
     ]
     # print(messages)
     import asyncio
-    response = asyncio.run(llm.response_async(messages,model = "glm-4v"))
+    response = asyncio.run(llm.response_async(messages,model = "glm-4-0520"))
     # response = llm.response(messages,model = "glm-4v")
     print(response)
 

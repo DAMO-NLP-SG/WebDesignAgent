@@ -84,25 +84,25 @@ Please output the html(contain js code), css code.
 Tailwind_output_format = """
 {feedback}
 
-Now output the HTML code with Tailwind CSS framework.
+Now output the HTML code with Tailwind CSS framework.(Must add link :<link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"> to your html file.)
 """
 
 Boostrap_output_format = """
 {feedback}
 
-Now output the HTML code with Bootstrap CSS framework.
+Now output the HTML code with Bootstrap CSS framework.(Must add link :<link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet"> to your html file.)
 """
 
 Materialize_output_format = """
 {feedback}
 
-Now output the HTML code with Materialize CSS framework.
+Now output the HTML code with Materialize CSS framework.(Must add link :<link href="https://cdn.jsdelivr.net/npm/materialize-css@latest/dist/css/materialize.min.css" rel="stylesheet"> to your html file.)
 """
 
 Bulma_output_format = """
 {feedback}
 
-Now output the HTML code with Bulma CSS framework.
+Now output the HTML code with Bulma CSS framework.(Must add link :<link href="https://cdn.jsdelivr.net/npm/bulma@latest/dist/css/bulma.min.css" rel="stylesheet"> to your html file.)
 """
 
 write_original_prompt = """
