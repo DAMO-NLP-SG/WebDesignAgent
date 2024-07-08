@@ -138,6 +138,8 @@ class WebDesignAgent(BaseAgent):
         if try_cnt == 3:
             assert False, "Failed to get the designed pages."
         
+        with open(os.path.join(self.save_file,"pages.json"), "w",encoding='utf-8') as f:
+            json.dump(pages,f)
         new_pages = asyncio.run(self.refine_pages_async(pages))
         new_pages = sorted(new_pages,key = lambda x:x[1])
         new_pages = [page[0] for page in new_pages]
@@ -365,6 +367,7 @@ class WebDesignAgent(BaseAgent):
             if not css_name:
                 print("The css_name is not provided.")
                 return
+                
             write_file(os.path.join(self.save_file,html_name), html)
             write_file(os.path.join(self.save_file,css_name), css)
             if self.gen_img == "Gen":

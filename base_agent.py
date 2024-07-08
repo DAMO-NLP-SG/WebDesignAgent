@@ -25,7 +25,8 @@ class BaseAgent:
     async def get_LLM_response_async(self,messages,**kwargs):
         if kwargs.get("model") == None:
             kwargs["model"] = self.model
-        return await self.llm.response_async(messages,**kwargs)
+        response = await self.llm.response_async(messages,**kwargs)
+        return response
     
     async def get_answer_async(self,messages,**kwargs):
         response = await self.get_LLM_response_async(messages,model = self.model,**kwargs)

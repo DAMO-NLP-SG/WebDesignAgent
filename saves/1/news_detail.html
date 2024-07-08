@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻详情</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* 自定义样式，如字体家族 */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        /* 夜间模式变量 */
+        [data-theme="dark"] {
+            --text-color: #f8f9fa;
+            --bg-color: #212529;
+            --accent-color: #4CAF50;
+        }
+        /* 通用样式 */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+    </style>
+    <script>
+        function toggleTheme() {
+            const themeToggle = document.querySelector('.theme-toggle input[type="checkbox"]');
+            const isDark = themeToggle.checked;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        // 初始化主题
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                document.querySelector('.theme-toggle input').checked = savedTheme === 'dark';
+            }
+        })();
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-[var(--bg-color)] dark:text-[var(--text-color)] transition-colors duration-300">
+
+    <!-- 夜间模式切换 -->
+    <label for="toggle-dark-mode" class="theme-toggle cursor-pointer">
+        <input type="checkbox" id="toggle-dark-mode" onchange="toggleTheme()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.773L9.59 15.41m12.364-4.773l-3.183 3.183M9.59 12.91l6.364-6.364" />
+        </svg>
+    </label>
+
+    <!-- 顶部导航 -->
+    <!-- ... -->
+
+    <!-- 新闻详情内容 -->
+    <main class="max-w-screen-lg mx-auto p-8 mt-20">
+        <article class="prose lg:prose-lg dark:prose-invert">
+            <h1 class="text-3xl font-bold mb-6">新闻标题</h1>
+            <p>发布日期：2023-04-01</p>
+            <!-- 添加展开/收起按钮 -->
+            <button id="toggleContent" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">展开全文</button>
+            <div id="content" class="hidden">
+                <img src="path/to/news_image.jpg" alt="新闻相关图片" class="w-full rounded-lg mb-8 shadow-md lazyload">
+                <!-- 新闻正文内容 -->
+                <p>新闻正文...</p>
+            </div>
+            <!-- 展开/收起交互逻辑 -->
+            <script>
+                document.getElementById('toggleContent').addEventListener('click', function() {
+                    const content = document.getElementById('content');
+                    content.classList.toggle('hidden');
+                    this.textContent = content.classList.contains('hidden') ? '展开全文' : '收起全文';
+                });
+            </script>
+            <!-- ... -->
+        </article>
+    </main>
+
+    <!-- 评论区（略，需实现无限滚动加载） -->
+
+    <!-- 功能按钮（略，保持原有结构，可优化样式） -->
+
+    <!-- 跳转链接（略，保持原有结构） -->
+
+    <!-- 其他交互元素脚本示例（略，保持原有结构，根据需求调整） -->
+
+</body>
+</html>

@@ -59,6 +59,10 @@ class Application(tk.Tk):
             self.chat_model_options = ["glm-4-0520","glm-4-alltools","glm-4"]
             self.web_design_model_options = ["glm-4-0520","glm-4","glm-4-alltools"]
             self.vision_options = ["Close"]
+        elif llm_type == "qwen":
+            self.chat_model_options = ["qwen-max-longcontext","qwen-max-0428"]
+            self.web_design_model_options = ["qwen-max-longcontext","qwen-max-0428"]
+            self.vision_options = ["Close"]
 
         self.model_var = tk.StringVar(value=self.web_design_model_options[0])
         self.model_menu = ttk.OptionMenu(self.title_frame, self.model_var, self.web_design_model_options[0], *self.web_design_model_options,command=self.switch_model)

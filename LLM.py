@@ -1,7 +1,12 @@
 from openai import AzureOpenAI, OpenAI,AsyncAzureOpenAI,AsyncOpenAI
 from anthropic import Anthropic,AsyncAnthropic
 from zhipuai import ZhipuAI
+from dashscope import Generation
+from dashscope.aigc.generation import AioGeneration
 from abc import abstractmethod
+from http import HTTPStatus
+import platform
+import dashscope
 import yaml
 import os
 with open('config.yaml', 'r') as file:
@@ -128,7 +133,6 @@ class openai_llm(base_llm):
         except Exception as e:
             model = kwargs.get("model", "gpt-35-turbo-16k")
             print(f"get {model} response failed: {e}")
-            print(e)
             logging.info(e)
             return
         
@@ -163,7 +167,6 @@ class openai_llm(base_llm):
         except Exception as e:
             model = kwargs.get("model", "gpt-35-turbo-16k")
             print(f"get {model} response failed: {e}")
-            print(e)
             logging.info(e)
             return
         
@@ -260,7 +263,6 @@ class claude_llm(base_llm):
         except Exception as e:
             model = kwargs.get("model", "gpt-35-turbo-16k")
             print(f"get {model} response failed: {e}")
-            print(e)
             logging.info(e)
             return
 
@@ -304,6 +306,7 @@ class glm_llm(base_llm):
                 new_messages.append(message)
         return new_messages
     
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
     def response(self, messages, **kwargs):
         messages = self.process_messages(messages)
         try:
@@ -334,6 +337,7 @@ class glm_llm(base_llm):
             json.dump(tokens, f)
         return response.choices[0].message.content
     
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
     async def response_async(self, messages, **kwargs):
         messages = self.process_messages(messages)
         try:
@@ -379,6 +383,97 @@ class glm_llm(base_llm):
         with open(token_log_file, "w") as f:
             json.dump(tokens, f)
         return response.choices[0].message.content
+
+class qwen_llm(base_llm):
+    def __init__(self) -> None:
+        super().__init__()
+        if "DASHSCOPE_API_KEY" not in os.environ or os.environ["DASHSCOPE_API_KEY"] == "":
+            raise ValueError("DASHSCOPE_API_KEY is not set")
+        dashscope.api_key = os.environ["DASHSCOPE_API_KEY"]
+    
+    def process_messages(self, messages):
+        new_messages = []
+        for message in messages:
+            if message["role"] == "user":
+                content = message["content"]
+                if isinstance(content, list):
+                    new_content= []
+                    for c in content:
+                        if c["type"] == "image":
+                            new_content.append({"type":"image_url","image_url":{"url":get_openai_url(c["url"]),"detail":"high"}})
+                        else:
+                            new_content.append(c)
+                    new_messages.append({"role":"user","content":new_content})
+                else:
+                    new_messages.append(message)
+            else:
+                new_messages.append(message)
+        return new_messages
+    
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    def response(self, messages, **kwargs):
+        messages = self.process_messages(messages)
+        try:
+            response = Generation.call(
+                model = kwargs.get("model", "qwen-max-longcontext"),
+                messages = messages,
+                timeout = kwargs.get("timeout", 180),
+                max_tokens=kwargs.get("max_tokens", 4000),
+                result_format = "message"
+            )
+        except Exception as e:
+            model = kwargs.get("model", "qwen-max-longcontext")
+            print(f"get {model} response failed: {e}")
+            print(e)
+            logging.info(e)
+            return
+        if not os.path.exists(token_log_file):
+            with open(token_log_file, "w") as f:
+                json.dump({},f)
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            current_model = kwargs.get("model", "qwen-max-longcontext")
+            if current_model not in tokens:
+                tokens[current_model] = [0,0]
+            tokens[current_model][0] += response.usage.input_tokens
+            tokens[current_model][1] += response.usage.output_tokens
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return response.output.choices[0].message.content
+    
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    async def response_async(self, messages, **kwargs):
+        messages = self.process_messages(messages)
+        try:
+            response = await AioGeneration.call(
+                model = kwargs.get("model", "qwen-max-longcontext"),
+                messages = messages,
+                timeout = kwargs.get("timeout", 180),
+                max_tokens=kwargs.get("max_tokens", 4000),
+                result_format = "message"
+            )
+        except Exception as e:
+            print("response:",response)
+            model = kwargs.get("model", "qwen-max-longcontext")
+            print(f"get {model} response failed: {e}")
+            logging.info(e)
+            return
+        
+        if not os.path.exists(token_log_file):
+            with open(token_log_file, "w") as f:
+                json.dump({},f)
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            current_model = kwargs.get("model", "qwen-max-longcontext")
+            if current_model not in tokens:
+                tokens[current_model] = [0,0]
+            tokens[current_model][0] += response.usage.input_tokens
+            tokens[current_model][1] += response.usage.output_tokens
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return response.output.choices[0].message.content
+
+
 
 
 class Dalle3_llm(base_img_llm):
@@ -497,6 +592,8 @@ def get_llm():
         llm = claude_llm()
     elif llm_type == "glm":
         llm = glm_llm()
+    elif llm_type == "qwen":
+        llm = qwen_llm()
     else:
         raise ValueError(f"Unknown LLM type: {llm_type}")
     if img_gen_type == "dalle3":
@@ -515,14 +612,20 @@ if __name__ == "__main__":
     img_path = ""
     messages = [
         {"role":"user","content":[
-            {"type":"text","text":prompt},
+            {"type":"text","text":"你是谁"},
     ]}
     ]
-    # print(messages)
-    import asyncio
-    response = asyncio.run(llm.response_async(messages,model = "glm-4-0520"))
-    # response = llm.response(messages,model = "glm-4v")
-    print(response)
+    messages2 = [
+        {"role":"user","content":[
+            {"type":"text","text":"我是谁"},
+        ]}
+    ]
+    tasks = [llm.response_async(messages),llm.response_async(messages2)]
+    async def f(tasks):
+        results = await asyncio.gather(*tasks)
+        return results
+    results = asyncio.run(f(tasks))
+    print(results)
 
 
 

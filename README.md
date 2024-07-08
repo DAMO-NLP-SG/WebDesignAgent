@@ -37,6 +37,7 @@ These websites are built based on the following materials:
 
 
 ##  📰 Update
+* **[2024.7.8]** WebDesignAgent can support Qwen models(not support vision and ) model!(There are some problems with asynchronous calls, and the generation speed is slow. Welcome PR to solve this problem)
 * **[2024.7.5]** WebDesignAgent can support Claude and chatglm(not support vision) model!
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
@@ -87,7 +88,7 @@ pip install -r requirements.txt
 set config.yaml to use the OpenAI APIs.
 ```yaml
 web_type : "chrome" # "chrome" or "firefox" or "edge"
-LLM_TYPE : "openai" # openai or claude or glm
+LLM_TYPE : "openai" # openai or claude or glm or qwen
 
 # LLM settings
 # openai settings
@@ -108,6 +109,9 @@ CLAUDE_API_KEY : ""
 
 # glm settings
 GLM_API_KEY : ""
+
+# qwen settings
+DASHSCOPE_API_KEY : ""
 
 # IMG Generator settings (if not set, it will use the openai settings)
 IMG_GEN_TYPE : "dalle3" # "dalle3"
@@ -182,3 +186,10 @@ Website generated combining both an image and a description: [Websites](examples
 2. Support local code modification.
 3. Generate supporting backend code.
 4. At present, this is still a relatively rough demo, and we really hope that you can provide feedback to help us improve it. We welcome you to raise issues to point out our shortcomings.
+
+
+## WeChat
+If you have any questions, please join the group chat for consultation
+<p align="center">
+<a href=""><img src="assets/wechat.png"></a>
+</p>

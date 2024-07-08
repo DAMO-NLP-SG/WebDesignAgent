@@ -16,12 +16,15 @@ def cal_cost(prompt_tokens,completion_tokens,model = "gpt-4"):
         return (prompt_tokens + completion_tokens)/1000 * 0.1 * 0.14 
     elif model == "glm-4":
         return (prompt_tokens + completion_tokens)/1000 * 0.001 * 0.14
+    elif model == "qwen-max-longcontext":
+        return prompt_tokens/1000 * 0.04 * 0.14 + completion_tokens/1000 * 0.14 * 0.12
     else:
         return prompt_tokens/1000 *0.005 + completion_tokens/1000 *0.015
 
 def write_file(file_path, content):
-    with open(file_path, "w",encoding='utf-8') as f:
-        f.write(content)
+    if content:
+        with open(file_path, "w",encoding='utf-8') as f:
+            f.write(content)
 
 def get_all_files_in_dir(directory):
     file_list = []

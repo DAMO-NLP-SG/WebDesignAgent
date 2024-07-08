@@ -1,5 +1,5 @@
 web_type : "chrome" # "chrome" or "firefox" or "edge"
-LLM_TYPE : "openai" # openai or claude or glm
+LLM_TYPE : "openai" # openai or claude or glm or qwen
 
 # LLM settings
 # openai settings
@@ -20,6 +20,9 @@ CLAUDE_API_KEY : ""
 
 # glm settings
 GLM_API_KEY : ""
+
+# qwen settings
+DASHSCOPE_API_KEY : ""
 
 # IMG Generator settings (if not set, it will use the openai settings)
 IMG_GEN_TYPE : "dalle3" # "dalle3"
