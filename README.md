@@ -37,7 +37,7 @@ These websites are built based on the following materials:
 
 
 ##  📰 Update
-* **[2024.7.5]** WebDesignAgent can support Claude and chatglm model!
+* **[2024.7.5]** WebDesignAgent can support Claude and chatglm(not support vision) model!
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
 * **[2024.6.26]**  The first version of WebDesignAgent!
