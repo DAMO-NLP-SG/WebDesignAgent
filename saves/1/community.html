@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>社区页面</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #1a202c; /* 深色调背景 */
+            color: #fff; /* 文字颜色 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 字体系列 */
+        }
+        .btn-custom {
+            @apply bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-md transition duration-150 ease-in-out;
+        }
+        .btn-custom:hover {
+            @apply bg-blue-700 shadow-lg;
+        }
+        .search-box {
+            @apply bg-gray-700 text-white rounded px-2 py-1;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255,255,255,0.7);
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 36px;
+            height: 36px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* 夜间模式样式 */
+        .night-mode {
+            background-color: #0a0c10;
+            color: #c5c6c7;
+        }
+    </style>
+</head>
+<body class="py-4" id="body">
+    <!-- 顶部导航栏 -->
+    <div class="container mx-auto">
+        <div class="flex justify-between items-center">
+            <a class="text-lg font-bold text-gray-100 hover:underline md:hidden" href="index.html">
+                返回主页
+            </a>
+            <div class="hidden md:flex">
+                <input class="search-box w-48" placeholder="搜索帖子或市场" type="text" id="searchBox"/>
+                <button class="mx-2 text-sm text-gray-400 hover:underline" onclick="toggleNightMode()">
+                    夜间模式
+                </button>
+                <a class="mx-4 text-sm text-gray-400 hover:underline" href="forum_rules.html">
+                    论坛规则
+                </a>
+                <a class="mx-4 text-sm text-gray-400 hover:underline" href="player_help.html">
+                    玩家帮助
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button onclick="toggleMobileNav()" class="text-gray-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobileNav" class="md:hidden bg-gray-800 p-4 rounded">
+            <a href="index.html" class="block py-2 text-sm text-gray-100 hover:underline">返回主页</a>
+            <a href="forum_rules.html" class="block py-2 text-sm text-gray-100 hover:underline">论坛规则</a>
+            <a href="player_help.html" class="block py-2 text-sm text-gray-100 hover:underline">玩家帮助</a>
+        </div>
+    </div>
+    <!-- 页面主体内容 -->
+    <div class="container mx-auto mt-8">
+        <!-- 功能按钮 -->
+        <div class="mb-4">
+            <button class="btn-custom" onclick="showPostForm()">
+                发布新帖
+            </button>
+            <button class="btn-custom mx-4" onclick="showMyPosts()">
+                我的帖子
+            </button>
+            <button class="btn-custom" onclick="showLatestActivities()">
+                最新活动
+            </button>
+        </div>
+        <!-- 帖子区域 -->
+        <div class="mb-8" id="posts">
+            <!-- 动态加载帖子 -->
+            <div class="bg-gray-800 p-4 rounded">
+                <div class="loading-spinner mx-auto"></div>
+            </div>
+        </div>
+        <!-- 玩家交易市场 -->
+        <div class="mb-8" id="market">
+            <!-- 市场相关功能 -->
+            <img src="https://placehold.co/600x400?text=玩家交易市场" alt="玩家交易市场" class="w-full h-auto rounded"/>
+        </div>
+        <!-- 活动日历 -->
+        <div class="mb-8" id="calendar">
+            <!-- 显示活动日历 -->
+            <img src="https://placehold.co/600x400?text=活动日历" alt="活动日历" class="w-full h-auto rounded"/>
+        </div>
+    </div>
+    <!-- 页脚 -->
+    <footer class="container mx-auto text-center text-gray-400 py-4">
+        &copy; 2023 社区页面. All rights reserved.
+    </footer>
+    <script>
+        // 示例 JavaScript 功能实现
+        function showPostForm() {
+            // 显示发布新帖子的表单
+        }
+        function showMyPosts() {
+            // 显示我的帖子
+        }
+        function showLatestActivities() {
+            // 显示最新活动信息
+        }
+        function toggleNightMode() {
+            var body = document.getElementById('body');
+            body.classList.toggle('night-mode');
+        }
+        function toggleMobileNav() {
+            var mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('hidden');
+        }
+        // 搜索框功能
+        document.getElementById('searchBox').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                // 执行搜索功能
+                console.log('Searching for:', this.value);
+            }
+        });
+        // 滚动加载更多帖子
+        window.onscroll = function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                // 加载更多帖子
+            }
+        };
+    </script>
+</body>
+</html>

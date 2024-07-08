@@ -16,6 +16,10 @@ def cal_cost(prompt_tokens,completion_tokens,model = "gpt-4"):
         return (prompt_tokens + completion_tokens)/1000 * 0.1 * 0.14 
     elif model == "glm-4":
         return (prompt_tokens + completion_tokens)/1000 * 0.001 * 0.14
+    elif model == "glm-4-air":
+        return prompt_tokens/1000 * 0.001 * 0.14 + completion_tokens/1000 * 0.14 * 0.0005
+    elif model == "glm-4-airx":
+        return (prompt_tokens + completion_tokens)/1000 * 0.01 * 0.14
     elif model == "qwen-max-longcontext":
         return prompt_tokens/1000 * 0.04 * 0.14 + completion_tokens/1000 * 0.14 * 0.12
     else:

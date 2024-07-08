@@ -56,8 +56,8 @@ class Application(tk.Tk):
             self.web_design_model_options = ["claude-3-5-sonnet-20240620","claude-3-sonnet-20240229"]
             self.vision_options = ["Open","Close"]
         elif llm_type == "glm":
-            self.chat_model_options = ["glm-4-0520","glm-4-alltools","glm-4"]
-            self.web_design_model_options = ["glm-4-0520","glm-4","glm-4-alltools"]
+            self.chat_model_options = ["glm-4-0520","glm-4-alltools","glm-4","glm-4-airx","glm-4-air"]
+            self.web_design_model_options = ["glm-4-0520","glm-4","glm-4-alltools","glm-4-airx","glm-4-air"]
             self.vision_options = ["Close"]
         elif llm_type == "qwen":
             self.chat_model_options = ["qwen-max-longcontext","qwen-max-0428"]
@@ -108,9 +108,7 @@ class Application(tk.Tk):
         self.begin_time = time.time()
         with open("logs/token.json", "r") as f:
             tokens = json.load(f)
-        self.begin_prompt_cost = tokens["gpt4o-0513"][0]
-        self.begin_completion_cost = tokens["gpt4o-0513"][1]
-        self.begin_dell_cost = tokens["dalle3"]
+        self.begin_cost = tokens
         self.total_cost = 0
         self.time_cost = 0
         self.img_ref = None     
@@ -589,15 +587,20 @@ class Application(tk.Tk):
     def update_cost(self):
         with open("logs/token.json", "r") as f:
             tokens = json.load(f)
-        current_prompt_cost = tokens["gpt4o-0513"][0]
-        current_completion_cost = tokens["gpt4o-0513"][1]
-        current_del_cost = tokens["dalle3"]
-        total_prompt_cost = current_prompt_cost - self.begin_prompt_cost
-        total_completion_cost = current_completion_cost - self.begin_completion_cost
+        llm_name = self.agent.model
+        img_llm_name = config.get("IMG_GEN_TYPE","dalle3")
+        current_prompt_cost = tokens[llm_name][0]
+        current_completion_cost = tokens[llm_name][1]
+        current_img_llm_cost = tokens[img_llm_name]
+        total_prompt_cost = current_prompt_cost - self.begin_cost[llm_name][0]
+        total_completion_cost = current_completion_cost - self.begin_cost[llm_name][1]
         self.total_cost = cal_cost(total_prompt_cost, total_completion_cost,self.agent.model)
         self.time_cost += time.time() - self.begin_time
         self.token_cost_label.config(text=f"💰 {self.total_cost} $")
-        self.token_img_label.config(text=f"💰 {(current_del_cost - self.begin_dell_cost) * 4 / 100} $")
+        if img_llm_name == "dalle3":
+            self.token_img_label.config(text=f"💰 {(current_img_llm_cost - self.begin_cost[img_llm_name]) * 4 / 100} $")
+        elif img_llm_name == "cogview-3":
+            self.token_img_label.config(text=f"💰 {(current_img_llm_cost - self.begin_cost[img_llm_name]) * 0.25 * 0.14} $")
         self.time_label.config(text=f"⏱️ {self.time_cost} s")
     
     def create_website(self):

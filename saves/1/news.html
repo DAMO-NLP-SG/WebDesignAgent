@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   新闻页面
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   /* 自定义样式 */
+        body {
+            background-color: #2d3748; /* 深色调背景 */
+            color: #edf2f7; /* 文字颜色 */
+            font-family: 'Helvetica', sans-serif; /* 字体系列 */
+        }
+        .btn-custom {
+            @apply py-2 px-6 bg-teal-500 text-white font-bold hover:bg-teal-700 transition duration-300;
+        }
+        .btn-subscribe {
+            @apply py-2 px-4 bg-purple-500 text-white font-bold hover:bg-purple-700 transition duration-300;
+        }
+        .loading {
+            @apply animate-spin rounded-full h-6 w-6 border-b-2 border-white;
+        }
+        .search-input {
+            @apply bg-gray-800 text-white px-4 py-2 rounded-lg w-full;
+        }
+        .news-item {
+            @apply mb-10 p-6 bg-gray-700 rounded-lg shadow-lg;
+        }
+        .news-image {
+            @apply mt-4 w-full h-auto rounded;
+        }
+        /* 添加渐变效果和阴影 */
+        h1 {
+            @apply text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-purple-500;
+        }
+  </style>
+ </head>
+ <body class="py-8 lg:px-16 px-4">
+  <!-- 顶部导航栏 -->
+  <nav class="bg-gray-900 p-4">
+   <div class="container mx-auto flex justify-between items-center">
+    <a class="text-lg font-bold text-gray-200 hover:text-gray-50" href="index.html">
+     返回主页
+    </a>
+    <div class="flex space-x-4">
+     <a class="px-4 py-2 text-gray-200 hover:text-gray-50" href="index.html">
+      首页
+     </a>
+     <a class="px-4 py-2 text-gray-200 hover:text-gray-50" href="game_updates.html">
+      游戏更新
+     </a>
+     <a class="px-4 py-2 text-gray-200 hover:text-gray-50" href="community_events.html">
+      社区活动
+     </a>
+     <button class="btn-subscribe" onclick="subscribeNews()">
+      订阅新闻
+     </button>
+    </div>
+   </div>
+  </nav>
+  <!-- 页面内容区域 -->
+  <div class="container mx-auto mt-12">
+   <h1 class="mb-6">
+    最新魔兽世界新闻
+   </h1>
+   <!-- 搜索功能 -->
+   <div class="flex items-center">
+    <input class="search-input flex-grow" id="searchNews" placeholder="搜索新闻..." type="text"/>
+    <svg class="w-6 h-6 text-gray-400 ml-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+     </path>
+    </svg>
+   </div>
+   <div class="mt-10" id="newsContainer">
+    <!-- 动态加载新闻内容 -->
+   </div>
+   <button class="mt-10 btn-custom" id="loadMoreBtn" onclick="loadMoreNews()">
+    <span id="loadMoreText">
+     查看更多
+    </span>
+    <div class="loading hidden" id="loadingSpinner">
+    </div>
+   </button>
+  </div>
+  <!-- 页脚 -->
+  <footer class="mt-20 py-6 bg-gray-900 text-gray-200 text-center">
+   © 2023 魔兽世界新闻. All rights reserved.
+  </footer>
+  <script>
+   // 新闻加载函数
+    function loadMoreNews() {
+        // 省略原有的示例代码，替换为实际的AJAX调用
+    }
+
+    // 添加订阅新闻功能
+    function subscribeNews() {
+        // 实现订阅逻辑
+    }
+
+    // 省略原有的滚动监听和搜索功能代码
+
+    // 示例新闻HTML模板，包含时间戳和来源
+    const newsTemplate = `
+        <div class="news-item">
+            <h2 class="text-2xl font-bold text-gray-100">新闻标题</h2>
+            <p class="text-gray-100 text-sm mb-2">发布时间: 2023-04-01 | 来源: 魔兽世界官网</p>
+            <p class="text-gray-100">这里是新闻内容...</p>
+            <img class="news-image" src="local-news-image.jpg" alt="新闻相关图片">
+        </div>
+    `;
+  </script>
+ </body>
+</html>

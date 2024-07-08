@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   联系页面
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            background-color: #333; /* 深色调背景 */
+            color: #fff; /* 文字颜色 */
+            font-family: 'Arial', sans-serif; /* 字体系列 */
+        }
+        .bg-gradient {
+            background-image: linear-gradient(to right, #6a11cb, #2575fc); /* 渐变效果 */
+        }
+        /* 社交媒体链接样式 */
+        .social-link {
+            @apply text-white hover:text-gray-500 transition-colors duration-300;
+        }
+        /* 按钮悬停效果 */
+        .btn-hover {
+            @apply hover:bg-blue-700 hover:shadow-lg transition duration-300;
+        }
+  </style>
+ </head>
+ <body class="p-4 md:p-8">
+  <!-- 顶部导航栏 -->
+  <div class="mb-10">
+   <a class="text-white hover:text-gray-400" href="index.html">
+    返回主页
+   </a>
+  </div>
+  <!-- 页面主体 -->
+  <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6 md:p-8">
+   <h1 class="text-3xl font-bold mb-6">
+    联系我们
+   </h1>
+   <p class="text-gray-700 mb-6">
+    此页面提供了一种方式，让用户能够轻松地与网站管理员取得联系。
+   </p>
+   <!-- 联系表单 -->
+   <form id="contactForm" onsubmit="submitForm(event);">
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+      姓名
+      <span class="text-red-500">
+       *
+      </span>
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" required="" type="text"/>
+    </div>
+    <div class="mb-4">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+      邮箱
+      <span class="text-red-500">
+       *
+      </span>
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" required="" type="email"/>
+    </div>
+    <div class="mb-6">
+     <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
+      消息
+      <span class="text-red-500">
+       *
+      </span>
+     </label>
+     <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" name="message" required="" rows="6"></textarea>
+    </div>
+    <div class="flex items-center justify-between">
+     <button class="bg-gradient btn-hover text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">
+      发送信息
+     </button>
+     <div class="hidden text-green-500" id="formSuccess">
+      消息发送成功！
+     </div>
+    </div>
+   </form>
+   <!-- 隐私保护说明 -->
+   <p class="text-xs text-gray-600 mt-8">
+    我们承诺保护您的隐私。您的个人信息仅用于回复您的咨询。
+   </p>
+  </div>
+  <!-- 社交媒体链接 -->
+  <div class="text-center mt-10">
+   <a class="social-link mx-2" href="#">
+    <i class="fab fa-facebook-f">
+    </i>
+    我们的Facebook
+   </a>
+   <a class="social-link mx-2" href="#">
+    <i class="fab fa-twitter">
+    </i>
+    我们的Twitter
+   </a>
+   <a class="social-link mx-2" href="#">
+    <i class="fab fa-instagram">
+    </i>
+    我们的Instagram
+   </a>
+  </div>
+  <script>
+   function submitForm(event) {
+        event.preventDefault(); // 阻止表单默认提交行为
+        var form = document.getElementById('contactForm');
+        var successMessage = document.getElementById('formSuccess');
+
+        // 表单验证逻辑
+        // 省略具体的验证逻辑...
+
+        // 模拟成功提交
+        successMessage.classList.remove('hidden');
+        setTimeout(() => {
+            successMessage.classList.add('hidden');
+        }, 3000); // 3秒后隐藏成功信息
+        form.reset(); // 清空表单
+    }
+  </script>
+  <script src="https://kit.fontawesome.com/your-kit-code.js">
+  </script>
+  <!-- Replace with your Font Awesome kit code -->
+ </body>
+</html>

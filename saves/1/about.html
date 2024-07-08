@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   关于我们
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+   /* 添加自定义样式，如果需要 */
+        .bg-dark {
+            background-color: #333; /* 深色调背景 */
+        }
+        .text-light {
+            color: #f5f5f5; /* 文字颜色 */
+        }
+        .font-serif {
+            font-family: 'Serif'; /* 字体系列 */
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* 渐变背景 */
+        }
+  </style>
+ </head>
+ <body class="bg-dark text-light font-serif">
+  <!-- 顶部导航栏 -->
+  <div class="p-4">
+   <a class="text-lg font-bold text-light hover:underline" href="index.html">
+    返回主页
+   </a>
+  </div>
+  <!-- 页面主体内容 -->
+  <div class="max-w-screen-lg mx-auto p-6">
+   <h1 class="text-3xl font-bold mb-4">
+    关于我们
+   </h1>
+   <p class="mb-6">
+    关于我们页面提供了网站的背景信息，团队成员的介绍以及网站发展的重要历程。旨在建立用户对网站的信任和了解。
+   </p>
+   <!-- 团队介绍 -->
+   <div class="mb-10" id="team-intro">
+    <h2 class="text-2xl font-bold mb-4">
+     团队介绍
+    </h2>
+    <p class="mb-2">
+     含有丰富媒体内容的团队介绍，采用轮播图展示团队成员。
+    </p>
+    <!-- 轮播图组件，此处用占位符表示 -->
+    <div class="w-full h-auto overflow-hidden rounded-lg">
+     <img alt="团队成员轮播图" class="w-full h-auto" src="https://placehold.co/600x300"/>
+    </div>
+   </div>
+   <!-- 发展历程 -->
+   <div class="mb-10" id="history">
+    <h2 class="text-2xl font-bold mb-4">
+     发展历程
+    </h2>
+    <p class="mb-2">
+     时间轴展示网站发展历程，包含重要事件和里程碑。
+    </p>
+    <!-- 时间轴组件，此处用占位符表示 -->
+    <div class="bg-gray-800 p-4 rounded-lg">
+     <p>
+      重要事件1...
+     </p>
+     <p>
+      重要事件2...
+     </p>
+     <p>
+      重要事件3...
+     </p>
+    </div>
+   </div>
+   <!-- 互动式Q&A部分 -->
+   <div class="mb-10">
+    <h2 class="text-2xl font-bold mb-4">
+     常见问题
+    </h2>
+    <!-- Q&A组件，此处用示例问答表示 -->
+    <details class="mb-4">
+     <summary class="font-bold">
+      问题1?
+     </summary>
+     <p>
+      答案是...
+     </p>
+    </details>
+    <details>
+     <summary class="font-bold">
+      问题2?
+     </summary>
+     <p>
+      答案是...
+     </p>
+    </details>
+   </div>
+  </div>
+  <!-- 底部 -->
+  <div class="text-center p-6 gradient-bg">
+   <p class="text-light">
+    © 2023 你的公司名称. All rights reserved.
+   </p>
+  </div>
+  <script>
+   // JavaScript交互功能示例
+    function goToPage(page) {
+        window.location.href = page;
+    }
+  </script>
+ </body>
+</html>

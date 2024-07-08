@@ -18,11 +18,11 @@ OPENAI_BASE_URL : ""
 # claude settings
 CLAUDE_API_KEY : ""
 
-# glm settings
+# glm settings and congview settings
 GLM_API_KEY : ""
 
 # qwen settings
 DASHSCOPE_API_KEY : ""
 
 # IMG Generator settings (if not set, it will use the openai settings)
-IMG_GEN_TYPE : "dalle3" # "dalle3"
+IMG_GEN_TYPE : "dalle3" # "dalle3" or "cogview-3"

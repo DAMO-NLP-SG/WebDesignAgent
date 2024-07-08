@@ -37,7 +37,7 @@ These websites are built based on the following materials:
 
 
 ##  📰 Update
-* **[2024.7.8]** WebDesignAgent can support Qwen models(not support vision and ) model!(There are some problems with asynchronous calls, and the generation speed is slow. Welcome PR to solve this problem)
+* **[2024.7.8]** WebDesignAgent can support Qwen models(not support vision and ) model!(There are some problems with asynchronous calls, and the generation speed is slow. Welcome PR to solve this problem) and cogview-3.
 * **[2024.7.5]** WebDesignAgent can support Claude and chatglm(not support vision) model!
 * **[2024.6.28]** WebDesignAgent can arrange your images into a website!
 * **[2024.6.27]** WebDesignAgent is now supporting building Chinese Websites!
@@ -107,14 +107,14 @@ OPENAI_BASE_URL : ""
 # claude settings
 CLAUDE_API_KEY : ""
 
-# glm settings
+# glm settings and congview settings
 GLM_API_KEY : ""
 
 # qwen settings
 DASHSCOPE_API_KEY : ""
 
 # IMG Generator settings (if not set, it will use the openai settings)
-IMG_GEN_TYPE : "dalle3" # "dalle3"
+IMG_GEN_TYPE : "dalle3" # "dalle3" or "cogview-3"
 ```
 
 ## 🚀 Quick Start

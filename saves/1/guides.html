@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>游戏攻略</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2c3e50, #3498db);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        .header-bg {
+            background-image: url('header-bg.jpg'); /* 假设这是一个本地图片 */
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="p-4">
+    <nav class="mb-4 flex justify-between items-center">
+        <div>
+            <a class="text-white text-lg font-bold hover:underline" href="index.html">
+                返回主页
+            </a>
+        </div>
+        <div>
+            <a class="text-white mr-4 hover:underline" href="forum.html">
+                论坛
+            </a>
+            <a class="text-white hover:underline" href="news.html">
+                新闻
+            </a>
+        </div>
+    </nav>
+    <header class="header-bg mb-8">
+        <h1 class="text-5xl font-bold">攻略页面</h1>
+        <p>全面的游戏指南，涵盖各职业的技能、装备、副本攻略以及最新的游戏更新。</p>
+    </header>
+    <section class="mb-8">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+            全部职业
+        </button>
+        <button class="bg-green-500 text-white px-4 py-2 rounded ml-4 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600">
+            最新更新
+        </button>
+    </section>
+    <main class="mb-8">
+        <!-- 动态生成的内容 -->
+        <article class="mb-4 p-4 bg-gray-700 rounded">
+            <img src="class-icon.png" alt="职业图标" class="w-10 h-10 inline-block mr-2"> <!-- 假设这是一个本地图片 -->
+            <h2 class="text-xl font-bold inline-block">职业攻略标题</h2>
+            <p>攻略内容摘要...</p>
+            <span class="text-gray-400">更新时间: 2023-04-01</span>
+        </article>
+        <!-- ...更多攻略文章... -->
+    </main>
+    <aside class="mb-8">
+        <h3 class="text-lg font-bold mb-2">攻略搜索</h3>
+        <input class="w-full p-2 bg-gray-800 rounded text-white focus:bg-gray-600" placeholder="搜索攻略..." type="text" id="searchBox">
+    </aside>
+    <footer class="text-center">
+        <p class="text-gray-400">
+            © 2023 游戏攻略网. All rights reserved.
+            <a class="text-white ml-2 hover:underline" href="contact.html">联系我们</a>
+        </p>
+    </footer>
+    <script>
+        function showAllClasses() {
+            console.log('显示所有职业的攻略');
+        }
+
+        function showLatestUpdates() {
+            console.log('显示最新更新');
+        }
+
+        // 简单的搜索功能
+        document.getElementById('searchBox').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                var searchQuery = event.target.value;
+                console.log('搜索:', searchQuery);
+                // 这里可以添加实际的搜索逻辑
+            }
+        });
+    </script>
+</body>
+</html>

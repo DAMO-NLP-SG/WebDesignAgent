@@ -135,7 +135,7 @@ local_img_storage_page_example = """
 
 
 plan_output_format_prompt = """
-Please make sure all pages can be accessed by buttons or links and all pages can ultimately jump back to the main page.
+Please make sure all pages can be accessed by buttons or links and all pages can ultimately jump back to the main page.((Note that the html_name you designed must correspond to the jump_page in other pages, and there must be no situation where the page cannot jump.))
 Here is an example of the page format:
 {page_template}
 
@@ -149,7 +149,7 @@ plan_output_format_prompt_local_img = """
 Here is the local image information you may need to use (please note that these images may need to be used in your design, and you should try to use these images as much as possible,You also need to consider the size of the image):
 {local_img_storage}
 
-Please make sure all pages can be accessed by buttons or links and all pages can ultimately jump back to the main page.
+Please make sure all pages can be accessed by buttons or links and all pages can ultimately jump back to the main page.((Note that the html_name you designed must correspond to the jump_page in other pages, and there must be no situation where the page cannot jump.))
 Here is an example of the page format:
 {page_template}
 
@@ -164,7 +164,7 @@ refine_page_prompt = """
 You are a web design master, and your current task is to modify the details of a website.
 {task_info}
 The following page is one of the pages of the  website. Please help me enrich its details and be careful not to change the format.
-The modified page should be dict format and no extra output(Do not add new links to other page).
+The modified page should be dict format and no extra output(Do not add new links to other pages, and do not modify any html_name to avoid redirect failure).
 For example:
 {page_example}
 You can enrich the page details by enriching the description and other methods(For example, adding descriptions of layout, adding web page effects, adding practical features, adding buttons and so on)).
@@ -183,7 +183,7 @@ refine_page_local_img_prompt = """
 You are a web design master, and your current task is to modify the details of a website.
 {task_info}
 The following page is one of the pages of the  website. Please help me enrich its details and be careful not to change the format.
-The modified page should be dict format and no extra output(Do not add new links to other page).
+The modified page should be dict format and no extra output(Do not add new links to other pages, and do not modify any html_name to avoid redirect failure).
 For example:
 {page_example}
 You can enrich the page details by enriching the description and other methods(For example, adding descriptions of layout, adding web page effects, adding practical features, adding buttons and so on)).

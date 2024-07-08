@@ -581,6 +581,84 @@ class Dalle3_llm(base_img_llm):
             json.dump(tokens, f)
         return img
 
+class cogview3_llm(base_img_llm):
+    def __init__(self) -> None:
+        super().__init__()
+        self.client = ZhipuAI(api_key=os.environ["GLM_API_KEY"])
+    
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    def get_img(self,prompt, save_path="saves/cogview-3.jpg"):
+        try:
+            return self._get_img(prompt, save_path)
+        except Exception as e:
+            # Catch the specific safety warning and modify the prompt
+            try:
+                new_prompt = "一只可爱的小猫在草地奔跑"
+                return self._get_img(new_prompt, save_path)
+            except Exception as e:
+                print("Error: generate img failed",e)
+
+    def _get_img(self,prompt, save_path):
+        result = self.client.images.generations(
+            model="cogview-3",
+            prompt=prompt,
+            n=1,
+            timeout=180
+        )
+        image_url = json.loads(result.model_dump_json())['data'][0]['url']
+        img = requests.get(image_url).content
+        img = Image.open(BytesIO(img))
+        img.save(save_path)
+
+        # Log token usage
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+        current_model = "cogview-3"
+        if current_model not in tokens:
+            tokens[current_model] = 0
+        tokens[current_model] += 1
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return img       
+
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    async def get_img_async(self,prompt, save_path="saves/cogview-3.jpg"):
+        try:
+            return await self._get_img_async(prompt, save_path)
+        except Exception as e:
+            # Catch the specific safety warning and modify the prompt
+            try:
+                new_prompt = "一只可爱的小猫在草地奔跑"
+                return await self._get_img_async(new_prompt, save_path)
+            except Exception as e:
+                print("Error: generate img failed",e)
+    
+    async def _get_img_async(self,prompt, save_path):
+        result = self.client.images.generations(
+            model="cogview-3",
+            prompt=prompt,
+            n=1,
+            timeout=180
+        )
+        image_url = json.loads(result.model_dump_json())['data'][0]['url']
+        img = await fetch_image(image_url)
+        img = Image.open(BytesIO(img))
+        img.save(save_path)
+
+        # Log token usage
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+        current_model = "cogview-3"
+        if current_model not in tokens:
+            tokens[current_model] = 0
+        tokens[current_model] += 1
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return img
+    
+    
+
+
 
 def get_llm():
     llm_type = config.get("LLM_TYPE", "openai")
@@ -598,6 +676,8 @@ def get_llm():
         raise ValueError(f"Unknown LLM type: {llm_type}")
     if img_gen_type == "dalle3":
         img_generator = Dalle3_llm()
+    elif img_gen_type == "cogview-3":
+        img_generator = cogview3_llm()
     else:
         raise ValueError(f"Unknown image generator type: {img_gen_type}")
     return llm, img_generator
@@ -607,25 +687,11 @@ def get_llm():
 
 
 if __name__ == "__main__":
-    llm , delle = get_llm()
-    prompt = "告诉我两张图片的区别"
-    img_path = ""
-    messages = [
-        {"role":"user","content":[
-            {"type":"text","text":"你是谁"},
-    ]}
-    ]
-    messages2 = [
-        {"role":"user","content":[
-            {"type":"text","text":"我是谁"},
-        ]}
-    ]
-    tasks = [llm.response_async(messages),llm.response_async(messages2)]
-    async def f(tasks):
-        results = await asyncio.gather(*tasks)
-        return results
-    results = asyncio.run(f(tasks))
-    print(results)
+    llm , img_llm= get_llm()
+    prompt = "孙悟空大战猪八戒"
+    tasks = [img_llm.get_img_async(prompt,save_path="saves/cogview-32.jpg"),img_llm.get_img_async(prompt,save_path="saves/cogview-33.jpg")]
+    asyncio.run(asyncio.gather(*tasks))
+
 
 
 

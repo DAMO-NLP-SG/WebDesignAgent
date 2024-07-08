@@ -74,6 +74,9 @@ class WebDesignAgent(BaseAgent):
         if len(self.memory) > 10:
             self.memory = self.memory[-10:]
         response = wrap_func(self.get_answer, messages=self.memory, **kwargs)
+        if not response:
+            print("Failed to get the response.")
+            return
         self.memory.append({"role":"assistant","content":response})
         return response
 
@@ -191,6 +194,9 @@ class WebDesignAgent(BaseAgent):
         ]},
         ]
         response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining page now...")
+        if not response:
+            print("Failed to get the response.")
+            return
         modified_page = self.get_modified_page_from_response(response,page_info)
         print(f"Page has been refined.")
         return modified_page
@@ -204,6 +210,9 @@ class WebDesignAgent(BaseAgent):
         ]},
         ]
         response = await self.get_answer_async(messages=messages)
+        if not response:
+            print("Failed to get the response.")
+            return
         modified_page = self.get_modified_page_from_response(response,page_info)
         print(f"Page {idx+1} has been refined.")
         return [modified_page,idx]
@@ -237,6 +246,9 @@ class WebDesignAgent(BaseAgent):
         html,css,cnt = None,None,0
         while not html and cnt < 5 or (not self.css_frame and not css):
             response = wrap_func(self.get_answer, messages=messages,wrap_text="Writing original website now...")
+            if not response:
+                print("Failed to get the response.")
+                return
             html,css = get_html_css_from_response(response)
             cnt += 1
         if not html or (not self.css_frame and not css):
@@ -252,6 +264,9 @@ class WebDesignAgent(BaseAgent):
         html,css,cnt = None,None,0
         while not html and cnt < 5 or (not self.css_frame and not css):
             response = await self.get_answer_async(messages=messages)
+            if not response:
+                print("Failed to get the response.")
+                return
             html,css = get_html_css_from_response(response)
             cnt += 1
         if not html or (not self.css_frame and not css):
@@ -311,6 +326,9 @@ class WebDesignAgent(BaseAgent):
             return
         messages = self.get_refine_messages(page_info)
         response = wrap_func(self.get_answer, messages=messages,wrap_text="Refining now...")
+        if not response:
+            print("Failed to get the response.")
+            return
         html_code,css_code = get_html_css_from_response(response)
         self.update_html_css(page_info,html_code,css_code)
     
@@ -320,6 +338,9 @@ class WebDesignAgent(BaseAgent):
             return
         messages = self.get_refine_messages(page_info)
         response = await self.get_answer_async(messages=messages)
+        if not response:
+            print("Failed to get the response.")
+            return
         html_code,css_code = get_html_css_from_response(response)
         await self.update_html_css_async(page_info,html_code,css_code)
         page_name = page_info["html_name"]
@@ -352,7 +373,6 @@ class WebDesignAgent(BaseAgent):
         else:
             write_file(os.path.join(self.save_file,html_name), html)
             if self.gen_img == "Gen":
-                print("begin add imgs")
                 html_code = asyncio.run(self.add_imgs_async(html))
                 write_file(os.path.join(self.save_file,html_name), html_code)
         page_name = html_name.split(".")[0]
@@ -401,6 +421,9 @@ class WebDesignAgent(BaseAgent):
         ]},
         ]
         response = wrap_func(self.get_answer, messages=messages,wrap_text="Completing page now...")
+        if not response:
+            print("Failed to get the response.")
+            return
         complete_page = extract(response,"completed_page")
         if "```python" in complete_page:
             complete_page = get_content_between_a_b("```python","```",complete_page)
@@ -437,6 +460,7 @@ class WebDesignAgent(BaseAgent):
     
 
     async def add_imgs_async(self,html_code):
+        print("begin add imgs")
         soup = BeautifulSoup(html_code, "html.parser")
         images = soup.find_all("img")
         scripts = soup.find_all("script")
@@ -473,9 +497,10 @@ class WebDesignAgent(BaseAgent):
                 else:
                     description = f"This is a image used in the background of the website. The image name is {img_name}."
                 img = await self.get_img_async(description)
-                create_file(img_path)
-                img.save(img_path)
-                print(f"Image {img_path} has been added to the folder.")
+                if img:
+                    create_file(img_path)
+                    img.save(img_path)
+                    print(f"Image {img_path} has been added to the folder.")
 
 
     
@@ -485,11 +510,12 @@ class WebDesignAgent(BaseAgent):
             imgsrc = match.group(1)
             alt = match.group(2)
             img = await self.get_img_async(alt)
-            image = self.save_img(img,{"src":imgsrc,"alt":alt})
-            new_imgsrc = image["src"]
-            old_segment = match.group(0)
-            new_segment = old_segment.replace(imgsrc,new_imgsrc)
-            script = script.replace(old_segment,new_segment,1)
+            if img:
+                image = self.save_img(img,{"src":imgsrc,"alt":alt})
+                new_imgsrc = image["src"]
+                old_segment = match.group(0)
+                new_segment = old_segment.replace(imgsrc,new_imgsrc)
+                script = script.replace(old_segment,new_segment,1)
         return script
 
 
@@ -502,7 +528,8 @@ class WebDesignAgent(BaseAgent):
         if os.path.exists(os.path.join(self.save_file,src)):
             return
         img = await self.get_img_async(alt)
-        self.save_img(img,img_content)
+        if img:
+            self.save_img(img,img_content)
 
     
     async def get_img_async(self,description):
@@ -523,7 +550,8 @@ class WebDesignAgent(BaseAgent):
             if os.path.exists(os.path.join(self.save_file,src)):
                 continue
             img = self.get_img(alt)
-            image = self.save_img(img,image)
+            if img:
+                image = self.save_img(img,image)
         for script in scripts:
             if script.string:
                 script.string = self.add_imgs_to_script(script.string)
@@ -535,11 +563,12 @@ class WebDesignAgent(BaseAgent):
             imgsrc = match.group(1)
             alt = match.group(2)
             img = self.get_img(alt)
-            image = self.save_img(img,{"src":imgsrc,"alt":alt})
-            new_imgsrc = image["src"]
-            old_segment = match.group(0)
-            new_segment = old_segment.replace(imgsrc,new_imgsrc)
-            script = script.replace(old_segment,new_segment,1)
+            if img:
+                image = self.save_img(img,{"src":imgsrc,"alt":alt})
+                new_imgsrc = image["src"]
+                old_segment = match.group(0)
+                new_segment = old_segment.replace(imgsrc,new_imgsrc)
+                script = script.replace(old_segment,new_segment,1)
         return script
 
 
@@ -558,9 +587,10 @@ class WebDesignAgent(BaseAgent):
             if not os.path.exists(img_path):
                 break
         create_file(img_path)
-        img.save(img_path)
-        image["src"] = img_name
-        print(f"Image {img_path} has been added to the folder.")
+        if img:
+            img.save(img_path)
+            image["src"] = img_name
+            print(f"Image {img_path} has been added to the folder.")
         return image
 
     def load_local_img_storage(self):
@@ -621,6 +651,9 @@ class WebDesignAgent(BaseAgent):
         ]},
         ]
         response = await self.get_answer_async(messages=messages)
+        if not response:
+            print("Failed to get the response.")
+            return
         chinese_description = extract(response,"Chinese")
         english_description = extract(response,"English")
         self.local_img_storage_en.append({"img_path":img_name,"description":english_description,"height":height,"width":width})
@@ -659,23 +692,23 @@ class WebDesignAgent(BaseAgent):
                     print(f"Image {img_name} has been removed.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--save_file", type=str, default="saves/shopping/")
-    parser.add_argument("--text", type=str, default=None)
-    parser.add_argument("--img", type=str, default=None)
-    parser.add_argument("--refine_times", type=int, default=2)
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--save_file", type=str, default="saves/shopping/")
+    # parser.add_argument("--text", type=str, default=None)
+    # parser.add_argument("--img", type=str, default=None)
+    # parser.add_argument("--refine_times", type=int, default=2)
     
-    args = parser.parse_args()
-    save_file = args.save_file
-    text = args.text
-    img = args.img
-    refine_times = args.refine_times
-    agent = WebDesignAgent(save_file=save_file)
-    agent.act(text = text,img = img,refine_times = refine_times)
-    print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
-    cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
-    print(f"Total cost: {cost}")
-
-
+    # args = parser.parse_args()
+    # save_file = args.save_file
+    # text = args.text
+    # img = args.img
+    # refine_times = args.refine_times
+    # agent = WebDesignAgent(save_file=save_file)
+    # agent.act(text = text,img = img,refine_times = refine_times)
+    # print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
+    # cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
+    # print(f"Total cost: {cost}")
+    agent = WebDesignAgent(save_file="saves/1/")
+    asyncio.run(agent.add_imgs_async(open("/Users/jianghuyihei/code/WebDesignAgent/saves/1/index.html",encoding='utf-8').read()))
 
 
