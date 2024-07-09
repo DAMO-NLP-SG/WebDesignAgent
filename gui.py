@@ -275,6 +275,9 @@ class Application(tk.Tk):
         self.agent.local_img_storage_path = self.web_design_widgets["input_entries"][5].get() if self.web_design_widgets["input_entries"][5].get() else ""
     
     def upload_local_img_storage(self):
+        if self.agent.vision == False:
+            messagebox.showerror("Error", "Please open the vision first")
+            return
         self.read_input_entries()
         self.is_animating = True
         threading.Thread(target=self.animate, args=(["🤔💭 Uploading now", "🧐💭 Uploading now.", "😅💭 Uploading now..", "🤯💭 Uploading now..."],)).start()

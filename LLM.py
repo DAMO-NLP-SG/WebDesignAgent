@@ -689,8 +689,6 @@ def get_llm():
 if __name__ == "__main__":
     llm , img_llm= get_llm()
     prompt = "孙悟空大战猪八戒"
-    tasks = [img_llm.get_img_async(prompt,save_path="saves/cogview-32.jpg"),img_llm.get_img_async(prompt,save_path="saves/cogview-33.jpg")]
-    asyncio.run(asyncio.gather(*tasks))
 
 
 

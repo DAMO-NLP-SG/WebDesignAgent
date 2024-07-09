@@ -692,23 +692,22 @@ class WebDesignAgent(BaseAgent):
                     print(f"Image {img_name} has been removed.")
 
 if __name__ == "__main__":
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("--save_file", type=str, default="saves/shopping/")
-    # parser.add_argument("--text", type=str, default=None)
-    # parser.add_argument("--img", type=str, default=None)
-    # parser.add_argument("--refine_times", type=int, default=2)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--save_file", type=str, default="saves/shopping/")
+    parser.add_argument("--text", type=str, default=None)
+    parser.add_argument("--img", type=str, default=None)
+    parser.add_argument("--refine_times", type=int, default=2)
     
-    # args = parser.parse_args()
-    # save_file = args.save_file
-    # text = args.text
-    # img = args.img
-    # refine_times = args.refine_times
-    # agent = WebDesignAgent(save_file=save_file)
-    # agent.act(text = text,img = img,refine_times = refine_times)
-    # print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
-    # cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
-    # print(f"Total cost: {cost}")
-    agent = WebDesignAgent(save_file="saves/1/")
-    asyncio.run(agent.add_imgs_async(open("/Users/jianghuyihei/code/WebDesignAgent/saves/1/index.html",encoding='utf-8').read()))
+    args = parser.parse_args()
+    save_file = args.save_file
+    text = args.text
+    img = args.img
+    refine_times = args.refine_times
+    agent = WebDesignAgent(save_file=save_file)
+    agent.act(text = text,img = img,refine_times = refine_times)
+    print(f"Total prompt cost tokens: {agent.total_prompt_cost_tokens}, Total completion cost tokens: {agent.total_completion_cost_tokens}")
+    cost = cal_cost(agent.total_prompt_cost_tokens,agent.total_completion_cost_tokens)
+    print(f"Total cost: {cost}")
+
 
 
