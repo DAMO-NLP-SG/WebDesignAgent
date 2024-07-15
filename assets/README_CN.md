@@ -15,14 +15,14 @@ WebDesignAgent :  Towards Effortless Website Creation
 
 [harry 1.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/d7ddd748-00d3-47e1-96aa-5a022e857df8)
 
-这些网站基于以下材料构建：
+该网站基于以下提示构建：
 * 简单描述：*哈利波特官方网站，充满魔幻元素*
 * Dalle3生成的图像
 * 人工反馈
 
 [黑八戒.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/f69b1992-4ef0-47e9-91ce-b0b696b581d0)
 
-这些网站是基于以下材料构建的：
+该网站基于以下提示构建：
 * 参考网站布局：*wukong.png*
 * 简单描述：*请为《黑神话：八戒》构建官方网站。它需要详细介绍游戏以及 Game Science 的开发历史。此外，它还应提供与八戒的智能 AI 对话功能。Game Science 的著名作品是《黑神话：悟空》，它刚刚获得了 2024 年 TGA 年度游戏奖。*
 * 本地图像
@@ -30,21 +30,21 @@ WebDesignAgent :  Towards Effortless Website Creation
 
 [taobao.webm](https://github.com/DAMO-NLP-SG/WebDesignAgent/assets/109561120/62f96da3-6b10-4d91-9ccb-fb2c408163bf)
 
-这些网站基于以下材料构建：
+该网站基于以下提示构建：
 * 参考网站布局：*taobao.png*
 * Dalle3生成的图像
 * 人工反馈
 
 ##  📰 最近更新
-* **[2024.7.15]** WebDesignAgent 可以支持 Qwen 模型(不支持视觉模型)！(异步调用存在一些问题，生成速度较慢，欢迎 PR 解决这个问题) 和 cogview-3 和 sd3(完全免费！)。
+* **[2024.7.15]** WebDesignAgent 可以支持 Qwen 模型(不支持视觉模型，同时异步调用存在一些问题，生成速度较慢，欢迎 PR 解决这个问题) 和 cogview-3 以及 sd3(完全免费！)。
 * **[2024.7.5]** WebDesignAgent 可以支持 Claude 和 chatglm(不支持视觉模型) 模型！
 * **[2024.6.28]** WebDesignAgent 现已支持搭建中文网站，并且可以把本地图片排版成网站！
-* **[2024.6.26]** WebDesignAgent 第一个版本！
+* **[2024.6.26]** WebDesignAgent 发布了第一个版本！
   
 ## 😊 什么是 WebDesignAgent
-WebDesignAgnet 是一个智能体，可以根据您的需要自动帮助您构建一系列网站。
+WebDesignAgnet 是一个强力的智能体，可以根据您的需要自动帮助您构建一系列网站。
 
-它支持构建网页：
+它支持如下方式构建网站：
 * **文本 → 网站**：根据您的文本描述生成对应网站。
 * **图像 → 网站**：根据您上传的图像，生成对应网站。
 * **文本+图像 → 网站**：根据你提供的图像，模仿其布局生成符合你文本描述的网站。
@@ -142,7 +142,7 @@ python gui.py
 10. 将 Vision 设置为`Close`可以降低成本，但会降低质量。
 
 #### 人工反馈
-如果您想生成一个更具人性化控制的网站。
+如果您想精细化控制生成网站。
 按照**自动生成**中的步骤1-7获取自动生成的计划。然后使用以下方式自定义您的网站：
 * 您可以通过直接输入自己的想法来修改计划结果。
 * 您还可以添加/删除不满意的网页。
@@ -157,7 +157,7 @@ python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  -
 ## 👀 样例
 
 ### 1.阿里巴巴达摩院官网
-根据阿里巴巴达摩院官网图片生成: [Websites](examples/damo/index.html)
+根据阿里巴巴达摩院官网图片生成: examples/damo/index.html
 <p align="center">
 <a href=""><img src="damo.png"></a>
 </p>
@@ -165,7 +165,7 @@ python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  -
 ---
 
 ### 2.Shopping
-根据文字描述（一个购物网站）生成: [Websites](examples/shopping/index.html)
+根据文字描述（一个购物网站）生成: examples/shopping/index.html
 <p align="center">
 <a href=""><img src="shopping.png"></a>
 </p>
@@ -173,7 +173,7 @@ python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  -
 ---
 
 ### 3.Game
-根据描述（一个游戏网站）跟达摩院官网图片共同生成: [Websites](examples/game/index.html)
+根据描述（一个游戏网站）跟达摩院官网图片共同生成: examples/game/index.html
 
 <p align="center">
 <a href=""><img src="game.png"></a>
