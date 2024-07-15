@@ -24,5 +24,8 @@ GLM_API_KEY : ""
 # qwen settings
 DASHSCOPE_API_KEY : ""
 
+# sd3 settings
+SD3_API_KEY : ""
+
 # IMG Generator settings (if not set, it will use the openai settings)
-IMG_GEN_TYPE : "dalle3" # "dalle3" or "cogview-3"
+IMG_GEN_TYPE : "dalle3" # "dalle3" or "cogview-3" or "sd3"

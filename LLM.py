@@ -655,7 +655,108 @@ class cogview3_llm(base_img_llm):
         with open(token_log_file, "w") as f:
             json.dump(tokens, f)
         return img
+
+class sd3_img_llm(base_img_llm):
+    def __init__(self) -> None:
+        super().__init__()
+        self.api_key = os.environ.get("SD3_API_KEY", None)
     
+
+    def get_keys(self):
+        keys = []
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+            for key in tokens.keys():
+                keys.append(key)
+        return keys
+
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    def get_img(self,prompt, save_path="saves/sd3.jpg"):
+        try:
+            return self._get_img(prompt, save_path)
+        except Exception as e:
+            # Catch the specific safety warning and modify the prompt
+            try:
+                new_prompt = "a colorful abstract painting of a cat"
+                return self._get_img(new_prompt, save_path)
+            except Exception as e:
+                print("Error: generate img failed",e)
+    
+    def _get_img(self,prompt, save_path):
+        url = "https://api.siliconflow.cn/v1/stabilityai/stable-diffusion-3-medium/text-to-image"
+        payload = {
+        "prompt": prompt,
+        "image_size": "1024x1024",
+        "batch_size": 1,
+        "num_inference_steps": 20,
+        "guidance_scale": 7
+        }
+        headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "authorization": "Bearer " + self.api_key
+        }
+
+        response = requests.post(url, json=payload, headers=headers, verify=False)
+        image_url = response.json()["images"][0]["url"]
+        img = requests.get(image_url).content
+        img = Image.open(BytesIO(img))
+        img.save(save_path)
+
+        # Log token usage
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+        current_model = "sd3"
+        if current_model not in tokens:
+            tokens[current_model] = 0
+        tokens[current_model] += 1
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return img
+    
+    @retry(wait=wait_fixed(10), stop=stop_after_attempt(10), before=before_retry_fn)
+    async def get_img_async(self,prompt, save_path="saves/sd3.jpg"):
+        try:
+            return await self._get_img_async(prompt, save_path)
+        except Exception as e:
+            # Catch the specific safety warning and modify the prompt
+            try:
+                new_prompt = "a colorful abstract painting of a cat"
+                return await self._get_img_async(new_prompt, save_path)
+            except Exception as e:
+                print("Error: generate img failed",e)
+    
+    async def _get_img_async(self,prompt, save_path):
+        url = "https://api.siliconflow.cn/v1/stabilityai/stable-diffusion-3-medium/text-to-image"
+        payload = {
+        "prompt": prompt,
+        "image_size": "1024x1024",
+        "batch_size": 1,
+        "num_inference_steps": 20,
+        "guidance_scale": 7
+        }
+        headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "authorization": "Bearer " + self.api_key
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        image_url = response.json()["images"][0]["url"]
+        img = await fetch_image(image_url)
+        img = Image.open(BytesIO(img))
+        img.save(save_path)
+
+        # Log token usage
+        with open(token_log_file, "r") as f:
+            tokens = json.load(f)
+        current_model = "sd3"
+        if current_model not in tokens:
+            tokens[current_model] = 0
+        tokens[current_model] += 1
+        with open(token_log_file, "w") as f:
+            json.dump(tokens, f)
+        return img
     
 
 
@@ -678,6 +779,8 @@ def get_llm():
         img_generator = Dalle3_llm()
     elif img_gen_type == "cogview-3":
         img_generator = cogview3_llm()
+    elif img_gen_type == "sd3":
+        img_generator = sd3_img_llm()
     else:
         raise ValueError(f"Unknown image generator type: {img_gen_type}")
     return llm, img_generator
@@ -689,6 +792,8 @@ def get_llm():
 if __name__ == "__main__":
     llm , img_llm= get_llm()
     prompt = "孙悟空大战猪八戒"
+    img_llm.get_img(prompt,"1.jpg")
+
 
 
 
