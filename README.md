@@ -37,7 +37,7 @@ These websites are built based on the following materials:
 
 
 ##  📰 Update
-* **[2024.7.8]** WebDesignAgent can support Qwen models(not support vision and ) model!(There are some problems with asynchronous calls, and the generation speed is slow. Welcome PR to solve this problem) and cogview-3.
+* **[2024.7.15]** WebDesignAgent can support Qwen models(not support vision and ) model!(There are some problems with asynchronous calls, and the generation speed is slow. Welcome PR to solve this problem) and cogview-3 and sd3(free!).
 * **[2024.7.5]** WebDesignAgent can support Claude and chatglm(not support vision) model!
 * **[2024.6.28]** WebDesignAgent now supporting building Chinese Websites and can arrange your images into a website!
 * **[2024.6.26]**  The first version of WebDesignAgent!
