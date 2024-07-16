@@ -1,9 +1,11 @@
 web_type : "chrome" # "chrome" or "firefox" or "edge"
-LLM_TYPE : "openai" # openai or claude or glm or qwen
+LLM_TYPE : "openai" # "openai" or "claude" or "glm" or "qwen"
+IMG_GEN_TYPE : "dalle3" # "dalle3" or "cogview-3" or "sd3"
 
 # LLM settings
-# openai settings
-is_azure : True
+## openai settings
+is_azure : False # set to True if you are using azure api
+### Azure settings
 AZURE_OPENAI_ENDPOINT : ""
 AZURE_OPENAI_KEY : ""
 AZURE_OPENAI_API_VERSION : ""
@@ -11,21 +13,20 @@ AZURE_OPENAI_API_VERSION : ""
 AZURE_OPENAI_DALLE_ENDPOINT : ""
 AZURE_OPENAI_DALLE_KEY : ""
 
+### openai settings
 OPENAI_API_KEY : ""
 OPENAI_PROXY_URL : ""
 OPENAI_BASE_URL : ""
 
-# claude settings
+## claude settings
 CLAUDE_API_KEY : ""
 
-# glm settings and congview settings
+## glm settings and congview settings
 GLM_API_KEY : ""
 
-# qwen settings
+## qwen settings
 DASHSCOPE_API_KEY : ""
 
-# sd3 settings
+## sd3 settings
 SD3_API_KEY : ""
 
-# IMG Generator settings (if not set, it will use the openai settings)
-IMG_GEN_TYPE : "dalle3" # "dalle3" or "cogview-3" or "sd3"
