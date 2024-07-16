@@ -27,6 +27,6 @@ GLM_API_KEY : ""
 ## qwen settings
 DASHSCOPE_API_KEY : ""
 
-## sd3 settings
-SD3_API_KEY : ""
+## sd3 settings 
+SD3_API_KEY : "" # siliconflow api key
 
