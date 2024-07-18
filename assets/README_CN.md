@@ -157,7 +157,7 @@ python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  -
 ## 👀 样例
 
 ### 1.阿里巴巴达摩院官网
-根据阿里巴巴达摩院官网图片生成: examples/damo/index.html
+根据阿里巴巴达摩院官网图片生成: examples/damo/main.html
 <p align="center">
 <a href=""><img src="damo.png"></a>
 </p>
@@ -173,7 +173,7 @@ python webdesign.py --save_file "saves/shopping/" --text "a shopping website"  -
 ---
 
 ### 3.Game
-根据描述（一个游戏网站）跟达摩院官网图片共同生成: examples/game/index.html
+根据描述（一个游戏网站）跟达摩院官网图片共同生成
 
 <p align="center">
 <a href=""><img src="game.png"></a>
