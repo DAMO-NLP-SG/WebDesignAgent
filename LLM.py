@@ -697,7 +697,7 @@ class sd3_img_llm(base_img_llm):
         "authorization": "Bearer " + self.api_key
         }
 
-        response = requests.post(url, json=payload, headers=headers, verify=False)
+        response = requests.post(url, json=payload, headers=headers)
         image_url = response.json()["images"][0]["url"]
         img = requests.get(image_url).content
         img = Image.open(BytesIO(img))
@@ -790,7 +790,7 @@ def get_llm():
 
 
 if __name__ == "__main__":
-    llm , img_llm= get_llm()
+    img_llm = sd3_img_llm()
     prompt = "孙悟空大战猪八戒"
     img_llm.get_img(prompt,"1.jpg")
 
