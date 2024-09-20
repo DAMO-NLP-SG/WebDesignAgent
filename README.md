@@ -194,5 +194,5 @@ Website generated combining both an image and a description.
 ## WeChat
 If you have any questions, please join the group chat for consultation
 <p align="center">
-<a href=""><img src="assets/wechat.png"></a>
+<a href=""><img src="wechat.jpg"></a>
 </p>
